@@ -1,0 +1,38 @@
+export class OwnerRentDetail {
+    propertyMasterID!: number | null;
+    unitCategoryID!: number | null;
+    listingPurposeID!: number | null;
+    propertyMasterName!: string | null;
+    propertyUnitDescription!: string | null;
+    rentPrice!: number | null;
+    sellPrice!: number | null;
+    buildingNumber!: string | null;
+    buildingName!: string | null;
+    addressStr!: string | null;
+    landLordID!: number | null;
+    iconUrl!: string | null;
+    plotNumber!: string | null;
+    propertyMasterTypeID!: number | null;
+    unitName!: string | null;
+    bedRoom!: number | null;
+    bathRoom!: number | null;
+    sqft!: number | null;
+    contact!: string | null;
+    hall!: number | null;
+    kitchen!: number | null;
+    parking!: string | null;
+    name!: string | null;
+    residentialUnits!: number | null;
+    commercialUnits!: number | null;
+    propertyUnitID!: number | null;
+    numberofFloors!: number | null;
+    floorNumber!: number | null;
+    builtYear!: number | null;
+    imageString!: string[];
+    totalImages!: number | null;
+    propertyMasterDescription!: string | null;
+    propertySubTypeName!: string | null;
+    vacant!: number | null;
+    occupied!: number | null;
+    totalUnit!: number | null;
+}

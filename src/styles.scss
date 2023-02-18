@@ -1,0 +1,273 @@
+/* You can add global styles to this file, and also import other style files */
+@import "variables.scss";
+@import "~bootstrap/dist/css/bootstrap.css";
+
+html,
+body {
+    height: 100%;
+    font-size: 16;
+    background: #FFFFFF;
+    // background-color: $body-bg;
+    // font-size: ;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, Arial, Helvetica, sans-serif;
+}
+
+.white-bg {
+    background-color: $white-color;
+}
+
+.mat-form-field {
+    width: 100%;
+    display: unset !important;
+    height: 20px;
+    font-size: 0.7rem;
+    padding-bottom: 0px !important;
+    // background-color: pink !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-subscript-wrapper {
+    padding: 0 !important;
+}
+
+.mat-form-field-subscript-wrapper {
+    font-size: 81%;
+    margin-left: 0.666667em;
+}
+
+// .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+//     color: green!important;
+// }
+
+
+//  .mat-form-field-infix {
+//     height: 0px;
+//   }
+
+//   .mat-option .mat-option-text{
+//     flex-grow: 1;
+//     display: flex;
+//     align-items: center;
+//   }
+//   .repair-status-select,
+// .mat-select-value-text {
+// //   color: #4980b3;
+//   font-size: 16px;
+//   font-weight: 600;
+// }
+
+.col {
+    padding-block: 0rem;
+    padding-inline: 0px;
+}
+
+
+.misc-bottom-padding {
+    margin: 8px 0 20px;
+}
+
+.misc-bottom-padding mat-label {
+    margin-right: 15px;
+}
+
+.mat-radio-label {
+    margin: 0 15px 0 0;
+}
+
+.title-center {
+    margin: 0 auto;
+}
+
+.button-wrapper {
+    margin-top: 10px;
+}
+
+
+.navbar-expand-md .navbar-nav .nav-link {
+    padding-inline: 18px;
+}
+
+.navbar-nav>.active>a {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+
+// .nav-bg{
+//     background-color: $primary-font-color;
+// }
+
+.section {
+    padding-block: 4rem;
+    color: black;
+    font-size: 16px;
+    text-align: left;
+}
+
+h1 {
+    text-align: center;
+    // font-size: $heading1;
+    font-weight: map-get($map: $font-weights, $key: semi-bold);
+}
+
+h3 {
+    text-align: left;
+    font-size: $heading4;
+    font-weight: map-get($map: $font-weights, $key: medium);
+}
+
+h2 {
+    font-size: $heading2;
+    font-weight: map-get($map: $font-weights, $key: medium);
+}
+
+h5 {
+    font-size: $heading5;
+    font-weight: map-get($map: $font-weights, $key: medium);
+}
+
+.left-align {
+    text-align: left !important;
+}
+
+.center-align {
+    text-align: center !important;
+}
+
+
+.right-align {
+    text-align: right !important;
+}
+
+.small-colored-heading {
+    font-size: $title;
+    color: $primary-color;
+    text-align: left !important;
+}
+
+.secondary-font {
+    color: $secondary-font-color;
+    font-size: $body;
+}
+
+
+
+.secondary-font-medium {
+    font-weight: map-get($map: $font-weights, $key: medium);
+    font-size: $body;
+}
+
+.secondary-font-regular {
+    font-weight: map-get($map: $font-weights, $key: regular);
+    font-size: $caption;
+}
+
+
+
+.colored-text {
+    color: $primary-color;
+}
+
+.c-white {
+    color: #fefefe;
+}
+
+.dark-text {
+    color: $primary-font-color;
+}
+
+.block {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 14px 28px;
+    font-size: $title;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: $input-field-bg !important;
+    // border-radius: 30px !important;
+    font-size: medium;
+}
+
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: $primary-color;
+}
+
+.card {
+    background: $white-color;
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    border: none;
+    font-size: 15px;
+}
+
+.form-control {
+    border-color: $primary-color;
+}
+
+.loading {
+    height: 90vh;
+
+}
+
+.loading mat-spinner {
+    margin: auto;
+}
+
+.mat-progress-spinner {
+    display: block !important;
+    position: absolute !important;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden !important;
+
+}
+
+::-webkit-scrollbar-track {
+    background-color: none;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgb(245, 4, 4);
+}
+
+.go-to-signin {
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: $white-color;
+    background-color: $primary-color;
+    border-radius: 10px;
+    border: none;
+}
+
+.ngx-pagination .current {
+    padding: 0.1875rem 0.625rem;
+    background: $primary !important;
+    color: #fefefe;
+    cursor: default;
+}
+
+.card-text {
+    font-size: 0.9rem
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

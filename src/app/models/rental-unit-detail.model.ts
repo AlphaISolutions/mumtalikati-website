@@ -1,0 +1,26 @@
+export class RentalUnitDetail {
+    rowsIndex!: number | null;
+    rownumberId!: number | null;
+    propertyMasterID!: number | null;
+    unitCategoryID!: number | null;
+    listingPurposeID!: number | null;
+    iconUrl!: string | null;
+    propertyMasterName!: string | null;
+    propertyUnitDescription!: string | null;
+    rentPrice!: number | null;
+    sellPrice!: number | null;
+    addressStr!: string | null;
+    landLordID!: number | null;
+    totalCount!: number | null;
+    plotNumber!: string | null;
+    propertyMasterTypeID!: number | null;
+    unitName!: string | null;
+    pageNumber!: number | null;
+    rowsNumbers!: number | null;
+    bedRoom!: number | null;
+    bathRoom!: number | null;
+    sqft!: number | null;
+    contact!: string | null;
+    propertyUnitid!: number | null;
+    imageString!: string | null;
+}

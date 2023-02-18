@@ -1,0 +1,42 @@
+@import "../../../variables.scss";
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+a:hover{
+  cursor: pointer;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.navbar{
+  padding-inline: 1rem !important;
+  background-color:transparent!important;
+}
+.nav-bg{
+  // background-color: black !important;
+  // background-color: transparent;
+}
+.nav-link{
+  color: white !important;
+}
+.nav-link:hover, .nav-link:focus {
+  color: $primary-color !important;
+}
+.nav-btn-link {
+  color: white !important;
+}
+.nav-btn-link:hover, .nav-btn-link:focus{
+  color: white !important;
+}
+#logo { display: inline-block; margin-top: 1px; }
+
+#logo img { max-height: 40px; width: auto; transform: translate3d(0,0,0); }
+img.footer-logo { max-height: 43px; width: auto; transform: translate3d(0,0,0); }
+.nav-bg{
+
+}
+

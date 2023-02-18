@@ -1,0 +1,144 @@
+<div class="container" *ngIf="propertyDetail">
+    <div *ngFor="let property of propertyDetail">
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div>
+                    <h2 style="color: #9E2A2B;">
+                        For Rent
+                    </h2>
+                </div>
+                <div class="group">
+                    <h4>
+                        Bilal Group’s
+                    </h4>
+                </div>
+                <div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th class="header">Building Type</th>
+                                <td class="propertyb">{{property.propertySubTypeName}}</td>
+
+                            </tr>
+                            <tr>
+                                <th class="header">Building ID</th>
+                                <td class="propertyb">{{property.buildingNumber}}</td>
+
+                            </tr>
+                            <tr>
+                                <th class="header">Building Name</th>
+                                <td class="propertyb">{{property.propertyMasterName}}</td>
+
+                            </tr>
+                            <tr>
+                                <th class="header">Plot Number</th>
+                                <td class="propertyb">{{property.plotNumber}}</td>
+
+                            </tr>
+                            <tr>
+                                <th class="header">Unit ID</th>
+                                <td class="propertyb">{{property.unitName}}</td>
+
+                            </tr>
+                            <tr>
+                                <th class="header">Unit Category</th>
+                                <td class="propertyb">{{unitcatID}}</td>
+
+                            </tr>
+                            <tr>
+                                <th class="header">Built in year</th>
+                                <td class="propertyb">{{property.builtYear}}</td>
+
+                            </tr>
+                            <tr>
+                                <th class="header">Floor #</th>
+                                <td class="propertyb">{{property.floorNumber}}</td>
+
+                            </tr>
+                            <tr>
+                                <th class="header">Status</th>
+                                <td class="propertyb">Weekend</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="main">
+                    <p><img class="pe-2 addess" [src]=" location" style="color: #9E2A2B;">{{property.addressStr}}</p>
+                    <!-- <h4>Landlord</h4> -->
+                </div>
+                <div class=" d-flex gap-3 py-3" aria-current="true">
+                    <img [src]="" alt="twbs" width="42" height="42" class="rounded-circle flex-shrink-0">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                            <h6 class="mb-0"><b>Landlord</b></h6>
+                            <p class="mb-0 opacity-75">{{property.name}}</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <button mat-stroked-button color="primary" class="me-4 px-5 border-r mb-md-2">Call</button>
+                    <button mat-raised-button color="primary" class="px-5">Basic</button>
+                </div>
+
+            </div>
+            <div class="col-md-8 mt-4">
+                <mat-card class="example-card ">
+
+                    <img mat-card-image [src]="property.imageString" alt="Photo of a Shiba Inu">
+                    <mat-card-content>
+                        <h5>
+                            OMR {{property.rentPrice}}/mon
+                        </h5>
+                        <div style="display: flex;" clas="pe-4">
+
+                            <p class="icon pe-4"><img class="pe-2" [src]="areaimg">{{property.sqft}}SQM</p>
+
+                            <p class="icon pe-4"><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} Bedrooms
+                            </p>
+
+
+                            <p class="icon pe-4"><img class="pe-2" [src]="washroomimg">{{property.bathRoom}} Bathrooms
+                            </p>
+
+
+                            <p class="icon pe-4"><img class="pe-2" [src]="kitchen">{{property.kitchen}} Kitchen
+                            </p>
+
+
+                            <p class="icon pe-4"><img class="pe-2" [src]="hall">{{property.hall}} Hall
+                            </p>
+
+
+                        </div>
+                        <h5>
+                            Property Details
+                        </h5>
+                        <p>
+                            {{property.propertyUnitDescription}}
+                        </p>
+                        <h5>
+                            Features
+                        </h5>
+                    </mat-card-content>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col"> <mat-checkbox class="custom-frame">Full Furnished</mat-checkbox></div>
+                                <div class="col"> <mat-checkbox class="custom-frame">Dining Room</mat-checkbox></div>
+                                <div class="col p-md-0 ps-md-2"> <mat-checkbox class="custom-frame">Servants Room</mat-checkbox></div>
+                                <div class="col"> <mat-checkbox class="custom-frame">Central Coling</mat-checkbox></div>
+                                <div class="col"> <mat-checkbox class="custom-frame">Swimming Pool</mat-checkbox></div>
+                                <div class="col"> <mat-checkbox class="custom-frame">Store Room</mat-checkbox></div>
+                            </div>
+                        </div>
+                        <div class="col-4 .d-md-none .d-lg-block "></div>
+                    </div>
+
+                </mat-card>
+            </div>
+
+        </div>
+    </div>
+</div>

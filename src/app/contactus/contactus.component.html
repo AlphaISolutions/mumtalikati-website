@@ -1,0 +1,144 @@
+<div id="image" class="container-fluid p-0">
+    <div class=" overlay">
+        <app-top-bar></app-top-bar>
+        <div class="row gx-4 mt-5 ">
+            <div class="col-2 col-lg-2 col-xl-3"></div>
+            <div id="heading-section" class="col-8 col-lg-8 col-xl-6 px-5 py-4">
+                <div class="row">
+                    <div>
+                        <h1 class="c-white">Contact Us</h1>
+                        <p class=" c-white" style="text-align: center;">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 col-lg-2 col-xl-3">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="white-bg mt-5">
+    <div class="container px-4 ">
+        <div class="row about-section gx-5">
+
+            <div class="col-lg-4">
+
+                <p class="about-heading primary">
+                    Get in Touch
+                </p>
+                <h3 class="sign-up">
+                    Let's Talk About Your Project.
+                </h3>
+                <p class="platform">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper
+                    mattis, pulvinar dapibus leo.
+
+                </p>
+                <div class="row">
+                    <div class="col-6">
+                        <h5>Email Us</h5>
+                        <div>
+                            <p>hello@mumtalikati.Com</p>
+                        </div>
+                        <div>
+                            <p>support@mumtalikati.com</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h5>Call Us</h5>
+                        <div>
+                            <p>+986 200 200</p>
+                        </div>
+                        <div>
+                            <p>+986 202 202</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="d-none d-lg-block col-lg-1">
+
+            </div>
+            <div class="col-lg-7 d-none d-lg-block">
+                <div #map style="width:100%;height:400px"></div>
+                <!-- <p> <img class="img-fluid shadow-2-strong" alt="" /></p> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid p-0">
+    <div id="messageimg">
+        <p>Send Us a Message</p>
+        <div class="card  border-0 card-message" >
+            <div class="card-body">
+                <div class="row gx-0">
+                    <div class="col  pe-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="First Name">
+                            <mat-error>
+                                First Name is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="Last Name" >
+                            <mat-error>
+                                Last Name is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" >
+                    <mat-error>
+                        Email is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Message</mat-label>
+                    <textarea matInput placeholder="message"></textarea>
+                  </mat-form-field>
+                  <div class="button-wrapper">
+                    <button type="button" mat-flat-button class="block"  color="primary"
+                        ><span
+                           
+                            class="spinner-border spinner-border-sm mr-1"></span>{{" submit"|
+                        titlecase
+                        }}</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container p-4">
+    <div class="row  gx-5 justify-content-center">
+
+        <div class="col-sm-8 col-lg-7 p-1">
+            <div class="card border-0 rounded-3 shadow-sm p-4">
+                <p class="primary" style="text-align: center; ">Official Social Media</p>
+                <h2 style="text-align: center; ">Get in Connect with Us</h2>
+                <div style="place-self: center;" class=" d-flex gap-3 py-3" aria-current="true">
+                    <a>
+                        <img [src]="facebook" alt="twbs" width="42" height="42" class=" flex-shrink-0 go-to-signin ">
+                    </a>
+
+                    <img  [src]="ins" alt="twbs" width="42" height="42" class=" flex-shrink-0 go-to-signin ">
+                    <img  [src]="linkin" alt="twbs" width="42" height="42" class=" flex-shrink-0 go-to-signin">
+                    <!-- <img [src]="twitterImg" alt="twbs" width="42" height="42"
+                        class="rounded-circle flex-shrink-0"> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,118 @@
+
+
+<div class="container p-4">
+    <div class="row border-bottom ">
+        <div class="col-md-2">
+            <mat-form-field appearance="outline">
+                <mat-select [(value)]="Rent" >
+                    <mat-option>None</mat-option>
+                    <mat-option value="Rent" *ngFor="let doc of listingpupose" >
+                        {{doc.desc}}
+                    </mat-option>
+                </mat-select>
+              </mat-form-field>
+      
+        </div>
+        <div class="col-md-2">
+            <mat-form-field appearance="outline">
+                <input matInput type="text" placeholder="Enter location" >
+                <!-- <mat-icon> location_on</mat-icon> -->
+              </mat-form-field>
+        </div>
+        <div class="col-md-2">
+            <mat-form-field appearance="outline">
+                <mat-select [(value)]="Rent" >
+                    <mat-option>None</mat-option>
+                    <mat-option value="Rent" *ngFor="let doc of propertymasterType" >
+                        {{doc.desc}}
+                    </mat-option>
+                  <!-- <mat-option value="Rent"> Residential</mat-option>
+                  <mat-option value="2">Buy</mat-option> -->
+                </mat-select>
+              </mat-form-field>
+    
+        </div>
+        <div class="col-md-2">
+            <mat-form-field appearance="outline">
+                <mat-select [(value)]="Rent" >
+                    <mat-option>None</mat-option>
+                    <mat-option value="Rent" *ngFor="let doc of propertysubType" >
+                        {{doc.desc}}
+                    </mat-option>
+                  <!-- <mat-option value="Rent">Unit category</mat-option>
+                  <mat-option value="2">Buy</mat-option> -->
+                </mat-select>
+              </mat-form-field>
+     
+        </div>
+        <div class="col-md-2">
+            <mat-form-field appearance="outline">
+                <mat-select [(value)]="Rent" >
+                  <mat-option value="Rent">Price (OMR)</mat-option>
+                  <mat-option value="2">Buy</mat-option>
+                </mat-select>
+              </mat-form-field>
+    
+        </div>
+        <div class="col-md-2">
+            <mat-form-field appearance="outline">
+                <mat-select [(value)]="Rent" >
+                  <mat-option value="Rent"> Area (SQM)</mat-option>
+                  <mat-option value="2">Buy</mat-option>
+                </mat-select>
+              </mat-form-field>
+     
+        </div>
+        <!-- <div class="col">
+            <button type="button" class="btn btn-primary">Save Search</button>
+        </div> -->
+    </div>
+    <h4 class="mt-4">Properties for rent in oman</h4>
+    <div class="loading" *ngIf="loading ; else showList">
+        <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+    <ng-template #showList>
+        <div class="row mt-4" *ngIf="propertyDetail">
+            <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3" *ngFor="let property of propertyDetail| paginate
+        :{  itemsPerPage: itemsPerPage,
+            currentPage: page,
+            totalItems: propertyOfCount}">
+                <div class="card border-r mb-4 shadow-none border-0" (click)="onclick(property.propertyMasterID!,property.listingPurposeID!, property.unitCategoryID!, property.landLordID!
+                )">
+                  
+                        <img [src]="property.imageString" class=" imagecss" alt="Card Image">
+                      
+                    
+                   
+                   
+                    <div class="card-body p-0">
+                        <p><b>{{property.propertyMasterName}}</b></p>
+                        <div>
+                            <h5 class="inline">{{property.rentPrice}}</h5>
+                            <!-- <button class=" inline float-end btn-primary">
+                            GetNow</button> -->
+                            <div class="mt-2">
+                                <p class="secondary-font-regular card-text align-left  max-lines-2">
+                                    {{property.addressStr}}
+                                </p>
+                            </div>
+
+                            <div id="main">
+                                <p class=""><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} </p>
+                                <p class=""><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
+                                </p>
+                                <p><img class="" [src]="areaimg">{{property.sqft}} SQM</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <nav class="pagination justify-content-end pt-3">
+                <pagination-controls (pageChange)="pageChange((page = $event))"></pagination-controls>
+            </nav>
+        </div>
+    </ng-template>
+</div>

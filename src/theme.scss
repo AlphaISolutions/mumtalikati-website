@@ -1,0 +1,118 @@
+@import "../node_modules/@angular/material/theming";
+@import "variables.scss";
+
+
+// Default variable overrides
+
+@include mat-core();
+
+$primary: $primary;
+$danger: #dd0000;
+$success: green;
+$warning: orange;
+$info: aqua;
+$bs-dark: rgb(214, 209, 209);
+$dropdown-link-hover-bg: $primary-color;
+$body-bg: #fcfcfc;
+
+
+
+
+// @import "bootstrap";
+
+
+// Breakpoints
+$bp-small: 48em; // 768px
+$bp-medium: 64em; // 1024px
+$bp-large: 85.375em; // 1366px
+$bp-xlarge: 120em; // 1920px
+$bp-xxlarge: 160em; // 2560px
+
+// Media Queries
+$mq-small: "(min-width: #{$bp-small})";
+$mq-medium: "(min-width: #{$bp-medium})";
+$mq-large: "(min-width: #{$bp-large})";
+$mq-xlarge: "(min-width: #{$bp-xlarge})";
+$mq-xxlarge: "(min-width: #{$bp-xxlarge})";
+$mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
+
+
+// define a real custom palette (using http://mcg.mbitson.com)
+$brand: (
+    50: #ffffff,
+    100: #ffffff,
+    200: #ffffff,
+    300: #ffffff,
+    400:$primary,
+    500: $primary,
+    600: $primary,
+    700: $primary,
+    800: $primary,
+    900: $primary,
+    A100: $primary,
+    A200: $primary,
+    A400:$primary,
+    A700: $primary,
+    contrast: (50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: $black-87-opacity,
+        A200: $black-87-opacity,
+        A400: $black-87-opacity,
+        A700: white,
+    )
+);
+
+$accent: (
+    50: #ffffff,
+    100: #EDF1FC,
+    200: #EDF1FC,
+    300: #EDF1FC,
+    400: #EDF1FC,
+    500: #EDF1FC,
+    600: #EDF1FC,
+    700: #EDF1FC,
+    800: #EDF1FC,
+    900: #EDF1FC,
+    A100: #ffffff,
+    A200: #fff7f4,
+    A400: #EDF1FC,
+    A700: #EDF1FC,
+    contrast: (50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: $black-87-opacity,
+        A200: $black-87-opacity,
+        A400: $black-87-opacity,
+        A700: white,
+    )
+);
+
+// mandatory stuff for theming
+$palette-primary: mat-palette($brand);
+$palette-accent: mat-palette($accent);
+
+// include the custom theme components into a theme object
+$theme: mat-light-theme($palette-primary, $palette-accent);
+
+// include the custom theme object into the angular material theme
+@include angular-material-theme($theme);
+@import "../node_modules/bootstrap/scss/bootstrap";
+// @import "../node_modules/primeicons/primeicons.css";
+// @import "../node_modules/primeng/resources/themes/saga-blue/theme.css";
+// @import "../node_modules/primeng/resources/primeng.min.css";
+// @import "../node_modules/primeflex/primeflex.css";

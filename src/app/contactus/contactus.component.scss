@@ -1,0 +1,31 @@
+#image {
+    background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/contactus.png.png');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-color: transparent !important;
+    background-size: cover;
+    // background: rgba(0, 0, 0, 0.6);
+  }
+
+  .primary{
+    color:#9E2A2B ;
+  }
+  #messageimg{
+    background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/message-section.png');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-color: transparent !important;
+    background-size: 100% 50%;
+  }
+  .card-message{
+    text-align: center;
+    margin: auto;
+    top: 30%;
+    width: 50%;
+    max-width:700px;
+  }
+  .center{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }

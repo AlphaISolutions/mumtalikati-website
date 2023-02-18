@@ -1,0 +1,47 @@
+
+
+<div class="container mt-4">
+    <ul class="breadcrumb">
+        <li><a href="#">Mumtalikati</a></li>
+        <li><a href="#">Residential/Commercial</a></li>
+        <li><a href="#">Building</a></li>
+        <li>2BHK</li>
+      </ul>
+    <div class="loading" *ngIf="loading ; else showInfo">
+        <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+    <ng-template #showInfo>
+        <div *ngIf="indiviualsUni">
+            <h4 *ngIf="indiviualsUni[0]">{{indiviualsUni[0].propertyUnitName}}</h4>
+            <div class="row gx-3">
+                <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4" *ngFor="let property of indiviualsUni| paginate
+                :{  itemsPerPage: itemsPerPage,
+                    currentPage: page,
+                    totalItems: IndiviualsUnitTotalCount}">
+                    <div class="my-card mb-2" (click)="onclick(property.propertyMasterID!,property.propertyUnitID!, property.unitCategoryID!, landLordID
+                    )">
+                       <div class="row">
+                        <div class="col-md-5 fill">
+                            <img class="card-img-top m-2" [src]="property.imageString" height="150" 
+                                alt="Card image">
+                        </div>
+                        <div class="col-md-7 p-3">
+                            <div class="card-body">
+                                <p class="card-text">Type: {{property.buildingNumber}}</p>
+                                <p class="card-text">Building ID:{{property.buildingNumber}}</p>
+                                <p class="card-text">Unit ID:{{property.unitCategoryID}}</p>
+                                <p class="card-text">Caption: {{property.caption}}</p>
+                                <p class="card-text">{{property.addressStr}}</p>
+                                <p class="card-text">Status: {{getstutus(property.statuss!)}}</p>
+                            </div>
+                        </div>
+                       </div>
+                    </div>
+                </div>
+                <nav class="pagination justify-content-end pt-3">
+                    <pagination-controls (pageChange)="pageChange((page = $event))"></pagination-controls>
+                </nav>
+            </div>
+        </div>
+    </ng-template>
+</div>

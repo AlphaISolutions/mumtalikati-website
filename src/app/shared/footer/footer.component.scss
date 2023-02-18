@@ -1,0 +1,45 @@
+.footer-section {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    color: black;
+    font-size: 14px;
+    text-align: left;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: white !important
+}
+
+.copywrite {
+    text-align: center;
+}
+
+#logo {
+    display: inline-block;
+    margin-top: 1px;
+}
+
+#logo img {
+    max-height: 40px;
+    width: auto;
+    transform: translate3d(0, 0, 0);
+}
+
+img.footer-logo {
+    max-height: 43px;
+    width: auto;
+    transform: translate3d(0, 0, 0);
+}
+.img-fluid {
+    max-width: 40%;
+    height: auto;
+}
+.inline{
+    display: flex;
+}
