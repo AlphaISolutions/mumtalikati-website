@@ -28,7 +28,7 @@ export class UnitscategoryComponent implements OnInit {
       this.listingPurposeID = +params['listingPurposeID'];
       this.unitCategoryID = +params['unitCategoryID'];
       this.landLordID = +params['landLordID'];
-      this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, 1, 1, 10);
+      this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, 1, 0, 9);
       this.IndiviualsUnitTotalCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, 1);
     });
     this.config = {
@@ -70,7 +70,8 @@ export class UnitscategoryComponent implements OnInit {
   }
   async pageChange(page: any) {
     this.loading = true;
-    await this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, 1, page, 10);
+    debugger;
+    await this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, 0, page, 10);
   }
 
   onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number) {

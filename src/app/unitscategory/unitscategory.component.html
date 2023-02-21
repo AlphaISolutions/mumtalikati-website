@@ -1,12 +1,18 @@
 
 
-<div class="container mt-4">
-    <ul class="breadcrumb">
-        <li><a href="#">Mumtalikati</a></li>
-        <li><a href="#">Residential/Commercial</a></li>
-        <li><a href="#">Building</a></li>
-        <li>2BHK</li>
+<div class="container mt-4 ">
+    <div class="">
+    <ul class="breadcrumb d-flex justify-content-between">
+        <button mat-raised-button class="float-start" [routerLink]="['propertyfulldisplay']">Back to Search</button>
+        <div class="float-end">
+            <li><a href="#">Mumtalikati</a></li>
+            <li><a href="#">Residential/Commercial</a></li>
+            <li><a href="#">Building</a></li>
+            <li>2BHK</li>
+        </div>
+      
       </ul>
+    </div>
     <div class="loading" *ngIf="loading ; else showInfo">
         <mat-spinner [diameter]="50"></mat-spinner>
     </div>
