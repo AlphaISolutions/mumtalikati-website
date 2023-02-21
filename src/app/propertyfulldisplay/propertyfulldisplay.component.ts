@@ -24,14 +24,14 @@ export class PropertyfulldisplayComponent implements OnInit {
   hall = assetUrl("icons/hall.png");
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService,) { }
   ngOnInit(): void {
-    debugger
+
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMasterID'];
       this.propertyUnitid = +params['propertyUnitID'];
       this.unitcatID = +params['unitCategoryID'];
       this.landlordid = +params['landlordid'];
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid)
-      console.log(this.landlordid)
+     
     });
   }
   async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {

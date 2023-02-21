@@ -16,6 +16,7 @@
         <div class="col-md-2">
             <mat-form-field appearance="outline">
                 <input matInput type="text" placeholder="Enter location" >
+              
               </mat-form-field>
         </div>
         <div class="col-md-2">
@@ -25,8 +26,7 @@
                     <mat-option value="Rent" *ngFor="let doc of propertymasterType" >
                         {{doc.desc}}
                     </mat-option>
-                  <!-- <mat-option value="Rent"> Residential</mat-option>
-                  <mat-option value="2">Buy</mat-option> -->
+              
                 </mat-select>
               </mat-form-field>
     
@@ -38,8 +38,7 @@
                     <mat-option value="Rent" *ngFor="let doc of propertysubType" >
                         {{doc.desc}}
                     </mat-option>
-                  <!-- <mat-option value="Rent">Unit category</mat-option>
-                  <mat-option value="2">Buy</mat-option> -->
+                 
                 </mat-select>
               </mat-form-field>
      
@@ -62,9 +61,7 @@
               </mat-form-field>
      
         </div>
-        <!-- <div class="col">
-            <button type="button" class="btn btn-primary">Save Search</button>
-        </div> -->
+ 
     </div>
     <h4 class="mt-4">Properties for rent in oman</h4>
     <div class="loading" *ngIf="loading ; else showList">
@@ -78,18 +75,11 @@
             totalItems: propertyOfCount}">
                 <div class="card border-r mb-4 shadow-none border-0" (click)="onclick(property.propertyMasterID!,property.listingPurposeID!, property.unitCategoryID!, property.landLordID!
                 )">
-                  
                         <img [src]="property.imageString" class=" imagecss" alt="Card Image">
-                      
-                    
-                   
-                   
                     <div class="card-body p-0">
                         <p><b>{{property.propertyMasterName}}</b></p>
                         <div>
                             <h5 class="inline">{{property.rentPrice}}</h5>
-                            <!-- <button class=" inline float-end btn-primary">
-                            GetNow</button> -->
                             <div class="mt-2">
                                 <p class="secondary-font-regular card-text align-left  max-lines-2">
                                     {{property.addressStr}}
@@ -107,7 +97,6 @@
                     </div>
 
                 </div>
-
             </div>
             <nav class="pagination justify-content-end pt-3">
                 <pagination-controls (pageChange)="pageChange((page = $event))"></pagination-controls>
