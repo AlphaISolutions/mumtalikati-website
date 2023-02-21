@@ -86,7 +86,7 @@
             <div class="col-md-8 mt-4">
                 <mat-card class="example-card ">
 
-                    <img mat-card-image [src]="property.imageString" alt="Photo of a Shiba Inu">
+                    <img mat-card-image [src]=" property.imageString[0] || bydefault"  alt=''>
                     <mat-card-content>
                         <h5>
                             OMR {{property.rentPrice}}/mon

@@ -30,6 +30,7 @@ export class PropertydetailsComponent implements OnInit {
   areaimg = assetUrl("icons/Area.svg");
   bedroomimg = assetUrl("icons/Bedroom.svg");
   washroomimg = assetUrl("icons/Washroom.svg");
+  bydefault = assetUrl('img/bydefault.png');
   constructor(private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router) { }
 
   ngOnInit(): void {

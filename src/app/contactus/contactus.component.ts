@@ -7,8 +7,8 @@ import { } from 'googlemaps';
   styleUrls: ['./contactus.component.scss']
 })
 export class ContactusComponent implements OnInit {
-  @ViewChild('map') mapElement: any;
-  map!: google.maps.Map ;
+  // @ViewChild('map') mapElement: any;
+  // map!: google.maps.Map ;
 
   facebook = assetUrl("icons/fb.png");
   ins = assetUrl("icons/ins.png");
@@ -18,12 +18,12 @@ export class ContactusComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const mapProperties = {
-      center: new google.maps.LatLng(35.2271, -80.8431),
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
+    // const mapProperties = {
+    //   center: new google.maps.LatLng(35.2271, -80.8431),
+    //   zoom: 15,
+    //   mapTypeId: google.maps.MapTypeId.ROADMAP
+    // };
+    // this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
   }
 
 }

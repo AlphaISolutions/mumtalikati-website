@@ -22,6 +22,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   washroomimg = assetUrl("icons/Washroom.svg");
   kitchen = assetUrl("icons/kitchen.png");
   hall = assetUrl("icons/hall.png");
+  bydefault = assetUrl('img/bydefault.png');
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService,) { }
   ngOnInit(): void {
 
@@ -31,7 +32,7 @@ export class PropertyfulldisplayComponent implements OnInit {
       this.unitcatID = +params['unitCategoryID'];
       this.landlordid = +params['landlordid'];
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid)
-     
+
     });
   }
   async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {

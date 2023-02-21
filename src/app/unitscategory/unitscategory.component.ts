@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { assetUrl } from 'src/single-spa/asset-url';
 import { getstatusType, Status } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
@@ -22,6 +23,7 @@ export class UnitscategoryComponent implements OnInit {
   constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router) { }
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;
+  bydefault = assetUrl('img/bydefault.png');
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.propertyMasterID = +params['propertyMasterID'];

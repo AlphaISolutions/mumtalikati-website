@@ -75,7 +75,7 @@
             totalItems: propertyOfCount}">
                 <div class="card border-r mb-4 shadow-none border-0" (click)="onclick(property.propertyMasterID!,property.listingPurposeID!, property.unitCategoryID!, property.landLordID!
                 )">
-                        <img [src]="property.imageString" class=" imagecss" alt="Card Image">
+                        <img [src]="property.imageString || bydefault" class=" imagecss" alt="Card Image">
                     <div class="card-body p-0">
                         <p><b>{{property.propertyMasterName}}</b></p>
                         <div>

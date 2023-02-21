@@ -8,7 +8,8 @@
                     <div>
                         <h1 class="c-white">Contact Us</h1>
                         <p class=" c-white heade">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
+                            ullamcorper mattis, pulvinar dapibus leo.
                         </p>
                     </div>
                 </div>
@@ -68,51 +69,54 @@
 </div>
 <div class="container-fluid p-0">
     <div id="messageimg">
-        <p>Send Us a Message</p>
-        <div class="card  border-0 card-message" >
+        <div class="pcenter">
+            <p>Send Us a Message</p>
+            <h1>Let's Establish Relations</h1>
+        </div>
+      
+        <div class="card  shadow-2 border-none card-message">
             <div class="card-body">
-                <div class="row gx-0">
-                    <div class="col  pe-2">
-                        <mat-form-field appearance="outline">
-                            <mat-label>First Name</mat-label>
-                            <input matInput placeholder="First Name">
-                            <mat-error>
-                                First Name is <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
+                <form>
+                    <div class="row gx-0">
+                        <div class="col  pe-2 ">
+                            <mat-form-field appearance="outline">
+                                <mat-label>First Name</mat-label>
+                                <input matInput placeholder="First Name">
+                                <mat-error>
+                                    First Name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
 
-                    <div class="col">
-                        <mat-form-field appearance="outline">
-                            <mat-label>Last Name</mat-label>
-                            <input matInput placeholder="Last Name" >
-                            <mat-error>
-                                Last Name is <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Last Name</mat-label>
+                                <input matInput placeholder="Last Name">
+                                <mat-error>
+                                    Last Name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
                     </div>
-                </div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Email</mat-label>
-                    <input matInput placeholder="Email" >
-                    <mat-error>
-                        Email is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Message</mat-label>
-                    <textarea matInput placeholder="message"></textarea>
-                  </mat-form-field>
-                  <div class="button-wrapper">
-                    <button type="button" mat-flat-button class="block"  color="primary"
-                        ><span
-                           
-                            class="spinner-border spinner-border-sm mr-1"></span>{{" submit"|
-                        titlecase
-                        }}</button>
-                </div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Email">
+                        <mat-error>
+                            Email is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Message</mat-label>
+                        <textarea matInput placeholder="message"></textarea>
+                    </mat-form-field>
+                    <div class="button-wrapper">
+                        <button type="button" mat-flat-button class="block" color="primary"><span
+                                class="spinner-border spinner-border-sm mr-1"></span>{{" submit"|
+                            titlecase
+                            }}</button>
+                    </div>
+                </form>
             </div>
-
         </div>
     </div>
 
@@ -120,21 +124,16 @@
 
 <div class="container p-4">
     <div class="row  gx-5 justify-content-center">
-
         <div class="col-sm-8 col-lg-7 p-1">
             <div class="card border-0 rounded-3 shadow-sm p-4">
                 <p class="primary align-center">Official Social Media</p>
                 <h2 class="align-center">Get in Connect with Us</h2>
-                <div class="place" class=" d-flex gap-3 py-3" aria-current="true">
-                    <a>
+                <div class="" style="place-self: center;" class=" d-flex gap-3 py-3"  aria-current="true">
+                    <a href="https://www.facebook.com/Mumtalikati"> 
                         <img [src]="facebook" alt="twbs" width="42" height="42" class=" flex-shrink-0 go-to-signin ">
                     </a>
-
-                    <img  [src]="ins" alt="twbs" width="42" height="42" class=" flex-shrink-0 go-to-signin ">
-                    <img  [src]="linkin" alt="twbs" width="42" height="42" class=" flex-shrink-0 go-to-signin">
-                    <!-- <img [src]="twitterImg" alt="twbs" width="42" height="42"
-                        class="rounded-circle flex-shrink-0"> -->
-
+                   <a href="https://www.instagram.com/mumtalikati/"> <img [src]="ins" alt="twbs" width="42" height="42" class=" flex-shrink-0 go-to-signin "></a>
+                    <a href="https://www.linkedin.com/company/mumtalikati/?viewAsMember=true"><img [src]="linkin" alt="twbs" width="42" height="42" class=" flex-shrink-0 go-to-signin"></a>
                 </div>
             </div>
         </div>

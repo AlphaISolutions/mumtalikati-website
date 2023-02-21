@@ -1,42 +1,58 @@
 #image {
-    background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/contactus.png.png');
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-color: transparent !important;
-    background-size: cover;
-  }
+  background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/contactus.png.png');
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-color: transparent !important;
+  background-size: cover;
+}
 
-  .primary{
-    color:#9E2A2B ;
-  }
-  #messageimg{
-    background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/message-section.png');
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-color: transparent !important;
-    background-size: 100% 50%;
-  }
-  .card-message{
-    text-align: center;
-    margin: auto;
-    top: 30%;
-    width: 50%;
-    max-width:700px;
-  }
-  .center{
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-  }
-  .heade{
-    text-align: center;
-  }
-  .map{
-    width:100%;height:400px;
-  }
-  .align-center{
-    text-align: center;
-  }
-  .place{
-    place-self: center;
-  }
+.primary {
+  color: #9E2A2B;
+}
+
+#messageimg {
+  background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/message-section.png');
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-color: transparent !important;
+  background-size: 100% 50%;
+}
+
+.card-message {
+  text-align: center;
+  margin: auto;
+  top: 30%;
+  width: 50%;
+  max-width: 700px;
+  border-radius: 0;
+  box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.heade {
+  text-align: center;
+}
+
+.map {
+  width: 100%;
+  height: 400px;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.place {
+  place-self: center;
+}
+
+.pcenter {
+  text-align: center;
+  color: #FFFFFF;
+}
