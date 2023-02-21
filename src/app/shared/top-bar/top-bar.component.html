@@ -16,14 +16,14 @@
                         <a class="nav-link" routerLink="" (click)="collapsed = !collapsed">Homepage</a>
                     </li>
                     <li class="nav-item" [routerLinkActive]="['active']">
-                        <a class="nav-link" routerLink="about-us" (click)="collapsed = !collapsed">About Us</a>
+                        <a class="nav-link" [routerLink]="'aboutus'" (click)="collapsed = !collapsed">About Us</a>
                     </li>
                     <li class="nav-item" [routerLinkActive]="['active']">
                         <a class="nav-link" routerLink="propertydetails" (click)="collapsed = !collapsed">Property</a>
                     </li>
                   
                     <li class="nav-item" [routerLinkActive]="['active']">
-                        <a class="nav-link" routerLink="contactus" (click)="collapsed = !collapsed" >Contact Us</a>
+                        <a class="nav-link" [routerLink]="'contactus'" (click)="collapsed = !collapsed" >Contact Us</a>
                     </li>
                    
                     <li  class="nav-item nav-right">

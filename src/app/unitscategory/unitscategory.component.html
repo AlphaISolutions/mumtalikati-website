@@ -2,14 +2,19 @@
 
 <div class="container mt-4 ">
     <div class="">
-    <ul class="breadcrumb d-flex justify-content-between">
-        <button mat-raised-button class="float-start" [routerLink]="['propertyfulldisplay']">Back to Search</button>
-        <div class="float-end">
-            <li><a href="#">Mumtalikati</a></li>
-            <li><a href="#">Residential/Commercial</a></li>
+       
+    <ul class="breadcrumb row p-0">
+        <div class="col float-start">
+        <button mat-flat-button class="bgc-btn p-0" [routerLink]="'../propertydetails'"><i class="fa fa-angle-left" aria-hidden="true"></i>
+            Back to Search</button>
+        </div>
+        <div class="col" >
+            <li><a routerLink="">Mumtalikati</a></li>
+            <li><a href="#" routerLink="../propertydetails">Residential/Commercial</a></li>
             <li><a href="#">Building</a></li>
             <li>2BHK</li>
         </div>
+       <div class="col .d-md-none .d-lg-block"></div>
       
       </ul>
     </div>
