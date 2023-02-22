@@ -32,7 +32,7 @@ export class PropertydetailsComponent implements OnInit {
   washroomimg = assetUrl("icons/Washroom.svg");
   bydefault = assetUrl('img/bydefault.png');
   constructor(private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router) { }
-
+  parentStyle = {'background-color':'black'};
   ngOnInit(): void {
     this.PropertyDetail(3, 1, 1, 1, 8);
     this.PropertyDetailCount(3, 1, 1);

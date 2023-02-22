@@ -1,5 +1,5 @@
-<div class="nav-bg">
-    <nav class="container-lg navbar navbar-expand-md navbar-dark bg-dark">
+<div class="nav-bg" [style]="childStyle">
+    <nav class="container-lg navbar navbar-expand-md navbar-dark bg-dark" >
         <div class="container-lg">
             <span class="navbar-brand" id="logo"> <a routerLink="." ><img [src]="logo" class="img-fluid shadow-2-strong "  alt="" /></a></span>
             <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed"
@@ -16,19 +16,19 @@
                         <a class="nav-link" routerLink="" (click)="collapsed = !collapsed">Homepage</a>
                     </li>
                     <li class="nav-item" [routerLinkActive]="['active']">
-                        <a class="nav-link" [routerLink]="'aboutus'" (click)="collapsed = !collapsed">About Us</a>
+                        <a class="nav-link" [routerLink]="'../aboutus'" (click)="collapsed = !collapsed">About Us</a>
                     </li>
                     <li class="nav-item" [routerLinkActive]="['active']">
-                        <a class="nav-link" routerLink="propertydetails" (click)="collapsed = !collapsed">Property</a>
+                        <a class="nav-link" [routerLink]="'../propertydetails'" (click)="collapsed = !collapsed">Property</a>
                     </li>
                   
                     <li class="nav-item" [routerLinkActive]="['active']">
-                        <a class="nav-link" [routerLink]="'contactus'" (click)="collapsed = !collapsed" >Contact Us</a>
+                        <a class="nav-link" [routerLink]="'../contactus'" (click)="collapsed = !collapsed" >Contact Us</a>
                     </li>
                    
                     <li  class="nav-item nav-right">
                         <button class="nav-link nav-btn-link mx-3 my-1 px-5" mat-raised-button color="primary" >Add Property</button>
-                     
+                        
                     </li>
                 </ul>
             </div>
