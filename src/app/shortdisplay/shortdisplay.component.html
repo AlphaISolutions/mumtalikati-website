@@ -1,7 +1,5 @@
 
-
 <div class="container">
-
     <div class="vl mt-4">
         <p>Premium Residential/Commercial Offer</p>
     </div>
@@ -16,7 +14,7 @@
     <div class="row mt-4" *ngIf="propertyDetail">
         <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3" *ngFor="let property of propertyDetail">
             <div class="card border-r mb-3 shadow-none border-0">
-                <img [src]="property.imageString" class=" imagecss" alt="Card Image">
+                <img [src]="property.imageString ||bydefault" class=" imagecss" alt="Card Image">
                 <div class="card-body">
                     <p><b>{{property.propertyMasterName}}</b></p>
                     <div>

@@ -24,6 +24,7 @@ export class UnitscategoryComponent implements OnInit {
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;
   bydefault = assetUrl('img/bydefault.png');
+  parentStyle = {'background-color':'black'};
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.propertyMasterID = +params['propertyMasterID'];

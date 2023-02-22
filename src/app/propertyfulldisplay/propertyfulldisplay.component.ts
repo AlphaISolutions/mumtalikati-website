@@ -23,6 +23,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   kitchen = assetUrl("icons/kitchen.png");
   hall = assetUrl("icons/hall.png");
   bydefault = assetUrl('img/bydefault.png');
+  parentStyle = {'background-color':'black'};
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService,) { }
   ngOnInit(): void {
 

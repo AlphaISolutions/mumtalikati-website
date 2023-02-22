@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { assetUrl } from 'src/single-spa/asset-url';
 @Component({
   selector: 'app-top-bar',
@@ -11,11 +11,8 @@ export class TopBarComponent implements OnInit {
   collapsed = true;
   public isMenuCollapsed = true;
   navbarOpen = false;
+  @Input() childStyle: any;
   ngOnInit() { 
 }
-
-
   constructor() { }
-
-
 }
