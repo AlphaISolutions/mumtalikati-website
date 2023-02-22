@@ -4,9 +4,9 @@
     <div class="row border-bottom ">
         <div class="col-md-2">
             <mat-form-field appearance="outline">
-                <mat-select [(value)]="Rent" >
+                <mat-select [value]="listingpupose[0].listingPurposeType" >
                     <mat-option>None</mat-option>
-                    <mat-option value="Rent" *ngFor="let doc of listingpupose" >
+                    <mat-option *ngFor="let doc of listingpupose"  [value]="doc.listingPurposeType" (click)="onclicks(doc.listingPurposeType)">
                         {{doc.desc}}
                     </mat-option>
                 </mat-select>

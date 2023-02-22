@@ -24,15 +24,15 @@ export class PropertydetailsComponent implements OnInit {
   passenger: any;
   itemsPerPage = 9;
   config: any;
-
-  Rent: string = "Rent";
+  listid!: number;
+  Rent:number= 1;
   location = assetUrl("icons/location.png");
   areaimg = assetUrl("icons/Area.svg");
   bedroomimg = assetUrl("icons/Bedroom.svg");
   washroomimg = assetUrl("icons/Washroom.svg");
   bydefault = assetUrl('img/bydefault.png');
   constructor(private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router) { }
-  parentStyle = {'background-color':'black'};
+  parentStyle = { 'background-color': 'black' };
   ngOnInit(): void {
     this.PropertyDetail(3, 1, 1, 1, 8);
     this.PropertyDetailCount(3, 1, 1);
@@ -44,6 +44,11 @@ export class PropertydetailsComponent implements OnInit {
       currentPage: this.page,
       totalItems: this.propertyOfCount
     };
+  }
+  onclicks(listingPurposeType: number) {
+    this.listid = listingPurposeType;
+    this.PropertyDetail(3, 1, this.listid, 1, 8);
+    this.PropertyDetailCount(3, 1, this.listid);
   }
   async PropertyDetail(propertyMasterTypeID: number, propertyMasterSubTypeID: number, listingPurposesID: number, pageNumber: number, rowsNumbers: number) {
     this.loading = true;
@@ -118,6 +123,6 @@ export class PropertydetailsComponent implements OnInit {
   onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number, landLordID: number) {
     this.router.navigate(
       ['Unitscategory'],
-      { queryParams: { 'propertyMasterID': propertyMasterID, 'listingPurposeID':listingPurposeID, 'unitCategoryID': unitCategoryID, 'landLordID':landLordID }});
+      { queryParams: { 'propertyMasterID': propertyMasterID, 'listingPurposeID': listingPurposeID, 'unitCategoryID': unitCategoryID, 'landLordID': landLordID } });
   }
 }
