@@ -1,0 +1,110 @@
+#image {
+    background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/aboutus.png');
+    height: 40vh;
+    background-repeat: no-repeat;
+    background-color: transparent !important;
+    background-size: cover;
+}
+
+.primary {
+    color: #9E2A2B;
+}
+
+.hfgh {
+    // width: 524px;
+    height: 254.59px;
+    left: 0px;
+    top: 0px;
+    background: #FFFFFF;
+    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
+}
+
+.martop {
+    margin-top: 65px;
+}
+
+.vedio {
+    width: 1512px;
+    height: 622px;
+    left: 0px;
+    top: 2886px;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+#imagendsection {
+    background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/aboutusendsectionimg.png');
+    height: 40vh;
+    background-repeat: no-repeat;
+    background-color: transparent !important;
+    background-size: cover;
+}
+
+.topSection {
+    align-self: self-end;
+    padding-bottom: 44px;
+}
+
+.content-padding {
+    padding-top: 15px;
+    color: white;
+
+}
+
+.sign-in {
+    color: #FFFFFF;
+}
+
+#ndsectionimg {
+    background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/aboutus2ndimg.png');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-color: transparent !important;
+    background-size: 100% 50%;
+}
+
+.card-message {
+    text-align: center;
+    margin: auto;
+    top: 30%;
+    width: 50%;
+    max-width: 700px;
+    border-radius: 0;
+    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.main {
+    height: 439.55px;
+    left: 186px;
+    right: 186px;
+    top: 160px;
+}
+
+.magcard {
+    height: 679.55px;
+    left: 0px;
+    right: 684px;
+    top: 0px;
+    background: rgba(255, 255, 255, 0.002);
+    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
+}
+
+.secondcard {
+    height: 679.55px;
+    left: 456px;
+    right: 0px;
+    top: 0px;
+    background: #FFFFFF;
+    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
+}
+#cardsize{
+    background-size: 50% 100%;
+    background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/about-building.png');
+    height: 60vh;
+    background-repeat: no-repeat;
+    background-color: transparent !important;
+  
+}
+.radius{
+    border-radius: 0;
+}
