@@ -20,6 +20,8 @@ export class UnitscategoryComponent implements OnInit {
   page = 1;
   passenger: any;
   itemsPerPage = 9;
+  color ={'color':'black!important'};
+  logocolor=false;
   constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router) { }
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;

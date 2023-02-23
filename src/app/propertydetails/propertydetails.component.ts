@@ -25,14 +25,18 @@ export class PropertydetailsComponent implements OnInit {
   itemsPerPage = 9;
   config: any;
   listid!: number;
-  Rent:number= 1;
+  Rent: number = 1;
+  logred = assetUrl('img/mumtalikatilogred.png')
   location = assetUrl("icons/location.png");
   areaimg = assetUrl("icons/Area.svg");
   bedroomimg = assetUrl("icons/Bedroom.svg");
   washroomimg = assetUrl("icons/Washroom.svg");
   bydefault = assetUrl('img/bydefault.png');
+  selectedTab!: string;
   constructor(private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router) { }
-  parentStyle = { 'background-color': 'black' };
+  // parentStyle = { 'background-color': 'white' };
+  color ={'color':'black!important'};
+  logocolor=false;
   ngOnInit(): void {
     this.PropertyDetail(3, 1, 1, 1, 8);
     this.PropertyDetailCount(3, 1, 1);
@@ -45,6 +49,7 @@ export class PropertydetailsComponent implements OnInit {
       totalItems: this.propertyOfCount
     };
   }
+
   onclicks(listingPurposeType: number) {
     this.listid = listingPurposeType;
     this.PropertyDetail(3, 1, this.listid, 1, 8);

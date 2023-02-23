@@ -6,13 +6,24 @@ import { assetUrl } from 'src/single-spa/asset-url';
   styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent implements OnInit {
- 
-  logo = assetUrl('img/mumtalikati-logo-white.png')
+  logo: any
+  shownnow: boolean = true;
   collapsed = true;
+  // shownnow=false;
   public isMenuCollapsed = true;
   navbarOpen = false;
   @Input() childStyle: any;
-  ngOnInit() { 
-}
+  @Input() logred: any;
+  @Input() data: boolean=true;
+ 
+  ngOnInit() {
+    if (this.data) {
+      this.logo = assetUrl('img/mumtalikati-logo-white.png');
+    } else {
+      this.logo = assetUrl('img/mumtalikatilogred.png')
+    }
+
+  }
   constructor() { }
+
 }

@@ -29,6 +29,7 @@
     "@types/googlemaps": "^3.43.3",
     "bootstrap": "^5.2.3",
     "ngx-pagination": "^6.0.3",
+    "ngx-toastr": "^15.2.0",
     "popper.js": "^1.16.1",
     "rxjs": "^7.5.0",
     "single-spa": ">=4.0.0",

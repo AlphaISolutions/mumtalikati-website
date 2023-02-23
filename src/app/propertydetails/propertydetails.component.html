@@ -1,5 +1,5 @@
 
-<app-top-bar [childStyle]="parentStyle"></app-top-bar>
+<app-top-bar [logred]="color" [data]="logocolor" ></app-top-bar>
 <div class="container p-4">
     <div class="row border-bottom ">
         <div class="col-md-2">
@@ -23,7 +23,7 @@
             <mat-form-field appearance="outline">
                 <mat-select [(value)]="Rent" >
                     <mat-option>None</mat-option>
-                    <mat-option value="Rent" *ngFor="let doc of propertymasterType" >
+                    <mat-option  *ngFor="let doc of propertymasterType" >
                         {{doc.desc}}
                     </mat-option>
               
@@ -35,7 +35,7 @@
             <mat-form-field appearance="outline">
                 <mat-select [(value)]="Rent" >
                     <mat-option>None</mat-option>
-                    <mat-option value="Rent" *ngFor="let doc of propertysubType" >
+                    <mat-option  *ngFor="let doc of propertysubType" >
                         {{doc.desc}}
                     </mat-option>
                  
@@ -46,8 +46,8 @@
         <div class="col-md-2">
             <mat-form-field appearance="outline">
                 <mat-select [(value)]="Rent" >
-                  <mat-option value="Rent">Price (OMR)</mat-option>
-                  <mat-option value="2">Buy</mat-option>
+                  <mat-option >Price (OMR)</mat-option>
+                  <mat-option >Buy</mat-option>
                 </mat-select>
               </mat-form-field>
     
@@ -55,11 +55,10 @@
         <div class="col-md-2">
             <mat-form-field appearance="outline">
                 <mat-select [(value)]="Rent" >
-                  <mat-option value="Rent"> Area (SQM)</mat-option>
-                  <mat-option value="2">Buy</mat-option>
-                </mat-select>
+                    <mat-option >Price (OMR)</mat-option>
+                    <mat-option >Buy</mat-option>
+                  </mat-select>
               </mat-form-field>
-     
         </div>
  
     </div>

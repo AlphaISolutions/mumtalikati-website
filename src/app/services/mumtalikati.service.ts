@@ -5,6 +5,7 @@ import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { ListingPurpose } from '../models/listing-purpose.model';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
+import { SendEmail } from '../models/sendemail.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -69,4 +70,9 @@ export class MumtalikatiService {
         `@mumtalikati-api/PropertyDetail/GetPropertyUnitDetails`, { params: queryParams }
       )).then(res => res as OwnerRentDetail[]).catch(err => { return Promise.reject(err) });
   }
+  async postSendEmail(sendEmail: SendEmail) :Promise<SendEmail> {
+    return await firstValueFrom(  this.http.post('@mumtalikati-api/ContactUsEmailAPI/SendEmail',sendEmail ))
+      .then(res => res as SendEmail )
+      .catch(err => { return Promise.reject(err.json().error || 'error'); });
+}
 }

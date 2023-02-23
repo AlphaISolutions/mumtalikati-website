@@ -29,4 +29,5 @@ import { PropertySubType } from "../models/propertySubType.model";
             `@mumtalikati-api/Setup/PropertySubTypes`
           )).then(res => res as PropertySubType[]).catch(err => { return Promise.reject(err) });
       }
+      
   }

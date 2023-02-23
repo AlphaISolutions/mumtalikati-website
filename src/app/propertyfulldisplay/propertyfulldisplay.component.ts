@@ -24,6 +24,8 @@ export class PropertyfulldisplayComponent implements OnInit {
   hall = assetUrl("icons/hall.png");
   bydefault = assetUrl('img/bydefault.png');
   parentStyle = {'background-color':'black'};
+  color ={'color':'black!important'};
+  logocolor=false;
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService,) { }
   ngOnInit(): void {
 

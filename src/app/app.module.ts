@@ -26,6 +26,12 @@ import { UnitscategoryComponent } from './unitscategory/unitscategory.component'
 import { ContactusComponent } from './contactus/contactus.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { filter } from 'rxjs';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatMenuModule} from '@angular/material/menu';
+import { DropdownComponent } from './dropdown/dropdown.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { ToastrModule } from "ngx-toastr";
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +44,7 @@ import { filter } from 'rxjs';
     UnitscategoryComponent,
     ContactusComponent,
     AboutusComponent,
+    DropdownComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,10 +61,16 @@ import { filter } from 'rxjs';
     MatTableModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatButtonModule
-
+    MatButtonModule,
+    MatTabsModule,
+    MatMenuModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ToastrModule,
+   
+   
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },RxFormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
