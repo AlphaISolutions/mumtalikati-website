@@ -41,6 +41,25 @@ export enum PropertySubTypeEnum {
     Plot = 15,
     Project = 16
 }
+export enum PropertyUnitCategoryEnum {
+    O1BHK = 1,
+    O2BHK = 2,
+    O3BHK = 3,
+    O4BHK = 4,
+    O5BHK = 5,
+    Shop = 6,
+    Office = 7,
+    WareHouse = 8,
+    Factory = 9,
+    Hall = 10,
+    BusinessCenter = 11,
+    WholeBuilding = 12
+}
+export enum PropertyType {
+    Parent = 1,
+    Child = 2
+}
+
 export function getstatusType(stutuss: number) {
     switch (stutuss) {
         case 1:

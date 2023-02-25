@@ -4,6 +4,7 @@ import { firstValueFrom } from "rxjs";
 import { ListingPurpose } from "../models/listing-purpose.model";
 import { PropertyMasterType } from "../models/property-master-type.model";
 import { PropertySubType } from "../models/propertySubType.model";
+import { PropertyUnitCategory } from "../models/propertyUnitCategory.model";
 
 @Injectable({
     providedIn: 'root'
@@ -29,5 +30,10 @@ import { PropertySubType } from "../models/propertySubType.model";
             `@mumtalikati-api/Setup/PropertySubTypes`
           )).then(res => res as PropertySubType[]).catch(err => { return Promise.reject(err) });
       }
-      
+      async  getPropertyUnitCategoryTypes(): Promise<PropertyUnitCategory[]> {
+        return await firstValueFrom(this.http
+          .get<PropertyUnitCategory[]>(
+            `@mumtalikati-api/Setup/PropertyUnitCategoryTypes`
+          )).then(res => res as PropertyUnitCategory[]).catch(err => { return Promise.reject(err) });
+      }
   }

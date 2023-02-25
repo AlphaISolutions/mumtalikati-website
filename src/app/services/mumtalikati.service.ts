@@ -6,6 +6,7 @@ import { ListingPurpose } from '../models/listing-purpose.model';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { SendEmail } from '../models/sendemail.model';
+import { PropertyFeature } from '../models/propertyfeature';
 @Injectable({
   providedIn: 'root'
 })
@@ -69,6 +70,12 @@ export class MumtalikatiService {
       .get<OwnerRentDetail[]>(
         `@mumtalikati-api/PropertyDetail/GetPropertyUnitDetails`, { params: queryParams }
       )).then(res => res as OwnerRentDetail[]).catch(err => { return Promise.reject(err) });
+  }
+  async getPropertyFeature( id: number): Promise<PropertyFeature[]> {
+    return await firstValueFrom(this.http
+      .get<PropertyFeature[]>(
+        `@mumtalikati-api/PropertyFeature/`+id
+      )).then(res => res as PropertyFeature[]).catch(err => { return Promise.reject(err) });
   }
   async postSendEmail(sendEmail: SendEmail) :Promise<SendEmail> {
     return await firstValueFrom(  this.http.post('@mumtalikati-api/ContactUsEmailAPI/SendEmail',sendEmail ))
