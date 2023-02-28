@@ -59,7 +59,18 @@ export enum PropertyType {
     Parent = 1,
     Child = 2
 }
-
+export function getsubType(proertycategoryId: number){
+    switch (proertycategoryId) { 
+case 3:
+    return 'Building ';
+    return 'Building ';
+    return 'Building ';
+    return 'Building ';
+    default:
+        return "";
+    }
+ 
+}
 export function getstatusType(stutuss: number) {
     switch (stutuss) {
         case 1:

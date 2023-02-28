@@ -62,11 +62,10 @@
 
 .btn-row {
     display: flex;
-    justify-content: center;
+    justify-content: left !important;
 }
 
 #view-cmp-btn {
-
     border-radius: 20px;
 }
 
@@ -89,4 +88,14 @@ padding-top: 400px;
 //     height: 600px;
 //     margin: 400px;
 // }
-
+.icolor{
+    color: #9e2a2b;
+    
+}
+.pricecenter{
+    display: flex;
+    justify-content: center !important;
+}
+.copywrite {
+    text-align: center;
+}

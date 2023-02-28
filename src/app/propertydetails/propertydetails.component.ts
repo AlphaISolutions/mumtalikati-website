@@ -9,6 +9,9 @@ import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { SetupService } from '../services/setup.service';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { getsubType } from '../models/enums';
+import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
+import { PropertyFilter } from '../models/PropertyFilter.model';
 @Component({
   selector: 'app-propertydetails',
   templateUrl: './propertydetails.component.html',
@@ -19,31 +22,32 @@ export class PropertydetailsComponent implements OnInit {
   propertyDetail: RentalUnitDetail[] = [];
   listingpupose: ListingPurpose[] = [];
   propertymasterType: PropertyMasterType[] = []
-  propertysubType: PropertySubType[] = []
+  propertysubType: PropertyMasterSubType[] = []
   propertyUnitCategoryType: PropertyUnitCategory[] = [];
+  propertyfilter =new PropertyFilter();
   propertyOfCount: any;
   page = 1;
   passenger: any;
-  itemsPerPage = 9;
+  itemsPerPage: number = 9;
   config: any;
   public listid: number = 1;
   Rent: number = 1;
-  unitcategoryid!: number;
+  public unitcategoryid: number = 1;
   location = assetUrl("icons/location.png");
   areaimg = assetUrl("icons/Area.svg");
   bedroomimg = assetUrl("icons/Bedroom.svg");
   washroomimg = assetUrl("icons/Washroom.svg");
   bydefault = assetUrl('img/bydefault.png');
   selectedTab!: string;
-  displayOverlay = 'none';
   closeResult = '';
   configs: any
   public mastertypeid: number = 1;
-  public subTypeId: number=1;
-  perpagenumber=8;
+  public subTypeId: number = 1;
+  perpagenumber = 8;
   constructor(private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal) { }
   color = { 'color': 'black!important' };
-  logocolor = false;
+  logocolor: boolean = false;
+  inputfild:boolean=true;
   async ngOnInit() {
     this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber);
     this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
@@ -82,8 +86,6 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
-
-
   open(content: any) {
     this.modalService.open(content, this.configs).result.then(
       (result) => {
@@ -117,28 +119,32 @@ export class PropertydetailsComponent implements OnInit {
       });
   }
   async getlistingPurpose() {
+    this.loading = true;
     this.setservice.getlistingpurposeset()
       .then((data) => {
         if (data) {
           this.listingpupose = data
-
+          
         }
+        this.loading = false;
       })
       .catch((error) => {
-
+        this.loading = false;
         console.error(error);
       });
   }
   async getPropertyMasterType() {
+    this.loading = true;
     this.setservice.getPropertyMasterTypes()
       .then((data) => {
         if (data) {
           this.propertymasterType = data
 
         }
+        this.loading = false;
       })
       .catch((error) => {
-
+        this.loading = false;
         console.error(error);
       });
   }
@@ -147,6 +153,7 @@ export class PropertydetailsComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.propertysubType = data
+
 
         }
       })
@@ -166,6 +173,19 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
+// async postPropertyfilter(){
+//   this.mumtalikatiservic.postPropertyFilter()
+//   .then((data)=> {
+//     if(data){
+//       this.propertyfilter=data
+//     }
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   }
+//   );
+// }
+
   onclickunitid(unitCategory: number) {
     this.unitcategoryid = unitCategory;
   }
@@ -184,10 +204,25 @@ export class PropertydetailsComponent implements OnInit {
       ['Unitscategory'],
       { queryParams: { 'propertyMasterID': propertyMasterID, 'listingPurposeID': listingPurposeID, 'unitCategoryID': unitCategoryID, 'landLordID': landLordID } });
   }
-  onsubType(subType: number) {
+  onsubType(propertyMasterTypeID: number, subType: number) {
+    let pmtid = propertyMasterTypeID
     this.subTypeId = subType;
-    this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber);
+    debugger
+    this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber).then((result) => {
+      this.modalService.dismissAll();
+    })
     this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
+
+  }
+  openprice(price:any){
+    this.modalService.open(price, this.configs).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      },
+    );
   }
 
 }

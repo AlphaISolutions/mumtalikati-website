@@ -9,6 +9,7 @@ export class TopBarComponent implements OnInit {
   logo: any
   shownnow: boolean = true;
   collapsed = true;
+  addPropperty:boolean=false;
   // shownnow=false;
   public isMenuCollapsed = true;
   navbarOpen = false;

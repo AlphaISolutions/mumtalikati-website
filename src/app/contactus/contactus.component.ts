@@ -23,7 +23,7 @@ export class ContactusComponent implements OnInit {
   constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService) {
   }
 
-  ngOnInit(): void {
+ async ngOnInit() {
     this.contactusform = this.rxFormBuilder.formGroup(this.sendEmail);
     // const mapProperties = {
     //   center: new google.maps.LatLng(35.2271, -80.8431),

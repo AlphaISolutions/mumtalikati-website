@@ -7,6 +7,7 @@ import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMaster
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { SendEmail } from '../models/sendemail.model';
 import { PropertyFeature } from '../models/propertyfeature';
+import { PropertyFilter } from '../models/PropertyFilter.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -82,4 +83,12 @@ export class MumtalikatiService {
       .then(res => res as SendEmail )
       .catch(err => { return Promise.reject(err.json().error || 'error'); });
 }
+ async postPropertyFilter(propertyFilte: PropertyFilter ):Promise<PropertyFilter>{
+  return await firstValueFrom(this.http
+    .post<PropertyFilter>(`@mumtalikati-api/PropertyFilter/GetPropertyFilter`,propertyFilte))
+    .then(res => res as PropertyFilter)
+    .catch(err =>{return Promise.reject(err.json().error || 'error');});
+ }
+  
+ 
 }

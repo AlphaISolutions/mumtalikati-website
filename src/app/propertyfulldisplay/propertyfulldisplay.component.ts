@@ -30,8 +30,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   propertyFeature:PropertyFeature[]=[]
   myModel=true;
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService,) { }
-  ngOnInit(): void {
-
+  async ngOnInit(){
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMasterID'];
       this.propertyUnitid = +params['propertyUnitID'];
