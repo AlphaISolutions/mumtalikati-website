@@ -12,6 +12,8 @@ import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-
 import { getsubType } from '../models/enums';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
 import { PropertyFilter } from '../models/PropertyFilter.model';
+import { FormGroup } from '@angular/forms';
+import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 @Component({
   selector: 'app-propertydetails',
   templateUrl: './propertydetails.component.html',
@@ -24,7 +26,7 @@ export class PropertydetailsComponent implements OnInit {
   propertymasterType: PropertyMasterType[] = []
   propertysubType: PropertyMasterSubType[] = []
   propertyUnitCategoryType: PropertyUnitCategory[] = [];
-  propertyfilter =new PropertyFilter();
+  propertyfilter = new PropertyFilter();
   propertyOfCount: any;
   page = 1;
   passenger: any;
@@ -44,11 +46,18 @@ export class PropertydetailsComponent implements OnInit {
   public mastertypeid: number = 1;
   public subTypeId: number = 1;
   perpagenumber = 8;
-  constructor(private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal) { }
   color = { 'color': 'black!important' };
   logocolor: boolean = false;
-  inputfild:boolean=true;
+  inputfild: boolean = true;
+  areadisable: boolean = false;
+  propertyFilterform!: FormGroup;
+  priceMax: string[] = ['0', '5000', '10000', '15000', '20000'];
+  priceMin: string[] = ['5000', '10000', '15000', '20000', '25000']
+  areaMax: string[] = ['40', '60', '80', '100', '120'];
+  areaMin: string[] = ['60', '80', '100', '120', '140'];
+  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal) { }
   async ngOnInit() {
+    this.propertyFilterform = this.rxFormBuilder.formGroup(this.propertyfilter);
     this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber);
     this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
     this.getlistingPurpose();
@@ -67,7 +76,7 @@ export class PropertydetailsComponent implements OnInit {
 
     };
   }
-  onclicks(listingPurposeType: number) {
+ async onclicks(listingPurposeType: number) {
     this.listid = listingPurposeType;
     this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber);
     this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
@@ -124,7 +133,7 @@ export class PropertydetailsComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.listingpupose = data
-          
+
         }
         this.loading = false;
       })
@@ -173,18 +182,25 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
-// async postPropertyfilter(){
-//   this.mumtalikatiservic.postPropertyFilter()
-//   .then((data)=> {
-//     if(data){
-//       this.propertyfilter=data
-//     }
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   }
-//   );
-// }
+  onSubmit() {
+    let data = this.propertyFilterform.value as PropertyFilter;
+    data.listingPurposesID = this.listid;
+    data.propertyMasterSubTypeID = this.subTypeId;
+    data.propertyMasterTypeID = this.mastertypeid;
+    data.propertyCategory = this.unitcategoryid;
+    data.rowsNumbers = this.perpagenumber;
+    data.pageNumber = this.page;
+    this.mumtalikatiservic.postPropertyFilter(data)
+      .then((data) => {
+        if (data) {
+          this.propertyfilter = data
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      }
+      );
+  }
 
   onclickunitid(unitCategory: number) {
     this.unitcategoryid = unitCategory;
@@ -214,7 +230,7 @@ export class PropertydetailsComponent implements OnInit {
     this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
 
   }
-  openprice(price:any){
+  openprice(price: any) {
     this.modalService.open(price, this.configs).result.then(
       (result) => {
         this.closeResult = `Closed with: ${result}`;
@@ -224,5 +240,24 @@ export class PropertydetailsComponent implements OnInit {
       },
     );
   }
-
+  openArea(area: any) {
+    this.modalService.open(area, this.configs).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      },
+    );
+  }
+  onpopupclose() {
+    this.modalService.dismissAll();
+  }
+  addminprice(value: string) {
+  this.propertyFilterform.get('minPrice')?.patchValue(value);
+ 
+  }
+  addmaxprice(value: string) {
+  this.propertyFilterform.get('maxPrice')?.patchValue(value);
+  }
 }

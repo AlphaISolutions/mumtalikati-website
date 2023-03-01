@@ -32,6 +32,7 @@ import { DropdownComponent } from './dropdown/dropdown.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { ToastrModule } from "ngx-toastr";
+import {MatListModule} from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +68,7 @@ import { ToastrModule } from "ngx-toastr";
     ReactiveFormsModule,
     FormsModule,
     ToastrModule,
-   
+    MatListModule
    
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },RxFormBuilder],

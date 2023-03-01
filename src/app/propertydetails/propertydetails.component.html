@@ -62,9 +62,9 @@
             </div>
             <div class="col-md-2">
                 <mat-form-field appearance="outline" *ngIf="propertyUnitCategoryType[0]">
-                    <mat-select [(value)]="propertyUnitCategoryType[0].desc">
+                    <mat-select [value]="propertyUnitCategoryType[0].unitCategory">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let doc of propertyUnitCategoryType" [value]="doc.desc"
+                        <mat-option *ngFor="let doc of propertyUnitCategoryType" [value]="doc.unitCategory"
                             (click)="onclickunitid(doc.unitCategory)">
                             {{doc.desc}}
                         </mat-option>
@@ -73,37 +73,76 @@
                 </mat-form-field>
 
             </div>
-            <div class="col-md-2">
-
-                <button class="border px-4" mat-stroked-button (click)="openprice(price)">Price (OMR)<i
-                        class="fa fa-caret-down p-4 "></i></button>
-                <ng-template #price let-modal>
-                    <div class="row justify-content-md-center pricecenter pt-2">
-                        <div class="col-6 copywrite">
-                            <p>Min:</p>
-                            <mat-form-field appearance="outline">
-                                <input matInput placeholder="0" value="">
-                              </mat-form-field>
-                        </div>
-                        <div class="col-6">
-                            <p>Max:</p>
-                            <mat-form-field appearance="outline">
-                                <input matInput placeholder="any" value="">
-                              </mat-form-field>
-                        </div>
+            <div class="col-md-4">
+                <form class="row" *ngIf="propertyFilterform" [formGroup]="propertyFilterform" (ngSubmit)="onSubmit()" novalidate >
+                
+                    <div class="col">
+                        <button class="border px-4" mat-stroked-button (click)="openprice(price)">Price (OMR)<i
+                                class="fa fa-caret-down p-4 "></i></button>
+                        <ng-template #price let-modal>
+                            <div class="row justify-content-md-center pricecenter pt-2 p-2">
+                                <div class="col-6 copywrite">
+                                    <p>Min:</p>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput placeholder="0" formControlName="minPrice">
+                                    </mat-form-field>
+                                    <mat-list role="list" >
+                                        <mat-list-item role="listitem" class="item-content" *ngFor="let value of priceMax"><span class="contact-names" (click)="addminprice(value)">{{value}}</span></mat-list-item>
+                                  
+                                      </mat-list>
+                                </div>
+                                <div class="col-6">
+                                    <p>Max:</p>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput placeholder="any" formControlName="maxPrice">
+                                    </mat-form-field>
+                                    <mat-list role="list">
+                                        <mat-list-item role="listitem" class="item-content" *ngFor="let value of priceMin"><span class="contact-names" (click)="addmaxprice(value)">{{value}}</span></mat-list-item>
+                                      </mat-list>
+                                      <div class="float-right">
+                                        <button mat-flat-button class="popup-btn" (click)=onpopupclose()>Close</button>
+                                      </div>
+                                </div>
+                            </div>
+                        </ng-template>
                     </div>
-                </ng-template>
-
+                    <div class="col" *ngIf="areadisable">
+                        <button class="border px-4" mat-stroked-button (click)="openArea(area)">Area (SQM)<i
+                                class="fa fa-caret-down p-4 "></i>
+                            </button>
+                            <ng-template #area let-modal>
+                            <div class="row justify-content-md-center pricecenter pt-2 p-2 ">
+                                <div class="col-6 copywrite">
+                                    <p>Min:</p>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput placeholder="0" value="">
+                                    </mat-form-field>
+                                    <mat-list role="list">
+                                        <mat-list-item role="listitem" class="item-content"  *ngFor="let list of areaMax"><span class="contact-names"  >{{list}}</span></mat-list-item>
+                                      
+                                      </mat-list>
+                                </div>
+                                <div class="col-6" >
+                                    <p>Max:</p>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput placeholder="any" value="">
+                                    </mat-form-field>
+                                    <mat-list role="list" class="justify-content-center">
+                                        <mat-list-item  role="listitem" class="item-content" *ngFor="let list of areaMin" ><span class="contact-names" >{{list}}</span></mat-list-item>
+                                        
+                                      </mat-list>
+                                      <div class="float-right">
+                                        <button mat-flat-button class="popup-btn" (click)="onpopupclose()">Close</button>
+                                      </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div class="col">
+                        <button mat-flat-button color="primary" class="px-4 py-2 " >Done</button>
+                    </div>
+                </form>
             </div>
-            <div class="col-md-2">
-                <mat-form-field appearance="outline">
-                    <mat-select [(value)]="Rent">
-                        <mat-option>Price (OMR)</mat-option>
-                        <mat-option>Buy</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-
         </div>
 
         <h4 class="mt-4">Properties for rent in oman</h4>

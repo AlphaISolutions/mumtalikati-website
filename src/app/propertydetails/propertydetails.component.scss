@@ -99,3 +99,27 @@ padding-top: 400px;
 .copywrite {
     text-align: center;
 }
+.item-content{
+    border-radius: 4px 4px 0px 0px;
+    display: flex !important; 
+    justify-content: center !important;
+}
+.justify-content-center {
+        justify-content: center !important;
+    }
+    .contact-names:hover {
+        color:white;
+       }
+   
+       .item-content:active{
+        background-color:#345C66;;
+       }
+
+
+       .popup-btn{
+        background-color: #345C66;
+        color: white;
+       }
+       .float-right{
+        float:right;
+       }
