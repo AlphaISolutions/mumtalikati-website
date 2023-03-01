@@ -18,21 +18,25 @@ export class UnitscategoryComponent implements OnInit {
   landLordID!: number;
   config: any;
   page = 1;
+  perpagenumber:number=9
   passenger: any;
   itemsPerPage = 9;
+  color ={'color':'black!important'};
+  logocolor=false;
+  public status:number=1
   constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router) { }
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;
   bydefault = assetUrl('img/bydefault.png');
   parentStyle = {'background-color':'black'};
-  ngOnInit(): void {
+  async ngOnInit(){
     this.route.queryParams.subscribe(params => {
       this.propertyMasterID = +params['propertyMasterID'];
       this.listingPurposeID = +params['listingPurposeID'];
       this.unitCategoryID = +params['unitCategoryID'];
       this.landLordID = +params['landLordID'];
-      this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, 1, 1, 9);
-      this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, 1);
+      this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
+      this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
     });
     this.config = {
       itemsPerPage: this.itemsPerPage,
@@ -73,7 +77,7 @@ export class UnitscategoryComponent implements OnInit {
   }
   async pageChange(page: any) {
     this.loading = true;
-    await this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, 1, page, 9);
+    await this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, page, this.perpagenumber);
   }
 
   onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number) {
@@ -81,4 +85,4 @@ export class UnitscategoryComponent implements OnInit {
     {queryParams:{'propertyMasterID':propertyMasterID, 'propertyUnitID':propertyUnitID, 'unitCategoryID':unitCategoryID, 'landlordid':landlordid}});
   }
 
-}
+  }

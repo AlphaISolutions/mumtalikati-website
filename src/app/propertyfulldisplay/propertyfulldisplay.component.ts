@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
+import { PropertyFeature } from '../models/propertyfeature';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 
 @Component({
@@ -24,16 +25,19 @@ export class PropertyfulldisplayComponent implements OnInit {
   hall = assetUrl("icons/hall.png");
   bydefault = assetUrl('img/bydefault.png');
   parentStyle = {'background-color':'black'};
+  color ={'color':'black!important'};
+  logocolor=false;
+  propertyFeature:PropertyFeature[]=[]
+  myModel=true;
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService,) { }
-  ngOnInit(): void {
-
+  async ngOnInit(){
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMasterID'];
       this.propertyUnitid = +params['propertyUnitID'];
       this.unitcatID = +params['unitCategoryID'];
       this.landlordid = +params['landlordid'];
-      this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid)
-
+      this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
+    this.getPropertyFeatures(this.pmid);
     });
   }
   async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {
@@ -42,6 +46,20 @@ export class PropertyfulldisplayComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.propertyDetail = data;
+        }
+        this.loading = false;
+      })
+      .catch((error) => {
+        this.loading = false;
+        console.error(error);
+      });
+  }
+  async getPropertyFeatures(id:number) {
+    this.loading = true;
+    this.mumtalikatiservic.getPropertyFeature(id)
+      .then((data) => {
+        if (data) {
+          this.propertyFeature = data;
         }
         this.loading = false;
       })

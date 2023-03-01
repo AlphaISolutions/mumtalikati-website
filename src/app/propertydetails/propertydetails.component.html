@@ -1,73 +1,153 @@
+<app-top-bar [logred]="color" [data]="logocolor"></app-top-bar>
+<hr>
+<div class="loading" *ngIf="loading ; else showList">
+    <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+<ng-template #showList>
+    <div class="container p-4">
+        <div class="row border-bottom " *ngIf="listingpupose">
+            <div class="col-md-2">
+                <mat-form-field appearance="outline" *ngIf="listingpupose[0]">
+                    <mat-select [(value)]="listingpupose[0].listingPurposeType">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let doc of listingpupose" [value]="doc.listingPurposeType"
+                            (click)="onclicks(doc.listingPurposeType)">
+                            {{doc.desc}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-<app-top-bar [childStyle]="parentStyle"></app-top-bar>
-<div class="container p-4">
-    <div class="row border-bottom ">
-        <div class="col-md-2">
-            <mat-form-field appearance="outline">
-                <mat-select [(value)]="Rent" >
-                    <mat-option>None</mat-option>
-                    <mat-option value="Rent" *ngFor="let doc of listingpupose" >
-                        {{doc.desc}}
-                    </mat-option>
-                </mat-select>
-              </mat-form-field>
-      
+            </div>
+            <div class="col-md-2">
+                <mat-form-field appearance="outline">
+                    <div style="display: flex;">
+                        <input matInput type="text" placeholder="Enter location" [disabled]="inputfild"><i
+                            class="fa fa-map-marker icolor pb-1" aria-hidden="true"></i>
+                    </div>
+
+                </mat-form-field>
+            </div>
+            <div class="col-md-2">
+                <button class="border px-4" mat-stroked-button (click)="open(content)">Residential<i
+                        class="fa fa-caret-down p-4 "></i></button>
+                <ng-template #content let-modal>
+                    <div class="modal-header" *ngIf="propertymasterType">
+                        <mat-tab-group>
+                            <ng-container *ngFor="let doc of propertymasterType">
+                                <mat-tab>
+                                    <ng-template mat-tab-label>
+                                        <span (click)="matTab(doc.masterType)">{{doc.desc}}</span>
+
+                                    </ng-template>
+                                    <ng-container>
+                                        <div class="container">
+                                            <div class="row justify-content-md-center btn-row" *ngIf="propertysubType">
+                                                <div class="col-auto p-0 pt-2" *ngFor="let doc of propertysubType">
+                                                    <div *ngIf="doc.propertyMasterTypeID==mastertypeid">
+                                                        <button id="view-cmp-btn" mat-raised-button
+                                                            [value]="doc.propertyMasterTypeID"
+                                                            [value]="doc.propertySubType.subType" class="me-2 mb-2 "
+                                                            (click)="onsubType(doc.propertyMasterTypeID!, doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </mat-tab>
+                            </ng-container>
+                        </mat-tab-group>
+                    </div>
+                </ng-template>
+            </div>
+            <div class="col-md-2">
+                <mat-form-field appearance="outline" *ngIf="propertyUnitCategoryType[0]">
+                    <mat-select [value]="propertyUnitCategoryType[0].unitCategory">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let doc of propertyUnitCategoryType" [value]="doc.unitCategory"
+                            (click)="onclickunitid(doc.unitCategory)">
+                            {{doc.desc}}
+                        </mat-option>
+
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+            <div class="col-md-4">
+                <form class="row" *ngIf="propertyFilterform" [formGroup]="propertyFilterform" (ngSubmit)="onSubmit()" novalidate >
+                
+                    <div class="col">
+                        <button class="border px-4" mat-stroked-button (click)="openprice(price)">Price (OMR)<i
+                                class="fa fa-caret-down p-4 "></i></button>
+                        <ng-template #price let-modal>
+                            <div class="row justify-content-md-center pricecenter pt-2 p-2">
+                                <div class="col-6 copywrite">
+                                    <p>Min:</p>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput placeholder="0" formControlName="minPrice">
+                                    </mat-form-field>
+                                    <mat-list role="list" >
+                                        <mat-list-item role="listitem" class="item-content" *ngFor="let value of priceMax"><span class="contact-names" (click)="addminprice(value)">{{value}}</span></mat-list-item>
+                                  
+                                      </mat-list>
+                                </div>
+                                <div class="col-6">
+                                    <p>Max:</p>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput placeholder="any" formControlName="maxPrice">
+                                    </mat-form-field>
+                                    <mat-list role="list">
+                                        <mat-list-item role="listitem" class="item-content" *ngFor="let value of priceMin"><span class="contact-names" (click)="addmaxprice(value)">{{value}}</span></mat-list-item>
+                                      </mat-list>
+                                      <div class="float-right">
+                                        <button mat-flat-button class="popup-btn" (click)=onpopupclose()>Close</button>
+                                      </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div class="col" *ngIf="areadisable">
+                        <button class="border px-4" mat-stroked-button (click)="openArea(area)">Area (SQM)<i
+                                class="fa fa-caret-down p-4 "></i>
+                            </button>
+                            <ng-template #area let-modal>
+                            <div class="row justify-content-md-center pricecenter pt-2 p-2 ">
+                                <div class="col-6 copywrite">
+                                    <p>Min:</p>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput placeholder="0" value="">
+                                    </mat-form-field>
+                                    <mat-list role="list">
+                                        <mat-list-item role="listitem" class="item-content"  *ngFor="let list of areaMax"><span class="contact-names"  >{{list}}</span></mat-list-item>
+                                      
+                                      </mat-list>
+                                </div>
+                                <div class="col-6" >
+                                    <p>Max:</p>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput placeholder="any" value="">
+                                    </mat-form-field>
+                                    <mat-list role="list" class="justify-content-center">
+                                        <mat-list-item  role="listitem" class="item-content" *ngFor="let list of areaMin" ><span class="contact-names" >{{list}}</span></mat-list-item>
+                                        
+                                      </mat-list>
+                                      <div class="float-right">
+                                        <button mat-flat-button class="popup-btn" (click)="onpopupclose()">Close</button>
+                                      </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div class="col">
+                        <button mat-flat-button color="primary" class="px-4 py-2 " >Done</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="col-md-2">
-            <mat-form-field appearance="outline">
-                <input matInput type="text" placeholder="Enter location" >
-              
-              </mat-form-field>
-        </div>
-        <div class="col-md-2">
-            <mat-form-field appearance="outline">
-                <mat-select [(value)]="Rent" >
-                    <mat-option>None</mat-option>
-                    <mat-option value="Rent" *ngFor="let doc of propertymasterType" >
-                        {{doc.desc}}
-                    </mat-option>
-              
-                </mat-select>
-              </mat-form-field>
-    
-        </div>
-        <div class="col-md-2">
-            <mat-form-field appearance="outline">
-                <mat-select [(value)]="Rent" >
-                    <mat-option>None</mat-option>
-                    <mat-option value="Rent" *ngFor="let doc of propertysubType" >
-                        {{doc.desc}}
-                    </mat-option>
-                 
-                </mat-select>
-              </mat-form-field>
-     
-        </div>
-        <div class="col-md-2">
-            <mat-form-field appearance="outline">
-                <mat-select [(value)]="Rent" >
-                  <mat-option value="Rent">Price (OMR)</mat-option>
-                  <mat-option value="2">Buy</mat-option>
-                </mat-select>
-              </mat-form-field>
-    
-        </div>
-        <div class="col-md-2">
-            <mat-form-field appearance="outline">
-                <mat-select [(value)]="Rent" >
-                  <mat-option value="Rent"> Area (SQM)</mat-option>
-                  <mat-option value="2">Buy</mat-option>
-                </mat-select>
-              </mat-form-field>
-     
-        </div>
- 
-    </div>
-    <h4 class="mt-4">Properties for rent in oman</h4>
-    <div class="loading" *ngIf="loading ; else showList">
-        <mat-spinner [diameter]="50"></mat-spinner>
-    </div>
-    <ng-template #showList>
+
+        <h4 class="mt-4">Properties for rent in oman</h4>
+
+
         <div class="row mt-4" *ngIf="propertyDetail">
             <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3" *ngFor="let property of propertyDetail| paginate
         :{  itemsPerPage: itemsPerPage,
@@ -75,7 +155,7 @@
             totalItems: propertyOfCount}">
                 <div class="card border-r mb-4 shadow-none border-0" (click)="onclick(property.propertyMasterID!,property.listingPurposeID!, property.unitCategoryID!, property.landLordID!
                 )">
-                        <img [src]="property.imageString || bydefault" class=" imagecss" alt="Card Image">
+                    <img [src]="property.imageString || bydefault" class=" imagecss" alt="Card Image">
                     <div class="card-body p-0">
                         <p><b>{{property.propertyMasterName}}</b></p>
                         <div>
@@ -102,5 +182,6 @@
                 <pagination-controls (pageChange)="pageChange((page = $event))"></pagination-controls>
             </nav>
         </div>
-    </ng-template>
-</div>
+
+    </div>
+</ng-template>

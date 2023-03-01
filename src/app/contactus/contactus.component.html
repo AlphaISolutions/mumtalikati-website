@@ -62,7 +62,7 @@
 
             </div>
             <div class="col-lg-7 d-none d-lg-block">
-                <div #map class="map"></div>
+               
             </div>
         </div>
     </div>
@@ -76,12 +76,12 @@
       
         <div class="card  shadow-2 border-none card-message">
             <div class="card-body">
-                <form>
+                <form *ngIf="contactusform" [formGroup]="contactusform" (ngSubmit)="onSubmit()" novalidate>
                     <div class="row gx-0">
                         <div class="col  pe-2 ">
                             <mat-form-field appearance="outline">
                                 <mat-label>First Name</mat-label>
-                                <input matInput placeholder="First Name">
+                                <input matInput placeholder="First Name" formControlName="name" required>
                                 <mat-error>
                                     First Name is <strong>required</strong>
                                 </mat-error>
@@ -90,27 +90,27 @@
 
                         <div class="col">
                             <mat-form-field appearance="outline">
-                                <mat-label>Last Name</mat-label>
-                                <input matInput placeholder="Last Name">
+                                <mat-label>Email</mat-label>
+                                <input matInput placeholder="Enter email" formControlName="email" required>
                                 <mat-error>
-                                    Last Name is <strong>required</strong>
+                                    Email  is <strong>required</strong>
                                 </mat-error>
                             </mat-form-field>
                         </div>
                     </div>
                     <mat-form-field appearance="outline">
-                        <mat-label>Email</mat-label>
-                        <input matInput placeholder="Email">
+                        <mat-label>Subject</mat-label>
+                        <input matInput placeholder="Subject" formControlName="subject" required>
                         <mat-error>
-                            Email is <strong>required</strong>
+                            Subject is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Message</mat-label>
-                        <textarea matInput placeholder="message"></textarea>
+                        <textarea matInput placeholder="message" formControlName="body" required></textarea>
                     </mat-form-field>
                     <div class="button-wrapper">
-                        <button type="button" mat-flat-button class="block" color="primary"><span
+                        <button  mat-flat-button class="block" color="primary"><span *ngIf="loading"
                                 class="spinner-border spinner-border-sm mr-1"></span>{{" submit"|
                             titlecase
                             }}</button>
@@ -119,10 +119,8 @@
             </div>
         </div>
     </div>
-
 </div>
-
-<div class="container p-4">
+<div class="container">
     <div class="row  gx-5 justify-content-center">
         <div class="col-sm-8 col-lg-7 p-1">
             <div class="card border-0 rounded-3 shadow-sm p-4">

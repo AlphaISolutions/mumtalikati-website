@@ -5,6 +5,9 @@ import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { ListingPurpose } from '../models/listing-purpose.model';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
+import { SendEmail } from '../models/sendemail.model';
+import { PropertyFeature } from '../models/propertyfeature';
+import { PropertyFilter } from '../models/PropertyFilter.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -69,4 +72,23 @@ export class MumtalikatiService {
         `@mumtalikati-api/PropertyDetail/GetPropertyUnitDetails`, { params: queryParams }
       )).then(res => res as OwnerRentDetail[]).catch(err => { return Promise.reject(err) });
   }
+  async getPropertyFeature( id: number): Promise<PropertyFeature[]> {
+    return await firstValueFrom(this.http
+      .get<PropertyFeature[]>(
+        `@mumtalikati-api/PropertyFeature/`+id
+      )).then(res => res as PropertyFeature[]).catch(err => { return Promise.reject(err) });
+  }
+  async postSendEmail(sendEmail: SendEmail) :Promise<SendEmail> {
+    return await firstValueFrom(  this.http.post('@mumtalikati-api/ContactUsEmailAPI/SendEmail',sendEmail ))
+      .then(res => res as SendEmail )
+      .catch(err => { return Promise.reject(err.json().error || 'error'); });
+}
+ async postPropertyFilter(propertyFilte: PropertyFilter ):Promise<PropertyFilter>{
+  return await firstValueFrom(this.http
+    .post<PropertyFilter>(`@mumtalikati-api/PropertyFilter/GetPropertyFilter`,propertyFilte))
+    .then(res => res as PropertyFilter)
+    .catch(err =>{return Promise.reject(err.json().error || 'error');});
+ }
+  
+ 
 }
