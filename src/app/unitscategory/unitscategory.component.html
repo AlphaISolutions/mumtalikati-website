@@ -1,6 +1,10 @@
 
 <app-top-bar [logred]="color" [data]="logocolor"></app-top-bar>
 <hr>
+<div class="loading" *ngIf="loading ; else showInfo">
+    <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+<ng-template #showInfo>
 <div class="container mt-4 ">
     <div class="">
        
@@ -19,10 +23,8 @@
       
       </ul>
     </div>
-    <div class="loading" *ngIf="loading ; else showInfo">
-        <mat-spinner [diameter]="50"></mat-spinner>
-    </div>
-    <ng-template #showInfo>
+ 
+ 
         <div *ngIf="indiviualsUni">
             <h4 *ngIf="indiviualsUni[0]">{{indiviualsUni[0].propertyUnitName}}</h4>
             <div class="row gx-3">
@@ -43,7 +45,7 @@
                                 <p class="card-text">Building ID:{{property.buildingNumber}}</p>
                                 <p class="card-text">Unit ID:{{property.propertyUnitID}}</p>
                                 <p class="card-text">Caption: {{property.caption}}</p>
-                                <p class="card-text">{{property.addressStr}}</p>
+                                <p class="card-text"><img class="pe-2 imgcolor" [src]=" location">{{property.addressStr}}</p>
                                 <p class="card-text">Status: {{getstutus(property.statuss!)}}</p>
                             </div>
                         </div>
@@ -55,5 +57,6 @@
                 </nav>
             </div>
         </div>
-    </ng-template>
+    
 </div>
+</ng-template>
