@@ -28,6 +28,7 @@ export class UnitscategoryComponent implements OnInit {
   constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router) { }
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;
+  location = assetUrl("icons/location.svg");
   bydefault = assetUrl('img/bydefault.png');
   parentStyle = {'background-color':'black'};
   async ngOnInit(){
