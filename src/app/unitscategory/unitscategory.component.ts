@@ -82,9 +82,9 @@ export class UnitscategoryComponent implements OnInit {
     await this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, page, this.perpagenumber);
   }
 
-  onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number) {
+  onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number,statuss:number) {
     this.router.navigate(['propertyfulldisplay'],
-    {queryParams:{'propertyMasterID':propertyMasterID, 'propertyUnitID':propertyUnitID, 'unitCategoryID':unitCategoryID, 'landlordid':landlordid}});
+    {queryParams:{'propertyMasterID':propertyMasterID, 'propertyUnitID':propertyUnitID, 'unitCategoryID':unitCategoryID, 'landlordid':landlordid, 'statuss':statuss}});
   }
   getenum(propertyMasterTypeID:number){
     return propertyMasterTypeEnum(propertyMasterTypeID)

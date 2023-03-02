@@ -4,7 +4,7 @@ import { assetUrl } from 'src/single-spa/asset-url';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { PropertyFeature } from '../models/propertyfeature';
 import { MumtalikatiService } from '../services/mumtalikati.service';
-import { propertyMasterTypeEnum } from '../models/enums';
+import { getstatusType, propertyMasterTypeEnum } from '../models/enums';
 @Component({
   selector: 'app-propertyfulldisplay',
   templateUrl: './propertyfulldisplay.component.html',
@@ -24,20 +24,22 @@ export class PropertyfulldisplayComponent implements OnInit {
   kitchen = assetUrl("icons/kitchen.png");
   hall = assetUrl("icons/hall.png");
   bydefault = assetUrl('img/bydefault.png');
-  parentStyle = {'background-color':'black'};
-  color ={'color':'black!important'};
-  logocolor=false;
-  propertyFeature:PropertyFeature[]=[]
-  myModel=true;
+  parentStyle = { 'background-color': 'black' };
+  color = { 'color': 'black!important' };
+  logocolor = false;
+  propertyFeature: PropertyFeature[] = []
+  myModel = true;
+  statuss!: number;
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService,) { }
-  async ngOnInit(){
+  async ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMasterID'];
       this.propertyUnitid = +params['propertyUnitID'];
       this.unitcatID = +params['unitCategoryID'];
       this.landlordid = +params['landlordid'];
+      this.statuss = +params['statuss'];
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
-    this.getPropertyFeatures(this.pmid);
+      this.getPropertyFeatures(this.pmid);
     });
   }
   async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {
@@ -54,7 +56,7 @@ export class PropertyfulldisplayComponent implements OnInit {
         console.error(error);
       });
   }
-  async getPropertyFeatures(id:number) {
+  async getPropertyFeatures(id: number) {
     this.loading = true;
     this.mumtalikatiservic.getPropertyFeature(id)
       .then((data) => {
@@ -68,7 +70,10 @@ export class PropertyfulldisplayComponent implements OnInit {
         console.error(error);
       });
   }
-  getenum(propertyMasterTypeID:number){
+  getenum(propertyMasterTypeID: number) {
     return propertyMasterTypeEnum(propertyMasterTypeID)
+  }
+  getstatus(statuss:number) {
+    return getstatusType(statuss)
   }
 }
