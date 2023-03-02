@@ -76,7 +76,64 @@ export function getstatusType(stutuss: number) {
     switch (stutuss) {
         case 1:
             return 'Active';
-            return 'Others';
+        case 2:
+            return 'Inactive';
+        case 3:
+            return 'RentedOut';
+        case 4:
+            return 'Sold';
+        case 5:
+            return 'Available';
+        case 6:
+            return 'DisableAutoVacancy';
+        case 7:
+            return 'EnableAutoVacancy';
+        case 8:
+            return 'Pending';
+        case 9:
+            return 'Negotiation';
+        case 10:
+            return 'Renewable';
+        case 11:
+            return 'Approved';
+        case 12:
+            return 'Rejected';
+        case 13:
+            return 'PartiallyOccupied';
+        case 14:
+            return 'Expired';
+      
+        default:
+            return "";
+    }
+
+}
+export function getPropertyUnitCategoryEnum(unitcatID: number) {
+    switch (unitcatID) {
+        case 1:
+            return '1BHK';
+        case 2:
+            return '2BHK';
+        case 3:
+            return '3BHK';
+        case 4:
+            return '4BHK';
+        case 5:
+            return '5BHK';
+        case 6:
+            return 'Shop';
+        case 7:
+            return 'Office';
+        case 8:
+            return 'WareHouse';
+        case 9:
+            return 'Factory';
+        case 10:
+            return 'Hall';
+        case 11:
+            return 'BusinessCenter';
+        case 12:
+            return 'WholeBuilding';
         default:
             return "";
     }
