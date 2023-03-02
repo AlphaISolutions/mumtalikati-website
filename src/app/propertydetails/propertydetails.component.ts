@@ -223,7 +223,7 @@ export class PropertydetailsComponent implements OnInit {
             rentalUnitDetail.rowsNumbers=e.rowsNumbers;
             this.propertyDetail.push(rentalUnitDetail);
           })
-          console.log(data)
+          
         }
         this.loading = false;
       })
