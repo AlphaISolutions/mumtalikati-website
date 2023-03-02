@@ -4,7 +4,7 @@ import { assetUrl } from 'src/single-spa/asset-url';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { PropertyFeature } from '../models/propertyfeature';
 import { MumtalikatiService } from '../services/mumtalikati.service';
-import { getstatusType, propertyMasterTypeEnum } from '../models/enums';
+import { getPropertyUnitCategoryEnum, getstatusType, propertyMasterTypeEnum } from '../models/enums';
 @Component({
   selector: 'app-propertyfulldisplay',
   templateUrl: './propertyfulldisplay.component.html',
@@ -75,5 +75,8 @@ export class PropertyfulldisplayComponent implements OnInit {
   }
   getstatus(statuss:number) {
     return getstatusType(statuss)
+  }
+  getpropertyunitCategoryid(unitcatID:number){
+    return getPropertyUnitCategoryEnum(unitcatID)
   }
 }
