@@ -12,9 +12,11 @@
             <button mat-flat-button class="bgc-btn p-0" [routerLink]="'../Unitscategory'"><i class="fa fa-angle-left" aria-hidden="true"></i>
                 Back to Search</button>
             </div>
-            <div class="col" >
+            <div class="col" *ngIf="propertyDetail" >
                 <li><a routerLink="">Mumtalikati</a></li>
-                <li *ngIf="propertyDetail[0]"><a href="#" routerLink="../propertydetails">{{propertyDetail[0].propertyMasterName}}</a></li>
+                <li *ngIf="propertyDetail[0]">
+                    <a href="#" routerLink="../propertydetails">{{getenum(propertyDetail[0].propertyMasterTypeID!)}}</a>
+                </li>
                 <li *ngIf="propertyDetail[0]"><a href="#">{{propertyDetail[0].propertySubTypeName}}</a></li>
                 <li *ngIf="propertyDetail[0]">{{propertyDetail[0].propertyUnitDescription}}</li>
             </div>

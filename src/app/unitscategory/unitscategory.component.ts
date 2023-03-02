@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { assetUrl } from 'src/single-spa/asset-url';
-import { getstatusType, Status } from '../models/enums';
+import { getstatusType, propertyMasterTypeEnum, Status } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 
@@ -24,6 +24,7 @@ export class UnitscategoryComponent implements OnInit {
   color ={'color':'black!important'};
   logocolor=false;
   public status:number=1
+  propertyMasterTypeID!:number
   constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router) { }
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;
@@ -35,6 +36,7 @@ export class UnitscategoryComponent implements OnInit {
       this.listingPurposeID = +params['listingPurposeID'];
       this.unitCategoryID = +params['unitCategoryID'];
       this.landLordID = +params['landLordID'];
+      this.propertyMasterTypeID=+params['propertyMasterTypeID']
       this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
       this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
     });
@@ -84,5 +86,7 @@ export class UnitscategoryComponent implements OnInit {
     this.router.navigate(['propertyfulldisplay'],
     {queryParams:{'propertyMasterID':propertyMasterID, 'propertyUnitID':propertyUnitID, 'unitCategoryID':unitCategoryID, 'landlordid':landlordid}});
   }
-
+  getenum(propertyMasterTypeID:number){
+    return propertyMasterTypeEnum(propertyMasterTypeID)
+  }
   }

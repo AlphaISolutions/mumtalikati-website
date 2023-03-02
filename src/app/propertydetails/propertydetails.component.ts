@@ -9,7 +9,7 @@ import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { SetupService } from '../services/setup.service';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { getsubType } from '../models/enums';
+import { PropertyMasterTypeEnum } from '../models/enums';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
 import { PropertyFilter } from '../models/PropertyFilter.model';
 import { FormGroup } from '@angular/forms';
@@ -26,7 +26,7 @@ export class PropertydetailsComponent implements OnInit {
   propertymasterType: PropertyMasterType[] = []
   propertysubType: PropertyMasterSubType[] = []
   propertyUnitCategoryType: PropertyUnitCategory[] = [];
-  propertyfilter = new PropertyFilter();
+  propertyfilter= new PropertyFilter() ;
   propertyOfCount: any;
   page = 1;
   passenger: any;
@@ -51,8 +51,8 @@ export class PropertydetailsComponent implements OnInit {
   inputfild: boolean = true;
   areadisable: boolean = false;
   propertyFilterform!: FormGroup;
-  priceMax: string[] = ['0', '5000', '10000', '15000', '20000'];
-  priceMin: string[] = ['5000', '10000', '15000', '20000', '25000']
+  priceMax: number[] = [0, 5000, 10000, 15000, 20000];
+  priceMin: number[] = [5000, 10000, 15000, 20000, 25000]
   areaMax: string[] = ['40', '60', '80', '100', '120'];
   areaMin: string[] = ['60', '80', '100', '120', '140'];
   constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal) { }
@@ -76,7 +76,7 @@ export class PropertydetailsComponent implements OnInit {
 
     };
   }
- async onclicks(listingPurposeType: number) {
+  async onclicks(listingPurposeType: number) {
     this.listid = listingPurposeType;
     this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber);
     this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
@@ -158,6 +158,7 @@ export class PropertydetailsComponent implements OnInit {
       });
   }
   async getPropertySubType() {
+    this.loading = true;
     this.setservice.getPropertySubTypes()
       .then((data) => {
         if (data) {
@@ -165,9 +166,10 @@ export class PropertydetailsComponent implements OnInit {
 
 
         }
+        this.loading = false;
       })
       .catch((error) => {
-
+        this.loading = false;
         console.error(error);
       });
   }
@@ -183,6 +185,7 @@ export class PropertydetailsComponent implements OnInit {
       });
   }
   onSubmit() {
+    this.loading = true;
     let data = this.propertyFilterform.value as PropertyFilter;
     data.listingPurposesID = this.listid;
     data.propertyMasterSubTypeID = this.subTypeId;
@@ -193,10 +196,39 @@ export class PropertydetailsComponent implements OnInit {
     this.mumtalikatiservic.postPropertyFilter(data)
       .then((data) => {
         if (data) {
-          this.propertyfilter = data
+          data.forEach((e) => {
+            let rentalUnitDetail = new RentalUnitDetail()
+            rentalUnitDetail.listingPurposeID = e.listingPurposeID;
+            rentalUnitDetail.propertyMasterID = e.propertyMasterID;
+            rentalUnitDetail.unitCategoryID = e.unitCategoryID;
+            rentalUnitDetail.addressStr = e.addressStr;
+            rentalUnitDetail.bathRoom = e.bathRoom;
+            rentalUnitDetail.bedRoom = e.bedRoom;
+            rentalUnitDetail.contact = e.contact;
+            rentalUnitDetail.imageString = e.imageString;
+            rentalUnitDetail.landLordID = e.landLordID;
+            rentalUnitDetail.pageNumber=e.pageNumber;
+            rentalUnitDetail.plotNumber=e.plotNumber;
+            rentalUnitDetail.propertyMasterName=e.propertyMasterName;
+            rentalUnitDetail.propertyUnitDescription=e.propertyUnitDescription;
+            rentalUnitDetail.unitName=e.unitName;
+            rentalUnitDetail.totalCount=e.totalCount;
+            rentalUnitDetail.sqft=e.sqft;
+            rentalUnitDetail.sellPrice=e.sellPrice;
+            rentalUnitDetail.propertyMasterTypeID=e.propertyMasterTypeID;
+            rentalUnitDetail.propertyUnitid=e.propertyUnitID;
+            rentalUnitDetail.rentPrice=e.rentPrice;
+            rentalUnitDetail.rownumberId=e.rownumberId;
+            rentalUnitDetail.rowsIndex=e.rowsIndex;
+            rentalUnitDetail.rowsNumbers=e.rowsNumbers;
+            this.propertyDetail.push(rentalUnitDetail);
+          })
+          
         }
+        this.loading = false;
       })
       .catch((error) => {
+        this.loading = false;
         console.error(error);
       }
       );
@@ -215,15 +247,15 @@ export class PropertydetailsComponent implements OnInit {
     this.loading = true;
     await this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, page, this.perpagenumber);
   }
-  onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number, landLordID: number) {
+  onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number, landLordID: number, propertyMasterTypeID: number) {
     this.router.navigate(
       ['Unitscategory'],
-      { queryParams: { 'propertyMasterID': propertyMasterID, 'listingPurposeID': listingPurposeID, 'unitCategoryID': unitCategoryID, 'landLordID': landLordID } });
+      { queryParams: { 'propertyMasterID': propertyMasterID, 'listingPurposeID': listingPurposeID, 'unitCategoryID': unitCategoryID, 'landLordID': landLordID, 'propertyMasterTypeID': propertyMasterTypeID } });
   }
   onsubType(propertyMasterTypeID: number, subType: number) {
     let pmtid = propertyMasterTypeID
     this.subTypeId = subType;
-    debugger
+
     this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber).then((result) => {
       this.modalService.dismissAll();
     })
@@ -253,11 +285,12 @@ export class PropertydetailsComponent implements OnInit {
   onpopupclose() {
     this.modalService.dismissAll();
   }
-  addminprice(value: string) {
-  this.propertyFilterform.get('minPrice')?.patchValue(value);
- 
+  addminprice(value: number) {
+
+    this.propertyFilterform.get('minPrice')?.patchValue(value);
+
   }
-  addmaxprice(value: string) {
-  this.propertyFilterform.get('maxPrice')?.patchValue(value);
+  addmaxprice(value: number) {
+    this.propertyFilterform.get('maxPrice')?.patchValue(value);
   }
 }

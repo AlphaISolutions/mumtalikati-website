@@ -4,7 +4,7 @@ import { assetUrl } from 'src/single-spa/asset-url';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { PropertyFeature } from '../models/propertyfeature';
 import { MumtalikatiService } from '../services/mumtalikati.service';
-
+import { propertyMasterTypeEnum } from '../models/enums';
 @Component({
   selector: 'app-propertyfulldisplay',
   templateUrl: './propertyfulldisplay.component.html',
@@ -67,5 +67,8 @@ export class PropertyfulldisplayComponent implements OnInit {
         this.loading = false;
         console.error(error);
       });
+  }
+  getenum(propertyMasterTypeID:number){
+    return propertyMasterTypeEnum(propertyMasterTypeID)
   }
 }

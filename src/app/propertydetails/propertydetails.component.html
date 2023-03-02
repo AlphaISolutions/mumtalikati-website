@@ -28,7 +28,7 @@
                 </mat-form-field>
             </div>
             <div class="col-md-2">
-                <button class="border px-4" mat-stroked-button (click)="open(content)">Residential<i
+                <button type="button" class="border px-4" mat-stroked-button (click)="open(content)">Residential<i
                         class="fa fa-caret-down p-4 "></i></button>
                 <ng-template #content let-modal>
                     <div class="modal-header" *ngIf="propertymasterType">
@@ -77,7 +77,7 @@
                 <form class="row" *ngIf="propertyFilterform" [formGroup]="propertyFilterform" (ngSubmit)="onSubmit()" novalidate >
                 
                     <div class="col">
-                        <button class="border px-4" mat-stroked-button (click)="openprice(price)">Price (OMR)<i
+                        <button type="button" class="border px-4" mat-stroked-button (click)="openprice(price)">Price (OMR)<i
                                 class="fa fa-caret-down p-4 "></i></button>
                         <ng-template #price let-modal>
                             <div class="row justify-content-md-center pricecenter pt-2 p-2">
@@ -144,16 +144,13 @@
                 </form>
             </div>
         </div>
-
         <h4 class="mt-4">Properties for rent in oman</h4>
-
-
         <div class="row mt-4" *ngIf="propertyDetail">
             <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3" *ngFor="let property of propertyDetail| paginate
         :{  itemsPerPage: itemsPerPage,
             currentPage: page,
             totalItems: propertyOfCount}">
-                <div class="card border-r mb-4 shadow-none border-0" (click)="onclick(property.propertyMasterID!,property.listingPurposeID!, property.unitCategoryID!, property.landLordID!
+                <div class="card border-r mb-4 shadow-none border-0" (click)="onclick(property.propertyMasterID!,property.listingPurposeID!, property.unitCategoryID!, property.landLordID! ,property.propertyMasterTypeID!
                 )">
                     <img [src]="property.imageString || bydefault" class=" imagecss" alt="Card Image">
                     <div class="card-body p-0">
