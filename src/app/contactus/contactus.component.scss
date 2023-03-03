@@ -1,6 +1,6 @@
 #image {
   background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/contactus.png.png');
-  height: 40vh;
+  // height: 40vh;
   background-repeat: no-repeat;
   background-color: transparent !important;
   background-size: cover;
@@ -27,6 +27,8 @@
   border-radius: 0;
   box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
   border: none;
+  max-height: 100px;
+  min-height: 350px;
 }
 
 .center {
@@ -53,6 +55,6 @@
 }
 
 .pcenter {
-  text-align: center;
+
   color: #FFFFFF;
 }

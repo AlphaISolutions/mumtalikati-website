@@ -94,7 +94,10 @@
                     <!-- <h4>Landlord</h4> -->
                 </div>
                 <div class=" d-flex gap-3 py-3" aria-current="true">
-                    <img [src]="" alt="twbs" width="42" height="42" class="rounded-circle flex-shrink-0">
+                    <div *ngIf="imageUser">
+                        <img [src]="imageUser.imageString || defaultperfile" alt="" width="50px" height="50px" class="rounded-circle ">
+                    </div>
+              
                     <div class="d-flex gap-2 w-100 justify-content-between">
                         <div>
                             <h6 class="mb-0"><b>Landlord</b></h6>
@@ -107,7 +110,6 @@
                     <button mat-stroked-button color="primary" class="me-4 px-5 border-r mb-md-2">Call</button>
                     <button mat-raised-button color="primary" class="px-5">Basic</button>
                 </div>
-
             </div>
             <div class="col-md-8 mt-4">
                 <mat-card class="example-card ">
@@ -118,25 +120,15 @@
                             OMR {{property.rentPrice}}/mon
                         </h5>
                         <div class="dis-flex" clas="pe-4">
-
                             <p class="icon pe-4"><img class="pe-2" [src]="areaimg">{{property.sqft}}SQM</p>
-
                             <p class="icon pe-4"><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} Bedrooms
                             </p>
-
-
                             <p class="icon pe-4"><img class="pe-2" [src]="washroomimg">{{property.bathRoom}} Bathrooms
                             </p>
-
-
                             <p class="icon pe-4"><img class="pe-2" [src]="kitchen">{{property.kitchen}} Kitchen
                             </p>
-
-
                             <p class="icon pe-4"><img class="pe-2" [src]="hall">{{property.hall}} Hall
                             </p>
-
-
                         </div>
                         <h5>
                             Property Details
@@ -144,18 +136,21 @@
                         <p>
                             {{property.propertyUnitDescription}}
                         </p>
-                        <h5>
-                            Features
-                        </h5>
-                    </mat-card-content>
-                    <div class="container">
-                        <div class="row" *ngIf="propertyFeature">
-                            <div class="col p-0 pt-2" *ngFor="let features of propertyFeature">
-                                <button mat-raised-button class="me-2 mb-2"
-                                    id="view-cmp-btn">{{features.feature.desc}}</button>
+                            <h5>
+                                Features
+                            </h5>
+                            <div class="container">
+                                <div class="row gx-2 justify-content-md-center btn-row " *ngIf="propertyFeature">
+                                    <div class="col-auto pt-2" *ngFor="let features of propertyFeature">
+                                        <button mat-raised-button class="" [disabled]="true"
+                                            id="view-cmp-btn">{{features.feature.desc}}</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                     
+                    
+                    </mat-card-content>
+                 
                 </mat-card>
             </div>
 

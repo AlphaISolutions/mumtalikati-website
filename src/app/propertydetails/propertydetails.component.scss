@@ -3,16 +3,13 @@
     max-height: 13rem;
     border-top-left-radius: 16px !important;
     border-top-right-radius: 16px !important;
-
+    border-bottom-left-radius: 16px !important;
+    border-bottom-right-radius: 16px !important;
 }
 
 #main {
     display: flex;
-
-    justify-content: space-between;
-
-
-
+    justify-content: space-between
 }
 
 .border-r {
@@ -107,12 +104,13 @@ padding-top: 400px;
 .justify-content-center {
         justify-content: center !important;
     }
-    .contact-names:hover {
-        color:white;
-       }
+    // .contact-names:hover {
+    //     color:white;
+    //    }
    
-       .item-content:active{
-        background-color:#345C66;;
+       .item-content:active:hover{
+        background-color:#345C66;
+        color: white;
        }
 
 
@@ -122,4 +120,12 @@ padding-top: 400px;
        }
        .float-right{
         float:right;
+       }
+
+       .inline{
+        color: #345C66;
+       }
+       .bradius{
+        border-radius: 5px;
+        background-color: white;
        }

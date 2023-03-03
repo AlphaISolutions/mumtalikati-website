@@ -1,16 +1,5 @@
 
 <div class="container">
-    <div class="vl mt-4">
-        <p>Premium Residential/Commercial Offer</p>
-    </div>
-    <div class="mt-4">
-        <h1 class="inline">Our Quality Standards Never Disappoint</h1>
-        <p class="inline float-end"><a class="under" [routerLink]="'propertydetails'" href="">Explore All</a></p>
-    </div>
-    <div class="loading" *ngIf="loading ; else showList">
-        <mat-spinner [diameter]="50"></mat-spinner>
-    </div>
-    <ng-template #showList>
     <div class="row mt-4" *ngIf="propertyDetail">
         <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3" *ngFor="let property of propertyDetail">
             <div class="card border-r mb-3 shadow-none border-0">
@@ -40,5 +29,5 @@
             </div>
         </div>
     </div>
-</ng-template>
+
 </div>

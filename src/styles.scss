@@ -167,18 +167,19 @@ h5 {
     text-align: center;
 }
 
-
+.mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+    display: none !important;
+}
 
 .mat-form-field-appearance-outline .mat-form-field-outline {
     background-color: $input-field-bg !important;
     // border-radius: 30px !important;
     font-size: medium;
-}
-
-
-.mat-form-field-appearance-outline .mat-form-field-outline {
     color: $primary-color;
 }
+
+
+
 
 .card {
     background: $white-color;

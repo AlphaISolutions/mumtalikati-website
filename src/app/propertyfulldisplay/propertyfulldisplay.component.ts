@@ -5,6 +5,7 @@ import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { PropertyFeature } from '../models/propertyfeature';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { getPropertyUnitCategoryEnum, getstatusType, propertyMasterTypeEnum } from '../models/enums';
+import { ProfileImage } from '../models/profileImage.model';
 @Component({
   selector: 'app-propertyfulldisplay',
   templateUrl: './propertyfulldisplay.component.html',
@@ -24,12 +25,14 @@ export class PropertyfulldisplayComponent implements OnInit {
   kitchen = assetUrl("icons/kitchen.png");
   hall = assetUrl("icons/hall.png");
   bydefault = assetUrl('img/bydefault.png');
+  defaultperfile:string='https://p.kindpng.com/picc/s/24-248729_stockvader-predicted-adig-user-profile-image-png-transparent.png';
   parentStyle = { 'background-color': 'black' };
   color = { 'color': 'black!important' };
   logocolor = false;
   propertyFeature: PropertyFeature[] = []
   myModel = true;
   statuss!: number;
+  imageUser!:ProfileImage;
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService,) { }
   async ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -40,6 +43,7 @@ export class PropertyfulldisplayComponent implements OnInit {
       this.statuss = +params['statuss'];
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
+      this.getImageUser(this.landlordid);
     });
   }
   async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {
@@ -56,12 +60,28 @@ export class PropertyfulldisplayComponent implements OnInit {
         console.error(error);
       });
   }
+  async getImageUser(landLordID: number) {
+    this.loading = true;
+    this.mumtalikatiservic.getUserImage(landLordID)
+      .then((data) => {
+        if (data) {
+          this.imageUser = data;
+        }
+        this.loading = false;
+      })
+      .catch((error) => {
+        this.loading = false;
+        console.error(error);
+      });
+  }
   async getPropertyFeatures(id: number) {
+    debugger
     this.loading = true;
     this.mumtalikatiservic.getPropertyFeature(id)
       .then((data) => {
         if (data) {
           this.propertyFeature = data;
+          console.log(data)
         }
         this.loading = false;
       })

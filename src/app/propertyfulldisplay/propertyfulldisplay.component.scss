@@ -53,7 +53,7 @@ icon {
 }
 
 #view-cmp-btn {
-
+color: black;
     border-radius: 20px;
 }
 ul.breadcrumb {
@@ -71,7 +71,7 @@ ul.breadcrumb {
     content: "/\00a0";
   }
   ul.breadcrumb li a {
-    color: black;
+    color:#345C66;
     text-decoration: none;
   }
   ul.breadcrumb li a:hover {
@@ -81,3 +81,7 @@ ul.breadcrumb {
   .bgc-btn{
     background: transparent;
   }
+  .btn-row {
+    display: flex;
+    justify-content: left !important;
+}

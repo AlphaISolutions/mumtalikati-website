@@ -9,7 +9,7 @@ import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { SetupService } from '../services/setup.service';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PropertyMasterTypeEnum } from '../models/enums';
+import { PropertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
 import { PropertyFilter } from '../models/PropertyFilter.model';
 import { FormGroup } from '@angular/forms';
@@ -51,8 +51,8 @@ export class PropertydetailsComponent implements OnInit {
   inputfild: boolean = true;
   areadisable: boolean = false;
   propertyFilterform!: FormGroup;
-  priceMax: number[] = [0, 5000, 10000, 15000, 20000];
-  priceMin: number[] = [5000, 10000, 15000, 20000, 25000]
+  priceMax: number[] = [ 0, 5000, 10000, 15000, 20000];
+  priceMin: number[] = [ 5000, 10000, 15000, 20000, 25000]
   areaMax: string[] = ['40', '60', '80', '100', '120'];
   areaMin: string[] = ['60', '80', '100', '120', '140'];
   constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal) { }
@@ -70,7 +70,7 @@ export class PropertydetailsComponent implements OnInit {
       totalItems: this.propertyOfCount
     };
     this.configs = {
-      backdrop: false,
+      backdrop: true,
       ignoreBackdropClick: true,
       keyboard: true,
 
@@ -97,6 +97,7 @@ export class PropertydetailsComponent implements OnInit {
   }
   open(content: any) {
     this.modalService.open(content, this.configs).result.then(
+      
       (result) => {
         this.closeResult = `Closed with: ${result}`;
       },
@@ -238,7 +239,7 @@ export class PropertydetailsComponent implements OnInit {
     this.unitcategoryid = unitCategory;
   }
 
-  matTab(masterType: number) {
+ async matTab(masterType: number) {
     this.mastertypeid = masterType;
     this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber);
     this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
@@ -292,5 +293,8 @@ export class PropertydetailsComponent implements OnInit {
   }
   addmaxprice(value: number) {
     this.propertyFilterform.get('maxPrice')?.patchValue(value);
+  }
+  getsubType(subTypeId:number){
+    return propertySubTypeEnum(subTypeId);
   }
 }
