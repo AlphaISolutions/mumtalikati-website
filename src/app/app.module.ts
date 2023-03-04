@@ -69,7 +69,9 @@ import {MatChipsModule} from '@angular/material/chips';
     MatMenuModule,
     ReactiveFormsModule,
     FormsModule,
-    ToastrModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-full-width'
+    }),
     MatListModule,
     
    

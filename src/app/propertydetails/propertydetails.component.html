@@ -8,7 +8,7 @@
         <div class="row gx-4 border-bottom " *ngIf="listingpupose">
             <div class="col-auto">
                 <mat-form-field appearance="outline" *ngIf="listingpupose[0]">
-                    <mat-select [(value)]="listingpupose[0].listingPurposeType">
+                    <mat-select [value]="listid">
                         <mat-option>None</mat-option>
                         <mat-option *ngFor="let doc of listingpupose" [value]="doc.listingPurposeType"
                             (click)="onclicks(doc.listingPurposeType)">
@@ -118,7 +118,7 @@
             totalItems: propertyOfCount}">
                 <div class="card border-r mb-4 shadow-none border-0" (click)="onclick(property.propertyMasterID!,property.listingPurposeID!, property.unitCategoryID!, property.landLordID! ,property.propertyMasterTypeID!
                 )">
-                    <img [src]="property.imageString || bydefault" class=" imagecss" alt="Card Image">
+                    <img [src]="property.imageString || bydefault" class=" imagecss main" alt="Card Image">
                     <div class="card-body p-0 px-3 pt-2">
                         <p><b>{{property.propertyMasterName}}</b></p>
                         <div>
@@ -128,17 +128,14 @@
                                     OMR {{property.rentPrice}} Monthly 
                                 </h5>
                             </div>
-
                             <div id="main">
                                 <p class=""><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} </p>
                                 <p class=""><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
                                 </p>
                                 <p><img class="pe-2" [src]="areaimg">{{property.sqft}} SQM</p>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
             <nav class="pagination justify-content-end pt-3">

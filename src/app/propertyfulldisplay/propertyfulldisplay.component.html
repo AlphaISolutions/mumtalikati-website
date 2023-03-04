@@ -4,139 +4,148 @@
     <mat-spinner [diameter]="50"></mat-spinner>
 </div>
 <ng-template #showList>
-<div class="container" *ngIf="propertyDetail">
-    <div class="">
-       
-        <ul class="breadcrumb row p-0">
-            <div class="col float-start">
-            <button mat-flat-button class="bgc-btn p-0" [routerLink]="'../Unitscategory'"><i class="fa fa-angle-left" aria-hidden="true"></i>
-                Back to Search</button>
-            </div>
-            <div class="col" *ngIf="propertyDetail" >
-                <li><a routerLink="">Mumtalikati</a></li>
-                <li *ngIf="propertyDetail[0]">
-                    <a href="#" routerLink="../propertydetails">{{getenum(propertyDetail[0].propertyMasterTypeID!)}}</a>
-                </li>
-                <li *ngIf="propertyDetail[0]"><a href="#">{{propertyDetail[0].propertySubTypeName}}</a></li>
-                <li *ngIf="propertyDetail[0]">{{propertyDetail[0].propertyUnitDescription}}</li>
-            </div>
-           <div class="col .d-md-none .d-lg-block"></div>
-          
-          </ul>
+    <div class="container" *ngIf="propertyDetail">
+        <div class="">
+            <ul class="breadcrumb row p-0">
+                <div class="col float-start">
+                    <button mat-flat-button class="bgc-btn p-0" (click)="backotsearch()" (click)="addItem(propertyDetail[0].listingPurposeID!)"><i
+                            class="fa fa-angle-left" aria-hidden="true"></i>
+                        Back to Search</button>
+                </div>
+                <div class="col" *ngIf="propertyDetail">
+                    <li><a routerLink="">Mumtalikati</a></li>
+                    <li *ngIf="propertyDetail[0]">
+                        <a href="#"
+                            routerLink="../propertydetails">{{getenum(propertyDetail[0].propertyMasterTypeID!)}}</a>
+                    </li>
+                    <li *ngIf="propertyDetail[0]"><a href="#">{{propertyDetail[0].propertySubTypeName}}</a></li>
+                    <li *ngIf="propertyDetail[0]">{{propertyDetail[0].propertyUnitDescription}}</li>
+                </div>
+                <div class="col .d-md-none .d-lg-block"></div>
+            </ul>
         </div>
 
-    <div *ngFor="let property of propertyDetail">
-        <div class="row mt-4">
-            <div class="col-md-4">
-                <div>
-                    <h2 class="h2color">
-                        For Rent
-                    </h2>
-                </div>
-                <div class="group">
-                    <h4>
-                        Bilal Group’s
-                    </h4>
-                </div>
-                <div>
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <th class="header">Building Type</th>
-                                <td class="propertyb">{{property.propertySubTypeName}}</td>
-
-                            </tr>
-                            <tr>
-                                <th class="header">Building ID</th>
-                                <td class="propertyb">{{property.buildingNumber}}</td>
-
-                            </tr>
-                            <tr>
-                                <th class="header">Building Name</th>
-                                <td class="propertyb">{{property.propertyMasterName}}</td>
-
-                            </tr>
-                            <tr>
-                                <th class="header">Plot Number</th>
-                                <td class="propertyb">{{property.plotNumber}}</td>
-
-                            </tr>
-                            <tr>
-                                <th class="header">Unit ID</th>
-                                <td class="propertyb">{{property.propertyUnitID}}</td>
-
-                            </tr>
-                            <tr>
-                                <th class="header">Unit Category</th>
-                                <td class="propertyb">{{getpropertyunitCategoryid(unitcatID)}}</td>
-
-                            </tr>
-                            <tr>
-                                <th class="header">Built in year</th>
-                                <td class="propertyb">{{property.builtYear}}</td>
-
-                            </tr>
-                            <tr>
-                                <th class="header">Floor #</th>
-                                <td class="propertyb">{{property.floorNumber}}</td>
-
-                            </tr>
-                            <tr>
-                                <th class="header">Status</th>
-                                <td class="propertyb">{{getstatus(statuss)}}</td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="main">
-                    <p><img class="pe-2 addess h2color" [src]=" location">{{property.addressStr}}</p>
-                    <!-- <h4>Landlord</h4> -->
-                </div>
-                <div class=" d-flex gap-3 py-3" aria-current="true">
-                    <div *ngIf="imageUser">
-                        <img [src]="imageUser.imageString || defaultperfile" alt="" width="50px" height="50px" class="rounded-circle ">
+        <div *ngFor="let property of propertyDetail">
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div>
+                        <h2 class="h2color">
+                            For Rent
+                        </h2>
                     </div>
-              
-                    <div class="d-flex gap-2 w-100 justify-content-between">
-                        <div>
-                            <h6 class="mb-0"><b>Landlord</b></h6>
-                            <p class="mb-0 opacity-75">{{property.name}}</p>
+                    <div class="group">
+                        <h4>
+                            Bilal Group’s
+                        </h4>
+                    </div>
+                    <div>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th class="header">Building Type</th>
+                                    <td class="propertyb">{{property.propertySubTypeName}}</td>
+
+                                </tr>
+                                <tr>
+                                    <th class="header">Building ID</th>
+                                    <td class="propertyb">{{property.buildingNumber}}</td>
+
+                                </tr>
+                                <tr>
+                                    <th class="header">Building Name</th>
+                                    <td class="propertyb">{{property.propertyMasterName}}</td>
+
+                                </tr>
+                                <tr>
+                                    <th class="header">Plot Number</th>
+                                    <td class="propertyb">{{property.plotNumber}}</td>
+
+                                </tr>
+                                <tr>
+                                    <th class="header">Unit ID</th>
+                                    <td class="propertyb">{{property.propertyUnitID}}</td>
+
+                                </tr>
+                                <tr>
+                                    <th class="header">Unit Category</th>
+                                    <td class="propertyb">{{getpropertyunitCategoryid(unitcatID)}}</td>
+
+                                </tr>
+                                <tr>
+                                    <th class="header">Built in year</th>
+                                    <td class="propertyb">{{property.builtYear}}</td>
+
+                                </tr>
+                                <tr>
+                                    <th class="header">Floor #</th>
+                                    <td class="propertyb">{{property.floorNumber}}</td>
+
+                                </tr>
+                                <tr>
+                                    <th class="header">Status</th>
+                                    <td class="propertyb">{{getstatus(statuss)}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="main">
+                        <p><img class="pe-2 addess h2color" [src]=" location">{{property.addressStr}}</p>
+                        <!-- <h4>Landlord</h4> -->
+                    </div>
+                    <div class=" d-flex gap-3 py-3" aria-current="true">
+                        <div *ngIf="imageUser">
+                            <img [src]="imageUser.imageString || defaultperfile" alt="" width="50px" height="50px"
+                                class="rounded-circle">
+
                         </div>
 
+                        <div class="d-flex gap-2 w-100 justify-content-between">
+                            <div>
+                                <h6 class="mb-0"><b>Landlord</b></h6>
+                                <p class="mb-0 opacity-75">{{property.name}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <button mat-stroked-button color="primary" class="me-4 px-5 border-r mb-md-2">Call</button>
+                        <button mat-raised-button color="primary" class="px-5">Basic</button>
                     </div>
                 </div>
-                <div class="mt-2">
-                    <button mat-stroked-button color="primary" class="me-4 px-5 border-r mb-md-2">Call</button>
-                    <button mat-raised-button color="primary" class="px-5">Basic</button>
-                </div>
-            </div>
-            <div class="col-md-8 mt-4">
-                <mat-card class="example-card ">
-
-                    <img mat-card-image [src]=" property.imageString[0] || bydefault" alt=''>
-                    <mat-card-content>
-                        <h5>
-                            OMR {{property.rentPrice}}/mon
-                        </h5>
-                        <div class="dis-flex" clas="pe-4">
-                            <p class="icon pe-4"><img class="pe-2" [src]="areaimg">{{property.sqft}}SQM</p>
-                            <p class="icon pe-4"><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} Bedrooms
-                            </p>
-                            <p class="icon pe-4"><img class="pe-2" [src]="washroomimg">{{property.bathRoom}} Bathrooms
-                            </p>
-                            <p class="icon pe-4"><img class="pe-2" [src]="kitchen">{{property.kitchen}} Kitchen
-                            </p>
-                            <p class="icon pe-4"><img class="pe-2" [src]="hall">{{property.hall}} Hall
-                            </p>
+                <div class="col-md-8 mt-4">
+                    <mat-card class="example-card ">
+                        <div class="cardimg">
+                            <img mat-card-image [src]=" property.imageString[0] || bydefault" alt='' class="hhjj">
+                            <!-- <div class="mum-h">
+                                <h5 class="mum-com">Mumtalikati.com.om</h5>
+                            </div> -->
+                           
+                            <!-- <img [src]="favoriteicon" alt="" class="favorite"> -->
                         </div>
-                        <h5>
-                            Property Details
-                        </h5>
-                        <p>
-                            {{property.propertyUnitDescription}}
-                        </p>
+                        <mat-card-content>
                             <h5>
+                                OMR {{property.rentPrice}}/mon
+                            </h5>
+                            <div class="dis-flex" clas="pe-4">
+                                <p class="icon pe-4"><img class="pe-2" [src]="areaimg">{{property.sqft}}SQM</p>
+                                <p class="icon pe-4"><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} Bedrooms
+                                </p>
+                                <p class="icon pe-4"><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
+                                    Bathrooms
+                                </p>
+                                <p class="icon pe-4"><img class="pe-2" [src]="kitchen">{{property.kitchen}} Kitchen
+                                </p>
+                                <p class="icon pe-4"><img class="pe-2" [src]="hall">{{property.hall}} Hall
+                                </p>
+                            </div>
+                            <h5>
+                                Property Details
+                            </h5>
+                            <p>
+                                {{property.propertyUnitDescription}}
+                            </p>
+                            <h5 >
                                 Features
                             </h5>
                             <div class="container">
@@ -147,14 +156,11 @@
                                     </div>
                                 </div>
                             </div>
-                     
-                    
-                    </mat-card-content>
-                 
-                </mat-card>
-            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
 </ng-template>

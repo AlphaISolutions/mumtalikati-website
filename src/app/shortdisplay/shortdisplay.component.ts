@@ -13,6 +13,7 @@ areaimg=assetUrl("icons/Area.svg");
 bedroomimg=assetUrl("icons/Bedroom.svg");
 washroomimg=assetUrl("icons/Washroom.svg");
 bydefault = assetUrl('img/bydefault.png');
+location = assetUrl("icons/location.svg");
   constructor( private mumtalikatiservic:MumtalikatiService) { }
 
   ngOnInit(): void {

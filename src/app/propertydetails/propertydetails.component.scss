@@ -31,20 +31,11 @@
 }
 
 #overlay {
-    // position: fixed;
-    // top: 0;
-    // left: 0;
-    // width: 100%;
-    // height: 100%;
-    // background-color: rgba(0,0,0,0.5);
+ 
     z-index: 11;
 }
 
 #overlay-content {
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
     background-color: white;
     padding: 20px;
 }
@@ -81,10 +72,7 @@ padding-top: 400px;
 .modal{
     padding-top: 400px !important;
 }
-// .model{
-//     height: 600px;
-//     margin: 400px;
-// }
+
 .icolor{
     color: #9e2a2b;
     
@@ -101,13 +89,13 @@ padding-top: 400px;
     display: flex !important; 
     justify-content: center !important;
 }
+
+
+
 .justify-content-center {
         justify-content: center !important;
     }
-    // .contact-names:hover {
-    //     color:white;
-    //    }
-   
+
        .item-content:active:hover{
         background-color:#345C66;
         color: white;
