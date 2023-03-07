@@ -10,7 +10,6 @@ export class TopBarComponent implements OnInit {
   shownnow: boolean = true;
   collapsed = true;
   addPropperty:boolean=false;
-  // shownnow=false;
   public isMenuCollapsed = true;
   navbarOpen = false;
   @Input() childStyle: any;

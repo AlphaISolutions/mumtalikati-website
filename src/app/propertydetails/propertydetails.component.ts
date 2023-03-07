@@ -9,7 +9,7 @@ import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { SetupService } from '../services/setup.service';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PropertyMasterTypeEnum } from '../models/enums';
+import { PropertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
 import { PropertyFilter } from '../models/PropertyFilter.model';
 import { FormGroup } from '@angular/forms';
@@ -26,7 +26,7 @@ export class PropertydetailsComponent implements OnInit {
   propertymasterType: PropertyMasterType[] = []
   propertysubType: PropertyMasterSubType[] = []
   propertyUnitCategoryType: PropertyUnitCategory[] = [];
-  propertyfilter= new PropertyFilter() ;
+  propertyfilter = new PropertyFilter();
   propertyOfCount: any;
   page = 1;
   passenger: any;
@@ -70,7 +70,7 @@ export class PropertydetailsComponent implements OnInit {
       totalItems: this.propertyOfCount
     };
     this.configs = {
-      backdrop: false,
+      backdrop: true,
       ignoreBackdropClick: true,
       keyboard: true,
 
@@ -78,8 +78,8 @@ export class PropertydetailsComponent implements OnInit {
   }
   async onclicks(listingPurposeType: number) {
     this.listid = listingPurposeType;
-    this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber);
-    this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
+    this.PropertyDetail(this.mastertypeid, this.subTypeId, listingPurposeType, this.page, this.perpagenumber);
+    this.PropertyDetailCount(this.mastertypeid, this.subTypeId, listingPurposeType);
   }
   async PropertyDetail(propertyMasterTypeID: number, propertyMasterSubTypeID: number, listingPurposesID: number, pageNumber: number, rowsNumbers: number) {
     this.loading = true;
@@ -97,6 +97,7 @@ export class PropertydetailsComponent implements OnInit {
   }
   open(content: any) {
     this.modalService.open(content, this.configs).result.then(
+
       (result) => {
         this.closeResult = `Closed with: ${result}`;
       },
@@ -207,23 +208,23 @@ export class PropertydetailsComponent implements OnInit {
             rentalUnitDetail.contact = e.contact;
             rentalUnitDetail.imageString = e.imageString;
             rentalUnitDetail.landLordID = e.landLordID;
-            rentalUnitDetail.pageNumber=e.pageNumber;
-            rentalUnitDetail.plotNumber=e.plotNumber;
-            rentalUnitDetail.propertyMasterName=e.propertyMasterName;
-            rentalUnitDetail.propertyUnitDescription=e.propertyUnitDescription;
-            rentalUnitDetail.unitName=e.unitName;
-            rentalUnitDetail.totalCount=e.totalCount;
-            rentalUnitDetail.sqft=e.sqft;
-            rentalUnitDetail.sellPrice=e.sellPrice;
-            rentalUnitDetail.propertyMasterTypeID=e.propertyMasterTypeID;
-            rentalUnitDetail.propertyUnitid=e.propertyUnitID;
-            rentalUnitDetail.rentPrice=e.rentPrice;
-            rentalUnitDetail.rownumberId=e.rownumberId;
-            rentalUnitDetail.rowsIndex=e.rowsIndex;
-            rentalUnitDetail.rowsNumbers=e.rowsNumbers;
+            rentalUnitDetail.pageNumber = e.pageNumber;
+            rentalUnitDetail.plotNumber = e.plotNumber;
+            rentalUnitDetail.propertyMasterName = e.propertyMasterName;
+            rentalUnitDetail.propertyUnitDescription = e.propertyUnitDescription;
+            rentalUnitDetail.unitName = e.unitName;
+            rentalUnitDetail.totalCount = e.totalCount;
+            rentalUnitDetail.sqft = e.sqft;
+            rentalUnitDetail.sellPrice = e.sellPrice;
+            rentalUnitDetail.propertyMasterTypeID = e.propertyMasterTypeID;
+            rentalUnitDetail.propertyUnitid = e.propertyUnitID;
+            rentalUnitDetail.rentPrice = e.rentPrice;
+            rentalUnitDetail.rownumberId = e.rownumberId;
+            rentalUnitDetail.rowsIndex = e.rowsIndex;
+            rentalUnitDetail.rowsNumbers = e.rowsNumbers;
             this.propertyDetail.push(rentalUnitDetail);
           })
-          
+
         }
         this.loading = false;
       })
@@ -238,7 +239,7 @@ export class PropertydetailsComponent implements OnInit {
     this.unitcategoryid = unitCategory;
   }
 
-  matTab(masterType: number) {
+  async matTab(masterType: number) {
     this.mastertypeid = masterType;
     this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber);
     this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
@@ -292,5 +293,8 @@ export class PropertydetailsComponent implements OnInit {
   }
   addmaxprice(value: number) {
     this.propertyFilterform.get('maxPrice')?.patchValue(value);
+  }
+  getsubType(subTypeId: number) {
+    return propertySubTypeEnum(subTypeId);
   }
 }

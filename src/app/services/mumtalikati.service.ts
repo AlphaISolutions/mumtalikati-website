@@ -8,6 +8,7 @@ import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { SendEmail } from '../models/sendemail.model';
 import { PropertyFeature } from '../models/propertyfeature';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
+import { ProfileImage } from '../models/profileImage.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -72,12 +73,21 @@ export class MumtalikatiService {
         `@mumtalikati-api/PropertyDetail/GetPropertyUnitDetails`, { params: queryParams }
       )).then(res => res as OwnerRentDetail[]).catch(err => { return Promise.reject(err) });
   }
+  async getUserImage( userID:number): Promise<ProfileImage> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("userID", userID);
+    return await firstValueFrom(this.http
+      .get<ProfileImage>(
+        `@mumtalikati-api/Users/GetUserImage`,{ params: queryParams }
+      )).then(res => res as ProfileImage).catch(err => { return Promise.reject(err) });
+  }
   async getPropertyFeature( id: number): Promise<PropertyFeature[]> {
     return await firstValueFrom(this.http
       .get<PropertyFeature[]>(
         `@mumtalikati-api/PropertyFeature/`+id
       )).then(res => res as PropertyFeature[]).catch(err => { return Promise.reject(err) });
   }
+
   async postSendEmail(sendEmail: SendEmail) :Promise<SendEmail> {
     return await firstValueFrom(  this.http.post('@mumtalikati-api/ContactUsEmailAPI/SendEmail',sendEmail ))
       .then(res => res as SendEmail )
@@ -89,8 +99,5 @@ export class MumtalikatiService {
     .then(res => res as OwnerPropertyFilter[])
     .catch(err =>{return Promise.reject(err.json().error || 'error');});
  }
-  
-//  async mapPopertyFilter(){
-//   const rentalUnitDetail = new RentalUnitDetail();
-//  }
+
 }

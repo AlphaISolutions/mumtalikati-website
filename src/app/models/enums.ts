@@ -102,7 +102,7 @@ export function getstatusType(stutuss: number) {
             return 'PartiallyOccupied';
         case 14:
             return 'Expired';
-      
+
         default:
             return "Unknown";
     }
@@ -134,6 +134,45 @@ export function getPropertyUnitCategoryEnum(unitcatID: number) {
             return 'BusinessCenter';
         case 12:
             return 'WholeBuilding';
+        default:
+            return "Unknown";
+    }
+
+}
+export function propertySubTypeEnum(subTypeId: any) {
+    switch (subTypeId) {
+        case 1:
+            return 'Building';
+        case 2:
+            return 'TownHouse';
+        case 3:
+            return 'LowerPortion';
+        case 4:
+            return 'UpperPortion';
+        case 5:
+            return 'PentHouse';
+        case 6:
+            return 'Villa';
+        case 7:
+            return 'Room';
+        case 8:
+            return 'Flat';
+        case 9:
+            return 'MixUse';
+        case 10:
+            return 'WareHouse';
+        case 11:
+            return 'Shop';
+        case 12:
+            return 'BusinessCenter';
+        case 13:
+            return 'Factory';
+        case 14:
+            return 'Hall';
+        case 15:
+            return 'Plot';
+        case 16:
+            return 'Project';
         default:
             return "Unknown";
     }

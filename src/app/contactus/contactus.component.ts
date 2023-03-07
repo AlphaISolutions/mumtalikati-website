@@ -20,7 +20,7 @@ export class ContactusComponent implements OnInit {
   linkin = assetUrl("icons/linkin.png");
   sendEmail = new SendEmail();
   loading: boolean = false;
-  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService) {
+  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private toastr: ToastrService,) {
   }
 
  async ngOnInit() {
@@ -46,7 +46,7 @@ export class ContactusComponent implements OnInit {
       this.mumtalikatiservic.postSendEmail(this.contactusform.value as SendEmail)
         .then((data) => {
           if (data) {
-            // this.toastr.success('Thank you for contacting us!');
+           this.toastr.success('Thank you for contacting us!');
   
           }
           this.loading = false;
@@ -54,7 +54,7 @@ export class ContactusComponent implements OnInit {
         })
         .catch((error) => {
           this.loading = false;
-          // this.toastr.error('Oops, something went wrong.Please try again later');
+           this.toastr.error('Oops, something went wrong.Please try again later');
         });
     }
 

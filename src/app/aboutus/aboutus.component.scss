@@ -108,3 +108,13 @@
 .radius{
     border-radius: 0;
 }
+.imagefill{
+    float: right;
+    object-fit: scale-down !important;
+    object-position: right top;
+
+}
+.vheight{
+    height: 72vh;
+    
+}

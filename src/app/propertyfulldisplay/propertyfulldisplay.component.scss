@@ -1,83 +1,133 @@
 #main {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .border-r {
-    border: 1px solid #9E2A2B;
+  border: 1px solid #9E2A2B;
 }
 
 
 
 icon {
-    width: 111px;
-    height: 36px;
-    left: 471px;
-    top: 1105px;
-    background: rgba(167, 63, 64, 0.18);
-    border-radius: 6px;
+  width: 111px;
+  height: 36px;
+  left: 471px;
+  top: 1105px;
+  background: rgba(167, 63, 64, 0.18);
+  border-radius: 6px;
 }
 
 .group {
-    color: #345C66;
+  color: #345C66;
 
 }
 
 .propertyb {
 
-    color: #345C66;
+  color: #345C66;
 }
 
 .header {
-    color: #717579;
+  color: #717579;
 }
 
 .addess {
-    color: #434242;
+  color: #434242;
 }
 
 
 ::ng-deep .custom-frame {
-    & .mat-checkbox-background, .mat-checkbox-frame {
-      border-radius: 60% !important;
-    }
+
+  & .mat-checkbox-background,
+  .mat-checkbox-frame {
+    border-radius: 60% !important;
   }
-  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-    background-color: #345C66 !important;
-  }
-.h2color{
-    color: #9E2A2B;
 }
-.dis-flex{
-    display: flex;
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #345C66 !important;
+}
+
+.h2color {
+  color: #9E2A2B;
+}
+
+.dis-flex {
+  display: flex;
 }
 
 #view-cmp-btn {
-
-    border-radius: 20px;
+  color: black;
+  border-radius: 20px;
 }
-ul.breadcrumb {
-    padding: 10px 16px;
-    list-style: none;
 
-  }
-  ul.breadcrumb li {
-    display: inline;
-    font-size: 18px;
-  }
-  ul.breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
-    content: "/\00a0";
-  }
-  ul.breadcrumb li a {
-    color: black;
-    text-decoration: none;
-  }
-  ul.breadcrumb li a:hover {
-    color: #9e2a2b;
-    text-decoration: underline;
-  }
-  .bgc-btn{
-    background: transparent;
-  }
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+
+}
+
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+ul.breadcrumb li a {
+  color: #345C66;
+  text-decoration: none;
+}
+
+ul.breadcrumb li a:hover {
+  color: #9e2a2b;
+  text-decoration: underline;
+}
+
+.bgc-btn {
+  background: transparent;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: left !important;
+}
+
+.cardimg {
+  position: relative;
+}
+
+.cardimg .hhjj {
+  display: block;
+}
+
+.cardimg .favorite {
+  position: absolute;
+  left: 92.08%;
+  right: 5.28%;
+  top: 7%;
+  bottom: 85.49%;
+}
+
+.cardimg .mum-h {
+  position: absolute;
+  width: 302.32px;
+  height: 67.58px;
+  bottom: 0;
+  right: 0;
+  background: #345C66;
+  border-radius: 0px 0px 15px 0px;
+}
+
+.mum-com {
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  right: 0;
+  color: #FFFFFF;
+}

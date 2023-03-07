@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { getstatusType, propertyMasterTypeEnum, Status } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
-
 @Component({
   selector: 'app-unitscategory',
   templateUrl: './unitscategory.component.html',
@@ -14,30 +13,32 @@ export class UnitscategoryComponent implements OnInit {
   loading: boolean = false;
   propertyMasterID!: number;
   listingPurposeID!: number;
+  public myId: number = 123;
   unitCategoryID!: number;
   landLordID!: number;
   config: any;
   page = 1;
-  perpagenumber:number=9
+  perpagenumber: number = 9
   passenger: any;
   itemsPerPage = 9;
-  color ={'color':'black!important'};
-  logocolor=false;
-  public status:number=1
-  propertyMasterTypeID!:number
+  color = { 'color': 'black!important' };
+  logocolor = false;
+  public status: number = 1
+  propertyMasterTypeID!: number
+  subTypeId!: number;
   constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router) { }
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;
   location = assetUrl("icons/location.svg");
   bydefault = assetUrl('img/bydefault.png');
-  parentStyle = {'background-color':'black'};
-  async ngOnInit(){
+  parentStyle = { 'background-color': 'black' };
+  async ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.propertyMasterID = +params['propertyMasterID'];
       this.listingPurposeID = +params['listingPurposeID'];
       this.unitCategoryID = +params['unitCategoryID'];
       this.landLordID = +params['landLordID'];
-      this.propertyMasterTypeID=+params['propertyMasterTypeID']
+      this.propertyMasterTypeID = +params['propertyMasterTypeID']
       this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
       this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
     });
@@ -53,6 +54,8 @@ export class UnitscategoryComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.indiviualsUni = data;
+          let subTypeId = this.indiviualsUni
+          subTypeId[0].propertySubTypeId = this.subTypeId;
         }
         this.loading = false;
       })
@@ -82,12 +85,13 @@ export class UnitscategoryComponent implements OnInit {
     this.loading = true;
     await this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, page, this.perpagenumber);
   }
-
-  onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number,statuss:number) {
+  onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number, statuss: number) {
     this.router.navigate(['propertyfulldisplay'],
-    {queryParams:{'propertyMasterID':propertyMasterID, 'propertyUnitID':propertyUnitID, 'unitCategoryID':unitCategoryID, 'landlordid':landlordid, 'statuss':statuss}});
+      { queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'statuss': statuss },
+      state: { 'listingPurposeID': this.listingPurposeID  } });
   }
-  getenum(propertyMasterTypeID:number){
+  getenum(propertyMasterTypeID: number) {
+
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
-  }
+}
