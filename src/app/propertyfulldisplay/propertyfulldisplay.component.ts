@@ -38,29 +38,26 @@ export class PropertyfulldisplayComponent implements OnInit {
   public page: number = 1;
   public perpagenumber: number = 8;
   listpurID!: any;
-  @Input() id!: number;
-  state :any
-  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router ) {
-    console.log(this.router.getCurrentNavigation()!.extras.state!["example"]!);
-   }
-  async ngOnInit() {
-    debugger
-    this.state = this.route.paramMap
+  pMTID!: number;
 
-    .pipe(map(() => window.history.state));
-    console.log()
+  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router) {
+    this.listpurID = this.router.getCurrentNavigation()!.extras.state!["listingPurposeID"]!;
+
+  }
+  async ngOnInit() {
+
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMasterID'];
       this.propertyUnitid = +params['propertyUnitID'];
       this.unitcatID = +params['unitCategoryID'];
       this.landlordid = +params['landlordid'];
       this.statuss = +params['statuss'];
-      this.listpurID = +params['listingPurposeID']
+      // this.listpurID = +params['listingPurposeID']
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
       this.getImageUser(this.landlordid);
     });
-    console.log(this.id)
+
   }
   async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {
     this.loading = true;
@@ -105,6 +102,8 @@ export class PropertyfulldisplayComponent implements OnInit {
       });
   }
   getenum(propertyMasterTypeID: number) {
+    let pmtid = propertyMasterTypeID;
+    this.pMTID=pmtid 
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
   getstatus(statuss: number) {
@@ -120,7 +119,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   backotsearch() {
     this.router.navigate(
       ['Unitscategory'],
-      { queryParams: { 'propertyMasterID': this.pmid, 'listingPurposeID': this.listpurID, 'unitCategoryID': this.unitcatID, 'status': this.statuss, 'page': this.page, 'perpagenumber': this.perpagenumber } });
+      { queryParams: { 'propertyMasterID': this.pmid, 'listingPurposeID': this.listpurID, 'unitCategoryID': this.unitcatID, 'status': this.statuss, 'page': this.page, 'perpagenumber': this.perpagenumber,'propertyMasterTypeID':this.pMTID,'landLordID':this.landlordid } });
   }
 }
 

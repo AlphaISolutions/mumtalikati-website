@@ -33,7 +33,6 @@ export class UnitscategoryComponent implements OnInit {
   bydefault = assetUrl('img/bydefault.png');
   parentStyle = { 'background-color': 'black' };
   async ngOnInit() {
-    
     this.route.queryParams.subscribe(params => {
       this.propertyMasterID = +params['propertyMasterID'];
       this.listingPurposeID = +params['listingPurposeID'];
@@ -48,7 +47,6 @@ export class UnitscategoryComponent implements OnInit {
       currentPage: this.page,
       totalItems: this.IndiviualsUnitTotalCount
     };
-
   }
   async propertyMasterIndiviualsUni(propertyMasterTypeID: number, listingPurposesID: number, UnitCategoryID: number, status: number, pageNumber: number, rowsNumbers: number) {
     this.loading = true;
@@ -87,18 +85,13 @@ export class UnitscategoryComponent implements OnInit {
     this.loading = true;
     await this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, page, this.perpagenumber);
   }
-
   onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number, statuss: number) {
-    // this.router.navigate(['propertyfulldisplay'], { state: { 'listingPurposeID': this.listingPurposeID } });
     this.router.navigate(['propertyfulldisplay'],
       { queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'statuss': statuss },
-      state: { example: 'bar' } });
+      state: { 'listingPurposeID': this.listingPurposeID  } });
   }
   getenum(propertyMasterTypeID: number) {
+
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
-
-
-
-
 }
