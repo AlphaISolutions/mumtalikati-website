@@ -32,7 +32,7 @@ export class PropertydetailsComponent implements OnInit {
   passenger: any;
   itemsPerPage: number = 9;
   config: any;
-  public listid: number = 1;
+  public listid: number=1;
   Rent: number = 1;
   public unitcategoryid: number = 1;
   location = assetUrl("icons/location.png");
@@ -73,13 +73,13 @@ export class PropertydetailsComponent implements OnInit {
       backdrop: true,
       ignoreBackdropClick: true,
       keyboard: true,
-
     };
   }
   async onclicks(listingPurposeType: number) {
     this.listid = listingPurposeType;
-    this.PropertyDetail(this.mastertypeid, this.subTypeId, listingPurposeType, this.page, this.perpagenumber);
-    this.PropertyDetailCount(this.mastertypeid, this.subTypeId, listingPurposeType);
+
+    this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber);
+    this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
   }
   async PropertyDetail(propertyMasterTypeID: number, propertyMasterSubTypeID: number, listingPurposesID: number, pageNumber: number, rowsNumbers: number) {
     this.loading = true;
@@ -116,12 +116,17 @@ export class PropertydetailsComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
   async PropertyDetailCount(propertyMasterTypeID: number, propertyMasterSubTypeID: number, listingPurposesID: number) {
+  
     this.mumtalikatiservic.getPropertyDetailCount(propertyMasterTypeID, propertyMasterSubTypeID, listingPurposesID)
       .then((data) => {
-        if (data) {
+    
+    
           this.propertyOfCount = data;
-        }
+        
+      
+
       })
       .catch((error) => {
 
@@ -134,7 +139,6 @@ export class PropertydetailsComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.listingpupose = data
-
         }
         this.loading = false;
       })
@@ -149,7 +153,6 @@ export class PropertydetailsComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.propertymasterType = data
-
         }
         this.loading = false;
       })
@@ -164,8 +167,6 @@ export class PropertydetailsComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.propertysubType = data
-
-
         }
         this.loading = false;
       })

@@ -32,7 +32,6 @@ export class MumtalikatiService {
     queryParams = queryParams.append("PropertyMasterTypeID", propertyMasterTypeID);
     queryParams = queryParams.append("PropertyMasterSubTypeID", propertyMasterSubTypeID);
     queryParams = queryParams.append("ListingPurposesID", listingPurposesID);
-
     return await firstValueFrom(this.http
       .get<Number>(
         `@mumtalikati-api/PropertyDetail/GetPropertyDetailCount`, { params: queryParams }

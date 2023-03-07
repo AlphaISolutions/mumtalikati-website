@@ -35,23 +35,21 @@
                         <mat-tab-group>
                             <ng-container *ngFor="let doc of propertymasterType">
                                 <mat-tab>
-                                    <ng-template mat-tab-label>
+                                    <ng-template mat-tab-label label="{{doc.desc}}">
                                         <span (click)="matTab(doc.masterType)">{{doc.desc}}</span>
                                     </ng-template>
-                                   
-                                        <div class="container">
-                                            <div class="row justify-content-md-center btn-row" *ngIf="propertysubType">
-                                                <div class="col-auto p-0 pt-2" *ngFor="let doc of propertysubType">
-                                                    <div *ngIf="doc.propertyMasterTypeID==mastertypeid">
-                                                        <button id="view-cmp-btn" mat-raised-button
-                                                            [value]="doc.propertyMasterTypeID"
-                                                            [value]="doc.propertySubType.subType" class="me-2 mb-2 "
-                                                            (click)="onsubType(doc.propertyMasterTypeID!, doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
-                                                    </div>
+                                    <div class="container">
+                                        <div class="row justify-content-md-center btn-row" *ngIf="propertysubType">
+                                            <div class="col-auto p-0 pt-2" *ngFor="let doc of propertysubType">
+                                                <div *ngIf="doc.propertyMasterTypeID==mastertypeid">
+                                                    <button id="view-cmp-btn" mat-raised-button
+                                                        [value]="doc.propertyMasterTypeID"
+                                                        [value]="doc.propertySubType.subType" class="me-2 mb-2 "
+                                                        (click)="onsubType(doc.propertyMasterTypeID!, doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
                                                 </div>
                                             </div>
                                         </div>
-                                 
+                                    </div>
                                 </mat-tab>
                             </ng-container>
                         </mat-tab-group>
@@ -72,10 +70,11 @@
 
             </div>
             <div class="col-auto">
-                <form class="row" *ngIf="propertyFilterform" [formGroup]="propertyFilterform" (ngSubmit)="onSubmit()" novalidate >
+                <form class="row" *ngIf="propertyFilterform" [formGroup]="propertyFilterform" (ngSubmit)="onSubmit()"
+                    novalidate>
                     <div class="col-auto">
-                        <button type="button" class="border bradius" mat-stroked-button (click)="openprice(price)">Price (OMR)<i
-                                class="fa fa-caret-down p-4 "></i></button>
+                        <button type="button" class="border bradius" mat-stroked-button (click)="openprice(price)">Price
+                            (OMR)<i class="fa fa-caret-down p-4 "></i></button>
                         <ng-template #price let-modal>
                             <div class="row justify-content-md-center pricecenter pt-2 p-2">
                                 <div class="col-6 copywrite">
@@ -83,10 +82,12 @@
                                     <mat-form-field appearance="outline">
                                         <input matInput placeholder="0" formControlName="minPrice">
                                     </mat-form-field>
-                                    <mat-list role="list" >
-                                        <mat-list-item role="listitem" class="item-content" *ngFor="let value of priceMax"><span class="contact-names" (click)="addminprice(value)">{{value}}</span></mat-list-item>
-                                  
-                                      </mat-list>
+                                    <mat-list role="list">
+                                        <mat-list-item role="listitem" class="item-content"
+                                            *ngFor="let value of priceMax"><span class="contact-names"
+                                                (click)="addminprice(value)">{{value}}</span></mat-list-item>
+
+                                    </mat-list>
                                 </div>
                                 <div class="col-6">
                                     <p>Max:</p>
@@ -94,28 +95,33 @@
                                         <input matInput placeholder="any" formControlName="maxPrice">
                                     </mat-form-field>
                                     <mat-list role="list">
-                                        <mat-list-item role="listitem" class="item-content" *ngFor="let value of priceMin"><span class="contact-names" (click)="addmaxprice(value)">{{value}}</span></mat-list-item>
-                                      </mat-list>
-                                      <div class="float-right">
+                                        <mat-list-item role="listitem" class="item-content"
+                                            *ngFor="let value of priceMin"><span class="contact-names"
+                                                (click)="addmaxprice(value)">{{value}}</span></mat-list-item>
+                                    </mat-list>
+                                    <div class="float-right">
                                         <button mat-flat-button class="popup-btn" (click)=onpopupclose()>Close</button>
-                                      </div>
+                                    </div>
                                 </div>
                             </div>
                         </ng-template>
                     </div>
-                 
-                    
-                        <button mat-flat-button color="primary" class="col-auto  px-4" >Done</button>
-                    
+
+
+                    <button mat-flat-button color="primary" class="col-auto  px-4">Done</button>
+
                 </form>
             </div>
         </div>
-        <h4 class="mt-4">Properties for rent in oman</h4>
+        <h4 class="mt-4">Properties for Rent in Oman</h4>
         <div class="row mt-4" *ngIf="propertyDetail">
             <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3" *ngFor="let property of propertyDetail| paginate
-        :{  itemsPerPage: itemsPerPage,
-            currentPage: page,
-            totalItems: propertyOfCount}">
+                :{
+                      itemsPerPage: itemsPerPage,
+                      currentPage: page,
+                      totalItems: propertyOfCount
+                }
+                ">
                 <div class="card border-r mb-4 shadow-none border-0" (click)="onclick(property.propertyMasterID!,property.listingPurposeID!, property.unitCategoryID!, property.landLordID! ,property.propertyMasterTypeID!
                 )">
                     <img [src]="property.imageString || bydefault" class=" imagecss main" alt="Card Image">
@@ -125,7 +131,7 @@
                             <h6 class="inline">{{property.unitName}} | {{getsubType(subTypeId)}}</h6>
                             <div class="mt-2">
                                 <h5>
-                                    OMR {{property.rentPrice}} Monthly 
+                                    OMR {{property.rentPrice}} Monthly
                                 </h5>
                             </div>
                             <div id="main">
@@ -137,10 +143,16 @@
                         </div>
                     </div>
                 </div>
+
+            </div>
+            <div class=" d-flex align-items-center justify-content-center" style="height: 350px;"
+                *ngIf="!propertyDetail[0]">
+                <p class="">No Property Listed</p>
             </div>
             <nav class="pagination justify-content-end pt-3">
-                <pagination-controls (pageChange)="pageChange((page = $event))"></pagination-controls>
+                <pagination-controls (pageChange)="pageChange((page = $event))" class="p-controls"></pagination-controls>
             </nav>
+
         </div>
 
     </div>
