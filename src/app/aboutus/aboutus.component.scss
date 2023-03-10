@@ -1,11 +1,5 @@
-#image {
-    background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/aboutus.png');
-    height: 40vh;
-    background-repeat: no-repeat;
-    background-color: transparent !important;
-    background-size: cover;
-}
 
+@import "../../variables.scss";
 .primary {
     color: #9E2A2B;
 }
@@ -33,9 +27,8 @@
 
 #imagendsection {
     background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/aboutusendsectionimg.png');
-    height: 40vh;
     background-repeat: no-repeat;
-    background-color: transparent !important;
+    background-attachment: fixed;
     background-size: cover;
 }
 
@@ -47,7 +40,6 @@
 .content-padding {
     padding-top: 15px;
     color: white;
-
 }
 
 .sign-in {
@@ -56,7 +48,7 @@
 
 #ndsectionimg {
     background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/aboutus2ndimg.png');
-    height: 100vh;
+    background-size:cover;
     background-repeat: no-repeat;
     background-color: transparent !important;
     background-size: 100% 50%;
@@ -118,3 +110,55 @@
     height: 72vh;
     
 }
+#about-us {
+    background-image: url("https://d2og5lryw1ajtt.cloudfront.net/img/aboutus.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+  }
+  #heading-section {
+    color: white;
+  }
+  .about-section {
+    padding-block: 4rem;
+    color: black;
+    background-color: $white-color;
+    font-size: 16px;
+    text-align: left;
+  }
+  .about-heading {
+    color: $primary-color;
+    text-align: left;
+    font-size: 16px;
+  }
+  .sign-up{
+    font-weight: 500; font-size: 28px; text-align: left;
+  }
+  .platform{
+    font-size: 14px; font-weight: 300; text-align: left
+  }
+  .about-sectionlast {
+    padding-block: 4rem;
+    color: black;
+    font-size: 16px;
+    text-align: left;
+  }
+  #about-uscard{
+    background-image: url("https://d2og5lryw1ajtt.cloudfront.net/img/aboutus2ndimg.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 50%;
+    background-size: none;
+  }
+  .card-messageabout {
+
+    margin: auto;
+    top: 30%;
+  
+    max-width: 700px;
+    border-radius: 0;
+    box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
+    border: none;
+    // background-color: transparent;
+  
+  }

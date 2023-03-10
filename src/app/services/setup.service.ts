@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { firstValueFrom } from "rxjs";
+import { Governorate } from "../models/governorate.model";
 import { ListingPurpose } from "../models/listing-purpose.model";
 import { PropertyMasterType } from "../models/property-master-type.model";
 import { PropertyMasterSubType } from "../models/propertyMasterSubType .model";
@@ -36,5 +37,11 @@ import { PropertyUnitCategory } from "../models/propertyUnitCategory.model";
           .get<PropertyUnitCategory[]>(
             `@mumtalikati-api/Setup/PropertyUnitCategoryTypes`
           )).then(res => res as PropertyUnitCategory[]).catch(err => { return Promise.reject(err) });
+      }
+      async  getGovernorate(): Promise<Governorate[]> {
+        return await firstValueFrom(this.http
+          .get<Governorate[]>(
+            `@mumtalikati-api/Setup/GetGovernorate`
+          )).then(res => res as Governorate[]).catch(err => { return Promise.reject(err) });
       }
   }

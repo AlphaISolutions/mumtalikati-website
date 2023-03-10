@@ -14,15 +14,15 @@
                 <ul class="navbar-nav ms-auto">
                     
                 </ul>
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto" >
                     <li class="nav-item " [routerLinkActive]="['active']"  [routerLinkActiveOptions]="{exact:true}">
                         <a class="nav-link" [style]="logred" routerLink="" (click)="collapsed = !collapsed">Homepage</a>
                     </li>
                     <li class="nav-item" [style]="logred" [routerLinkActive]="['active']">
                         <a class="nav-link" [style]="logred" [routerLink]="'../aboutus'" (click)="collapsed = !collapsed">About Us</a>
                     </li>
-                    <li class="nav-item" [style]="logred" [routerLinkActive]="['active']">
-                        <a class="nav-link" [style]="logred" [routerLink]="'../propertydetails'" (click)="collapsed = !collapsed">Property</a>
+                    <li class="nav-item" [style]="logred" [routerLinkActive]="['active']" [ngStyle]="active" >
+                        <a class="nav-link" [style]="logred"   [routerLink]="'../propertydetails'" (click)="collapsed = !collapsed">Property</a>
                     </li>
                   
                     <li class="nav-item" [routerLinkActive]="['active']">

@@ -7,9 +7,12 @@ export class PropertyFilter {
     listingPurposesID!: number | null;
     @prop()
     propertyMasterTypeID!: number | null;
-    gOVERNORATEID!:  null;
-    wilayatID!: null;
     @prop()
+    gOVERNORATEID!:number |  null;
+    wilayatID!: null;
+    @prop(
+        {defaultValue:0}
+    )
     minPrice!: number | null;
     @prop()
     maxPrice!: number | null;

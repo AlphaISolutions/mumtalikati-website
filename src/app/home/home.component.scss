@@ -31,7 +31,8 @@
   background-repeat: no-repeat;
   background-color: transparent !important;
   background-size: cover;
- 
+  
+
 }
 
 .h1-color {
@@ -40,8 +41,12 @@
 
 .btn-p {
   border: white !important;
-  color: white;
-  background: transparent;
+  // color: white;
+  // background: transparent;
+}
+
+.btn-light {
+  border-radius: 0;
 }
 
 .btn-r {
@@ -51,8 +56,10 @@
 }
 
 .btn1 {
-  background: transparent;
-  color: white;
+  // background: transparent;
+  // color: white;
+  border: 3px solid #FFFFFF;
+  border-radius: 5px;
 }
 
 .nav-btn {
@@ -60,9 +67,11 @@
   border: none;
 
 }
-.vl{
-  width: fit-content; 
+
+.vl {
+  width: fit-content;
 }
+
 .inline {
   display: inline;
 }
@@ -71,10 +80,27 @@
   border-right: 5px solid red;
   height: 20px;
 }
-
 .under {
   color: black;
   text-decoration: underline;
 
   text-decoration-color: red;
 }
+.border-0 {
+  border: 0px;
+  border-radius: 12px;
+}
+.pdinng {
+  padding: 0.4em 0 0.8em 0;
+  display: block;
+  margin: 0;
+  flex: auto;
+  min-width: 0;
+  width: 100%;
+
+}
+// .mat-flat-button :checked{
+//  background-color: black !important;
+//  color: #FFFFFF;
+// }
+

@@ -11,9 +11,10 @@ import { SetupService } from '../services/setup.service';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PropertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
-import { PropertyFilter } from '../models/PropertyFilter.model';
+import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { Governorate } from '../models/governorate.model';
 @Component({
   selector: 'app-propertydetails',
   templateUrl: './propertydetails.component.html',
@@ -28,13 +29,14 @@ export class PropertydetailsComponent implements OnInit {
   propertyUnitCategoryType: PropertyUnitCategory[] = [];
   propertyfilter = new PropertyFilter();
   propertyOfCount: any;
+  ownerPropertyFilter: OwnerPropertyFilter[] = []
   page = 1;
   passenger: any;
   itemsPerPage: number = 9;
   config: any;
-  public listid: number=1;
+  public listid: number = 1;
   Rent: number = 1;
-  public unitcategoryid: number = 1;
+  unitcategoryid: number | null = null;
   location = assetUrl("icons/location.png");
   areaimg = assetUrl("icons/Area.svg");
   bedroomimg = assetUrl("icons/Bedroom.svg");
@@ -43,58 +45,71 @@ export class PropertydetailsComponent implements OnInit {
   selectedTab!: string;
   closeResult = '';
   configs: any
-  public mastertypeid: number = 1;
-  public subTypeId: number = 1;
+  mastertypeid!: number | null;
+  subTypeId!: number | null;
   perpagenumber = 8;
   color = { 'color': 'black!important' };
   logocolor: boolean = false;
   inputfild: boolean = true;
   areadisable: boolean = false;
   propertyFilterform!: FormGroup;
+  filterCount: any;
+  coler = { ' background-color': 'red' }
+  hovercolor = { ' background-color': 'red' }
   priceMax: number[] = [0, 5000, 10000, 15000, 20000];
   priceMin: number[] = [5000, 10000, 15000, 20000, 25000]
   areaMax: string[] = ['40', '60', '80', '100', '120'];
   areaMin: string[] = ['60', '80', '100', '120', '140'];
-  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal) { }
+  public governorateid: number|null = 1;
+  id: number|null = null;
+  governorate: Governorate[] = [];
+  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal) {
+    if (this.router.getCurrentNavigation()?.extras.state != undefined) {
+      let listingpupose = this.router.getCurrentNavigation()?.extras.state!["listingPurposeID"];
+      if (listingpupose != null || listingpupose != undefined) {
+        this.listid = listingpupose;
+      }
+      else {
+        this.listid = 1;
+      }
+      this.governorateid = this.router.getCurrentNavigation()?.extras.state!["governorateid"];
+    }
+    else {
+      this.listid = 1
+    }
+  }
   async ngOnInit() {
     this.propertyFilterform = this.rxFormBuilder.formGroup(this.propertyfilter);
-    this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber);
-    this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
     this.getlistingPurpose();
     this.getPropertyMasterType();
     this.getPropertySubType();
     this.getPropertyUnitCategoryType();
+    this.getgovernorates();
+    let data = this.propertyFilterform.value as PropertyFilter;
+    data.listingPurposesID = this.listid;
+    data.rowsNumbers = this.perpagenumber;
+    data.pageNumber = this.page;
+    this.propertyFilter(data);
+    let countPayload = this.propertyFilterform.value as PropertyFilter;
+    countPayload.listingPurposesID = this.listid;
+    this.postPropertyFilter_Count(countPayload);
     this.config = {
       itemsPerPage: this.itemsPerPage,
       currentPage: this.page,
-      totalItems: this.propertyOfCount
+      totalItems: this.filterCount
     };
     this.configs = {
       backdrop: true,
       ignoreBackdropClick: true,
       keyboard: true,
+      centered: true,
+      scrollable: true,
     };
   }
   async onclicks(listingPurposeType: number) {
     this.listid = listingPurposeType;
+  }
 
-    this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber);
-    this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
-  }
-  async PropertyDetail(propertyMasterTypeID: number, propertyMasterSubTypeID: number, listingPurposesID: number, pageNumber: number, rowsNumbers: number) {
-    this.loading = true;
-    this.mumtalikatiservic.getPropertyDetailIndex(propertyMasterTypeID, propertyMasterSubTypeID, listingPurposesID, pageNumber, rowsNumbers)
-      .then((data) => {
-        if (data) {
-          this.propertyDetail = data;
-        }
-        this.loading = false;
-      })
-      .catch((error) => {
-        this.loading = false;
-        console.error(error);
-      });
-  }
   open(content: any) {
     this.modalService.open(content, this.configs).result.then(
 
@@ -117,22 +132,8 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
 
-  async PropertyDetailCount(propertyMasterTypeID: number, propertyMasterSubTypeID: number, listingPurposesID: number) {
-  
-    this.mumtalikatiservic.getPropertyDetailCount(propertyMasterTypeID, propertyMasterSubTypeID, listingPurposesID)
-      .then((data) => {
-    
-    
-          this.propertyOfCount = data;
-        
-      
 
-      })
-      .catch((error) => {
 
-        console.error(error);
-      });
-  }
   async getlistingPurpose() {
     this.loading = true;
     this.setservice.getlistingpurposeset()
@@ -140,10 +141,10 @@ export class PropertydetailsComponent implements OnInit {
         if (data) {
           this.listingpupose = data
         }
-        this.loading = false;
+
       })
       .catch((error) => {
-        this.loading = false;
+
         console.error(error);
       });
   }
@@ -154,10 +155,10 @@ export class PropertydetailsComponent implements OnInit {
         if (data) {
           this.propertymasterType = data
         }
-        this.loading = false;
+
       })
       .catch((error) => {
-        this.loading = false;
+
         console.error(error);
       });
   }
@@ -168,14 +169,15 @@ export class PropertydetailsComponent implements OnInit {
         if (data) {
           this.propertysubType = data
         }
-        this.loading = false;
+
       })
       .catch((error) => {
-        this.loading = false;
+
         console.error(error);
       });
   }
   async getPropertyUnitCategoryType() {
+    this.loading = true;
     this.setservice.getPropertyUnitCategoryTypes()
       .then((data) => {
         if (data) {
@@ -186,46 +188,25 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
-  onSubmit() {
+  async postPropertyFilter_Count(data: PropertyFilter) {
     this.loading = true;
-    let data = this.propertyFilterform.value as PropertyFilter;
-    data.listingPurposesID = this.listid;
-    data.propertyMasterSubTypeID = this.subTypeId;
-    data.propertyMasterTypeID = this.mastertypeid;
-    data.propertyCategory = this.unitcategoryid;
-    data.rowsNumbers = this.perpagenumber;
-    data.pageNumber = this.page;
+    this.mumtalikatiservic.postPropertyFilter_Count(data)
+      .then((data) => {
+        this.filterCount = data;
+      }
+
+      )
+      .catch((error) => {
+
+        console.error(error);
+      });
+  }
+  propertyFilter(data: any) {
+    this.loading = true;
     this.mumtalikatiservic.postPropertyFilter(data)
       .then((data) => {
         if (data) {
-          data.forEach((e) => {
-            let rentalUnitDetail = new RentalUnitDetail()
-            rentalUnitDetail.listingPurposeID = e.listingPurposeID;
-            rentalUnitDetail.propertyMasterID = e.propertyMasterID;
-            rentalUnitDetail.unitCategoryID = e.unitCategoryID;
-            rentalUnitDetail.addressStr = e.addressStr;
-            rentalUnitDetail.bathRoom = e.bathRoom;
-            rentalUnitDetail.bedRoom = e.bedRoom;
-            rentalUnitDetail.contact = e.contact;
-            rentalUnitDetail.imageString = e.imageString;
-            rentalUnitDetail.landLordID = e.landLordID;
-            rentalUnitDetail.pageNumber = e.pageNumber;
-            rentalUnitDetail.plotNumber = e.plotNumber;
-            rentalUnitDetail.propertyMasterName = e.propertyMasterName;
-            rentalUnitDetail.propertyUnitDescription = e.propertyUnitDescription;
-            rentalUnitDetail.unitName = e.unitName;
-            rentalUnitDetail.totalCount = e.totalCount;
-            rentalUnitDetail.sqft = e.sqft;
-            rentalUnitDetail.sellPrice = e.sellPrice;
-            rentalUnitDetail.propertyMasterTypeID = e.propertyMasterTypeID;
-            rentalUnitDetail.propertyUnitid = e.propertyUnitID;
-            rentalUnitDetail.rentPrice = e.rentPrice;
-            rentalUnitDetail.rownumberId = e.rownumberId;
-            rentalUnitDetail.rowsIndex = e.rowsIndex;
-            rentalUnitDetail.rowsNumbers = e.rowsNumbers;
-            this.propertyDetail.push(rentalUnitDetail);
-          })
-
+          this.ownerPropertyFilter = data
         }
         this.loading = false;
       })
@@ -236,18 +217,54 @@ export class PropertydetailsComponent implements OnInit {
       );
   }
 
+  onSubmit() {
+    this.loading = true;
+    let data = this.propertyFilterform.value as PropertyFilter;
+    data.listingPurposesID = this.listid;
+    data.gOVERNORATEID = this.governorateid;
+    data.propertyMasterSubTypeID = this.subTypeId;
+    data.propertyMasterTypeID = this.mastertypeid;
+    data.propertyCategory = this.unitcategoryid;
+    data.rowsNumbers = this.perpagenumber;
+    data.pageNumber = this.page;
+    let countPayload = this.propertyFilterform.value as PropertyFilter;
+    countPayload.listingPurposesID = this.listid;
+    countPayload.gOVERNORATEID = this.governorateid;
+    countPayload.propertyCategory = this.unitcategoryid;
+    countPayload.propertyMasterTypeID = this.mastertypeid;
+    countPayload.propertyMasterSubTypeID = this.subTypeId;
+    this.mumtalikatiservic.postPropertyFilter(data)
+      .then((data) => {
+        if (data) {
+          this.ownerPropertyFilter = data
+          this.postPropertyFilter_Count(countPayload)
+        }
+        this.loading = false;
+      })
+      .catch((error) => {
+        this.loading = false;
+        console.error(error);
+      }
+      );
+  }
   onclickunitid(unitCategory: number) {
     this.unitcategoryid = unitCategory;
   }
-
   async matTab(masterType: number) {
     this.mastertypeid = masterType;
-    this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber);
-    this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
+
   }
   async pageChange(page: any) {
     this.loading = true;
-    await this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, page, this.perpagenumber);
+    let data = this.propertyFilterform.value as PropertyFilter;
+    data.listingPurposesID = this.listid;
+    data.gOVERNORATEID = this.governorateid;
+    data.propertyMasterSubTypeID = this.subTypeId;
+    data.propertyMasterTypeID = this.mastertypeid;
+    data.propertyCategory = this.unitcategoryid;
+    data.rowsNumbers = this.perpagenumber;
+    data.pageNumber = page;
+    await this.propertyFilter(data)
   }
   onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number, landLordID: number, propertyMasterTypeID: number) {
     this.router.navigate(
@@ -257,12 +274,7 @@ export class PropertydetailsComponent implements OnInit {
   onsubType(propertyMasterTypeID: number, subType: number) {
     let pmtid = propertyMasterTypeID
     this.subTypeId = subType;
-
-    this.PropertyDetail(this.mastertypeid, this.subTypeId, this.listid, this.page, this.perpagenumber).then((result) => {
-      this.modalService.dismissAll();
-    })
-    this.PropertyDetailCount(this.mastertypeid, this.subTypeId, this.listid);
-
+    this.modalService.dismissAll();
   }
   openprice(price: any) {
     this.modalService.open(price, this.configs).result.then(
@@ -297,5 +309,31 @@ export class PropertydetailsComponent implements OnInit {
   }
   getsubType(subTypeId: number) {
     return propertySubTypeEnum(subTypeId);
+  }
+  onsubmit() {
+    this.onSubmit();
+  }
+  all() {
+    this.unitcategoryid = null;
+  }
+  async getgovernorates() {
+    this.loading = true;
+    this.setservice.getGovernorate()
+      .then((data) => {
+        if (data) {
+          this.governorate = data
+        }
+
+      })
+      .catch((error) => {
+
+        console.error(error);
+      });
+  }
+  getGovernorate(id: number) {
+    this.governorateid = id;
+  }
+  governorateId() {
+    this.governorateid=this.id;
   }
 }
