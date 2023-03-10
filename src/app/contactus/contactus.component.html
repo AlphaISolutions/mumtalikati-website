@@ -1,13 +1,13 @@
-<div id="image" class="container-fluid p-0">
-    <div class=" overlay">
-        <app-top-bar></app-top-bar>
-        <div class="row gx-4 mt-5 ">
+<div id="contact-us">
+    <app-top-bar></app-top-bar>
+    <div class="container py-5">
+        <div class="row gx-4">
             <div class="col-2 col-lg-2 col-xl-3"></div>
             <div id="heading-section" class="col-8 col-lg-8 col-xl-6 px-5 py-4">
                 <div class="row">
                     <div>
-                        <h1 class="c-white">Contact Us</h1>
-                        <p class=" c-white heade">
+                        <h1>Contact Us</h1>
+                        <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
                             ullamcorper mattis, pulvinar dapibus leo.
                         </p>
@@ -19,24 +19,23 @@
         </div>
     </div>
 </div>
-<div class="white-bg ">
-    <div class="container px-4 pt-4">
-        <div class="row about-section gx-5">
 
-            <div class="col-lg-4">
-
-                <p class="about-heading primary">
+<div class="white-bg">
+    <div class="container px-4">
+        <div class="row section gx-5">
+            <div class="col">
+                <p class=" small-colored-heading">
                     Get in Touch
                 </p>
-                <h3 class="sign-up">
+                <h3>
                     Let's Talk About Your Project.
                 </h3>
-                <p class="platform">
+                <p class="secondary-font left-align">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper
                     mattis, pulvinar dapibus leo.
-
                 </p>
-                <div class="row">
+                <hr>
+                <div class="row mt-4">
                     <div class="col-6">
                         <h5>Email Us</h5>
                         <div>
@@ -56,89 +55,87 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="d-none d-lg-block col-lg-1">
-
             </div>
-            <div class="col-lg-7 d-none d-lg-block">
-               
+            <div class="col d-none d-lg-block">
+                <p> <img [src]="aboutSectionImg" class="img-fluid shadow-2-strong" alt="" /></p>
             </div>
         </div>
     </div>
 </div>
-<div class="container-fluid p-0">
-    <div id="messageimg">
-        <div id="heading-section" class="px-5 py-4">
-            <div class="row">
-                <div>
-                    <p class="text-center pcenter">
-                        Send Us a Message
-                    </p>
-                    <h1 class="pcenter">Let's Establish Relations</h1>
-                   
+
+<div id="messageimg">
+    <div id="heading-section" class="pt-4" >
+        <div class="row">
+            <div>
+                <p class="text-center pcenter">
+                    Send Us a Message
+                </p>
+                <h1 class="pcenter">Let's Establish Relations</h1>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card  shadow-2 border-none card-message">
+        <div class="card-body">
+            <form *ngIf="contactusform" [formGroup]="contactusform" (ngSubmit)="onSubmit()" novalidate>
+                <div class="row gx-2">
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="First Name" formControlName="name" required>
+                            <mat-error>
+                                First Name is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Enter email" formControlName="email" required>
+                            <mat-error>
+                                Email is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
                 </div>
-            </div>
-        </div>
-      
-        <div class="card  shadow-2 border-none card-message">
-            <div class="card-body">
-                <form *ngIf="contactusform" [formGroup]="contactusform" (ngSubmit)="onSubmit()" novalidate>
-                    <div class="row gx-0">
-                        <div class="col  pe-2 ">
-                            <mat-form-field appearance="outline">
-                                <mat-label>First Name</mat-label>
-                                <input matInput placeholder="First Name" formControlName="name" required>
-                                <mat-error>
-                                    First Name is <strong>required</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-
-                        <div class="col">
-                            <mat-form-field appearance="outline">
-                                <mat-label>Email</mat-label>
-                                <input matInput placeholder="Enter email" formControlName="email" required>
-                                <mat-error>
-                                    Email  is <strong>required</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Subject</mat-label>
-                        <input matInput placeholder="Subject" formControlName="subject" required>
-                        <mat-error>
-                            Subject is <strong>required</strong>
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Message</mat-label>
-                        <textarea matInput placeholder="message" formControlName="body" required></textarea>
-                    </mat-form-field>
-                    <div class="button-wrapper">
-                        <button  mat-flat-button class="block" color="primary"><span *ngIf="loading"
-                                class="spinner-border spinner-border-sm mr-1"></span>{{" submit"|
-                            titlecase
-                            }}</button>
-                    </div>
-                </form>
-            </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Subject</mat-label>
+                    <input matInput placeholder="Subject" formControlName="subject" required>
+                    <mat-error>
+                        Subject is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Message</mat-label>
+                    <textarea matInput placeholder="message" formControlName="body" required></textarea>
+                </mat-form-field>
+                <div class="button-wrapper">
+                    <button mat-flat-button class="block" color="primary"><span *ngIf="loading"
+                            class="spinner-border spinner-border-sm mr-1"></span>{{" submit"|
+                        titlecase
+                        }}</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container mt-4">
     <div class="row  gx-5 justify-content-center">
         <div class="col-sm-8 col-lg-7 p-1">
             <div class="card border-0 rounded-3 shadow-sm p-4">
                 <p class="primary align-center">Official Social Media</p>
                 <h2 class="align-center">Get in Connect with Us</h2>
-                <div class="" style="place-self: center;" class=" d-flex gap-3 py-3"  aria-current="true">
-                    <a href="https://www.facebook.com/Mumtalikati"> 
+                <div class="" style="place-self: center;" class=" d-flex gap-3 py-3" aria-current="true">
+                    <a href="https://www.facebook.com/Mumtalikati">
                         <img [src]="facebook" alt="twbs" width="42" height="42" class=" flex-shrink-0 go-to-signin ">
                     </a>
-                   <a href="https://www.instagram.com/mumtalikati/"> <img [src]="ins" alt="twbs" width="42" height="42" class=" flex-shrink-0 go-to-signin "></a>
-                    <a href="https://www.linkedin.com/company/mumtalikati/?viewAsMember=true"><img [src]="linkin" alt="twbs" width="42" height="42" class=" flex-shrink-0 go-to-signin"></a>
+                    <a href="https://www.instagram.com/mumtalikati/"> <img [src]="ins" alt="twbs" width="42" height="42"
+                            class=" flex-shrink-0 go-to-signin "></a>
+                    <a href="https://www.linkedin.com/company/mumtalikati/?viewAsMember=true"><img [src]="linkin"
+                            alt="twbs" width="42" height="42" class=" flex-shrink-0 go-to-signin"></a>
                 </div>
             </div>
         </div>

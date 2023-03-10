@@ -34,7 +34,7 @@ import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { ToastrModule } from "ngx-toastr";
 import {MatListModule} from '@angular/material/list';
 import {MatChipsModule} from '@angular/material/chips';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +73,7 @@ import {MatChipsModule} from '@angular/material/chips';
       positionClass: 'toast-top-full-width'
     }),
     MatListModule,
-    
+    MatGridListModule
    
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },RxFormBuilder],

@@ -98,5 +98,10 @@ export class MumtalikatiService {
     .then(res => res as OwnerPropertyFilter[])
     .catch(err =>{return Promise.reject(err.json().error || 'error');});
  }
-
+ async postPropertyFilter_Count(propertyFilte: PropertyFilter ):Promise<Number>{
+  return await firstValueFrom(this.http
+    .post<Number>(`@mumtalikati-api/PropertyFilter/GetPropertyFilter_Count`,propertyFilte))
+    .then(res => res as Number)
+    .catch(err =>{return Promise.reject(err.json().error || 'error');});
+ }
 }

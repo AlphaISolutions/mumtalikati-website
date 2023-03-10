@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./contactus.component.scss']
 })
 export class ContactusComponent implements OnInit {
+  aboutSectionImg=assetUrl("img/contact-building.jpg");
   // @ViewChild('map') mapElement: any;
   // map!: google.maps.Map ;
   contactusform!: FormGroup;

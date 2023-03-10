@@ -1,5 +1,5 @@
 <div class="">
-    <div id="image" class="container-fluid" >
+    <div id="image" class="container-fluid">
         <div class="container ">
             <app-top-bar></app-top-bar>
             <div class="row">
@@ -8,31 +8,57 @@
                     <h2 class="h1-color">
                         Search Thousands Of Sale And Rent Properties
                     </h2>
-                    <p class="h1-color">Are You On The Hunt For A Sales Or Letting Agent In Your Local Area?</p>
-                    <button type="button" class=" btn1 btn btn-light me-4  px-4 py-2">Sale</button>
-                    <button type="button" mat-button class="btn-r px-4 py-2">Rent</button>
+                    <p class="h1-color" >Are You On The Hunt For A Sales Or Letting Agent In Your Local Area?</p>
+                    <div class="row">
+                        <div class="col-auto" *ngFor="let listbtn of listingpupose">
+                            <button mat-flat-button type="button" class=" btn1 btn btn-light " [value]="listingPurposeType" [style]="toggle" 
+                                (click)="onclick(listbtn.listingPurposeType)">{{listbtn.desc}}</button>
+                        </div>
+                    </div>
+
+
+                    <!-- <button type="button" mat-button class="btn-r px-4 py-2">Rent</button> -->
                 </div>
                 <div class="col-3 .d-sm-none .d-md-none .d-lg-block"></div>
                 <div class="col-2 .d-sm-none .d-md-none .d-lg-block"></div>
             </div>
             <div class="row mt-4">
                 <div class="col-2 ..d-sm-none .d-md-none .d-lg-block"></div>
-                <div class="card col-lg-8 col-sm-8 col-md-8 col-xl-8">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-4">
-                                <h5 class="card-title">Governorate</h5>
-                                <div class="dropdown">
-                                    <button class="nav-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Nizwa
-                                    </button>
-                                  </div>
+                <div class="col-lg-8 col-sm-12 col-md-8 col-xl-8">
+                    <div class="row gx-2">
+                        <div class=" col-sm-12 col-md-3 col-lg-4 pt-2">
+                            <div class="card border-0">
+                                <div class="card-body mb-1">
+                                    <h5 class="card-title">Governorate</h5>
+                                    <div class="dropdown" *ngIf="governorate[0]">
+                                        <mat-form-field appearance="outline">
+                                            <mat-select [(value)]="governorate[0].id">
+                                                <mat-option *ngFor="let doc of governorate" [value]="doc.id!"
+                                                    (click)="onclicks(doc.id!)">
+                                                    {{doc.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-8 b-left">
-                                <h5 class="card-title">Location</h5>
-                                <div class="d-flex">
-                                    <input type="text" class="form-control me-1" placeholder="Wilayat Area City Etc." aria-label="Username" aria-describedby="basic-addon1">
-                                    <button type="button" class="btn btn-primary px-4">FIND</button>
+                        </div>
+                        <div class=" col-sm-12 col-md-9 col-lg-8 pt-2 b-left">
+                            <div class="card border-0">
+                                <div class="card-body">
+                                    <h5 class="card-title">Location</h5>
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <mat-form-field appearance="outline">
+                                                <input matInput type="text"  [disabled]="true"
+                                                    placeholder="Wilayat Area City Etc.">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-3">
+                                            <button mat-flat-button color="primary" type="button"
+                                                class="m-2 px-4" height="100px" width="156px" (click)="find()" >FIND</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -50,9 +76,9 @@
             <h1 class="inline">Our Quality Standards Never Disappoint</h1>
             <p class="inline float-end"><a class="under" [routerLink]="'propertydetails'" href="">Explore All</a></p>
         </div>
-       
+
     </div>
-<div>
-     <app-shortdisplay></app-shortdisplay>
-</div>
+    <div>
+        <app-shortdisplay></app-shortdisplay>
+    </div>
 </div>

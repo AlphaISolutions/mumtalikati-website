@@ -47,7 +47,9 @@
 .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
     display: none !important;
 }
-
+.buttonwidth{
+    width: 100%;
+}
 
 .btn-row {
     display: flex;
@@ -90,9 +92,27 @@ padding-top: 400px;
     display: flex !important; 
     justify-content: center !important;
 }
+.mat-list {
+    border: 0.8px solid #D9D9D9;
+    border-radius: 5px !important;
+}
+.mat-list-base {
+    padding-top: 0px;
+}
+.textalign{
+    text-align: center;
+}
+.contact-names{
+    border: none;
+}
 
-
-
+.modal-header{
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-bottom:none
+}
 .justify-content-center {
         justify-content: center !important;
     }
