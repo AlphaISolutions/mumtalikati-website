@@ -6,11 +6,10 @@
 <ng-template #showList>
     <div class="container" *ngIf="propertyDetail">
         <div class="">
-            <ul class="breadcrumb row p-0">
-                <div class="col float-start">
-                    <button mat-flat-button class="bgc-btn p-0" (click)="backotsearch()" (click)="addItem(propertyDetail[0].listingPurposeID!)"><i
-                            class="fa fa-angle-left" aria-hidden="true"></i>
-                        Back to Search</button>
+            <ul class="breadcrumb row p-0 mt-4">
+                <div class="col float-start ">
+                    <li><a href="#"  (click)="backotsearch()" (click)="addItem(propertyDetail[0].listingPurposeID!)"><i class="fa fa-angle-left" aria-hidden="true"></i>Back to Search</a></li>
+                
                 </div>
                 <div class="col" *ngIf="propertyDetail">
                     <li><a routerLink="">Mumtalikati</a></li>
