@@ -39,7 +39,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   public perpagenumber: number = 8;
   listpurID!: any;
   pMTID!: number;
-
+  btnColor={'background-color':'#9e2a2b'}
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router) {
     this.listpurID = this.router.getCurrentNavigation()!.extras.state!["listingPurposeID"]!;
 

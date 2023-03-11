@@ -62,6 +62,7 @@ export class PropertydetailsComponent implements OnInit {
   areaMax: string[] = ['40', '60', '80', '100', '120'];
   areaMin: string[] = ['60', '80', '100', '120', '140'];
   public governorateid: number|null = null;
+  btnColor={'background-color':'#9e2a2b'}
   id: number|null = null;
   governorate: Governorate[] = [];
   constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal) {
