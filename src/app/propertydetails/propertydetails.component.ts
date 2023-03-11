@@ -45,7 +45,8 @@ export class PropertydetailsComponent implements OnInit {
   selectedTab!: string;
   closeResult = '';
   configs: any
-  mastertypeid: number |null=1;
+  propertyMasterTypeId:number=1;
+  mastertypeid: number | null =null;
   subTypeId!: number | null;
   perpagenumber = 8;
   color = { 'color': 'black!important' };
@@ -251,7 +252,9 @@ export class PropertydetailsComponent implements OnInit {
     this.unitcategoryid = unitCategory;
   }
   async matTab(masterType: number) {
+    debugger
     this.mastertypeid = masterType;
+    this.propertyMasterTypeId=this.mastertypeid;
 
   }
   async pageChange(page: any) {

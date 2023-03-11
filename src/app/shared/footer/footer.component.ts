@@ -8,7 +8,7 @@ import { assetUrl } from 'src/single-spa/asset-url';
 })
 export class FooterComponent implements OnInit {
   logo = assetUrl('img/mumtalikati-logo-white.png')
-  mapimg=assetUrl('img/map-particel.png.png')
+  mapimg=assetUrl('img/map-particel.svg')
   emailimag=assetUrl('icons/emailicon.png')
   phoneimg=assetUrl('icons/phoneicon.png')
   constructor() { }

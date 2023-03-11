@@ -32,7 +32,7 @@
             </div>
             <div class="col">
                 <mat-form-field appearance="outline" (click)="open(content)">
-                    <mat-label>{{getpropertyMasterType(mastertypeid!)}}</mat-label>
+                    <mat-label>{{getpropertyMasterType(propertyMasterTypeId)}}</mat-label>
                     <mat-select>
 
                     </mat-select>
@@ -40,7 +40,7 @@
                 <ng-template #content let-modal>
                     <div class="modal-header pe-4 ps-4" *ngIf="propertymasterType">
                         <mat-tab-group>
-                            <mat-tab *ngFor="let doc of propertymasterType">
+                            <mat-tab *ngFor="let doc of propertymasterType" >
                                 <ng-template mat-tab-label>
                                     <span (click)="matTab(doc.masterType)">{{doc.desc}}</span>
                                 </ng-template>
