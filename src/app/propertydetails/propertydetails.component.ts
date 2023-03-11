@@ -9,7 +9,7 @@ import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { SetupService } from '../services/setup.service';
 import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PropertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
+import { listingPurposeTypeEnum, propertyMasterTypeEnum, PropertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { FormGroup } from '@angular/forms';
@@ -45,7 +45,7 @@ export class PropertydetailsComponent implements OnInit {
   selectedTab!: string;
   closeResult = '';
   configs: any
-  mastertypeid!: number | null;
+  mastertypeid: number |null=1;
   subTypeId!: number | null;
   perpagenumber = 8;
   color = { 'color': 'black!important' };
@@ -335,5 +335,11 @@ export class PropertydetailsComponent implements OnInit {
   }
   governorateId() {
     this.governorateid=this.id;
+  }
+  getlistpurpose(listid:number){
+return listingPurposeTypeEnum(listid);
+  }
+  getpropertyMasterType(masterTypeId:number){
+return propertyMasterTypeEnum(masterTypeId)
   }
 }

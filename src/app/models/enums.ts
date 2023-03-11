@@ -41,6 +41,7 @@ export enum PropertySubTypeEnum {
     Plot = 15,
     Project = 16
 }
+
 export enum PropertyUnitCategoryEnum {
     O1BHK = 1,
     O2BHK = 2,
@@ -58,6 +59,18 @@ export enum PropertyUnitCategoryEnum {
 export enum PropertyType {
     Parent = 1,
     Child = 2
+}
+export function listingPurposeTypeEnum(listingPurposeTypeId: number) {
+    switch (listingPurposeTypeId) {
+        case 1:
+            return 'Rent';
+        case 2:
+            return 'Buy';
+
+        default:
+            return "Unknown";
+    }
+
 }
 export function propertyMasterTypeEnum(propertyMasterTypeID: number) {
     switch (propertyMasterTypeID) {

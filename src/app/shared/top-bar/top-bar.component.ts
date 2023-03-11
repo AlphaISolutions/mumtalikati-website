@@ -9,22 +9,28 @@ export class TopBarComponent implements OnInit {
   logo: any
   shownnow: boolean = true;
   collapsed = true;
-  addPropperty:boolean=false;
+  addPropperty: boolean = false;
   public isMenuCollapsed = true;
   navbarOpen = false;
   @Input() childStyle: any;
   @Input() logred: any;
-  @Input() data: boolean=true;
-@Input() active:any;
-  colorFlag:boolean=true;
-coler:any
+  @Input() data: boolean = true;
+  @Input() active: any;
+  colorFlag: boolean = true;
+  coler: any;
   ngOnInit() {
-if(this.colorFlag==true){
-  
-}
-else{
-  this.coler={' background-color':'red'}
-}
+    if(this.active==true){
+
+    }
+    else{
+      this.coler={' background-color':'red'}
+    }
+    // if (this.colorFlag == true) {
+
+    // }
+    // else {
+    //   this.coler = { ' background-color': 'red' }
+    // }
     if (this.data) {
       this.logo = assetUrl('img/mumtalikati-logo-white.png');
     } else {
