@@ -17,6 +17,7 @@ export class TopBarComponent implements OnInit {
   @Input() data: boolean = true;
   @Input() active: any;
   colorFlag: boolean = true;
+  @Input() btncolor:any;
   coler: any;
   ngOnInit() {
     if(this.active==true){
