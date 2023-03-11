@@ -48,6 +48,7 @@
                                     <div class="row justify-content-md-center btn-row" *ngIf="propertysubType">
                                         <div class="col-auto p-0 pt-2" *ngFor="let doc of propertysubType">
                                             <div *ngIf="doc.propertyMasterTypeID==mastertypeid">
+                                                
                                                 <button id="view-cmp-btn" mat-raised-button
                                                     [value]="doc.propertyMasterTypeID"
                                                     [value]="doc.propertySubType.subType" class="me-2 mb-2 "
