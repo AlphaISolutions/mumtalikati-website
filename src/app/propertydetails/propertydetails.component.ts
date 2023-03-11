@@ -61,7 +61,7 @@ export class PropertydetailsComponent implements OnInit {
   priceMin: number[] = [5000, 10000, 15000, 20000, 25000]
   areaMax: string[] = ['40', '60', '80', '100', '120'];
   areaMin: string[] = ['60', '80', '100', '120', '140'];
-  public governorateid: number|null = 1;
+  public governorateid: number|null = null;
   id: number|null = null;
   governorate: Governorate[] = [];
   constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal) {
