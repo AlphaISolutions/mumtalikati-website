@@ -11,8 +11,8 @@
                     <p class="h1-color" >Are You On The Hunt For A Sales Or Letting Agent In Your Local Area?</p>
                     <div class="row">
                         <div class="col-auto" *ngFor="let listbtn of listingpupose">
-                            <button mat-flat-button type="button" class=" btn1 btn btn-light " [value]="listingPurposeType" [style]="toggle" 
-                                (click)="onclick(listbtn.listingPurposeType)">{{listbtn.desc}}</button>
+                            <button mat-flat-button type="" class="  " [value]="listingPurposeType"  [ngClass]="{'btn btn-danger':listbtn.listingPurposeType==listingPurposeType, 'transparent':listbtn.listingPurposeType!=listingPurposeType}" 
+                                (click)="onclick(listbtn.listingPurposeType)">{{listbtn.desc }}</button>
                         </div>
                     </div>
 
@@ -56,7 +56,7 @@
                                         </div>
                                         <div class="col-3">
                                             <button mat-flat-button color="primary" type="button"
-                                                class="m-2 px-4" height="100px" width="156px" (click)="find()" >FIND</button>
+                                                class="mt-1 px-2" height="100px" width="156px" (click)="find()" >FIND</button>
                                         </div>
                                     </div>
                                 </div>
@@ -69,9 +69,7 @@
         </div>
     </div>
     <div class="container mt-2">
-        <div class="vl mt-4">
-            <p>Premium Residential/Commercial Offer</p>
-        </div>
+      
         <div class="mt-4">
             <h1 class="inline">Our Quality Standards Never Disappoint</h1>
             <p class="inline float-end"><a class="under" [routerLink]="'propertydetails'" href="">Explore All</a></p>

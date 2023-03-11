@@ -11,23 +11,33 @@ import { SetupService } from '../services/setup.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private setservice: SetupService,private router: Router) { }
+  constructor(private setservice: SetupService, private router: Router) { }
   loading: boolean = false;
   governorate: Governorate[] = [];
   listingpupose: ListingPurpose[] = [];
   governorateid!: number;
-public  listingPurposeType: number=1;
-color:any
- toggle=1;
+  public listingPurposeType: number = 1;
+  color: any
+  toggle: any;
+  isActive: boolean = false;
+  elementStyles: any = {
+    'color': this.isActive ? 'green' : 'red'
+  }
+  getColorClass() {
+    return this.isActive ? 'active' : 'inactive';
+  }
+
   async ngOnInit() {
     this.getgovernorates();
     this.getlistingPurpose();
     if (this.toggle) {
 
-      this.color={'background-color':'white!important' ,'color':'black!important'}
+      this.color = { 'background-color': 'white!important', 'color': 'black!important' }
     } else {
-      this.color={'background-color':'transparent!important'}
+      this.color = { 'background-color': 'transparent!important' }
     }
+
+    
   }
   async getgovernorates() {
     this.loading = true;
@@ -64,14 +74,23 @@ color:any
   }
   onclick(listingPurposeType: number) {
     this.listingPurposeType = listingPurposeType;
-
+   
   }
-  find(){
+  find() {
     this.router.navigate(['propertydetails'],
-    { 
-    state: { 'listingPurposeID': this.listingPurposeType ,'governorateid':this.governorateid} });
+      {
+        state: { 'listingPurposeID': this.listingPurposeType, 'governorateid': this.governorateid }
+      });
   }
-
+  getcolor(listid:number){
+    if(listid=1){
+      debugger
+    this.color={'background-color': 'red!important'}
+    }
+    else{
+      this.color={'background-color': 'green!important'}
+    }
+  }
   // enableDisableRule() {
   //   this.toggle = !this.toggle;
   //   this.listingPurposeType = this.toggle ? 1 : 1;

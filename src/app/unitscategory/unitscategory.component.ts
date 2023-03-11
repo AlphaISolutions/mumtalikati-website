@@ -32,6 +32,7 @@ export class UnitscategoryComponent implements OnInit {
   location = assetUrl("icons/location.svg");
   bydefault = assetUrl('img/bydefault.png');
   parentStyle = { 'background-color': 'black' };
+  step:any
   async ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.propertyMasterID = +params['propertyMasterID'];

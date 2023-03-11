@@ -31,10 +31,15 @@
   background-repeat: no-repeat;
   background-color: transparent !important;
   background-size: cover;
-  
+
 
 }
-
+ .active{
+  color: green;
+ }
+ .inactive{
+  color: red;
+ }
 .h1-color {
   color: white;
 }
@@ -99,8 +104,5 @@
   width: 100%;
 
 }
-// .mat-flat-button :checked{
-//  background-color: black !important;
-//  color: #FFFFFF;
-// }
+
 

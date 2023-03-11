@@ -32,7 +32,7 @@
             </div>
             <div class="col">
                 <mat-form-field appearance="outline" (click)="open(content)">
-                    <mat-label>Residential</mat-label>
+                    <mat-label>{{getpropertyMasterType(mastertypeid!)}}</mat-label>
                     <mat-select>
 
                     </mat-select>
@@ -133,7 +133,7 @@
                 <button mat-flat-button color="primary" class="mt-1 p-1" height="50px" (click)="onsubmit()">Search</button>
             </div>
         </div>
-        <h4 class="mt-4">Properties for Rent in Oman</h4>
+        <h4 class="mt-4">Properties for {{getlistpurpose(listid)}} in Oman</h4>
         <div class="row mt-4" *ngIf="ownerPropertyFilter">
             <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3" *ngFor="let property of ownerPropertyFilter| paginate
                 :{

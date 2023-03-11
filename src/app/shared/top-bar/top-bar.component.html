@@ -14,7 +14,7 @@
                 <ul class="navbar-nav ms-auto">
                     
                 </ul>
-                <ul class="navbar-nav ms-auto" >
+                <ul class="navbar-nav ms-auto" [style.active]="active" >
                     <li class="nav-item " [routerLinkActive]="['active']"  [routerLinkActiveOptions]="{exact:true}">
                         <a class="nav-link" [style]="logred" routerLink="" (click)="collapsed = !collapsed">Homepage</a>
                     </li>
