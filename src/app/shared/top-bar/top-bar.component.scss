@@ -33,5 +33,7 @@ a:hover{
 
 #logo img { max-height: 40px; width: auto; transform: translate3d(0,0,0); }
 img.footer-logo { max-height: 43px; width: auto; transform: translate3d(0,0,0); }
-
+.nav-link[_ngcontent-rmo-c141]:hover, .nav-link[_ngcontent-rmo-c141]:focus {
+   color:none!important; 
+}
 

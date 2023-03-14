@@ -256,6 +256,14 @@ h5 {
 
     height: 50px!important;
 }
+.mat-select-arrow {
+    width: 0;
+    height: 0;
+    border-left:none !important;
+    border-right:none !important;
+     border-top:none !important ; 
+    margin: 0 4px;
+}
 
 .mat-form-field-appearance-outline .mat-form-field-label {
     margin-top: 0em !important;

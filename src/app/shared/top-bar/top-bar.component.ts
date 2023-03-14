@@ -16,10 +16,17 @@ export class TopBarComponent implements OnInit {
   @Input() logred: any;
   @Input() data: boolean = true;
   @Input() active: any;
+  @Input() activeroute:any;
   colorFlag: boolean = true;
   @Input() btncolor:any;
   coler: any;
   ngOnInit() {
+    if(this.activeroute==true){
+
+    }else{
+      this.coler={' background-color':'red'}
+    }
+
     if(this.active==true){
 
     }

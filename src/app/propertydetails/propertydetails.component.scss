@@ -31,7 +31,7 @@
 }
 
 #overlay {
- 
+
     z-index: 11;
 }
 
@@ -47,7 +47,8 @@
 .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
     display: none !important;
 }
-.buttonwidth{
+
+.buttonwidth {
     width: 100%;
 }
 
@@ -69,72 +70,90 @@
 }
 
 #model {
-padding-top: 400px;
+    padding-top: 400px;
 
 }
-.modal{
+
+.modal {
     padding-top: 400px !important;
 }
 
-.icolor{
+.icolor {
     color: #9e2a2b;
-    
+
 }
-.pricecenter{
+
+.pricecenter {
     display: flex;
     justify-content: center !important;
 }
+
 .copywrite {
     text-align: center;
 }
-.item-content{
+
+.item-content {
     border-radius: 4px 4px 0px 0px;
-    display: flex !important; 
+    display: flex !important;
     justify-content: center !important;
 }
+
 .mat-list {
     border: 0.8px solid #D9D9D9;
     border-radius: 5px !important;
 }
+
 .mat-list-base {
     padding-top: 0px;
 }
-.textalign{
+
+.textalign {
     text-align: center;
 }
-.contact-names{
+
+.contact-names {
     border: none;
 }
 
-.modal-header{
+.modal-header {
     display: flex;
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    border-bottom:none
+    border-bottom: none
 }
+
 .justify-content-center {
-        justify-content: center !important;
-    }
+    justify-content: center !important;
+}
 
-       .item-content:active:hover{
-        background-color:#345C66;
-        color: white;
-       }
+.item-content:active:hover {
+    background-color: #345C66;
+    color: white;
+}
 
 
-       .popup-btn{
-        background-color: #345C66;
-        color: white;
-       }
-       .float-right{
-        float:right;
-       }
+.popup-btn {
+    background-color: #345C66;
+    color: white;
+}
 
-       .inline{
-        color: #345C66;
-       }
-       .bradius{
-        border-radius: 5px;
-        background-color: white;
-       }
+.float-right {
+    float: right;
+}
+
+.inline {
+    color: #345C66;
+}
+
+.bradius {
+    border-radius: 5px;
+    background-color: white;
+}
+
+.modal-footer {}
+
+.borderr {
+    border: 0.8px solid #D9D9D9;
+    border-radius: 30px;
+}
