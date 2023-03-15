@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   color: any
   toggle: any;
   isActive: boolean = false;
+  page:boolean=true
   elementStyles: any = {
     'color': this.isActive ? 'green' : 'red'
   }

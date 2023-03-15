@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <button mat-stroked-button color="primary" class="me-4 px-5 border-r mb-md-2">Call</button>
+                        <button mat-stroked-button color="primary" class="me-4 px-5 border-r mb-md-2"(click)="oncallclick(call)">Call</button>
                         <button mat-raised-button color="primary" class="px-5">Message</button>
                     </div>
                 </div>
@@ -162,4 +162,10 @@
             </div>
         </div>
     </div>
+<ng-template #call>
+<div>
+    
+</div>
+</ng-template>
+
 </ng-template>

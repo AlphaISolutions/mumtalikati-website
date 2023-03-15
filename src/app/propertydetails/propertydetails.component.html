@@ -1,4 +1,5 @@
-<app-top-bar [logred]="color" [data]="logocolor" [active]="coler" [btncolor]="btnColor" [activeroute]="activeroutes" ></app-top-bar>
+<app-top-bar [logred]="color" [data]="logocolor" [active]="coler" [btncolor]="btnColor"
+    [activeroute]="activeroutes"></app-top-bar>
 <hr>
 <div class="loading" *ngIf="loading ; else showList">
     <mat-spinner [diameter]="50"></mat-spinner>
@@ -9,7 +10,7 @@
             <div class="col">
                 <mat-form-field appearance="outline" *ngIf="listingpupose[0]">
                     <mat-label>Purpose</mat-label>
-                    <mat-select [value]="listid" (selectionChange)="onChangeListPurpose($event)" >
+                    <mat-select [value]="listid" (selectionChange)="onChangeListPurpose($event)">
                         <mat-option *ngFor="let doc of listingpupose" [value]="doc.listingPurposeType"
                             (click)="onclicks(doc.listingPurposeType)">
                             {{doc.desc}}
@@ -24,8 +25,7 @@
                         <mat-option [value]="all" (click)="governorateId()">
                             All
                         </mat-option>
-                        <mat-option *ngFor="let doc of governorate" [value]="doc.id" 
-                        (click)="getGovernorate(doc.id!)">
+                        <mat-option *ngFor="let doc of governorate" [value]="doc.id" (click)="getGovernorate(doc.id!)">
                             {{doc.name}}
                         </mat-option>
                     </mat-select>
@@ -34,37 +34,76 @@
             <div class="col">
                 <mat-form-field appearance="outline" (click)="open(content)">
                     <mat-label>Property category</mat-label>
-                    <input matInput placeholder="Placeholder" value="{{getpropertyMasterType(propertyMasterTypeId)}}">
-                    <!-- <mat-label>{{getpropertyMasterType(propertyMasterTypeId)}}</mat-label> -->
-                    <mat-select>
-                    </mat-select>
-                </mat-form-field>
-                <ng-template #content let-modal>
-                    <div class="modal-header pe-4 ps-4" *ngIf="propertymasterType">
-                        <mat-tab-group>
-                            <mat-tab *ngFor="let doc of propertymasterType" >
-                                <ng-template mat-tab-label>
-                                    <span (click)="matTab(doc.masterType)">{{doc.desc}}</span>
-                                </ng-template>
-                                <div class="container">
-                                    <div class="row justify-content-md-center btn-row" *ngIf="propertysubType">
-                                        <div class="col-6 borderr" *ngFor="let doc of propertysubType">
-                                            <div *ngIf="doc.propertyMasterTypeID==mastertypeid">
+              
+                    <input matInput placeholder="Placeholder" value="{{getpropertyMasterType(mastertypeid)}}">
 
-                                                        <span  value="doc.propertyMasterTypeID"
-                                                        value="doc.propertySubType.subType" >
+                </mat-form-field>
+                <ng-template #content let-modal >
+                    <div class="modal-header pe-4 ps-4">
+                        <mat-tab-group (selectedTabChange)="tabChanged($event)">
+                            <mat-tab label="Residential">
+                                <ng-template matTabContent>
+                                    <div class="loading" *ngIf="loading ; else showList">
+                                        <mat-spinner [diameter]="50"></mat-spinner>
+                                    </div>
+                                    <ng-template #showList>
+                                        <div class="container pt-4">
+                                            <div class="row gx-4" *ngIf="propertysubType">
+                                                <div class="col-6 pt-2 ps-3 borderr" *ngFor="let doc of filterFunction(mastertypeid)">
+                                                    <div >
+                                                        <span value="doc.propertyMasterTypeID" class="text-center"
+                                                            value="doc.propertySubType.subType">
                                                             {{doc.propertySubType.desc}}
                                                         </span>
-                                                
-                                            
-                                                <!-- <button id="view-cmp-btn" mat-raised-button
-                                                    [value]="doc.propertyMasterTypeID"
-                                                    [value]="doc.propertySubType.subType" class="me-2 mb-2 "
-                                                    (click)="onsubType(doc.propertyMasterTypeID!, doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button> -->
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                    </ng-template>
+                                </ng-template>
+
+                            </mat-tab>
+                            <mat-tab label="Commercial">
+                                <ng-template matTabContent>
+                                    <div class="loading" *ngIf="loading ; else showList">
+                                        <mat-spinner [diameter]="50"></mat-spinner>
                                     </div>
-                                </div>
+                                    <ng-template #showList>
+                                        <div class="container">
+                                            <div class="row justify-content-md-center btn-row" *ngIf="propertysubType">
+                                                <div class="col-6 borderr" *ngFor="let doc of filterFunction(mastertypeid)">
+                                                    <div >
+                                                        <span value="doc.propertyMasterTypeID"
+                                                            value="doc.propertySubType.subType">
+                                                            {{doc.propertySubType.desc}}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ng-template>
+                            </mat-tab>
+                            <mat-tab label="Residential/Commercial">
+                                <ng-template matTabContent>
+                                    <div class="loading" *ngIf="loading ; else showList">
+                                        <mat-spinner [diameter]="50"></mat-spinner>
+                                    </div>
+                                    <ng-template #showList>
+                                        <div class="container">
+                                            <div class="row justify-content-md-center btn-row" *ngIf="propertysubType">
+                                                <div class="col-6 borderr" *ngFor="let doc of filterFunction(mastertypeid)">
+                                                    <div>
+                                                        <span value="doc.propertyMasterTypeID"
+                                                            value="doc.propertySubType.subType">
+                                                            {{doc.propertySubType.desc}}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </ng-template>
                             </mat-tab>
                         </mat-tab-group>
                     </div>
@@ -73,22 +112,16 @@
             <div class="col">
                 <mat-form-field appearance="outline" *ngIf="propertyUnitCategoryType[0]">
                     <mat-label>Unit category</mat-label>
-                    <mat-select >
-                        <mat-option >All</mat-option>
-                        
-                            <mat-option  
-                            >
-                            {{getPropertyUnitCategory(propertyMasterTypeId)}}
+                    <mat-select>
+                        <mat-option>All</mat-option>
+                        <mat-option *ngFor="let doc of getPropertyUnitCategory(mastertypeid)" [value]="doc.unitCategory" (click)="onUnitcategory(doc.unitCategory)"> 
+                            {{doc.desc}}
                         </mat-option>
-                    
-                      
                     </mat-select>
                 </mat-form-field>
             </div>
             <div class="col">
-                <form class="row" *ngIf="propertyFilterform" [formGroup]="propertyFilterform" (ngSubmit)="onSubmit()"
-                    novalidate>
-                   
+                <div class="row">
                     <div class="col-12">
                         <mat-form-field appearance="outline" (click)="openprice(price)">
                             <mat-label>Price (OMR)</mat-label>
@@ -98,17 +131,22 @@
                         <ng-template #price let-modal>
                             <div class="modal-header pb-0">
                                 <div class="row gx-4">
-                                    <ngx-slider [value]="minValue" [highValue]="maxValue" ></ngx-slider>
+                                    <div class="container">
+                                        <h6 class="primary">Price Range</h6>
+                                        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+                                    </div>
+                                   
                                     <div class="col">
                                         <p class="textalign">Min:</p>
                                         <mat-form-field appearance="outline" class="">
-                                            <input matInput placeholder="0" formControlName="minPrice">
+                                            <input matInput placeholder="0" [value]="minValue">
+                                          
                                         </mat-form-field>
                                     </div>
                                     <div class="col">
                                         <p class="textalign">Max:</p>
                                         <mat-form-field appearance="outline">
-                                            <input matInput placeholder="any" formControlName="maxPrice">
+                                            <input matInput placeholder="any" [value]="maxValue" >
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -134,62 +172,20 @@
                             </div> -->
                             <div class="modal-footer">
                                 <div class="row  text-center ">
-                                        <button mat-flat-button class=" col-6 border" (click)=onpopupclose()>Reset</button>                        
-                                        <button mat-flat-button color="primary" class="col-6 " (click)=onpopupclose()>Done</button>
+                                    <button mat-flat-button class=" col-6 border" (click)=reSet()>Reset</button>
+                                    <button mat-flat-button color="primary" class="col-6 "
+                                        (click)=onpopupclose()>Done</button>
                                 </div>
-                              
+
                             </div>
                         </ng-template>
                     </div>
-                </form>
+                </div>
             </div>
-            <!-- <div class="col-auto">
-                <button mat-flat-button color="primary" class="mt-1 p-1" height="50px" (click)="onsubmit()">Done</button>
-            </div> -->
         </div>
         <h4 class="mt-4">Properties for {{getlistpurpose(listid)}} in Oman</h4>
-        <div class="row mt-4" *ngIf="ownerPropertyFilter">
-            <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3" *ngFor="let property of ownerPropertyFilter| paginate
-                :{
-                      itemsPerPage: itemsPerPage,
-                      currentPage: page,
-                      totalItems: filterCount
-                }
-                ">
-                <div class="card border-r mb-4 shadow-none border-0" (click)="onclick(property.propertyMasterID!,property.listingPurposeID!, property.unitCategoryID!, property.landLordID! ,property.propertyMasterTypeID!
-                )">
-                    <img [src]="property.imageString || bydefault" class=" imagecss main" alt="Card Image">
-                    <div class="card-body p-0 px-3 pt-2">
-                        <p><b>{{property.propertyMasterName}}</b></p>
-                        <div>
-                            <h6 class="inline">{{property.unitName}} | {{getsubType(property.propertyMasterSubType!)}}
-                            </h6>
-                            <div class="mt-2">
-                                <h5>
-                                    OMR {{property.rentPrice}} Monthly
-                                </h5>
-                            </div>
-                            <div id="main">
-                                <p class=""><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} </p>
-                                <p class=""><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
-                                </p>
-                                <p><img class="pe-2" [src]="areaimg">{{property.sqft}} SQM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-            <div class=" d-flex align-items-center justify-content-center" style="height: 350px;"
-                *ngIf="!ownerPropertyFilter[0]">
-                <p class="">No Property Listed</p>
-            </div>
-            <nav class="pagination justify-content-end pt-3">
-                <pagination-controls (pageChange)="pageChange((page = $event))"
-                    class="p-controls"></pagination-controls>
-            </nav>
-
-        </div>
-
+        <app-shortdisplay [listid]="listid" [governorateid]="governorateid" [subTypeId]="subTypeId" [mastertypeid]=" mastertypeid" [minValue]="minValue" [maxValue]="maxValue"
+            [unitcategoryid]="unitcategoryid"></app-shortdisplay>
     </div>
 </ng-template>

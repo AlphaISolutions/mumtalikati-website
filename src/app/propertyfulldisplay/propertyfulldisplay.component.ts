@@ -7,6 +7,7 @@ import { MumtalikatiService } from '../services/mumtalikati.service';
 import { getPropertyUnitCategoryEnum, getstatusType, propertyMasterTypeEnum } from '../models/enums';
 import { ProfileImage } from '../models/profileImage.model';
 import { map } from 'rxjs';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-propertyfulldisplay',
   templateUrl: './propertyfulldisplay.component.html',
@@ -40,7 +41,8 @@ export class PropertyfulldisplayComponent implements OnInit {
   listpurID!: any;
   pMTID!: number;
   btnColor={'background-color':'#9e2a2b'}
-  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router) {
+  closeResult = '';
+  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router,private modalService: NgbModal,) {
     this.listpurID = this.router.getCurrentNavigation()!.extras.state!["listingPurposeID"]!;
 
   }
@@ -121,5 +123,25 @@ export class PropertyfulldisplayComponent implements OnInit {
       ['Unitscategory'],
       { queryParams: { 'propertyMasterID': this.pmid, 'listingPurposeID': this.listpurID, 'unitCategoryID': this.unitcatID, 'status': this.statuss, 'page': this.page, 'perpagenumber': this.perpagenumber,'propertyMasterTypeID':this.pMTID,'landLordID':this.landlordid } });
   }
+  oncallclick(call:any){
+   
+      this.modalService.open(call, ).result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        },
+      );
+    }
+    private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return `with: ${reason}`;
+      }
+    }
 }
 
