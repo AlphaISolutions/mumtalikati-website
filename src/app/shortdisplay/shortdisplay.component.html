@@ -1,31 +1,46 @@
-
-<div class="container">
-    <div class="row mt-4" *ngIf="propertyDetail">
-        <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3" *ngFor="let property of propertyDetail">
-            <div class="card border-r mb-3 shadow-none border-0">
-                <img [src]="property.imageString ||bydefault" class=" imagecss" alt="Card Image">
-                <div class="card-body">
+<div class="loading" *ngIf="loading ; else showList">
+    <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+<ng-template #showList>
+    <div class="row mt-4" *ngIf="ownerPropertyFilter">
+        <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3" *ngFor="let property of ownerPropertyFilter| paginate
+        :{
+              itemsPerPage: itemsPerPage,
+              currentPage: page,
+              totalItems: filterCount
+        }
+        ">
+            <div class="card border-r mb-4 shadow-none border-0" (click)="onclick(property.propertyMasterID!,property.listingPurposeID!, property.unitCategoryID!, property.landLordID! ,property.propertyMasterTypeID!
+        )">
+                <img [src]="property.imageString || bydefault" class=" imagecss main" alt="Card Image">
+                <div class="card-body p-0 px-3 pt-2">
                     <p><b>{{property.propertyMasterName}}</b></p>
                     <div>
-                        <h5 class="inline">{{property.rentPrice}}</h5>
+                        <h6 class="inline">{{property.unitName}} | {{getsubType(property.propertyMasterSubType!)}}
+                        </h6>
                         <div class="mt-2">
-                            <p class="secondary-font-regular card-text align-left  max-lines-2">
-                                <img class="pe-2 imgcolor" [src]=" location">{{property.addressStr}}
-                            </p>
+                            <h5>
+                                OMR {{property.rentPrice}} Monthly
+                            </h5>
                         </div>
-                    
                         <div id="main">
-                            <p><img class="pe-1" [src]="bedroomimg">{{property.bedRoom}} </p>
-                            <p><img class="pe-1" [src]="washroomimg">{{property.bathRoom}} 
+                            <p class=""><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} </p>
+                            <p class=""><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
                             </p>
-                            <p><img class="pe-1" [src]="areaimg">{{property.sqft}} SQM</p>
+                            <p><img class="pe-2" [src]="areaimg">{{property.sqft}} SQM</p>
                         </div>
-
                     </div>
                 </div>
-              
             </div>
-        </div>
-    </div>
 
-</div>
+        </div>
+        <div class=" d-flex align-items-center justify-content-center" style="height: 350px;"
+            *ngIf="!ownerPropertyFilter[0]">
+            <p class="">No Property Listed</p>
+        </div>
+        <nav class="pagination justify-content-end pt-3" >
+            <pagination-controls (pageChange)="pageChange((page = $event))" class="p-controls"></pagination-controls>
+        </nav>
+
+    </div>
+</ng-template>

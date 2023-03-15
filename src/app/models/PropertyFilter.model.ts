@@ -11,7 +11,7 @@ export class PropertyFilter {
     gOVERNORATEID!:number |  null;
     wilayatID!: null;
     @prop(
-        {defaultValue:0}
+
     )
     minPrice!: number | null;
     @prop()

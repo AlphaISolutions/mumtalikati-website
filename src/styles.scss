@@ -257,6 +257,7 @@ h5 {
     height: 50px!important;
 }
 
+
 .mat-form-field-appearance-outline .mat-form-field-label {
     margin-top: 0em !important;
   }
@@ -274,5 +275,17 @@ hr{
     margin: 0 !important;
     opacity: .10 !important;
 }
+
+.ngx-slider .ngx-slider-pointer {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    top: -14px;
+    background-color: #9E2A2B !important;
+    z-index: 3;
+    border-radius: 16px;
+}
+
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
