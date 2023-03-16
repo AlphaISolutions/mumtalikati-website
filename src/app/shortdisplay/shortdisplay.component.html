@@ -38,9 +38,12 @@
             *ngIf="!ownerPropertyFilter[0]">
             <p class="">No Property Listed</p>
         </div>
-        <nav class="pagination justify-content-end pt-3" >
-            <pagination-controls (pageChange)="pageChange((page = $event))" class="p-controls"></pagination-controls>
-        </nav>
+        <div *ngIf="pageShow">
+            <nav class="pagination justify-content-end pt-3" >
+                <pagination-controls (pageChange)="pageChange((page = $event))" class="p-controls"></pagination-controls>
+            </nav>
+        </div>
+       
 
     </div>
 </ng-template>

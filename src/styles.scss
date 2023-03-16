@@ -202,7 +202,12 @@ h5 {
 .loading mat-spinner {
     margin: auto;
 }
-
+ .mat-loading{
+    height: 30vh;
+ }
+ .mat-loading mat-spinner {
+    margin: auto;
+}
 .mat-progress-spinner {
     display: block !important;
     position: absolute !important;
@@ -284,6 +289,14 @@ hr{
     background-color: #9E2A2B !important;
     z-index: 3;
     border-radius: 16px;
+}
+.ngx-slider .ngx-slider-selection {
+    z-index: 2;
+    background:  #9E2A2B !important;
+    border-radius: 2px;
+}
+.ngx-slider .ngx-slider-pointer:after {
+    background-color: #FFFFFF !important;
 }
 
 

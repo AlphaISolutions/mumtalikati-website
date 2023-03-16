@@ -34,28 +34,25 @@
             <div class="col">
                 <mat-form-field appearance="outline" (click)="open(content)">
                     <mat-label>Property category</mat-label>
-              
                     <input matInput placeholder="Placeholder" value="{{getpropertyMasterType(mastertypeid)}}">
-
                 </mat-form-field>
-                <ng-template #content let-modal >
+                <ng-template #content let-modal>
                     <div class="modal-header pe-4 ps-4">
                         <mat-tab-group (selectedTabChange)="tabChanged($event)">
                             <mat-tab label="Residential">
                                 <ng-template matTabContent>
-                                    <div class="loading" *ngIf="loading ; else showList">
+                                    <div class="mat-loading" *ngIf="loading ; else showList">
                                         <mat-spinner [diameter]="50"></mat-spinner>
                                     </div>
                                     <ng-template #showList>
-                                        <div class="container pt-4">
-                                            <div class="row gx-4" *ngIf="propertysubType">
-                                                <div class="col-6 pt-2 ps-3 borderr" *ngFor="let doc of filterFunction(mastertypeid)">
-                                                    <div >
-                                                        <span value="doc.propertyMasterTypeID" class="text-center"
-                                                            value="doc.propertySubType.subType">
-                                                            {{doc.propertySubType.desc}}
-                                                        </span>
-                                                    </div>
+                                        <div class="container mt-2">
+                                            <div class="row gx-4">
+                                                <div class="col-6  pt-2 "
+                                                    *ngFor="let doc of filterFunction(mastertypeid)">
+                                                    <button type="button" class="tab-btn"
+                                                        [value]="doc.propertySubType.subType"
+                                                        (click)="onsubtypeid(doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -65,19 +62,18 @@
                             </mat-tab>
                             <mat-tab label="Commercial">
                                 <ng-template matTabContent>
-                                    <div class="loading" *ngIf="loading ; else showList">
+                                    <div class="mat-loading" *ngIf="loading ; else showList">
                                         <mat-spinner [diameter]="50"></mat-spinner>
                                     </div>
                                     <ng-template #showList>
-                                        <div class="container">
-                                            <div class="row justify-content-md-center btn-row" *ngIf="propertysubType">
-                                                <div class="col-6 borderr" *ngFor="let doc of filterFunction(mastertypeid)">
-                                                    <div >
-                                                        <span value="doc.propertyMasterTypeID"
-                                                            value="doc.propertySubType.subType">
-                                                            {{doc.propertySubType.desc}}
-                                                        </span>
-                                                    </div>
+                                        <div class="container mt-2">
+                                            <div class="row gx-4">
+                                                <div class="col-6  pt-2 "
+                                                    *ngFor="let doc of filterFunction(mastertypeid)">
+                                                    <button type="button" class="tab-btn"
+                                                        [value]="doc.propertySubType.subType"
+                                                        (click)="onsubtypeid(doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -86,19 +82,18 @@
                             </mat-tab>
                             <mat-tab label="Residential/Commercial">
                                 <ng-template matTabContent>
-                                    <div class="loading" *ngIf="loading ; else showList">
+                                    <div class="mat-loading" *ngIf="loading ; else showList">
                                         <mat-spinner [diameter]="50"></mat-spinner>
                                     </div>
                                     <ng-template #showList>
-                                        <div class="container">
-                                            <div class="row justify-content-md-center btn-row" *ngIf="propertysubType">
-                                                <div class="col-6 borderr" *ngFor="let doc of filterFunction(mastertypeid)">
-                                                    <div>
-                                                        <span value="doc.propertyMasterTypeID"
-                                                            value="doc.propertySubType.subType">
-                                                            {{doc.propertySubType.desc}}
-                                                        </span>
-                                                    </div>
+                                        <div class="container mt-2">
+                                            <div class="row gx-4">
+                                                <div class="col-6  pt-2 "
+                                                    *ngFor="let doc of filterFunction(mastertypeid)">
+                                                    <button type="button" class="tab-btn"
+                                                        [value]="doc.propertySubType.subType"
+                                                        (click)="onsubtypeid(doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -112,9 +107,10 @@
             <div class="col">
                 <mat-form-field appearance="outline" *ngIf="propertyUnitCategoryType[0]">
                     <mat-label>Unit category</mat-label>
-                    <mat-select>
-                        <mat-option>All</mat-option>
-                        <mat-option *ngFor="let doc of getPropertyUnitCategory(mastertypeid)" [value]="doc.unitCategory" (click)="onUnitcategory(doc.unitCategory)"> 
+                    <mat-select [value]="unitcategoryid || all">
+                        <mat-option [value]="all" (click)="allCheck()">All</mat-option>
+                        <mat-option *ngFor="let doc of getPropertyUnitCategory(mastertypeid)" [value]="doc.unitCategory"
+                            (click)="onUnitcategory(doc.unitCategory)">
                             {{doc.desc}}
                         </mat-option>
                     </mat-select>
@@ -130,53 +126,39 @@
                         </mat-form-field>
                         <ng-template #price let-modal>
                             <div class="modal-header pb-0">
-                                <div class="row gx-4">
+                                <div class="row gx-2">
                                     <div class="container">
                                         <h6 class="primary">Price Range</h6>
-                                        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+                                        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue"
+                                            [options]="options"></ngx-slider>
                                     </div>
-                                   
-                                    <div class="col">
-                                        <p class="textalign">Min:</p>
+
+                                    <div class="col-6 mt-4">
+                                        <p class="textalign mb-0">Min:</p>
                                         <mat-form-field appearance="outline" class="">
-                                            <input matInput placeholder="0" [value]="minValue">
-                                          
+                                            <input matInput placeholder="0" [value]="minValue" [(ngModel)]="minValue">
+
                                         </mat-form-field>
                                     </div>
-                                    <div class="col">
-                                        <p class="textalign">Max:</p>
+                                    <div class="col-6 mt-4">
+                                        <p class="textalign mb-0">Max:</p>
                                         <mat-form-field appearance="outline">
-                                            <input matInput placeholder="any" [value]="maxValue" >
+                                            <input matInput placeholder="any" [value]="maxValue" [(ngModel)]="maxValue">
                                         </mat-form-field>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="modal-body pt-0">
+                            <div class="modal-footer">
                                 <div class="row gx-2">
-                                    <div class="col copywrite">
-                                        <mat-list role="list">
-                                            <mat-list-item role="listitem" class="item-content"
-                                                *ngFor="let value of priceMax"><span class="contact-names btn"
-                                                    (click)="addminprice(value)">{{value}}</span></mat-list-item>
-                                        </mat-list>
+                                    <div class="col">
+                                        <button type="reset" class="  border-btn" (click)=reSet()>Reset</button>
                                     </div>
                                     <div class="col">
-                                        <mat-list role="list">
-                                            <mat-list-item role="listitem" class="item-content"
-                                                *ngFor="let value of priceMin"><span class="contact-names btn"
-                                                    (click)="addmaxprice(value)">{{value}}</span></mat-list-item>
-                                        </mat-list>
-
+                                        <button type="button" color="primary" class="border-done"
+                                            (click)=onpopupclose()>Done</button>
                                     </div>
-                                </div>
-                            </div> -->
-                            <div class="modal-footer">
-                                <div class="row  text-center ">
-                                    <button mat-flat-button class=" col-6 border" (click)=reSet()>Reset</button>
-                                    <button mat-flat-button color="primary" class="col-6 "
-                                        (click)=onpopupclose()>Done</button>
-                                </div>
 
+                                </div>
                             </div>
                         </ng-template>
                     </div>
@@ -185,7 +167,8 @@
         </div>
         <h4 class="mt-4">Properties for {{getlistpurpose(listid)}} in Oman</h4>
 
-        <app-shortdisplay [listid]="listid" [governorateid]="governorateid" [subTypeId]="subTypeId" [mastertypeid]=" mastertypeid" [minValue]="minValue" [maxValue]="maxValue"
+        <app-shortdisplay [listid]="listid" [governorateid]="governorateid" [subTypeId]="subTypeId"
+            [mastertypeid]=" mastertypeid" [minValue]="minValue" [maxValue]="maxValue"
             [unitcategoryid]="unitcategoryid"></app-shortdisplay>
     </div>
 </ng-template>
