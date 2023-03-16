@@ -6,13 +6,13 @@
                 <div class="col-2 .d-sm-none .d-md-none .d-lg-block"></div>
                 <div class="col-sm-12 col-xl-4 col-xxl-4  pt-5">
                     <h2 class="h1-color">
-                        Search Thousands Of Sale And Rent Properties
+                        Search Properties in Oman
                     </h2>
-                    <p class="h1-color">Are You On The Hunt For A Sales Or Letting Agent In Your Local Area?</p>
+                    <!-- <p class="h1-color">Are You On The Hunt For A Sales Or Letting Agent In Your Local Area?</p> -->
                     <div class="row">
                         <div class="col-auto" *ngFor="let listbtn of listingpupose">
-                            <button mat-flat-button type="" class="  " [value]="listingPurposeType"
-                                [ngClass]="{'btn btn-danger':listbtn.listingPurposeType==listingPurposeType, 'transparent':listbtn.listingPurposeType!=listingPurposeType}"
+                            <button mat-flat-button  class="" [value]="listingPurposeType"
+                                [ngClass]="{'btn-btn-danger':listbtn.listingPurposeType==listingPurposeType, 'transparent':listbtn.listingPurposeType!=listingPurposeType}"
                                 (click)="onclick(listbtn.listingPurposeType)">{{listbtn.desc }}</button>
                         </div>
                     </div>

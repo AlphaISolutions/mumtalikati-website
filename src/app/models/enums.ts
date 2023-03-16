@@ -187,7 +187,7 @@ export function propertySubTypeEnum(subTypeId: any) {
         case 16:
             return 'Project';
         default:
-            return "Unknown";
+            return '';
     }
 
 }

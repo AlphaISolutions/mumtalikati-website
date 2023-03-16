@@ -34,12 +34,15 @@
 
 
 }
- .active{
+
+.active {
   color: green;
- }
- .inactive{
+}
+
+.inactive {
   color: red;
- }
+}
+
 .h1-color {
   color: white;
 }
@@ -80,21 +83,25 @@
 .inline {
   display: inline;
 }
+
 .vl {
   border-left: 4px solid red;
   border-right: 5px solid red;
   height: 20px;
 }
+
 .under {
   color: black;
   text-decoration: underline;
 
   text-decoration-color: red;
 }
+
 .border-0 {
   border: 0px;
   border-radius: 12px;
 }
+
 .pdinng {
   padding: 0.4em 0 0.8em 0;
   display: block;
@@ -105,4 +112,14 @@
 
 }
 
+.btn-btn-danger {
+  background-color: #FFFFFF !important;
+  
+}
 
+.transparent {
+  background-color: transparent !important;
+  border: 0.8px solid #FFFFFF !important;
+  border-radius: 5px !important;
+  color: #FFFFFF;
+}
