@@ -36,6 +36,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +76,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     }),
     MatListModule,
     MatGridListModule,
-    NgxSliderModule
+    NgxSliderModule,
+    
    
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },RxFormBuilder],

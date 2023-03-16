@@ -8,6 +8,7 @@ import { getPropertyUnitCategoryEnum, getstatusType, propertyMasterTypeEnum } fr
 import { ProfileImage } from '../models/profileImage.model';
 import { map } from 'rxjs';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Clipboard } from '@angular/cdk/clipboard';
 @Component({
   selector: 'app-propertyfulldisplay',
   templateUrl: './propertyfulldisplay.component.html',
@@ -22,6 +23,8 @@ export class PropertyfulldisplayComponent implements OnInit {
   propertyDetail: OwnerRentDetail[] = [];
   location = assetUrl("icons/location.svg");
   areaimg = assetUrl("icons/Area.svg");
+  phoneicon = assetUrl("icons/phoneicon.png");
+  copyIcon = assetUrl("icons/copyicon.png");
   bedroomimg = assetUrl("icons/Bedroom.svg");
   washroomimg = assetUrl("icons/Washroom.svg");
   kitchen = assetUrl("icons/kitchen.png");
@@ -42,7 +45,8 @@ export class PropertyfulldisplayComponent implements OnInit {
   pMTID!: number;
   btnColor={'background-color':'#9e2a2b'}
   closeResult = '';
-  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router,private modalService: NgbModal,) {
+  activeroutes = { 'background-color': '#9e2a2b' }
+  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router,private modalService: NgbModal,private clipboard: Clipboard) {
     this.listpurID = this.router.getCurrentNavigation()!.extras.state!["listingPurposeID"]!;
 
   }
@@ -125,7 +129,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   }
   oncallclick(call:any){
    
-      this.modalService.open(call, ).result.then(
+      this.modalService.open(call,{ centered: true } ).result.then(
         (result) => {
           this.closeResult = `Closed with: ${result}`;
         },
@@ -142,6 +146,12 @@ export class PropertyfulldisplayComponent implements OnInit {
       } else {
         return `with: ${reason}`;
       }
+    }
+    closepop(){
+      this.modalService.dismissAll();
+    }
+    copyHeroName(el: HTMLDivElement) {
+      this.clipboard.copy(el.innerText);
     }
 }
 

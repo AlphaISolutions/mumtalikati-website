@@ -26,7 +26,8 @@ export class UnitscategoryComponent implements OnInit {
   public status: number = 1
   propertyMasterTypeID!: number
   subTypeId!: number;
-  btnColor={'background-color':'#9e2a2b'}
+  btnColor={'background-color':'#9e2a2b'};
+  activeroutes = { 'background-color': '#9e2a2b' };
   constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router) { }
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;

@@ -1,4 +1,4 @@
-<app-top-bar [logred]="color" [data]="logocolor" [btncolor]="btnColor"></app-top-bar>
+<app-top-bar [logred]="color" [data]="logocolor" [btncolor]="btnColor" [activeroute]="activeroutes"></app-top-bar>
 <hr>
 <div class="loading" *ngIf="loading ; else showList">
     <mat-spinner [diameter]="50"></mat-spinner>
@@ -8,8 +8,9 @@
         <div class="">
             <ul class="breadcrumb row p-0 mt-4">
                 <div class="col float-start ">
-                    <li><a href="#"  (click)="backotsearch()" (click)="addItem(propertyDetail[0].listingPurposeID!)"><i class="fa fa-angle-left" aria-hidden="true"></i>Back to Search</a></li>
-                
+                    <li><a href="#" (click)="backotsearch()" (click)="addItem(propertyDetail[0].listingPurposeID!)"><i
+                                class="fa fa-angle-left" aria-hidden="true"></i>Back to Search</a></li>
+
                 </div>
                 <div class="col" *ngIf="propertyDetail">
                     <li><a routerLink="">Mumtalikati</a></li>
@@ -108,8 +109,10 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <button mat-stroked-button color="primary" class="me-4 px-5 border-r mb-md-2"(click)="oncallclick(call)">Call</button>
-                        <button mat-raised-button color="primary" class="px-5">Message</button>
+                        <button mat-stroked-button color="primary" class="me-4 px-5 border-r mb-md-2"
+                            (click)="oncallclick(call)">Call</button>
+                        <button mat-raised-button color="primary" class="px-5"
+                            (click)="oncallclick(call)">Message</button>
                     </div>
                 </div>
                 <div class="col-md-8 mt-4">
@@ -119,7 +122,7 @@
                             <!-- <div class="mum-h">
                                 <h5 class="mum-com">Mumtalikati.com.om</h5>
                             </div> -->
-                           
+
                             <!-- <img [src]="favoriteicon" alt="" class="favorite"> -->
                         </div>
                         <mat-card-content>
@@ -144,7 +147,7 @@
                             <p>
                                 {{property.propertyMasterDescription}}
                             </p>
-                            <h5 >
+                            <h5>
                                 Features
                             </h5>
                             <div class="container">
@@ -162,10 +165,54 @@
             </div>
         </div>
     </div>
-<ng-template #call>
-<div>
-    
-</div>
-</ng-template>
+    <ng-template #call class="modal-content">
+
+        <div class="modal-header">
+        </div>
+        <div class="modal-body">
+            <div>
+                <h6 class="text-cente">
+                    Contact Us
+                </h6>
+
+            </div>
+            <div *ngFor="let property of propertyDetail">
+                <h6 class="text-cente" #elementContentToCopy>
+                <img [src]="phoneicon"> +{{property.contact}} <img [src]="copyIcon" height="18px" (click)="copyHeroName(elementContentToCopy)">
+                </h6>
+            </div>
+            <hr>
+            <div *ngFor="let property of propertyDetail">
+                <h6 class="text-cente"> {{property.name}}</h6>
+            </div>
+            <hr>
+            <div *ngFor="let property of propertyDetail">
+                <p class="align-item">
+                    Please quote Building ID {{property.buildingNumber}}
+                    when calling to landlord.
+                </p>
+            </div>
+            <hr>
+            <div>
+                <p class="align-item">
+                    Do you want more options? Finding the right property for you is easier with notifications
+                </p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row gx-2">
+                <div class="col">
+                    <button type="button" color="primary" class="border-done" (click)="closepop()">I want to be
+                        notified</button>
+
+                </div>
+                <div class="col">
+                    <button type="button" class="  border-btn" (click)="closepop()">Maybe Later</button>
+                </div>
+            </div>
+        </div>
+
+
+    </ng-template>
 
 </ng-template>
