@@ -9,115 +9,80 @@
                                      <p> <img [src]="phoneimg" alt=""> 123 - 888- 777</p>
                                         <p><img [src]="emailimag" alt=""> hello@yoursite.com</p>
                                 </div>
-
-                                <div class="col">
-                                        <h5>Company</h5>
-                                        <ul class="nav flex-column ">
-                                                <li class="nav-item mb-2"><a routerLink="aboutus"
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class="p-0 text-muted">About Us</a></li>
-                                                <li class="nav-item mb-2"><a routerLink="contactus"
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class=" p-0 text-muted">Contact Us</a>
-                                                </li>
-                                                <li class="nav-item mb-2"><a routerLink="propertydetails"
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class=" p-0 text-muted">Property</a></li>
-
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class=" p-0 text-muted">Our Agent</a>
-                                                </li>
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class="p-0 text-muted">Support 24/7
-                                                        </a></li>
-                                        </ul>
+<div class="col-md-7 col-sm-12">
+        <div class="row">
+                <div class="col-md-3 col-sm-6">
+                        <!-- <h5>Company</h5> -->
+                        <ul class="nav flex-column ">
+                                <li class="nav-item mb-2" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="." 
+                                        onclick="window.scrollTo(0,0)"
+                                        class=" p-0 text-muted">Home</a></li>
+                          
+                                       
+                        </ul>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                        <!-- <h5>Useful Link</h5> -->
+                        <ul class="nav flex-column">
+                                <li class="nav-item mb-2" [routerLinkActive]="['active']"><a routerLink="aboutus" 
+                                        onclick="window.scrollTo(0,0)" 
+                                        class="p-0 text-muted">About Us</a></li>
+                               
+                           
+                        </ul>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                        <!-- <h5>Quick Link</h5> -->
+                        <ul class="nav flex-column">
+                                <li class="nav-item mb-2" [routerLinkActive]="['active']"><a routerLink="propertydetails" 
+                                        onclick="window.scrollTo(0,0)"
+                                        class=" p-0 text-muted">Property</a></li>
+                            
+                        </ul>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                        <!-- <h5>Navigation</h5> -->
+                        <ul class="nav flex-column">
+                                <li class="nav-item mb-2" [routerLinkActive]="['active']"><a routerLink="contactus" 
+                                        onclick="window.scrollTo(0,0)"
+                                        class=" p-0 text-muted">Contact Us</a>
+                                
+                        </ul>
+                </div>
+        </div>
+                         
+                                <div class="row mt-5">
+                                        <div class="">
+                                                <form>
+                                                        <div class="align-items-start inline">
+                                                                <input type="text" class="form-control me-2 bg-dark input-box "
+                                                                        placeholder="Email address">
+                                                                <button class="btn-primary p-2 text-nowrap">Subscribe
+                                                                        Now</button>
+                                                        </div>
+                                                </form>
+                                        </div>  
                                 </div>
-                                <div class="col">
-                                        <h5>Useful Link</h5>
-                                        <ul class="nav flex-column">
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class=" p-0 text-muted">Help Center</a></li>
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class="p-0 text-muted">Knowledgebase</a>
-                                                </li>
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class=" p-0 text-muted">Our Services</a></li>
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class="p-0 text-muted">Sellers</a></li>
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class="p-0 text-muted">Buyers</a></li>
-                                        </ul>
-                                </div>
-                                <div class="col">
-                                        <h5>Quick Link</h5>
-                                        <ul class="nav flex-column">
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class=" p-0 text-muted">Blog</a></li>
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class="p-0 text-muted">Career</a>
-                                                </li>
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class=" p-0 text-muted">FAQ</a></li>
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class="p-0 text-muted">Landlords</a></li>
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class="p-0 text-muted">Compliance</a></li>
-                                        </ul>
-                                </div>
-                                <div class="col">
-                                        <h5>Navigation</h5>
-                                        <ul class="nav flex-column">
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class=" p-0 text-muted">News</a></li>
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class="p-0 text-muted">Testimonials</a>
-                                                </li>
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class=" p-0 text-muted">Portofolio</a></li>
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class="p-0 text-muted">Research</a></li>
-                                                <li class="nav-item mb-2"><a routerLink="."
-                                                                onclick="window.scrollTo(0,0)"
-                                                                class="p-0 text-muted">Consultancy</a></li>
-                                        </ul>
-                                </div>
+                        </div>
                         </div>
                         <div class="row">
                                 <div class=" col d-none d-lg-block">
-                                        <!-- <img id="logo" [src]="mapimg" routerLink="." onclick="window.scrollTo(0,0)" 
-                                                class="img-fluid imageh shadow-2-strong go-to-signin " alt="" /> -->
+                                      
                                 </div>
-                                <div class="col mt-2">
+                                <!-- <div class="col mt-2">
                                         <form>
                                                 <div class="align-items-start inline">
-                                                        <!-- <label for="newsletter1" class="visually-hidden">Email address</label> -->
                                                         <input type="text" class="form-control me-2 bg-dark input-box "
                                                                 placeholder="Email address">
                                                         <button class="btn-primary p-2 text-nowrap">Subscribe
                                                                 Now</button>
                                                 </div>
                                         </form>
-                                </div>
+                                </div> -->
                         </div>
                         <!-- <hr> -->
                         <div class="copywrite mt-4 p-0">
-                                <p>&copy; 2023 Mumtalikati by Alphai Solution.</p>
+                                <p>&copy;2023 mumtalikati.com All Rights Reserved.</p>
                         </div>
 
                 </footer>

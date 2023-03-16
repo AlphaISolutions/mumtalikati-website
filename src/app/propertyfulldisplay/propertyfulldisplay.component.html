@@ -166,7 +166,6 @@
         </div>
     </div>
     <ng-template #call class="modal-content">
-
         <div class="modal-header">
         </div>
         <div class="modal-body">
@@ -178,7 +177,7 @@
             </div>
             <div *ngFor="let property of propertyDetail">
                 <h6 class="text-cente" #elementContentToCopy>
-                <img [src]="phoneicon"> +{{property.contact}} <img [src]="copyIcon" height="18px" (click)="copyHeroName(elementContentToCopy)">
+                <img [src]="phoneicon"> +{{property.contact}} <img [src]="copyIcon"   class="btn" height="30px" (click)="copyHeroName(elementContentToCopy)">
                 </h6>
             </div>
             <hr>

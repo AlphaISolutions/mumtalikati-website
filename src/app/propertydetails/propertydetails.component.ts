@@ -57,7 +57,7 @@ export class PropertydetailsComponent implements OnInit {
   hovercolor = { ' background-color': 'red' }
   public governorateid: number | null = null;
   btnColor = { 'background-color': '#9e2a2b' }
-  activeroutes = { 'background-color': '#9e2a2b' }
+  activeroutes = { 'color': '#9e2a2b' }
   id: number | null = null;
   governorate: Governorate[] = [];
   public minValue: number | null = 0;
@@ -83,16 +83,21 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   async ngOnInit() {
+    debugger
     this.propertyFilterform = this.rxFormBuilder.formGroup(this.propertyfilter);
     let data = this.propertyFilterform.value as PropertyFilter;
     data.listingPurposesID = this.listid;
     data.rowsNumbers = this.perpagenumber;
     data.pageNumber = this.page;
     data.gOVERNORATEID = this.governorateid;
+    data.propertyMasterTypeID=this.mastertypeid;
+    data.maxPrice=this.maxValue;
+    data.minPrice=this.minValue;
     this.propertyFilter(data);
     let countPayload = this.propertyFilterform.value as PropertyFilter;
     countPayload.listingPurposesID = this.listid;
     countPayload.gOVERNORATEID = this.governorateid;
+    countPayload.propertyMasterTypeID=this.mastertypeid;
     this.postPropertyFilter_Count(countPayload);
     this.configs = {
       backdrop: true,
@@ -263,10 +268,12 @@ export class PropertydetailsComponent implements OnInit {
       });
   }
   async postPropertyFilter_Count(data: PropertyFilter) {
+    debugger;
     this.loading = true;
     this.mumtalikatiservic.postPropertyFilter_Count(data)
       .then((data) => {
         this.filterCount = data;
+        console.log(data)
       }
 
       )
@@ -527,6 +534,10 @@ export class PropertydetailsComponent implements OnInit {
     data.propertyMasterTypeID = this.mastertypeid;
     data.propertyMasterSubTypeID=this.subTypeId;
     this.propertyFilter(data)
-    this.postPropertyFilter_Count(data)
+    this.postPropertyFilter_Count(data);
+    this.modalService.dismissAll()
+  }
+  getsubTyp(subTypeId:number){
+    return propertySubTypeEnum(subTypeId)
   }
 }
