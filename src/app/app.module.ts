@@ -36,7 +36,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
-
+import { MatCarouselModule } from 'ng-mat-carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +77,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     MatListModule,
     MatGridListModule,
     NgxSliderModule,
+    MatCarouselModule.forRoot()
     
    
   ],

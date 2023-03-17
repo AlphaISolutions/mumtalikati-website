@@ -115,16 +115,27 @@
                             (click)="oncallclick(call)">Message</button>
                     </div>
                 </div>
-                <div class="col-md-8 mt-4">
+                <div class="col-md-8 mt-4" *ngIf="property.imageString">
+                
                     <mat-card class="example-card ">
-                        <div class="cardimg">
-                            <img mat-card-image [src]=" property.imageString[0] || bydefault" alt='' class="hhjj">
-                            <!-- <div class="mum-h">
-                                <h5 class="mum-com">Mumtalikati.com.om</h5>
-                            </div> -->
-
-                            <!-- <img [src]="favoriteicon" alt="" class="favorite"> -->
+                        <div [style.height]="auto">
+                            <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="accent"
+                                maxWidth="auto" proportion="25" slides="5" [loop]="true" [hideArrows]="false"
+                                [hideIndicators]="false" [useKeyboard]="false" [useMouseWheel]="false" orientation="ltr">
+                                <mat-carousel-slide #matCarouselSlide
+                                    *ngFor="let image of property.imageString; let i = index"
+                                    [image]="image" overlayColor="#00000040"
+                                    [hideOverlay]="false"></mat-carousel-slide>
+                            </mat-carousel>
                         </div>
+                        <!-- <div class="cardimg">
+                            <img mat-card-image [src]=" property.imageString[0] || bydefault" alt='' class="hhjj">
+                            <div class="mum-h">
+                                <h5 class="mum-com">Mumtalikati.com.om</h5>
+                            </div>
+
+                             <img [src]="favoriteicon" alt="" class="favorite">
+                        </div> -->
                         <mat-card-content>
                             <h5>
                                 OMR {{property.rentPrice}}/mon
@@ -165,7 +176,8 @@
             </div>
         </div>
     </div>
-    <ng-template #call class="modal-content">
+    <ng-template #call>
+
         <div class="modal-header">
         </div>
         <div class="modal-body">
@@ -177,7 +189,8 @@
             </div>
             <div *ngFor="let property of propertyDetail">
                 <h6 class="text-cente" #elementContentToCopy>
-                <img [src]="phoneicon"> +{{property.contact}} <img [src]="copyIcon"   class="btn" height="30px" (click)="copyHeroName(elementContentToCopy)">
+                    <img [src]="phoneicon"> +{{property.contact}} <img [src]="copyIcon" class="btn" height="30px"
+                        (click)="copyHeroName(elementContentToCopy)">
                 </h6>
             </div>
             <hr>
@@ -210,6 +223,8 @@
                 </div>
             </div>
         </div>
+
+
 
 
     </ng-template>

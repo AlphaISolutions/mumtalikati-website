@@ -174,8 +174,8 @@
     height: 32px;
     left: 851px;
     top: 397px;
-    border: 1px solid #adb5bd;
-    border-radius: 6px;
+    border: 0.8px solid #345C66;
+    border-radius: 30px;
     background-color: #FFFFFF;
 }
 .border-btn {
@@ -200,4 +200,9 @@
     border-radius: 6px;
     background-color: #9E2A2B;
     color: #FFFFFF;
+}
+
+.active, .tab-btn:hover{
+    background-color: rgba(52, 92, 102, 0.2);
+    color: #345C66;
 }

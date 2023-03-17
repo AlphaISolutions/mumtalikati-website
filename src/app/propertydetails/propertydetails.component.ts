@@ -83,7 +83,7 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   async ngOnInit() {
-    debugger
+  
     this.propertyFilterform = this.rxFormBuilder.formGroup(this.propertyfilter);
     let data = this.propertyFilterform.value as PropertyFilter;
     data.listingPurposesID = this.listid;
