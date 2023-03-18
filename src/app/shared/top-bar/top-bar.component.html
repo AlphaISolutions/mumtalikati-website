@@ -1,7 +1,7 @@
 <div class="nav-bg" [style]="childStyle">
-    <nav class="container-lg navbar navbar-expand-md navbar-dark bg-dark" >
+    <nav class="container-lg  navbar navbar-expand-md navbar-dark bg-dark" >
         <div class="container-lg">
-            <span class="navbar-brand" id="logo"> <a routerLink="" >
+            <span class="navbar-brand" id="logo"> <a routerLink="" class="no-inline-padding" >
                 <img [src]="logo" class="img-fluid shadow-2-strong " [style.log]="data" alt="" />
                 <!-- <img [src]="logored" *ngIf="shownnow" class="img-fluid shadow-2-strong " [style]="logos" alt="" /> -->
             </a></span>
@@ -16,14 +16,15 @@
                 </ul>
                 <ul class="navbar-nav ms-auto" >
                     <li class="nav-item " [routerLinkActive]="['active']"  [routerLinkActiveOptions]="{exact:true}">
-                        <a class="nav-link" [style]="logred" routerLink="" (click)="collapsed = !collapsed">Homepage</a>
+                        <a class="nav-link" [style]="logred" routerLink="" (click)="collapsed = !collapsed">Home</a>
+                    </li>
+                    <li class="nav-item"    [routerLinkActive]="['active']"  >
+                        <a class="nav-link changecolor"  [style]="activeroute"  [routerLink]="'../propertydetails'" (click)="collapsed = !collapsed">Property Listings</a>
                     </li>
                     <li class="nav-item" [style]="logred" [routerLinkActive]="['active']">
                         <a class="nav-link" [style]="logred" [routerLink]="'../aboutus'" (click)="collapsed = !collapsed">About Us</a>
                     </li>
-                    <li class="nav-item"    [routerLinkActive]="['active']"  >
-                        <a class="nav-link changecolor"  [style]="activeroute"  [routerLink]="'../propertydetails'" (click)="collapsed = !collapsed">Property</a>
-                    </li>
+                   
                   
                     <li class="nav-item" [routerLinkActive]="['active']">
                         <a class="nav-link" [style]="logred" [routerLink]="'../contactus'" (click)="collapsed = !collapsed" >Contact Us</a>

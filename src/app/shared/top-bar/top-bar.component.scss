@@ -13,7 +13,7 @@ a:hover{
 }
 
 .navbar{
-  padding-inline: 1rem !important;
+  // padding-inline: 1rem !important;
   background-color:transparent!important;
 }
 
@@ -37,3 +37,9 @@ img.footer-logo { max-height: 43px; width: auto; transform: translate3d(0,0,0); 
    color:none!important; 
 }
 
+a{
+  padding-inline: 1em !important;
+}
+.no-inline-padding{
+  padding-inline: 0px !important;
+}

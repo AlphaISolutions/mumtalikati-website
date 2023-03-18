@@ -77,7 +77,7 @@ export class ContactusComponent implements OnInit {
         }
       })
       .catch((error) => {
-       
+        console.error(error);
       });
   }
   async getContactset() {
@@ -89,7 +89,7 @@ export class ContactusComponent implements OnInit {
         }
       })
       .catch((error) => {
-       
+        console.error(error);
       });
   }
 }

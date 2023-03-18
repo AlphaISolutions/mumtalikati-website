@@ -5,4 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './emty-route.html',
   styleUrls: ['./empty-route.scss']
 })
-export class EmptyRouteComponent {}
+export class EmptyRouteComponent {
+  
+  goTo(){
+
+  }
+}

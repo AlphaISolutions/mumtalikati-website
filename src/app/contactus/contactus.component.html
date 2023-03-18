@@ -62,7 +62,7 @@
 
 <div id="messageimg">
     <div id="heading-section" class="pt-4">
-        <div class="row">
+        <div class="row justify-content-center">
             <div>
                 <p class="text-center pcenter">
                     "Got a question, comment, or suggestion? Drop us a message using the form below!"
@@ -74,7 +74,7 @@
     </div>
 
     <div class="card  shadow-2 border-none card-message ">
-        <div class="card-body">
+        <div class="card-body px-4">
             <form *ngIf="contactusform" [formGroup]="contactusform" (ngSubmit)="onSubmit()" novalidate>
                 <div class="row gx-2">
                     <div class="col">
