@@ -1,5 +1,5 @@
 #backgoundimage {
-    background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/homeimg.png');
+    background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/404img.png');
     background-repeat: no-repeat;
     background-color: transparent !important;
     height: 90vh;
@@ -19,11 +19,11 @@
     position: absolute;
     left: calc(50% - 417.2px/2 + 0.1px);
     top: 59.29px;
-  
+
     font-weight: 600;
     font-size: 50px;
     line-height: 50px;
-  
+
     display: flex;
     align-items: center;
     text-align: center;
@@ -32,27 +32,42 @@
 
 .back-home {
     position: absolute;
-     width: 152px;
-     height: 48px;
+    width: 152px;
+    height: 48px;
     left: calc(50% - 152px/2);
     top: 322.29px;
     background: #9E2A2B;
+    border: 0;
 }
 
 .fof {
     position: absolute;
- 
+
     left: calc(50% - 374.06px/2 + 1.09px);
     top: -39px;
 
     font-weight: 600;
     font-size: 192px;
     line-height: 192px;
-  
+
     display: flex;
     align-items: center;
     text-align: center;
     letter-spacing: -2px;
 
     color: #DEDEDE;
+}
+
+.text-cente {
+    text-align: center;
+    font-weight: 1000;
+}
+
+.four {
+    font-weight: 600;
+    color: #DEDEDE;
+    font-size: 192px;
+    line-height: 192px;
+    display: flex;
+    justify-content: center;
 }

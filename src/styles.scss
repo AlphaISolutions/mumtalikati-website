@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "variables.scss";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~ngx-toastr/toastr.css';
@@ -149,12 +150,16 @@ h5 {
     font-weight: map-get($map: $font-weights, $key: regular);
     font-size: $caption;
 }
-
+.home.mat-form-field.mat-form-field-wrapper {
+    padding-bottom: 0px !important;
+}
 .mat-form-field
 {
     font-size: small!important;
 }
-
+.mat-button-wrapper{
+    padding-inline:1em ;
+}
 .colored-text {
     color: $primary-color;
 }

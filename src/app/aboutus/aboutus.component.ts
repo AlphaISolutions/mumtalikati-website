@@ -10,7 +10,7 @@ import { AssetsService } from '../services/assetsServiceservice';
 })
 export class AboutusComponent implements OnInit {
   aboutSectionImg=assetUrl("img/aboutussetion.png");
-  aboutbuildingImg=assetUrl("img/about-building.png");
+  aboutbuildingImg=assetUrl("img/aboutusendsectionimg.png");
   markdown!:string;
   constructor(private router: Router,private assetsService:AssetsService) { }
 
@@ -29,7 +29,10 @@ export class AboutusComponent implements OnInit {
         }
       })
       .catch((error) => {
-       
+        console.error(error);
       });
+  }
+  opengoogleplay() {
+    open('https://play.google.com/store/apps/details?id=com.alphai.mumtalikati.app_mumtalikati')
   }
 }

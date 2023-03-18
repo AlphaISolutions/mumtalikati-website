@@ -27,7 +27,7 @@ export class ShortdisplayComponent implements OnInit {
   @Input() perpagenumber: number = 8;
   @Input() page = 1;
   @Input() governorateid!: number;
-  @Input() subTypeId!: number;
+  @Input() subTypeId: number | null=null;
   @Input() mastertypeid!: number;
   @Input() unitcategoryid!: number;
   @Input() minValue!: number;
@@ -44,7 +44,7 @@ export class ShortdisplayComponent implements OnInit {
     data.maxPrice = this.maxValue;
     data.minPrice = this.minValue;
     data.propertyCategory = this.unitcategoryid;
-    data.propertyMasterSubTypeID = this.subTypeId;
+    data.propertyMasterSubTypeID = this.subTypeId??null;
     data.propertyMasterTypeID = this.mastertypeid;
     this.propertyFilter(data);
     let countPayload = this.propertyfilter;
@@ -66,7 +66,6 @@ export class ShortdisplayComponent implements OnInit {
     this.loading = true;
     this.mumtalikatiservic.postPropertyFilter_Count(data)
       .then((data) => {
-        debugger
         this.filterCount = data;
         
       }
@@ -91,15 +90,18 @@ export class ShortdisplayComponent implements OnInit {
       );
   }
   async pageChange(page: any) {
+    debugger
     this.loading = true;
     let data = this.propertyfilter;
     data.listingPurposesID = this.listid;
     data.gOVERNORATEID = this.governorateid;
-    data.propertyMasterSubTypeID = this.subTypeId;
+    data.propertyMasterSubTypeID = this.subTypeId??null;
     data.propertyMasterTypeID = this.mastertypeid;
     data.propertyCategory = this.unitcategoryid;
     data.rowsNumbers = this.perpagenumber;
     data.pageNumber = page;
+    data.maxPrice=this.maxValue;
+    data.minPrice=this.minValue;
     await this.propertyFilter(data)
   }
   getsubType(subTypeId: number) {

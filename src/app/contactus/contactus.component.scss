@@ -23,8 +23,9 @@
 .card-message {
   text-align: center;
   margin: auto;
+  justify-content: center !important;
   top: 30%;
-  width: 40%;
+  width: 90%;
   max-width: 700px;
   border-radius: 13px;
   box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);

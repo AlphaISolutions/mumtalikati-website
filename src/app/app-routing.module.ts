@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'Unitscategory', component: UnitscategoryComponent},
   { path: 'propertydetails', component: PropertydetailsComponent},
   { path: '', component: HomeComponent},
-  { path: '**', component: EmptyRouteComponent}
+  { path: '**', component: HomeComponent}
 
 ];
 
