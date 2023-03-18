@@ -25,7 +25,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { UnitscategoryComponent } from './unitscategory/unitscategory.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
-import { filter } from 'rxjs';
+
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
 import { DropdownComponent } from './dropdown/dropdown.component';
@@ -33,10 +33,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { ToastrModule } from "ngx-toastr";
 import {MatListModule} from '@angular/material/list';
-import {MatChipsModule} from '@angular/material/chips';
+
 import {MatGridListModule} from '@angular/material/grid-list';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { MatCarouselModule } from 'ng-mat-carousel';
+import { MarkdownModule } from 'ngx-markdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +78,8 @@ import { MatCarouselModule } from 'ng-mat-carousel';
     MatListModule,
     MatGridListModule,
     NgxSliderModule,
-    MatCarouselModule.forRoot()
+    MatCarouselModule.forRoot(),
+    MarkdownModule.forRoot(),
     
    
   ],

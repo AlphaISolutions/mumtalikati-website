@@ -6,12 +6,16 @@ import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { SendEmail } from '../models/sendemail.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { ToastrService } from 'ngx-toastr';
+import { AssetsService } from '../services/assetsServiceservice';
 @Component({
   selector: 'app-contactus',
   templateUrl: './contactus.component.html',
   styleUrls: ['./contactus.component.scss']
 })
 export class ContactusComponent implements OnInit {
+  markdown!:string;
+  markdownselect!:string;
+
   aboutSectionImg=assetUrl("img/contact-building.jpg");
   // @ViewChild('map') mapElement: any;
   // map!: google.maps.Map ;
@@ -19,9 +23,10 @@ export class ContactusComponent implements OnInit {
   facebook = assetUrl("icons/fb.png");
   ins = assetUrl("icons/ins.png");
   linkin = assetUrl("icons/linkin.png");
+  contactus=assetUrl("doc/contact-us.md");
   sendEmail = new SendEmail();
   loading: boolean = false;
-  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private toastr: ToastrService,) {
+  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private toastr: ToastrService, private assetsService:AssetsService) {
   }
 
  async ngOnInit() {
@@ -32,6 +37,8 @@ export class ContactusComponent implements OnInit {
     //   mapTypeId: google.maps.MapTypeId.ROADMAP
     // };
     // this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
+    this.getContactus();
+    this.getContactset();
   }
   get contactusformValid() {
     if (this.contactusform.valid) {
@@ -60,5 +67,29 @@ export class ContactusComponent implements OnInit {
     }
 
 
+  }
+  async getContactus() {
+    this.assetsService.getcontact()
+      .then((data) => {
+        if (data !== null) {
+          this.markdown = data;
+      
+        }
+      })
+      .catch((error) => {
+       
+      });
+  }
+  async getContactset() {
+    this.assetsService.getcontactmum()
+      .then((data) => {
+        if (data !== null) {
+          this.markdownselect = data;
+      
+        }
+      })
+      .catch((error) => {
+       
+      });
   }
 }

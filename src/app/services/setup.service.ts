@@ -13,6 +13,7 @@ import { PropertyUnitCategory } from "../models/propertyUnitCategory.model";
   })
   export class SetupService{
     constructor(private http: HttpClient) { }
+  
     async getlistingpurposeset(): Promise<ListingPurpose[]> {
 
         return await firstValueFrom(this.http
@@ -44,4 +45,5 @@ import { PropertyUnitCategory } from "../models/propertyUnitCategory.model";
             `@mumtalikati-api/Setup/GetGovernorate`
           )).then(res => res as Governorate[]).catch(err => { return Promise.reject(err) });
       }
+
   }

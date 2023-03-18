@@ -1,16 +1,13 @@
 <div id="contact-us">
     <app-top-bar></app-top-bar>
-    <div class="container py-5">
+    <div class="container">
         <div class="row gx-4">
             <div class="col-2 col-lg-2 col-xl-3"></div>
             <div id="heading-section" class="col-8 col-lg-8 col-xl-6 px-5 py-4">
                 <div class="row">
                     <div>
-                        <h1>Contact Us</h1>
-                        <p>
-                            We're always happy to chat and offer our insights and expertise. Let's make your real estate
-                            goals a reality!
-                        </p>
+                        <markdown  [data]="markdown"></markdown>
+                    
                     </div>
                 </div>
             </div>
@@ -21,18 +18,21 @@
 </div>
 
 <div class="white-bg">
-    <div class="container px-4">
+    <div class="container">
         <div class="row section gx-5">
             <div class="col">
                 <p class=" small-colored-heading">
                     Contact Mumtalikati today!
                 </p>
-                <h3>
+                <div>
+                    <markdown  [data]="markdownselect"></markdown>
+                </div>
+                <!-- <h3>
                     Ready To Take the Next Step in Real Estate?
                 </h3>
                 <p class="secondary-font left-align">
                     Reach us anytime, anywhere. We're excited to be a part of your real estate journey
-                </p>
+                </p> -->
                 <hr>
                 <div class="row mt-4">
                     <div class="col-6">
@@ -73,7 +73,7 @@
         </div>
     </div>
 
-    <div class="card  shadow-2 border-none card-message">
+    <div class="card  shadow-2 border-none card-message ">
         <div class="card-body">
             <form *ngIf="contactusform" [formGroup]="contactusform" (ngSubmit)="onSubmit()" novalidate>
                 <div class="row gx-2">
@@ -105,7 +105,10 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Message</mat-label>
-                    <textarea matInput placeholder="message" formControlName="body" required></textarea>
+                    <input matInput placeholder="message" formControlName="body" required>
+                    <mat-error>
+                        Message is <strong>required</strong>
+                    </mat-error>
                 </mat-form-field>
                 <div class="button-wrapper">
                     <button mat-flat-button class="block" color="primary"><span *ngIf="loading"
@@ -117,14 +120,15 @@
         </div>
     </div>
 </div>
-<div class="container mt-4">
+
+<div class="container mt-5">
     <div class="row  gx-5 justify-content-center">
-        <div class="col-sm-8 col-lg-7 p-1">
-            <div class="card border-0 rounded-3 shadow-sm p-4">
+        <div class="col-sm-8 col-lg-7 ">
+            <div class="">
                 <p class="primary align-center">Official Social Media</p>
                 <h2 class="align-center">Follow Us for Real Estate Insights
                 </h2>
-                <div class="" style="place-self: center;" class=" d-flex gap-3 py-3" aria-current="true">
+                <div   class=" d-flex gap-3 py-3 icons" aria-current="true">
                     <a href="https://www.facebook.com/Mumtalikati">
                         <img [src]="facebook" alt="twbs" width="42" height="42" class=" flex-shrink-0 go-to-signin ">
                     </a>
