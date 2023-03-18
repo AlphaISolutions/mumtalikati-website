@@ -1,7 +1,7 @@
 @import "../../variables.scss";
 
 #image {
-  background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/contactus.png.png');
+  background-image: url('https://d2og5lryw1ajtt.cloudfront.net/img/contactus.png');
   // height: 40vh;
   background-repeat: no-repeat;
   background-color: transparent !important;
@@ -26,9 +26,10 @@
   top: 30%;
   width: 40%;
   max-width: 700px;
-  border-radius: 0;
+  border-radius: 13px;
   box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
   border: none;
+  background: #FFFFFF;
 
 }
 .align{
@@ -63,7 +64,7 @@
 }
 
 #contact-us {
-  background-image: url("https://d2og5lryw1ajtt.cloudfront.net/img/contactus.png.png");
+  background-image: url("https://d2og5lryw1ajtt.cloudfront.net/img/contactus.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%
@@ -85,4 +86,7 @@
   font-size: $title;
   color: $primary-color;
   text-align: left !important;
+}
+.icons{
+  justify-content: center;
 }

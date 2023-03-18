@@ -9,59 +9,30 @@
                                         <p> <img [src]="phoneimg" alt=""> +968 99160109</p>
                                         <p><img [src]="emailimag" alt=""> Support@mumtalikati.com</p>
                                 </div>
-                                <div class="col-md-7 col-sm-12">
-                                        <div class="row">
-                                                <div class="col-md-3 col-sm-6">
-                                                        <!-- <h5>Company</h5> -->
-                                                        <ul class="nav flex-column navbar-navs">
-                                                                <li class="nav-item mb-2"
-                                                                        [routerLinkActive]="['active']"
-                                                                        [routerLinkActiveOptions]="{exact:true}">
-                                                                        <a routerLink="." onclick="window.scrollTo(0,0)"
-                                                                                class=" p-0 text-muted changecolors">Home</a>
-                                                                </li>
-
-
-                                                        </ul>
-                                                </div>
-                                                <div class="col-md-3 col-sm-6">
-                                                        <!-- <h5>Useful Link</h5> -->
-                                                        <ul class="nav flex-column navbar-navs">
-                                                                <li class="nav-item mb-2"
-                                                                        [routerLinkActive]="['active']"><a
-                                                                                routerLink="aboutus"
-                                                                                onclick="window.scrollTo(0,0)"
-                                                                                class="p-0 text-muted changecolors">About Us</a></li>
-
-
-                                                        </ul>
-                                                </div>
-                                                <div class="col-md-3 col-sm-6">
-                                                        <!-- <h5>Quick Link</h5> -->
-                                                        <ul class="nav flex-column navbar-navs">
-                                                                <li class="nav-item mb-2"
-                                                                        [routerLinkActive]="['active']"><a
-                                                                                routerLink="propertydetails"
-                                                                                onclick="window.scrollTo(0,0)"
-                                                                                class=" p-0 text-muted changecolors">Property</a>
-                                                                </li>
-
-                                                        </ul>
-                                                </div>
-                                                <div class="col-md-3 col-sm-6">
-                                                        <!-- <h5>Navigation</h5> -->
-                                                        <ul class="nav flex-column navbar-navs">
-                                                                <li class="nav-item mb-2"
-                                                                        [routerLinkActive]="['active']"><a
-                                                                                routerLink="contactus"
-                                                                                onclick="window.scrollTo(0,0)"
-                                                                                class=" p-0 text-muted changecolors">Contact Us</a>
-
-                                                        </ul>
-                                                </div>
+                                <div class="col">
+                                        <div class="col">
+                                                <h5>Company</h5>
+                                                <ul class="nav flex-column navbar-navs">
+                                                        <li class="nav-item mb-2" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="." onclick="window.scrollTo(0,0)"
+                                                                class="p-0 text-muted changecolors">Home</a></li>
+                                                        <li class="nav-item mb-2" [routerLinkActive]="['active']" ><a routerLink="propertydetails"
+                                                                        onclick="window.scrollTo(0,0)"
+                                                                        class="p-0 text-muted changecolors">Property</a></li>
+                                                        <li class="nav-item mb-2" [routerLinkActive]="['active']"><a routerLink="aboutus"
+                                                                onclick="window.scrollTo(0,0)"
+                                                                class=" p-0 text-muted changecolors">About us</a>
+                                                        <li class="nav-item mb-2" [routerLinkActive]="['active']"><a routerLink="contactus"
+                                                                        onclick="window.scrollTo(0,0)"
+                                                                        class=" p-0 text-muted changecolors">Contact us</a>
+                                                        </li>
+                                                        <li class="nav-item mb-2"><a routerLink="."
+                                                                onclick="window.scrollTo(0,0)"
+                                                                class=" p-0 text-muted">Support 24/7</a>
+                                                        
+                                                </ul>
                                         </div>
 
-                                        <div class="row mt-5">
+                                        <!-- <div class="row mt-5">
                                                 <div class="">
                                                         <form>
                                                                 <div class="align-items-start inline">
@@ -73,14 +44,85 @@
                                                                 </div>
                                                         </form>
                                                 </div>
+                                        </div> -->
+                                </div>
+                                <div class="col">
+                                        <div class="col">
+                                                <h5>Useful Link</h5>
+                                                <ul class="nav flex-column ">
+                                                        <li class="nav-item mb-2"><a routerLink="." onclick="window.scrollTo(0,0)"
+                                                                class="p-0 text-muted">Help Center</a></li>
+                                                        <li class="nav-item mb-2"><a routerLink="."
+                                                                        onclick="window.scrollTo(0,0)"
+                                                                        class="p-0 text-muted">Knowledgebase</a></li>
+                                                        <li class="nav-item mb-2"><a routerLink="."
+                                                                onclick="window.scrollTo(0,0)"
+                                                                class=" p-0 text-muted">Our Agent</a>
+                                                        <li class="nav-item mb-2"><a routerLink="."
+                                                                        onclick="window.scrollTo(0,0)"
+                                                                        class=" p-0 text-muted">Sellers</a>
+                                                        </li>
+                                                        <li class="nav-item mb-2"><a routerLink="."
+                                                                onclick="window.scrollTo(0,0)"
+                                                                class=" p-0 text-muted">Buyers</a>
+                                                        
+                                                </ul>
                                         </div>
+
+                                </div>
+                                <div class="col">
+                                        <div class="col">
+                                                <h5>Quick Link</h5>
+                                                <ul class="nav flex-column ">
+                                                        <li class="nav-item mb-2"><a routerLink="" onclick="window.scrollTo(0,0)"
+                                                                class="p-0 text-muted">Blog</a></li>
+                                                        <li class="nav-item mb-2"><a routerLink="."
+                                                                        onclick="window.scrollTo(0,0)"
+                                                                        class="p-0 text-muted">Career</a></li>
+                                                        <li class="nav-item mb-2"><a routerLink="."
+                                                                onclick="window.scrollTo(0,0)"
+                                                                class=" p-0 text-muted">FAQ</a>
+                                                        <li class="nav-item mb-2"><a routerLink="."
+                                                                        onclick="window.scrollTo(0,0)"
+                                                                        class=" p-0 text-muted">Landlords</a>
+                                                        </li>
+                                                        <li class="nav-item mb-2"><a routerLink="."
+                                                                onclick="window.scrollTo(0,0)"
+                                                                class=" p-0 text-muted">Compliance</a>
+                                                </li>
+                                                </ul>
+                                        </div>
+
+                                </div>
+                                <div class="col">
+                                        <div class="col">
+                                                <h5>Navigation</h5>
+                                                <ul class="nav flex-column ">
+                                                        <li class="nav-item mb-2"><a routerLink="." onclick="window.scrollTo(0,0)"
+                                                                class="p-0 text-muted">News</a></li>
+                                                        <li class="nav-item mb-2"><a routerLink="."
+                                                                        onclick="window.scrollTo(0,0)"
+                                                                        class="p-0 text-muted">Testimonials</a></li>
+                                                        <li class="nav-item mb-2"><a routerLink="."
+                                                                onclick="window.scrollTo(0,0)"
+                                                                class=" p-0 text-muted">Portofolio</a>
+                                                        <li class="nav-item mb-2"><a routerLink="."
+                                                                        onclick="window.scrollTo(0,0)"
+                                                                        class=" p-0 text-muted">Research</a>
+                                                        </li>
+                                                        <li class="nav-item mb-2"><a routerLink="."
+                                                                onclick="window.scrollTo(0,0)"
+                                                                class=" p-0 text-muted">Consultancy</a>
+                                                </ul>
+                                        </div>
+
                                 </div>
                         </div>
                         <div class="row">
                                 <div class=" col d-none d-lg-block">
 
                                 </div>
-                                <!-- <div class="col mt-2">
+                                <div class="col mt-2">
                                         <form>
                                                 <div class="align-items-start inline">
                                                         <input type="text" class="form-control me-2 bg-dark input-box "
@@ -89,7 +131,7 @@
                                                                 Now</button>
                                                 </div>
                                         </form>
-                                </div> -->
+                                </div>
                         </div>
                         <!-- <hr> -->
                         <div class="copywrite mt-4 p-0">

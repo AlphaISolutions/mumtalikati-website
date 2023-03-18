@@ -1,23 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { assetUrl } from 'src/single-spa/asset-url';
 import { ListingPurpose } from '../models/listing-purpose.model';
 import { PropertyMasterType } from '../models/property-master-type.model';
-import { PropertySubType } from '../models/propertySubType.model';
 import { PropertyUnitCategory } from '../models/propertyUnitCategory.model';
 import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { SetupService } from '../services/setup.service';
-import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { listingPurposeTypeEnum, propertyMasterTypeEnum, PropertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
+import { ModalDismissReasons,  NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { listingPurposeTypeEnum, propertyMasterTypeEnum,  propertySubTypeEnum } from '../models/enums';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { Governorate } from '../models/governorate.model';
-import { forkJoin, map } from 'rxjs';
 import { SetFiltersServive } from '../services/setfilters.servive';
-import { Options, LabelType } from "@angular-slider/ngx-slider";
+import { Options } from "@angular-slider/ngx-slider";
 import { MatTabChangeEvent } from '@angular/material/tabs';
 @Component({
   selector: 'app-propertydetails',
@@ -57,10 +54,10 @@ export class PropertydetailsComponent implements OnInit {
   hovercolor = { ' background-color': 'red' }
   public governorateid: number | null = null;
   btnColor = { 'background-color': '#9e2a2b' }
-  activeroutes = { 'color': '#9e2a2b' }
+  activeroutes = { 'color': '#9e2a2b !important', 'font-weight':'500' };
   id: number | null = null;
   governorate: Governorate[] = [];
-  public minValue: number | null = 0;
+  minValue: number =0;
   public maxValue: number | null = 10000;
   options: Options = {
     floor: 0,
@@ -83,7 +80,6 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   async ngOnInit() {
-  
     this.propertyFilterform = this.rxFormBuilder.formGroup(this.propertyfilter);
     let data = this.propertyFilterform.value as PropertyFilter;
     data.listingPurposesID = this.listid;
@@ -97,7 +93,11 @@ export class PropertydetailsComponent implements OnInit {
     let countPayload = this.propertyFilterform.value as PropertyFilter;
     countPayload.listingPurposesID = this.listid;
     countPayload.gOVERNORATEID = this.governorateid;
-    countPayload.propertyMasterTypeID=this.mastertypeid;
+    countPayload.maxPrice = this.maxValue;
+    countPayload.minPrice = this.minValue;
+    countPayload.propertyCategory = this.unitcategoryid;
+    countPayload.propertyMasterSubTypeID = this.subTypeId;
+    countPayload.propertyMasterTypeID = this.mastertypeid;
     this.postPropertyFilter_Count(countPayload);
     this.configs = {
       backdrop: true,
@@ -268,7 +268,6 @@ export class PropertydetailsComponent implements OnInit {
       });
   }
   async postPropertyFilter_Count(data: PropertyFilter) {
-    debugger;
     this.loading = true;
     this.mumtalikatiservic.postPropertyFilter_Count(data)
       .then((data) => {
@@ -513,7 +512,7 @@ export class PropertydetailsComponent implements OnInit {
   }
   reSet() {
 
-    this.minValue = null;
+    this.minValue = null!;
     this.maxValue = 10000;
   }
   get() {

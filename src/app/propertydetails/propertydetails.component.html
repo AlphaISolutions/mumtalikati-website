@@ -135,15 +135,15 @@
 
                                     <div class="col-6 mt-4">
                                         <p class="textalign mb-0">Min:</p>
-                                        <mat-form-field appearance="outline" class="">
-                                            <input matInput placeholder="0" [value]="minValue" [(ngModel)]="minValue">
+                                        <mat-form-field appearance="outline" >
+                                            <input matInput placeholder="0" type="number" [value]="minValue" [(ngModel)]="minValue">
 
                                         </mat-form-field>
                                     </div>
                                     <div class="col-6 mt-4">
                                         <p class="textalign mb-0">Max:</p>
                                         <mat-form-field appearance="outline">
-                                            <input matInput placeholder="any" [value]="maxValue" [(ngModel)]="maxValue">
+                                            <input matInput placeholder="any" type="number" [value]="maxValue" [(ngModel)]="maxValue">
                                         </mat-form-field>
                                     </div>
                                 </div>

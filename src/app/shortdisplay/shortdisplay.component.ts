@@ -66,7 +66,9 @@ export class ShortdisplayComponent implements OnInit {
     this.loading = true;
     this.mumtalikatiservic.postPropertyFilter_Count(data)
       .then((data) => {
+        debugger
         this.filterCount = data;
+        
       }
       )
       .catch((error) => {

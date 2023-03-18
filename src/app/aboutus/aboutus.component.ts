@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { assetUrl } from 'src/single-spa/asset-url';
+import { AssetsService } from '../services/assetsServiceservice';
 
 @Component({
   selector: 'app-aboutus',
@@ -10,11 +11,25 @@ import { assetUrl } from 'src/single-spa/asset-url';
 export class AboutusComponent implements OnInit {
   aboutSectionImg=assetUrl("img/aboutussetion.png");
   aboutbuildingImg=assetUrl("img/about-building.png");
-  constructor(private router: Router,) { }
+  markdown!:string;
+  constructor(private router: Router,private assetsService:AssetsService) { }
 
   ngOnInit(): void {
+    this.getAbout();
   }
   goTo(url: string) {
     this.router.navigateByUrl(url)
+  }
+  async getAbout() {
+    this.assetsService.getAbout()
+      .then((data) => {
+        if (data !== null) {
+          this.markdown = data;
+      
+        }
+      })
+      .catch((error) => {
+       
+      });
   }
 }
