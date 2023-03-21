@@ -103,6 +103,7 @@ export class ShortdisplayComponent implements OnInit {
     return propertySubTypeEnum(subTypeId);
   }
   onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number, landLordID: number, propertyMasterTypeID: number) {
+    debugger
     this.router.navigate(
       ['Unitscategory'],
       { queryParams: { 'propertyMasterID': propertyMasterID, 'listingPurposeID': listingPurposeID, 'unitCategoryID': unitCategoryID, 'landLordID': landLordID, 'propertyMasterTypeID': propertyMasterTypeID } });

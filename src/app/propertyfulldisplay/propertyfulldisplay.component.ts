@@ -42,14 +42,17 @@ export class PropertyfulldisplayComponent implements OnInit {
   public page: number = 1;
   public perpagenumber: number = 8;
   listpurID!: any;
+  PropertySubTypeID!: any;
   pMTID!: number;
   btnColor={'background-color':'#9e2a2b'}
   closeResult = '';
   maxheight={'maxheight':'80vh !important'}
+
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight':'500' };
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router,private modalService: NgbModal,private clipboard: Clipboard) {
     this.listpurID = this.router.getCurrentNavigation()!.extras.state!["listingPurposeID"]!;
-
+    this.PropertySubTypeID = this.router.getCurrentNavigation()!.extras.state!["PropertySubTypeID"]!;
+    
   }
   async ngOnInit() {
 
