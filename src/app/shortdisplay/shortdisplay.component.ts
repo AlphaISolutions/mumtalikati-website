@@ -32,7 +32,7 @@ export class ShortdisplayComponent implements OnInit {
   @Input() unitcategoryid!: number;
   @Input() minValue!: number;
   @Input() maxValue!: number;
-  config: any;
+
   pagination: boolean = false;
   constructor(private mumtalikatiservic: MumtalikatiService, private router: Router,) { }
   ngOnInit(): void {
@@ -56,18 +56,14 @@ export class ShortdisplayComponent implements OnInit {
     countPayload.propertyMasterSubTypeID = this.subTypeId;
     countPayload.propertyMasterTypeID = this.mastertypeid;
     this.postPropertyFilter_Count(countPayload);
-    this.config = {
-      itemsPerPage: this.perpagenumber,
-      currentPage: this.page,
-      totalItems: this.filterCount
-    };
+
   }
   async postPropertyFilter_Count(data: PropertyFilter) {
     this.loading = true;
     this.mumtalikatiservic.postPropertyFilter_Count(data)
       .then((data) => {
         this.filterCount = data;
-        
+      
       }
       )
       .catch((error) => {
@@ -90,7 +86,6 @@ export class ShortdisplayComponent implements OnInit {
       );
   }
   async pageChange(page: any) {
-    debugger
     this.loading = true;
     let data = this.propertyfilter;
     data.listingPurposesID = this.listid;

@@ -9,7 +9,7 @@
             <ul class="breadcrumb row p-0 mt-4">
                 <div class="col float-start ">
                     <li><a href="#" (click)="backotsearch()" (click)="addItem(propertyDetail[0].listingPurposeID!)"><i
-                                class="fa fa-angle-left" aria-hidden="true"></i>Back to Search</a></li>
+                                class="fa fa-angle-left pe-2" aria-hidden="true"></i>Back to Search</a></li>
 
                 </div>
                 <div class="col" *ngIf="propertyDetail">
@@ -26,7 +26,7 @@
         </div>
 
         <div *ngFor="let property of propertyDetail">
-            <div class="row mt-4">
+            <div class="row mt-4 pb-4">
                 <div class="col-md-4">
                     <div>
                         <h2 class="h2color">
@@ -108,17 +108,22 @@
 
                         </div>
                     </div>
-                    <div class="mt-2">
-                        <button mat-stroked-button color="primary" class="me-4 px-5 border-r mb-md-2"
+                    <div class="row gx-2">
+                        <div class="col">
+                            <button mat-stroked-button color="primary" class=" px-5 border-r  "
                             (click)="oncallclick(call)">Call</button>
-                        <button mat-raised-button color="primary" class="px-5"
+                        </div>
+                        <div class="col">
+                            <button mat-raised-button color="primary" class="px-5"
                             (click)="oncallclick(call)">Message</button>
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-md-8 mt-4" *ngIf="property.imageString">
                     <div [style.height]="auto">
                         <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="accent"
-                            maxWidth="auto" proportion="25" slides="5" [loop]="true" [hideArrows]="false"
+                            maxWidth="auto"  proportion="50" slides="5" [loop]="true" [hideArrows]="false"
                             [hideIndicators]="false" [useKeyboard]="false" [useMouseWheel]="false" orientation="ltr">
                             <mat-carousel-slide #matCarouselSlide
                                 *ngFor="let image of property.imageString; let i = index"
@@ -223,10 +228,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </ng-template>
 
 </ng-template>

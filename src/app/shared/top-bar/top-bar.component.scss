@@ -21,7 +21,10 @@ a:hover{
   color: white !important;
 }
 .nav-link:hover, .nav-link:focus {
-  color: $primary-color !important;
+  color: #FFFF !important;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  
 }
 .nav-btn-link {
   color: white !important;
@@ -42,4 +45,7 @@ a{
 }
 .no-inline-padding{
   padding-inline: 0px !important;
+}
+.nav-item{
+  cursor: pointer !important;
 }

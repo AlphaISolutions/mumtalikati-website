@@ -180,7 +180,6 @@ export class PropertydetailsComponent implements OnInit {
   }
 
   open(content: any) {
-
     this.mastertypeid = 1;
     let data = this.propertyFilterform.value as PropertyFilter;
     data.listingPurposesID = this.listid
@@ -272,7 +271,7 @@ export class PropertydetailsComponent implements OnInit {
     this.mumtalikatiservic.postPropertyFilter_Count(data)
       .then((data) => {
         this.filterCount = data;
-        console.log(data)
+       
       }
 
       )
