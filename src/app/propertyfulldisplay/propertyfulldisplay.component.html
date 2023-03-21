@@ -78,14 +78,14 @@
                                 </tr>
                                
                                 <tr *ngIf="PropertySubTypeID ==1 || PropertySubTypeID ==9  ; else noOfFloor">
-                                    <th class="header">Floor #</th>
-                                    <td class="propertyb">{{property.floorNumber}}</td>
+                                    <th class="header"> No of Floor(s)</th>
+                                    <td class="propertyb">{{property.numberofFloors}}</td>
 
                                 </tr>
                                 <ng-template #noOfFloor>
                                 <tr *ngIf="property.numberofFloors !=null">
-                                    <th class="header">No of Floor #</th>
-                                    <td class="propertyb">{{property.numberofFloors}}</td>
+                                    <th class="header">Floor #</th>
+                                    <td class="propertyb">{{property.floorNumber}}</td>
 
                                 </tr>
                             </ng-template>
@@ -123,11 +123,11 @@
                     </div>
                     <div class="row gx-2">
                         <div class="col">
-                            <button mat-stroked-button color="primary" class=" px-5 border-r  "
+                            <button mat-stroked-button color="primary" class=" px-5 border-r btn-width " 
                             (click)="oncallclick(call)">Call</button>
                         </div>
                         <div class="col">
-                            <button mat-raised-button color="primary" class="px-5"
+                            <button mat-raised-button color="primary" class="px-5 btn-width" 
                             (click)="oncallclick(call)">Message</button>
                         </div>
                         
