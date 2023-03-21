@@ -91,7 +91,7 @@ export class UnitscategoryComponent implements OnInit {
   onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number, statuss: number) {
     this.router.navigate(['propertyfulldisplay'],
       { queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'statuss': statuss },
-      state: { 'listingPurposeID': this.listingPurposeID  } });
+      state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': this.subTypeId  } });
   }
   getenum(propertyMasterTypeID: number) {
 

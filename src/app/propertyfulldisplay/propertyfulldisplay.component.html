@@ -76,11 +76,24 @@
                                     <td class="propertyb">{{property.builtYear}}</td>
 
                                 </tr>
-                                <tr>
+                               
+                                <tr *ngIf="PropertySubTypeID ==1 || PropertySubTypeID ==9  ; else noOfFloor">
                                     <th class="header">Floor #</th>
                                     <td class="propertyb">{{property.floorNumber}}</td>
 
                                 </tr>
+                                <ng-template #noOfFloor>
+                                <tr *ngIf="property.numberofFloors !=null">
+                                    <th class="header">No of Floor #</th>
+                                    <td class="propertyb">{{property.numberofFloors}}</td>
+
+                                </tr>
+                            </ng-template>
+                                <!-- <tr *ngIf="property.floorNumber !=0">
+                                    <th class="header">Floor #</th>
+                                    <td class="propertyb">{{property.floorNumber}}</td>
+
+                                </tr> -->
                                 <tr>
                                     <th class="header">Status</th>
                                     <td class="propertyb">{{getstatus(statuss)}}</td>
