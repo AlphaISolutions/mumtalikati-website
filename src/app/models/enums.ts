@@ -81,7 +81,7 @@ export function propertyMasterTypeEnum(propertyMasterTypeID: number) {
         case 3:
             return 'ResidentalCommercial';
         default:
-            return "Unknown";
+            return 'All';
     }
 
 }
@@ -148,7 +148,7 @@ export function getPropertyUnitCategoryEnum(unitcatID: number) {
         case 12:
             return 'WholeBuilding';
         default:
-            return "Unknown";
+            return '';
     }
 
 }
