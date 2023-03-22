@@ -30,12 +30,12 @@
                 <div class="col-md-4">
                     <div>
                         <h2 class="h2color">
-                            For Rent
+                            For {{getlist(listpurID)}}
                         </h2>
                     </div>
                     <div class="group">
                         <h4>
-                            Bilal Group’s
+                            {{property.propertyMasterName}} 
                         </h4>
                     </div>
                     <div>
@@ -77,23 +77,18 @@
 
                                 </tr>
                                
-                                <tr *ngIf="PropertySubTypeID ==1 || PropertySubTypeID ==9  ; else noOfFloor">
-                                    <th class="header"> No of Floor(s)</th>
-                                    <td class="propertyb">{{property.numberofFloors}}</td>
+                               <tr *ngIf="PropertySubTypeID ==1 || PropertySubTypeID ==9  ; else noOfFloor">
+                                    <th class="header">Floor #</th>
+                                    <td class="propertyb">{{property.floorNumber}}</td>
+
 
                                 </tr>
                                 <ng-template #noOfFloor>
-                                <tr *ngIf="property.numberofFloors !=null">
-                                    <th class="header">Floor #</th>
-                                    <td class="propertyb">{{property.floorNumber}}</td>
-
-                                </tr>
-                            </ng-template>
-                                <!-- <tr *ngIf="property.floorNumber !=0">
-                                    <th class="header">Floor #</th>
-                                    <td class="propertyb">{{property.floorNumber}}</td>
-
-                                </tr> -->
+                                    <tr>
+                                        <th class="header">No of Floor(s)</th>
+                                        <td class="propertyb">{{property.numberofFloors}}</td>
+                                    </tr>
+                                </ng-template>
                                 <tr>
                                     <th class="header">Status</th>
                                     <td class="propertyb">{{getstatus(statuss)}}</td>
@@ -104,7 +99,7 @@
                     </div>
                     <div id="main">
                         <p><img class="pe-2 addess h2color" [src]=" location">{{property.addressStr}}</p>
-                        <!-- <h4>Landlord</h4> -->
+                     
                     </div>
                     <div class=" d-flex gap-3 py-3" aria-current="true">
                         <div *ngIf="imageUser">
@@ -155,9 +150,15 @@
                              <img [src]="favoriteicon" alt="" class="favorite">
                         </div> -->
                         <mat-card-content>
-                            <h5>
+                            <h5 *ngIf="listpurID ==1   ; else nolistpurposeid">
                                 OMR {{property.rentPrice}}/mon
                             </h5>
+                            <ng-template #nolistpurposeid>
+                                <h5>
+                                    OMR {{property.sellPrice}}/mon
+                                </h5>
+                            </ng-template>
+                           
                             <div class="dis-flex" clas="pe-4">
                                 <p class="icon pe-2"><img class="pe-2" [src]="areaimg">{{property.sqft}}SQM</p>
                                 <p class="icon pe-2"><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} Bedrooms
