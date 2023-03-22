@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ListingPurpose } from '../models/listing-purpose.model';
 import { PropertyMasterType } from '../models/property-master-type.model';
@@ -6,8 +6,8 @@ import { PropertyUnitCategory } from '../models/propertyUnitCategory.model';
 import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { SetupService } from '../services/setup.service';
-import { ModalDismissReasons,  NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { listingPurposeTypeEnum, propertyMasterTypeEnum,  propertySubTypeEnum } from '../models/enums';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { listingPurposeTypeEnum, propertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { FormGroup } from '@angular/forms';
@@ -16,6 +16,7 @@ import { Governorate } from '../models/governorate.model';
 import { SetFiltersServive } from '../services/setfilters.servive';
 import { Options } from "@angular-slider/ngx-slider";
 import { MatTabChangeEvent } from '@angular/material/tabs';
+
 @Component({
   selector: 'app-propertydetails',
   templateUrl: './propertydetails.component.html',
@@ -37,11 +38,11 @@ export class PropertydetailsComponent implements OnInit {
   public listid: number = 1;
   Rent: number = 1;
   unitcategoryid: number | null = null;
-  selectedTab!: string;
+  selectedTab: number = 0;
   closeResult = '';
   configs: any
   propertyMasterTypeId: number = 1;
-  mastertypeid: number = 1;
+  mastertypeid: number | null = null;
   subTypeId!: number | null;
   perpagenumber = 8;
   color = { 'color': 'black!important' };
@@ -54,11 +55,13 @@ export class PropertydetailsComponent implements OnInit {
   hovercolor = { ' background-color': 'red' }
   public governorateid: number | null = null;
   btnColor = { 'background-color': '#9e2a2b' }
-  activeroutes = { 'color': '#9e2a2b !important', 'font-weight':'500' };
+  activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   id: number | null = null;
   governorate: Governorate[] = [];
-  minValue: number =0;
+  minValue: number = 0;
   public maxValue: number | null = 10000;
+  @ViewChild('tabGroup') tabGroup: any;
+
   options: Options = {
     floor: 0,
     ceil: 10000
@@ -86,9 +89,9 @@ export class PropertydetailsComponent implements OnInit {
     data.rowsNumbers = this.perpagenumber;
     data.pageNumber = this.page;
     data.gOVERNORATEID = this.governorateid;
-    data.propertyMasterTypeID=this.mastertypeid;
-    data.maxPrice=this.maxValue;
-    data.minPrice=this.minValue;
+    data.propertyMasterTypeID = this.mastertypeid;
+    data.maxPrice = this.maxValue;
+    data.minPrice = this.minValue;
     this.propertyFilter(data);
     let countPayload = this.propertyFilterform.value as PropertyFilter;
     countPayload.listingPurposesID = this.listid;
@@ -107,6 +110,7 @@ export class PropertydetailsComponent implements OnInit {
       scrollable: true,
     };
     this.initiaalizefilters()
+    this.getPropertyUnitCategory(this.mastertypeid, this.listid);
   }
   async initiaalizefilters() {
     this.listingpupose = await this.setupFilterServive.getListingPurpose();
@@ -149,7 +153,6 @@ export class PropertydetailsComponent implements OnInit {
 
   }
   // getFilterdata() {
-  //   debugger
   //   this.loading = true;
   //   forkJoin({
   //     propertyListPurpose: this.setFiltersServive.getListingPurpose() ,
@@ -179,25 +182,7 @@ export class PropertydetailsComponent implements OnInit {
     this.listid = listingPurposeType;
   }
 
-  open(content: any) {
-    this.mastertypeid = 1;
-    let data = this.propertyFilterform.value as PropertyFilter;
-    data.listingPurposesID = this.listid
-    data.rowsNumbers = this.perpagenumber;
-    data.pageNumber = this.page;
-    data.propertyMasterTypeID = this.mastertypeid;
-    this.propertyFilter(data)
-    this.postPropertyFilter_Count(data)
-    this.modalService.open(content, this.configs).result.then(
 
-      (result) => {
-        this.closeResult = `Closed with: ${result}`;
-      },
-      (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      },
-    );
-  }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -271,7 +256,7 @@ export class PropertydetailsComponent implements OnInit {
     this.mumtalikatiservic.postPropertyFilter_Count(data)
       .then((data) => {
         this.filterCount = data;
-       
+
       }
 
       )
@@ -285,6 +270,7 @@ export class PropertydetailsComponent implements OnInit {
     this.mumtalikatiservic.postPropertyFilter(data)
       .then((data) => {
         if (data) {
+
           this.ownerPropertyFilter = data
         }
         this.loading = false;
@@ -423,7 +409,8 @@ export class PropertydetailsComponent implements OnInit {
 
     }
   }
-  getPropertyUnitCategory(id: any) {
+  getPropertyUnitCategory(id: any, listid: any) {
+
     switch (id) {
       case 1:
         {
@@ -441,35 +428,82 @@ export class PropertydetailsComponent implements OnInit {
         return commercialList;
       }
       case 3: {
-        let residentialcommercialList = this.propertyUnitCategoryType
 
-        return residentialcommercialList;
+        if (listid == 1) {
+          let residentialcommercialList = this.propertyUnitCategoryType.filter(x => x.unitCategory === 1 || x.unitCategory === 2
+            || x.unitCategory === 3 || x.unitCategory === 4 || x.unitCategory === 5 || x.unitCategory == 6 || x.unitCategory == 7 || x.unitCategory == 8)
+          return residentialcommercialList;
+        }
+        else {
+          let residentialcommercialList = this.propertyUnitCategoryType.filter(x => x.unitCategory === 1 || x.unitCategory === 2
+            || x.unitCategory === 3 || x.unitCategory === 4 || x.unitCategory === 5 || x.unitCategory == 6 || x.unitCategory == 7 || x.unitCategory == 8 || x.unitCategory == 12)
+          return residentialcommercialList;
+
+        }
+
+
+        // return residentialcommercialList;
       }
       default:
-        {
-          return this.propertyUnitCategoryType;
+        if (listid == 1) {
+          let residentialcommercialList = this.propertyUnitCategoryType.filter(x => x.unitCategory === 1 || x.unitCategory === 2
+            || x.unitCategory === 3 || x.unitCategory === 4 || x.unitCategory === 5 || x.unitCategory == 6 || x.unitCategory == 7 || x.unitCategory == 8)
+          return residentialcommercialList;
+        }
+        else {
+          let residentialcommercialList = this.propertyUnitCategoryType.filter(x => x.unitCategory === 1 || x.unitCategory === 2
+            || x.unitCategory === 3 || x.unitCategory === 4 || x.unitCategory === 5 || x.unitCategory == 6 || x.unitCategory == 7 || x.unitCategory == 8 || x.unitCategory == 12)
+          return residentialcommercialList;
+
         }
 
     }
   }
 
+  open(content: any) {
+    // this.mastertypeid = 1;
+    // this.subTypeId=null;
+    // let data = this.propertyFilterform.value as PropertyFilter;
+    // data.listingPurposesID = this.listid
+    // data.rowsNumbers = this.perpagenumber;
+    // data.pageNumber = this.page;
+    // data.propertyMasterTypeID = 1;
+    // this.propertyFilter(data)
+    // this.postPropertyFilter_Count(data)
+    // this.selectedTab = 0;
+    this.get(1)
+    this.modalService.open(content, this.configs).result.then(
+
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      },
+    );
+  }
+
   tabChanged = async (tabChangeEvent: MatTabChangeEvent): Promise<void> => {
+    this.selectedTab = tabChangeEvent.index
     switch (tabChangeEvent.index) {
       case 0: {
-        this.mastertypeid = 1;
-        this.get();
+        // this.mastertypeid = 1;
+        // this.subTypeId = null;
+        this.get(1);
         break;
       }
 
       case 1: {
-        this.mastertypeid = 2;
-        this.get();
+        // this.mastertypeid = 2;
+        // this.subTypeId = null
+        this.get(2);
         break;
       }
 
       case 2: {
-        this.mastertypeid = 3
-        this.get();
+        // this.mastertypeid = 3
+        // this.subTypeId = null
+        this.get(3);
         break;
       }
 
@@ -514,28 +548,42 @@ export class PropertydetailsComponent implements OnInit {
     this.minValue = null!;
     this.maxValue = 10000;
   }
-  get() {
+  get(mastertypeid: number) {
     let data = this.propertyFilterform.value as PropertyFilter;
     data.listingPurposesID = this.listid
     data.rowsNumbers = this.perpagenumber;
     data.pageNumber = this.page;
-    data.propertyMasterTypeID = this.mastertypeid;
-    this.propertyFilter(data)
+    data.propertyMasterTypeID = mastertypeid;
+    data.propertyMasterSubTypeID = null;
     this.postPropertyFilter_Count(data)
+    this.propertyFilter(data)
+
   }
-  onsubtypeid(subTypeid:number){
-    this.subTypeId=subTypeid;
+  onsubtypeid(subTypeid: number) {
+    if (subTypeid == -1) {
+      this.mastertypeid = this.selectedTab + 1;
+      this.subTypeId = null
+    } else {
+      this.mastertypeid = this.selectedTab + 1;
+      this.subTypeId = subTypeid;
+    }
     let data = this.propertyFilterform.value as PropertyFilter;
     data.listingPurposesID = this.listid
     data.rowsNumbers = this.perpagenumber;
     data.pageNumber = this.page;
     data.propertyMasterTypeID = this.mastertypeid;
-    data.propertyMasterSubTypeID=this.subTypeId;
+    data.propertyMasterSubTypeID = this.subTypeId;
     this.propertyFilter(data)
     this.postPropertyFilter_Count(data);
     this.modalService.dismissAll()
   }
-  getsubTyp(subTypeId:number){
+  getsubTyp(subTypeId: number) {
     return propertySubTypeEnum(subTypeId)
+  }
+  resetpropertyCategory() {
+    this.mastertypeid = null;
+    this.subTypeId = null;
+    this.selectedTab = 0;
+    this.modalService.dismissAll()
   }
 }

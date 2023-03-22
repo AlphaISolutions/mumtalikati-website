@@ -6,8 +6,11 @@
             <div id="heading-section" class="col-8 col-lg-8 col-xl-6 px-5 py-4">
                 <div class="row">
                     <div>
-                        <markdown  [data]="markdown"></markdown>
-                    
+                        <!-- <markdown  [data]="markdown"></markdown> -->
+                        <h1>Contact Us</h1>
+                        <p class="text-center">
+                            We're always happy to chat and offer our insights and expertise. Let's make your real estate goals a reality!
+                        </p>
                     </div>
                 </div>
             </div>
@@ -82,7 +85,7 @@
                             <mat-label>First Name</mat-label>
                             <input matInput placeholder="First Name" formControlName="name" required>
                             <mat-error>
-                                First Name is <strong>required</strong>
+                                Full Name is <strong>required</strong>
                             </mat-error>
                         </mat-form-field>
                     </div>
@@ -96,6 +99,13 @@
                         </mat-form-field>
                     </div>
                 </div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput  placeholder="986 123 4567"  required>
+                    <mat-error>
+                        Phone Number is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Subject</mat-label>
                     <input matInput placeholder="Subject" formControlName="subject" required>

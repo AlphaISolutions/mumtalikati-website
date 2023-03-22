@@ -167,17 +167,19 @@
     // border: 0.8px solid #D9D9D9;
     // border-radius: 30px;
 }
-.tab-btn{
-    box-sizing: border-box;
 
+.tab-btn {
+    box-sizing: border-box;
     width: 100%;
     height: 32px;
     left: 851px;
     top: 397px;
-    border: 0.8px solid #345C66;
+    // border: 0.8px solid #345C66;
+    border: 0.8px solid #D9D9D9;
     border-radius: 30px;
-    background-color: #FFFFFF;
+    background-color: #fff;
 }
+
 .border-btn {
     box-sizing: border-box;
 
@@ -202,7 +204,14 @@
     color: #FFFFFF;
 }
 
-.active, .tab-btn:hover{
+.active,
+.tab-btn:hover {
     background-color: rgba(52, 92, 102, 0.2);
     color: #345C66;
+}
+
+.btn-btn-danger {
+    background: rgba(52, 92, 102, 0.2);
+    border: 0.8px solid #345C66;
+    border-radius: 30px;
 }
