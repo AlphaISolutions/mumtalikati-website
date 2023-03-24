@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
@@ -10,11 +10,11 @@ import { map } from 'rxjs';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Clipboard } from '@angular/cdk/clipboard';
 @Component({
-  selector: 'app-propertyfulldisplay',
-  templateUrl: './propertyfulldisplay.component.html',
-  styleUrls: ['./propertyfulldisplay.component.scss']
+  selector: 'app-plotdetails',
+  templateUrl: './plotdetails.component.html',
+  styleUrls: ['./plotdetails.component.scss']
 })
-export class PropertyfulldisplayComponent implements OnInit {
+export class PlotdetailsComponent implements OnInit {
   pmid!: number;
   propertyUnitid!: number;
   unitcatID!: number;
@@ -163,4 +163,3 @@ export class PropertyfulldisplayComponent implements OnInit {
       return listingPurposeTypeEnum(listid)
     }
 }
-

@@ -19,7 +19,7 @@
                             routerLink="../propertydetails">{{getenum(propertyDetail[0].propertyMasterTypeID!)}}</a>
                     </li>
                     <li *ngIf="propertyDetail[0]"><a href="#">{{propertyDetail[0].propertySubTypeName}}</a></li>
-                    <li *ngIf="propertyDetail[0]">{{propertyDetail[0].propertyUnitDescription}}</li>
+                
                 </div>
                 <div class="col .d-md-none .d-lg-block"></div>
             </ul>
@@ -46,36 +46,16 @@
                                     <td class="propertyb">{{property.propertySubTypeName}}</td>
 
                                 </tr>
-                                <tr>
-                                    <th class="header">Building ID</th>
-                                    <td class="propertyb">{{property.buildingNumber}}</td>
-
-                                </tr>
-                                <tr>
-                                    <th class="header">Building Name</th>
-                                    <td class="propertyb">{{property.propertyMasterName}}</td>
-
-                                </tr>
+                        
+                          
                                 <tr>
                                     <th class="header">Plot Number</th>
                                     <td class="propertyb">{{property.plotNumber}}</td>
 
                                 </tr>
-                                <tr>
-                                    <th class="header">Unit ID</th>
-                                    <td class="propertyb">{{property.propertyUnitID}}</td>
+                             
 
-                                </tr>
-                                <tr>
-                                    <th class="header">Unit Category</th>
-                                    <td class="propertyb">{{getpropertyunitCategoryid(unitcatID)}}</td>
-
-                                </tr>
-                                <tr>
-                                    <th class="header">Built in year</th>
-                                    <td class="propertyb">{{property.builtYear}}</td>
-
-                                </tr>
+                                
 
                                 <ng-container *ngIf="PropertySubTypeID == 1 || PropertySubTypeID == 9; else noOfFloor">
                                     <tr *ngIf="property.unitCategoryID == 12 else nofloor">
@@ -146,35 +126,20 @@
                     </div>
                     <mat-card class="example-card ">
 
-                        <!-- <div class="cardimg">
-                            <img mat-card-image [src]=" property.imageString[0] || bydefault" alt='' class="hhjj">
-                            <div class="mum-h">
-                                <h5 class="mum-com">Mumtalikati.com.om</h5>
-                            </div>
-
-                             <img [src]="favoriteicon" alt="" class="favorite">
-                        </div> -->
+                    
                         <mat-card-content>
                             <h5 *ngIf="listpurID ==1   ; else nolistpurposeid">
                                 OMR {{property.rentPrice}}/mon
                             </h5>
                             <ng-template #nolistpurposeid>
                                 <h5>
-                                    OMR {{property.sellPrice}}/mon
+                                    OMR {{property.sellPrice}}
                                 </h5>
                             </ng-template>
 
                             <div class="dis-flex" clas="pe-4">
                                 <p class="icon pe-2"><img class="pe-2" [src]="areaimg">{{property.sqft}}SQM</p>
-                                <p class="icon pe-2"><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} Bedrooms
-                                </p>
-                                <p class="icon pe-2"><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
-                                    Bathrooms
-                                </p>
-                                <p class="icon pe-2"><img class="pe-2" [src]="kitchen">{{property.kitchen}} Kitchen
-                                </p>
-                                <p class="icon pe-2"><img class="pe-2" [src]="hall">{{property.hall}} Hall
-                                </p>
+                       
                             </div>
                             <h5>
                                 Property Details

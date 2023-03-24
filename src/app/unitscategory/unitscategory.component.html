@@ -31,7 +31,7 @@
                 :{  itemsPerPage: itemsPerPage,
                     currentPage: page,
                     totalItems: IndiviualsUnitTotalCount}">
-                    <div class="my-card mb-4"   (click)="onclick(property.propertyMasterID!,property.propertyUnitID!, property.unitCategoryID!, landLordID ,property.statuss! 
+                    <div class="my-card mb-4"   (click)="onclick(property.propertyMasterID!,property.propertyUnitID!, property.unitCategoryID!, landLordID ,property.statuss! ,property.propertySubTypeId
                     )">
                        <div class="row">
                         <div class="col-md-5 fill">
@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-7 pb-1 pt-1" >
                             <div class="card-body">
-                                <p class="card-text">Type: {{property.buildingNumber}}</p>
+                                <p class="card-text">Type: {{indiviualsUni[0].propertyMasterSubTypeName}}</p>
                                 <p class="card-text">Building ID:{{property.buildingNumber}}</p>
                                 <p class="card-text">Unit ID:{{property.propertyUnitID}}</p>
                                 <p class="card-text">Caption: {{property.caption}}</p>

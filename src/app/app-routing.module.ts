@@ -9,9 +9,10 @@ import { UnitscategoryComponent } from './unitscategory/unitscategory.component'
 import { ContactusComponent } from './contactus/contactus.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { PlotdetailsComponent } from './plotdetails/plotdetails.component';
 
 const routes: Routes = [
-  {path: 'dropdown', component: DropdownComponent},
+  {path: 'plotdetails', component: PlotdetailsComponent},
   { path: 'aboutus', component: AboutusComponent},
   { path: 'contactus', component: ContactusComponent },
   { path: 'propertyfulldisplay', component: PropertyfulldisplayComponent},
