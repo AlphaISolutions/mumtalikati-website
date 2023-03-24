@@ -16,19 +16,37 @@
                 <div class="card-body p-0 px-3 pt-2">
                     <p><b>{{property.propertyMasterName}}</b></p>
                     <div>
-                        <h6 class="inline">{{property.unitName}} | {{getsubType(property.propertyMasterSubType!)}}
-                        </h6>
+                        <div *ngIf="property.unitCategoryID== 12 else nounitname">
+                            <h6 class="inline">{{getsubType(property.propertyMasterSubType!)}}</h6>
+                            
+                        </div>
+                        <ng-template #nounitname>
+                            <h6  class="inline">{{property.unitName}} | {{getsubType(property.propertyMasterSubType!)}} </h6>
+                        </ng-template>
+                       
+
                         <div class="mt-2">
-                            <h5>
-                                OMR {{property.rentPrice}} Monthly
+                            <h5 *ngIf="listid ==1   ; else nolistpurposeid">
+                                OMR {{property.rentPrice}}/mon
                             </h5>
+                            <ng-template #nolistpurposeid>
+                                <h5>
+                                    OMR {{property.sellPrice}}
+                                </h5>
+                            </ng-template>
                         </div>
-                        <div id="main">
-                            <p class=""><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} </p>
-                            <p class=""><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
-                            </p>
-                            <p><img class="pe-2" [src]="areaimg">{{property.sqft}} SQM</p>
+                        <div *ngIf="property.unitCategoryID== 12 else unitcatid">
+                            <!-- unitCategoryID== 12 show empty data -->
                         </div>
+                        <ng-template #unitcatid>
+                            <div id="main">
+                                <p class=""><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} </p>
+                                <p class=""><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
+                                </p>
+                                <p><img class="pe-2" [src]="areaimg">{{property.sqft}} SQM</p>
+                            </div>
+                        </ng-template>
+
                     </div>
                 </div>
             </div>
@@ -39,11 +57,12 @@
             <p class="">No Property Listed</p>
         </div>
         <div *ngIf="pageShow">
-            <nav class="pagination justify-content-end pt-3" >
-                <pagination-controls (pageChange)="pageChange((page = $event))" class="p-controls"></pagination-controls>
+            <nav class="pagination justify-content-end pt-3">
+                <pagination-controls (pageChange)="pageChange((page = $event))"
+                    class="p-controls"></pagination-controls>
             </nav>
         </div>
-       
+
 
     </div>
 </ng-template>

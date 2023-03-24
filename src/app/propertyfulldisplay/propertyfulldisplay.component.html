@@ -160,22 +160,28 @@
                             </h5>
                             <ng-template #nolistpurposeid>
                                 <h5>
-                                    OMR {{property.sellPrice}}/mon
+                                    OMR {{property.sellPrice}}
                                 </h5>
                             </ng-template>
-
-                            <div class="dis-flex" clas="pe-4">
-                                <p class="icon pe-2"><img class="pe-2" [src]="areaimg">{{property.sqft}}SQM</p>
-                                <p class="icon pe-2"><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} Bedrooms
-                                </p>
-                                <p class="icon pe-2"><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
-                                    Bathrooms
-                                </p>
-                                <p class="icon pe-2"><img class="pe-2" [src]="kitchen">{{property.kitchen}} Kitchen
-                                </p>
-                                <p class="icon pe-2"><img class="pe-2" [src]="hall">{{property.hall}} Hall
-                                </p>
+                            <div *ngIf="property.unitCategoryID== 12 else unitcatid">
+                          <!-- unitCategoryID== 12 show empty data -->
                             </div>
+                            <ng-template #unitcatid>
+                                <div class="dis-flex" clas="pe-4">
+                                    <p class="icon pe-2"><img class="pe-2" [src]="areaimg">{{property.sqft}}SQM</p>
+                                    <p class="icon pe-2"><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}}
+                                        Bedrooms
+                                    </p>
+                                    <p class="icon pe-2"><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
+                                        Bathrooms
+                                    </p>
+                                    <p class="icon pe-2"><img class="pe-2" [src]="kitchen">{{property.kitchen}} Kitchen
+                                    </p>
+                                    <p class="icon pe-2"><img class="pe-2" [src]="hall">{{property.hall}} Hall
+                                    </p>
+                                </div>
+                            </ng-template>
+                    
                             <h5>
                                 Property Details
                             </h5>
