@@ -38,6 +38,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { MatCarouselModule } from 'ng-mat-carousel';
 import { MarkdownModule } from 'ngx-markdown';
+import { PlotdetailsComponent } from './plotdetails/plotdetails.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { MarkdownModule } from 'ngx-markdown';
     ContactusComponent,
     AboutusComponent,
     DropdownComponent,
+    PlotdetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -195,7 +195,9 @@ h5 {
     color: $primary-color;
 }
 
-
+.mat-mini-fab.mat-button-disabled.mat-button-disabled {
+    background-color: #edf1fc !important;
+}
 
 
 .card {

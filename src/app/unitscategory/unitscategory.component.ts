@@ -26,15 +26,15 @@ export class UnitscategoryComponent implements OnInit {
   public status: number = 1
   propertyMasterTypeID!: number
   subTypeId!: number;
-  btnColor={'background-color':'#9e2a2b'};
-  activeroutes = { 'color': '#9e2a2b !important', 'font-weight':'500' };
+  btnColor = { 'background-color': '#9e2a2b' };
+  activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router) { }
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;
   location = assetUrl("icons/location.svg");
   bydefault = assetUrl('img/bydefault.png');
   parentStyle = { 'background-color': 'black' };
-  step:any
+  step: any
   async ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.propertyMasterID = +params['propertyMasterID'];
@@ -56,9 +56,10 @@ export class UnitscategoryComponent implements OnInit {
     this.mumtalikatiservic.getPropertyMasterIndiviualsUnit(propertyMasterTypeID, listingPurposesID, UnitCategoryID, status, pageNumber, rowsNumbers)
       .then((data) => {
         if (data) {
+          debugger
           this.indiviualsUni = data;
           let subTypeId = this.indiviualsUni
-          subTypeId[0].propertySubTypeId = this.subTypeId;
+          //  this.subTypeId = subTypeId[0].propertySubTypeId;
         }
         this.loading = false;
       })
@@ -88,10 +89,21 @@ export class UnitscategoryComponent implements OnInit {
     this.loading = true;
     await this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, page, this.perpagenumber);
   }
-  onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number, statuss: number) {
-    this.router.navigate(['propertyfulldisplay'],
-      { queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'statuss': statuss },
-      state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': this.subTypeId  } });
+  onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number, statuss: number, propertySubTypeId: number) {
+    if (propertySubTypeId == 15) {
+      this.router.navigate(['plotdetails'],
+        {
+          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'statuss': statuss },
+          state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId }
+        });
+    } else {
+      this.router.navigate(['propertyfulldisplay'],
+        {
+          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'statuss': statuss },
+          state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId }
+        });
+    }
+
   }
   getenum(propertyMasterTypeID: number) {
 
