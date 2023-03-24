@@ -4,7 +4,7 @@ import { assetUrl } from 'src/single-spa/asset-url';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { PropertyFeature } from '../models/propertyfeature';
 import { MumtalikatiService } from '../services/mumtalikati.service';
-import { getPropertyUnitCategoryEnum, getstatusType, propertyMasterTypeEnum } from '../models/enums';
+import { getPropertyUnitCategoryEnum, getstatusType, listingPurposeTypeEnum, propertyMasterTypeEnum } from '../models/enums';
 import { ProfileImage } from '../models/profileImage.model';
 import { map } from 'rxjs';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -156,6 +156,9 @@ export class PropertyfulldisplayComponent implements OnInit {
     }
     copyHeroName(el: HTMLDivElement) {
       this.clipboard.copy(el.innerText);
+    }
+    getlist(listid:any){
+      return listingPurposeTypeEnum(listid)
     }
 }
 

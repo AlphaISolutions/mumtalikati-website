@@ -1,10 +1,9 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { assetUrl } from 'src/single-spa/asset-url';
 import { Governorate } from '../models/governorate.model';
 import { ListingPurpose } from '../models/listing-purpose.model';
-import { SessionService } from '../services/sessionService';
+
 import { SetFiltersServive } from '../services/setfilters.servive';
 import { SetupService } from '../services/setup.service';
 
