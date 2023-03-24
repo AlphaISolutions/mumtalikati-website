@@ -1,4 +1,8 @@
+<div class="loading" *ngIf="loading ; else showList">
+    <mat-spinner [diameter]="50"></mat-spinner>
+</div>
 
+<ng-template #showList>
     <div id="image" class="container-fluid">
         <div class="container ">
             <app-top-bar></app-top-bar>
@@ -78,4 +82,6 @@
         </div>
         <app-shortdisplay [pageShow]="page"></app-shortdisplay>
     </div>
+</ng-template>
+ 
    
