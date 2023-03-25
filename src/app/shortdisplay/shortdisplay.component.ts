@@ -4,7 +4,7 @@ import { MumtalikatiService } from '.././services/mumtalikati.service'
 import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { Input } from '@angular/core';
-import { propertySubTypeEnum } from '../models/enums';
+import { propertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-shortdisplay',
@@ -101,6 +101,9 @@ export class ShortdisplayComponent implements OnInit {
   }
   getsubType(subTypeId: number) {
     return propertySubTypeEnum(subTypeId);
+  }
+  getMasterTypeId(propertyMasterTypeId: number) {
+    return propertyMasterTypeEnum(propertyMasterTypeId);
   }
   onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number, landLordID: number, propertyMasterTypeID: number,propertyMasterSubType:number) {
 

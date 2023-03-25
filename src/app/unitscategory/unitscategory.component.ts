@@ -25,7 +25,7 @@ export class UnitscategoryComponent implements OnInit {
   logocolor = false;
   public status: number = 1
   propertyMasterTypeID!: number
-  subTypeId!: number;
+  subTypeId: number|null =null;
   btnColor = { 'background-color': '#9e2a2b' };
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router) { }
@@ -58,8 +58,8 @@ export class UnitscategoryComponent implements OnInit {
         if (data) {
         
           this.indiviualsUni = data;
-          let subTypeId = this.indiviualsUni
-          //  this.subTypeId = subTypeId[0].propertySubTypeId;
+          let subTypeId = this.indiviualsUni[0].propertySubTypeId
+            this.subTypeId = subTypeId;
         }
         this.loading = false;
       })
@@ -90,16 +90,17 @@ export class UnitscategoryComponent implements OnInit {
     await this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, page, this.perpagenumber);
   }
   onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number, statuss: number, propertySubTypeId: number) {
+  
     if (propertySubTypeId == 15) {
       this.router.navigate(['plotdetails'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'statuss': statuss },
+          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss },
           state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId }
         });
     } else {
       this.router.navigate(['propertyfulldisplay'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'statuss': statuss },
+          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss },
           state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId }
         });
     }
@@ -108,5 +109,12 @@ export class UnitscategoryComponent implements OnInit {
   getenum(propertyMasterTypeID: number) {
 
     return propertyMasterTypeEnum(propertyMasterTypeID)
+  }
+  backtosearch(){
+ 
+    this.router.navigate(['propertydetails'],
+    {
+      state: { 'listingPurposeID': this.listingPurposeID, 'propertyMasterTypeID': this.propertyMasterTypeID}
+    });
   }
 }
