@@ -13,6 +13,7 @@ body {
 body {
     margin: 0;
     font-family: Arial, Helvetica, Arial, Helvetica, sans-serif;
+    background-color: #FFFFFF !important;
 }
 
 .white-bg {
@@ -196,9 +197,11 @@ h5 {
 }
 
 .mat-mini-fab.mat-button-disabled.mat-button-disabled {
-    background-color: #edf1fc !important;
+    background-color: #9e2a2b !important;
 }
-
+.mat-mini-fab.mat-primary {
+    background-color:  #edf1fc !important ;
+}
 
 .card {
     background: $white-color;

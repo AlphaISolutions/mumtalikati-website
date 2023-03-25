@@ -9,10 +9,10 @@
 
             <ul class="breadcrumb row p-0">
                 <div class="col float-start">
-                    <li><a href="#" [routerLink]="'../propertydetails'"><i class="fa fa-angle-left pe-2"
+                    <li><a href="#" [routerLink]="'../propertydetails'" ><i class="fa fa-angle-left pe-2"
                                 aria-hidden="true"></i>Property Listings</a></li>
                 </div>
-                <div class="col">
+                <div class="col" *ngIf="indiviualsUni[0]">
                     <div *ngIf="indiviualsUni[0].propertySubTypeId ==15 else propertysubtype">
                         <li><a routerLink="">Mumtalikati</a></li>
                         <li><a href="#" routerLink="../propertydetails">{{getenum(propertyMasterTypeID)}}</a></li>
@@ -32,7 +32,7 @@
         </div>
 
 
-        <div *ngIf="indiviualsUni">
+        <div *ngIf="indiviualsUni[0]">
             <div *ngIf="indiviualsUni[0].propertySubTypeId ==15 else notpropertyUnitName">
                 <!-- plot not show propertyUnitName -->
             </div>

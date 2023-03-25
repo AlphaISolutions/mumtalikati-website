@@ -8,7 +8,7 @@
         <div class="">
             <ul class="breadcrumb row p-0 mt-4">
                 <div class="col float-start ">
-                    <li><a href="#" (click)="backotsearch()" (click)="addItem(propertyDetail[0].listingPurposeID!)"><i
+                    <li><a href="" (click)="backotsearch()" (click)="addItem(propertyDetail[0].listingPurposeID!)"><i
                                 class="fa fa-angle-left pe-2" aria-hidden="true"></i>Back to Search</a></li>
 
                 </div>
@@ -188,7 +188,7 @@
                             <p>
                                 {{property.propertyMasterDescription}}
                             </p>
-                            <h5>
+                            <h5 *ngIf="!propertyFeature.length==0" >
                                 Features
                             </h5>
                             <div class="container">
@@ -249,7 +249,7 @@
 
                 </div>
                 <div class="col">
-                    <button type="button" class="  border-btn" (click)="closepop()">Maybe Later</button>
+                    <button type="button" mat-stroked-button color="primary" class=" px-5 border-r btn-width" (click)="closepop()">Maybe Later</button>
                 </div>
             </div>
         </div>

@@ -147,7 +147,7 @@
                             <p>
                                 {{property.propertyMasterDescription}}
                             </p>
-                            <h5>
+                            <h5 *ngIf="!propertyFeature.length==0">
                                 Features
                             </h5>
                             <div class="container">

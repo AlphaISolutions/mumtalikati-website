@@ -61,7 +61,7 @@ export class PlotdetailsComponent implements OnInit {
       this.propertyUnitid = +params['propertyUnitID'];
       this.unitcatID = +params['unitCategoryID'];
       this.landlordid = +params['landlordid'];
-      this.statuss = +params['statuss'];
+      this.statuss = +params['status'];
       // this.listpurID = +params['listingPurposeID']
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
@@ -75,8 +75,6 @@ export class PlotdetailsComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.propertyDetail = data;
-      
-        
         }
         this.loading = false;
       })
@@ -104,7 +102,9 @@ export class PlotdetailsComponent implements OnInit {
     this.mumtalikatiservic.getPropertyFeature(id)
       .then((data) => {
         if (data) {
+      
           this.propertyFeature = data;
+         
         }
         this.loading = false;
       })

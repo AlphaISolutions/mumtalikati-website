@@ -10,11 +10,17 @@
               totalItems: filterCount
         }
         ">
-            <div class="card border-r mb-4 shadow-none border-0" (click)="onclick(property.propertyMasterID!,property.listingPurposeID!, property.unitCategoryID!, property.landLordID! ,property.propertyMasterTypeID!,property.propertyMasterSubType
+            <div class="card  border-r mb-4 shadow-none border-0" (click)="onclick(property.propertyMasterID!,property.listingPurposeID!, property.unitCategoryID!, property.landLordID! ,property.propertyMasterTypeID!,property.propertyMasterSubType
         )">
                 <img [src]="property.imageString || bydefault" class=" imagecss main" alt="Card Image">
-                <div class="card-body p-0 px-3 pt-2">
-                    <p><b>{{property.propertyMasterName}}</b></p>
+                <div class="card-body cd p-0 px-3 pt-2">
+                    <div *ngIf="property.propertyMasterSubType== 15 else propertyMasterName">
+                        <p><b>{{getMasterTypeId(property.propertyMasterTypeID)}} Plot</b></p>
+                    </div>
+                    <ng-template #propertyMasterName>
+                        <p><b>{{property.propertyMasterName}}</b></p>
+                    </ng-template>
+                   
                     <div>
                         <div
                             *ngIf="property.unitCategoryID== 12 || property.propertyMasterSubType== 15 else nounitname">
@@ -22,6 +28,7 @@
 
                         </div>
                         <ng-template #nounitname>
+                           
                             <h6 class="inline">{{property.unitName}} | {{getsubType(property.propertyMasterSubType!)}}
                             </h6>
                         </ng-template>
@@ -33,7 +40,7 @@
                             </h5>
                             <ng-template #nolistpurposeid>
                                 <h5>
-                                    OMR {{property.sellPrice}}
+                                    OMR {{property.sellPrice}}/Sale Price
                                 </h5>
                             </ng-template>
                         </div>

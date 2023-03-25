@@ -1,3 +1,4 @@
+@import "../../variables.scss";
 .content-padding {
   padding-top: 15px;
   color: white;
@@ -97,6 +98,7 @@
 
 .inline {
   display: inline;
+ 
 }
 
 .vl {
@@ -104,7 +106,10 @@
   border-right: 5px solid red;
   height: 20px;
 }
-
+.explore{
+  color:$primary-color ;
+  cursor: pointer;
+}
 .under {
   color: black;
   text-decoration: underline;
@@ -138,3 +143,14 @@
   border-radius: 5px !important;
   color: #FFFFFF;
 }
+// .centered-element{
+
+//   height: 80vh;
+//   border: 3px solid green;
+
+//   position: absolute;
+//   margin: 0;
+// }
+// .con {
+//   position: relative;
+// }
