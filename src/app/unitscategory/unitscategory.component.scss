@@ -1,66 +1,79 @@
 .card-img {
-    height: inherit;
-    object-fit: contain;
-    margin: 17px;
+  height: inherit;
+  object-fit: contain;
+  margin: 17px;
 }
 
 .shadow1 {
-    box-shadow: 0px -3px 75px rgba(0, 0, 0, 0.15);
-    border-radius: 20px;
-    background: #FFFFFF;
+  box-shadow: 0px -3px 75px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  background: #FFFFFF;
 }
 
 .my-card {
   cursor: pointer;
-    padding-left: 11px;
-    background: #FFFFFF;
-    box-shadow: 0px -3px 75px rgba(0, 0, 0, 0.15);
-    border-radius: 20px;
+  padding-left: 11px;
+  background: #FFFFFF;
+  box-shadow: 0px -3px 75px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
 }
 
-
-.fill{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden
-  }
-
-  .card-img-top {
-    border-radius: 15px;
-  }
-  p{
-    margin-block: 2px;
-  }
-  ul.breadcrumb {
-    padding: 10px 16px;
-    list-style: none;
-
-  }
-  ul.breadcrumb li {
-    display: inline;
-    font-size: 18px;
-  }
-  ul.breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
-    content: "/\00a0";
-  }
-  ul.breadcrumb li a {
-    color:#345C66;
-    text-decoration: none;
-  }
-  ul.breadcrumb li a:hover {
-    color: #9e2a2b;
-    text-decoration: underline;
-  }
-  .bgc-btn{
-    background: transparent;
-  }
-  .imgcolor{
-    width:18px ;
-    color: #9E2A2B;
+.text-cards {
+  text-align: start;
+  margin: auto;
 }
+
+.fill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden
+}
+
+.card-img-top {
+  border-radius: 15px;
+}
+
+p {
+  margin-block: 2px;
+}
+
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+
+}
+
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+ul.breadcrumb li a {
+  color: #345C66;
+  text-decoration: none;
+}
+
+ul.breadcrumb li a:hover {
+  color: #9e2a2b;
+  text-decoration: underline;
+}
+
+.bgc-btn {
+  background: transparent;
+}
+
+.imgcolor {
+  width: 18px;
+  color: #9E2A2B;
+}
+
 .addess {
   color: #434242;
 }
