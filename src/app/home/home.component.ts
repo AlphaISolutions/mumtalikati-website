@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
   onclicks(id: number) {
 
     this.governorateid = id
-    console.log(id)
+  
   }
   async getlistingPurpose() {
     this.loading = true;

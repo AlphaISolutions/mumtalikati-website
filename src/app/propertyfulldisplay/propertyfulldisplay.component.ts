@@ -52,7 +52,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router,private modalService: NgbModal,private clipboard: Clipboard) {
     this.listpurID = this.router.getCurrentNavigation()!.extras.state!["listingPurposeID"]!;
     this.PropertySubTypeID = this.router.getCurrentNavigation()!.extras.state!["PropertySubTypeID"]!;
-    console.log(this.PropertySubTypeID)
+   
   }
   async ngOnInit() {
 
@@ -75,7 +75,7 @@ export class PropertyfulldisplayComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.propertyDetail = data;
-          console.log(data)
+       
         
         }
         this.loading = false;
@@ -126,7 +126,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   }
   addItem(newItem: number) {
     this.listpurID.push(newItem);
-    console.log(newItem)
+
   }
   backotsearch() {
     this.router.navigate(
