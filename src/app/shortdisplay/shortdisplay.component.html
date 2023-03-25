@@ -16,14 +16,16 @@
                 <div class="card-body p-0 px-3 pt-2">
                     <p><b>{{property.propertyMasterName}}</b></p>
                     <div>
-                        <div *ngIf="property.unitCategoryID== 12 else nounitname">
+                        <div
+                            *ngIf="property.unitCategoryID== 12 || property.propertyMasterSubType== 15 else nounitname">
                             <h6 class="inline">{{getsubType(property.propertyMasterSubType!)}}</h6>
-                            
+
                         </div>
                         <ng-template #nounitname>
-                            <h6  class="inline">{{property.unitName}} | {{getsubType(property.propertyMasterSubType!)}} </h6>
+                            <h6 class="inline">{{property.unitName}} | {{getsubType(property.propertyMasterSubType!)}}
+                            </h6>
                         </ng-template>
-                       
+
 
                         <div class="mt-2">
                             <h5 *ngIf="listid ==1   ; else nolistpurposeid">
@@ -39,12 +41,18 @@
                             <!-- unitCategoryID== 12 show empty data -->
                         </div>
                         <ng-template #unitcatid>
-                            <div id="main">
-                                <p class=""><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} </p>
-                                <p class=""><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
-                                </p>
+                            <div *ngIf="property.propertyMasterSubType== 15 else plot">
                                 <p><img class="pe-2" [src]="areaimg">{{property.sqft}} SQM</p>
                             </div>
+                            <ng-template #plot>
+                                <div id="main">
+                                    <p class=""><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} </p>
+                                    <p class=""><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
+                                    </p>
+                                    <p><img class="pe-2" [src]="areaimg">{{property.sqft}} SQM</p>
+                                </div>
+                            </ng-template>
+
                         </ng-template>
 
                     </div>

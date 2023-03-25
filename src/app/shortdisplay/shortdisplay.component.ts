@@ -27,7 +27,7 @@ export class ShortdisplayComponent implements OnInit {
   @Input() perpagenumber: number = 8;
   @Input() page = 1;
   @Input() governorateid!: number;
-  @Input() subTypeId: number | null=null;
+  @Input() subTypeId: number | null = null;
   @Input() mastertypeid!: number;
   @Input() unitcategoryid!: number;
   @Input() minValue!: number;
@@ -44,7 +44,7 @@ export class ShortdisplayComponent implements OnInit {
     data.maxPrice = this.maxValue;
     data.minPrice = this.minValue;
     data.propertyCategory = this.unitcategoryid;
-    data.propertyMasterSubTypeID = this.subTypeId??null;
+    data.propertyMasterSubTypeID = this.subTypeId ?? null;
     data.propertyMasterTypeID = this.mastertypeid;
     this.propertyFilter(data);
     let countPayload = this.propertyfilter;
@@ -63,7 +63,7 @@ export class ShortdisplayComponent implements OnInit {
     this.mumtalikatiservic.postPropertyFilter_Count(data)
       .then((data) => {
         this.filterCount = data;
-      
+
       }
       )
       .catch((error) => {
@@ -90,20 +90,20 @@ export class ShortdisplayComponent implements OnInit {
     let data = this.propertyfilter;
     data.listingPurposesID = this.listid;
     data.gOVERNORATEID = this.governorateid;
-    data.propertyMasterSubTypeID = this.subTypeId??null;
+    data.propertyMasterSubTypeID = this.subTypeId ?? null;
     data.propertyMasterTypeID = this.mastertypeid;
     data.propertyCategory = this.unitcategoryid;
     data.rowsNumbers = this.perpagenumber;
     data.pageNumber = page;
-    data.maxPrice=this.maxValue;
-    data.minPrice=this.minValue;
+    data.maxPrice = this.maxValue;
+    data.minPrice = this.minValue;
     await this.propertyFilter(data)
   }
   getsubType(subTypeId: number) {
     return propertySubTypeEnum(subTypeId);
   }
-  onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number, landLordID: number, propertyMasterTypeID: number) {
-    debugger
+  onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number, landLordID: number, propertyMasterTypeID: number,propertyMasterSubType:number) {
+
     this.router.navigate(
       ['Unitscategory'],
       { queryParams: { 'propertyMasterID': propertyMasterID, 'listingPurposeID': listingPurposeID, 'unitCategoryID': unitCategoryID, 'landLordID': landLordID, 'propertyMasterTypeID': propertyMasterTypeID } });
