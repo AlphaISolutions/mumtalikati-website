@@ -47,7 +47,7 @@ export class PlotdetailsComponent implements OnInit {
   btnColor={'background-color':'#9e2a2b'}
   closeResult = '';
   maxheight={'maxheight':'80vh !important'}
-caption!:sting;
+  caption!:string;
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight':'500' };
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router,private modalService: NgbModal,private clipboard: Clipboard) {
     this.listpurID = this.router.getCurrentNavigation()!.extras.state!["listingPurposeID"]!;

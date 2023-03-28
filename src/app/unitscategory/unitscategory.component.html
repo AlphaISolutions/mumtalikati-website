@@ -4,9 +4,8 @@
     <mat-spinner [diameter]="50"></mat-spinner>
 </div>
 <ng-template #showInfo>
-    <div class="container mt-4 " >
-        <div class="">
-
+    <div class="container mt-4 ">
+        <div>
             <ul class="breadcrumb row p-0">
                 <div class="col float-start">
                     <li><a href="#" [routerLink]="'../propertydetails'"><i class="fa fa-angle-left pe-2"
@@ -30,7 +29,7 @@
 
             </ul>
         </div>
-  
+
 
         <div>
             <div *ngIf="indiviualsUni[0]">
@@ -38,12 +37,12 @@
                     <!-- plot not show propertyUnitName -->
                 </div>
             </div>
-            
+
             <ng-template #notpropertyUnitName>
                 <h4 *ngIf="indiviualsUni[0]">{{indiviualsUni[0].propertyUnitName}}</h4>
             </ng-template>
 
-            <div *ngIf="indiviualsUni" class="row gx-3" >
+            <div *ngIf="indiviualsUni" class="row gx-3">
                 <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4" *ngFor="let property of indiviualsUni| paginate
                 :{  itemsPerPage: itemsPerPage,
                     currentPage: page,
@@ -82,7 +81,7 @@
                                         <ng-template #showcaption>
                                             <p class="card-text">Caption: {{property.caption}}</p>
                                         </ng-template>
-                                        
+
                                         <p class="card-text"><img class="pe-2 imgcolor"
                                                 [src]=" location">{{property.addressStr}}</p>
                                         <p class="card-text">Status: {{getstutus(property.statuss!)}}</p>
@@ -94,32 +93,30 @@
                     </div>
 
                 </div>
-                <div >
-                    <div  style="height: 500px;"
-                    *ngIf="!indiviualsUni[0]">
+
+                <div style="height: 500px;" *ngIf="indiviualsUni.length == 0">
                     <div class="pt-5 d-flex  justify-content-center align-items-center">
                         <img [src]="notfound" alt="" width="360px" height="250px">
                     </div>
-                  
+
                     <div class="  d-flex  justify-content-center align-items-center">
                         <p class="color-property">No property found</p>
                     </div>
                     <div class="pt-3  d-flex  justify-content-center align-items-center align-items-center">
-                        <button type="button" routerLink="../propertydetails" color="primary" class="border-done px-5"  >
+                        <button type="button" routerLink="../propertydetails" color="primary" class="border-done px-5">
                             Search Property
-                          </button>
+                        </button>
                     </div>
-               
-                    </div>
+
                 </div>
+
                 <nav class="pagination justify-content-end pt-3">
                     <pagination-controls (pageChange)="pageChange((page = $event))"></pagination-controls>
                 </nav>
             </div>
-     
-        </div>
-   
-    </div>
-    
-</ng-template>
 
+        </div>
+
+    </div>
+
+</ng-template>

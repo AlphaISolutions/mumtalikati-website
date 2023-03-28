@@ -129,7 +129,7 @@ export class PropertyfulldisplayComponent implements OnInit {
     return getPropertyUnitCategoryEnum(unitcatID)
   }
   addItem(newItem: number) {
-    debugger
+    
     this.listpurID=newItem;
   }
   backotsearch() {
