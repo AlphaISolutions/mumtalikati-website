@@ -33,12 +33,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { ToastrModule } from "ngx-toastr";
 import {MatListModule} from '@angular/material/list';
-
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { MatCarouselModule } from 'ng-mat-carousel';
 import { MarkdownModule } from 'ngx-markdown';
 import { PlotdetailsComponent } from './plotdetails/plotdetails.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,7 @@ import { PlotdetailsComponent } from './plotdetails/plotdetails.component';
     AboutusComponent,
     DropdownComponent,
     PlotdetailsComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,7 @@ import { PlotdetailsComponent } from './plotdetails/plotdetails.component';
     NgxSliderModule,
     MatCarouselModule.forRoot(),
     MarkdownModule.forRoot(),
-    
+    MatDialogModule
    
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },RxFormBuilder],

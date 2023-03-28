@@ -33,6 +33,7 @@ export class UnitscategoryComponent implements OnInit {
   IndiviualsUnitTotalCount: any;
   location = assetUrl("icons/location.svg");
   bydefault = assetUrl('img/bydefault.png');
+  notfound = assetUrl('img/notfoundproperty.svg');
   parentStyle = { 'background-color': 'black' };
   step: any
   async ngOnInit() {
@@ -56,10 +57,10 @@ export class UnitscategoryComponent implements OnInit {
     this.mumtalikatiservic.getPropertyMasterIndiviualsUnit(propertyMasterTypeID, listingPurposesID, UnitCategoryID, status, pageNumber, rowsNumbers)
       .then((data) => {
         if (data) {
-        
+     
           this.indiviualsUni = data;
-          let subTypeId = this.indiviualsUni[0].propertySubTypeId
-            this.subTypeId = subTypeId;
+            // let subTypeId = this.indiviualsUni[0].propertySubTypeId
+            //   this.subTypeId = subTypeId;
         }
         this.loading = false;
       })

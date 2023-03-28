@@ -8,7 +8,7 @@
         <div class="">
             <ul class="breadcrumb row p-0 mt-4">
                 <div class="col float-start ">
-                    <li><a href="" (click)="backotsearch()" (click)="addItem(propertyDetail[0].listingPurposeID!)"><i
+                    <li><a  routerLink="/Unitscategory" [queryParams]="{'propertyMasterID':pmid,'listingPurposeID':listpurID,'unitCategoryID':unitcatID,'status':statuss,'page': page, 'perpagenumber': perpagenumber,'landLordID':landlordid}" (click)="addItem(propertyDetail[0].listingPurposeID!)"><i
                                 class="fa fa-angle-left pe-2" aria-hidden="true"></i>Back to Search</a></li>
 
                 </div>
@@ -42,7 +42,7 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <th class="header">Building Type</th>
+                                    <th class="header">Type</th>
                                     <td class="propertyb">{{property.propertySubTypeName}}</td>
 
                                 </tr>

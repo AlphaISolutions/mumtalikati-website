@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
 import { assetUrl } from 'src/single-spa/asset-url';
 @Component({
   selector: 'app-top-bar',
@@ -16,29 +18,25 @@ export class TopBarComponent implements OnInit {
   @Input() logred: any;
   @Input() data: boolean = true;
   @Input() active: any;
-  @Input() activeroute:any;
+  @Input() activeroute: any;
   colorFlag: boolean = true;
-  @Input() btncolor:any;
+  @Input() btncolor: any;
   coler: any;
+  constructor(public dialog: MatDialog) { }
   ngOnInit() {
-    if(this.activeroute==true){
+    if (this.activeroute == true) {
 
-    }else{
-      this.coler={' background-color':'red'}
+    } else {
+      this.coler = { ' background-color': 'red' }
     }
 
-    if(this.active==true){
+    if (this.active == true) {
 
     }
-    else{
-      this.coler={' background-color':'red'}
+    else {
+      this.coler = { ' background-color': 'red' }
     }
-    // if (this.colorFlag == true) {
 
-    // }
-    // else {
-    //   this.coler = { ' background-color': 'red' }
-    // }
     if (this.data) {
       this.logo = assetUrl('img/mumtalikati-logo-white.png');
     } else {
@@ -46,8 +44,10 @@ export class TopBarComponent implements OnInit {
     }
 
   }
-  constructor() { }
-  // active(){
-  //   this.coler={' background-color':'red'}
-  // }
+  closeNav() {
+    this.collapsed = false;
+  }
+
 }
+
+

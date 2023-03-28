@@ -127,8 +127,8 @@ export class PropertyfulldisplayComponent implements OnInit {
     return getPropertyUnitCategoryEnum(unitcatID)
   }
   addItem(newItem: number) {
-    this.listpurID.push(newItem);
-
+    debugger
+    this.listpurID=newItem;
   }
   backotsearch() {
     this.router.navigate(
