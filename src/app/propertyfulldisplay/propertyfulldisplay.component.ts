@@ -43,6 +43,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   public perpagenumber: number = 8;
   listpurID!: any;
   PropertySubTypeID!: any;
+  caption!:string
   pMTID!: number;
   btnColor={'background-color':'#9e2a2b'}
   closeResult = '';
@@ -53,6 +54,7 @@ export class PropertyfulldisplayComponent implements OnInit {
     this.listpurID = this.router.getCurrentNavigation()!.extras.state!["listingPurposeID"]!;
     this.pmid = this.router.getCurrentNavigation()!.extras.state!["propertyMasterTypeID"]!;
     this.PropertySubTypeID = this.router.getCurrentNavigation()!.extras.state!["PropertySubTypeID"]!;
+    this.caption = this.router.getCurrentNavigation()!.extras.state!["caption"]!;
    
   }
   async ngOnInit() {

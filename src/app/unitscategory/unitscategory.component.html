@@ -48,7 +48,7 @@
                 :{  itemsPerPage: itemsPerPage,
                     currentPage: page,
                     totalItems: IndiviualsUnitTotalCount}">
-                    <div class="my-card mb-4" (click)="onclick(property.propertyMasterID!,property.propertyUnitID!, property.unitCategoryID!, landLordID ,property.statuss! ,property.propertySubTypeId
+                    <div class="my-card mb-4" (click)="onclick(property.propertyMasterID!,property.propertyUnitID!, property.unitCategoryID!, landLordID ,property.statuss! ,property.propertySubTypeId, property.caption
                     )">
                         <div class="row">
                             <div class="col-md-5 fill">
@@ -76,7 +76,13 @@
                                         <p class="card-text">Type: {{indiviualsUni[0].propertyMasterSubTypeName}}</p>
                                         <p class="card-text">Building ID:{{property.buildingNumber}}</p>
                                         <p class="card-text">Unit ID:{{property.propertyUnitID}}</p>
-                                        <p class="card-text">Caption: {{property.caption}}</p>
+                                        <div *ngIf="property.caption == 0 else showcaption">
+                                            <!-- not show caption -->
+                                        </div>
+                                        <ng-template #showcaption>
+                                            <p class="card-text">Caption: {{property.caption}}</p>
+                                        </ng-template>
+                                        
                                         <p class="card-text"><img class="pe-2 imgcolor"
                                                 [src]=" location">{{property.addressStr}}</p>
                                         <p class="card-text">Status: {{getstutus(property.statuss!)}}</p>

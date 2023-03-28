@@ -90,19 +90,19 @@ export class UnitscategoryComponent implements OnInit {
     this.loading = true;
     await this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, page, this.perpagenumber);
   }
-  onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number, statuss: number, propertySubTypeId: number) {
+  onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number, statuss: number, propertySubTypeId: number, caption:string) {
   
     if (propertySubTypeId == 15) {
       this.router.navigate(['plotdetails'],
         {
           queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss },
-          state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId }
+          state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId, 'caption':caption }
         });
     } else {
       this.router.navigate(['propertyfulldisplay'],
         {
           queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss },
-          state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId }
+          state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId, 'caption':caption}
         });
     }
 

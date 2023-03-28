@@ -8,8 +8,10 @@
         <div class="">
             <ul class="breadcrumb row p-0 mt-4">
                 <div class="col float-start ">
-                    <li><a  routerLink="/Unitscategory" [queryParams]="{'propertyMasterID':pmid,'listingPurposeID':listpurID,'unitCategoryID':unitcatID,'status':statuss,'page': page, 'perpagenumber': perpagenumber,'landLordID':landlordid}" (click)="addItem(propertyDetail[0].listingPurposeID!)"><i
-                                class="fa fa-angle-left pe-2" aria-hidden="true"></i>Back to Search</a></li>
+                    <li><a routerLink="/Unitscategory"
+                            [queryParams]="{'propertyMasterID':pmid,'listingPurposeID':listpurID,'unitCategoryID':unitcatID,'status':statuss,'page': page, 'perpagenumber': perpagenumber,'landLordID':landlordid}"
+                            (click)="addItem(propertyDetail[0].listingPurposeID!)"><i class="fa fa-angle-left pe-2"
+                                aria-hidden="true"></i>Back to Search</a></li>
 
                 </div>
                 <div class="col" *ngIf="propertyDetail">
@@ -66,6 +68,15 @@
                                     <td class="propertyb">{{property.propertyUnitID}}</td>
 
                                 </tr>
+                                <ng-container *ngIf="caption==0; else showCaption">
+                                </ng-container>
+                                <ng-template #showCaption>
+                                    <tr>
+                                        <th class="header">Caption</th>
+                                        <td class="propertyb">{{caption}}</td>
+                                    </tr>
+                                </ng-template>
+
                                 <tr>
                                     <th class="header">Unit Category</th>
                                     <td class="propertyb">{{getpropertyunitCategoryid(unitcatID)}}</td>
@@ -164,7 +175,7 @@
                                 </h5>
                             </ng-template>
                             <div *ngIf="property.unitCategoryID== 12 else unitcatid">
-                          <!-- unitCategoryID== 12 show empty data -->
+                                <!-- unitCategoryID== 12 show empty data -->
                             </div>
                             <ng-template #unitcatid>
                                 <div class="dis-flex" clas="pe-4">
@@ -181,14 +192,14 @@
                                     </p>
                                 </div>
                             </ng-template>
-                    
+
                             <h5>
                                 Property Details
                             </h5>
                             <p>
                                 {{property.propertyMasterDescription}}
                             </p>
-                            <h5 *ngIf="!propertyFeature.length==0" >
+                            <h5 *ngIf="!propertyFeature.length==0">
                                 Features
                             </h5>
                             <div class="container">
@@ -249,7 +260,8 @@
 
                 </div>
                 <div class="col">
-                    <button type="button" mat-stroked-button color="primary" class=" px-5 border-r btn-width" (click)="closepop()">Maybe Later</button>
+                    <button type="button" mat-stroked-button color="primary" class=" px-5 border-r btn-width"
+                        (click)="closepop()">Maybe Later</button>
                 </div>
             </div>
         </div>

@@ -53,7 +53,14 @@
                                     <td class="propertyb">{{property.plotNumber}}</td>
 
                                 </tr>
-                             
+                                <ng-container *ngIf="caption==0; else showCaption">
+                                </ng-container>
+                                <ng-template #showCaption>
+                                    <tr>
+                                        <th class="header">Caption</th>
+                                        <td class="propertyb">{{caption}}</td>
+                                    </tr>
+                                </ng-template>
 
                                 
 
