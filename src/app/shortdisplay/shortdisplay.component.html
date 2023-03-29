@@ -1,7 +1,7 @@
-<div class="loading" *ngIf="loading ; else showList">
+<!-- <div class="loading" *ngIf="loading ; else showList">
     <mat-spinner [diameter]="50"></mat-spinner>
 </div>
-<ng-template #showList>
+<ng-template #showList> -->
     <div class="row mt-4" *ngIf="ownerPropertyFilter">
         <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3" *ngFor="let property of ownerPropertyFilter| paginate
         :{
@@ -80,4 +80,4 @@
 
 
     </div>
-</ng-template>
+<!-- </ng-template> -->

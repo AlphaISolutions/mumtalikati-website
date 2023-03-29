@@ -149,9 +149,9 @@
                     <div [style.height]="auto">
                         <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="primary" 
                             maxWidth="auto" proportion="50" slides="5" [loop]="true" [hideArrows]="false" 
-                            [hideIndicators]="false" [useKeyboard]="false" [useMouseWheel]="false" orientation="ltr">
+                            [hideIndicators]="false" [useKeyboard]="false" [useMouseWheel]="false" orientation="ltr" slideHeight="100px">
                             <mat-carousel-slide #matCarouselSlide
-                                *ngFor="let image of property.imageString; let i = index" [image]="image"
+                                *ngFor="let image of property.imageString; let i = index" [image]="image" 
                                 overlayColor="#00000040" [hideOverlay]="false"></mat-carousel-slide>
                         </mat-carousel>
                     </div>
@@ -167,11 +167,11 @@
                         </div> -->
                         <mat-card-content>
                             <h5 *ngIf="listpurID ==1   ; else nolistpurposeid">
-                                OMR {{property.rentPrice}}/mon
+                                OMR {{property.rentPrice}}/Monthly
                             </h5>
                             <ng-template #nolistpurposeid>
                                 <h5>
-                                    OMR {{property.sellPrice}}
+                                    OMR {{property.sellPrice}}/Sale Price
                                 </h5>
                             </ng-template>
                             <div *ngIf="property.unitCategoryID== 12 else unitcatid">

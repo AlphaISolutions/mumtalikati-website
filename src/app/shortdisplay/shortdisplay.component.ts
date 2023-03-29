@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ShortdisplayComponent implements OnInit {
   loading: boolean = false;
+  showfooter!:boolean
   propertyDetail: RentalUnitDetail[] = [];
   areaimg = assetUrl("icons/Area.svg");
   bedroomimg = assetUrl("icons/Bedroom.svg");
@@ -78,6 +79,7 @@ export class ShortdisplayComponent implements OnInit {
           this.ownerPropertyFilter = data
         }
         this.loading = false;
+        this.showfooter=true;
       })
       .catch((error) => {
         this.loading = false;
