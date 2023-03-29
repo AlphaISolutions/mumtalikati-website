@@ -13,23 +13,23 @@ import { AssetsService } from '../services/assetsServiceservice';
   styleUrls: ['./contactus.component.scss']
 })
 export class ContactusComponent implements OnInit {
-  markdown!:string;
-  markdownselect!:string;
+  markdown!: string;
+  markdownselect!: string;
 
-  aboutSectionImg=assetUrl("img/contact-building.jpg");
+  aboutSectionImg = assetUrl("img/contact-building.jpg");
   // @ViewChild('map') mapElement: any;
   // map!: google.maps.Map ;
   contactusform!: FormGroup;
   facebook = assetUrl("icons/fb.png");
   ins = assetUrl("icons/ins.png");
   linkin = assetUrl("icons/linkin.png");
-  contactus=assetUrl("doc/contact-us.md");
+  contactus = assetUrl("doc/contact-us.md");
   sendEmail = new SendEmail();
   loading: boolean = false;
-  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private toastr: ToastrService, private assetsService:AssetsService) {
+  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private toastr: ToastrService, private assetsService: AssetsService) {
   }
 
- async ngOnInit() {
+  async ngOnInit() {
     this.contactusform = this.rxFormBuilder.formGroup(this.sendEmail);
     // const mapProperties = {
     //   center: new google.maps.LatLng(35.2271, -80.8431),
@@ -54,15 +54,16 @@ export class ContactusComponent implements OnInit {
       this.mumtalikatiservic.postSendEmail(this.contactusform.value as SendEmail)
         .then((data) => {
           if (data) {
-           this.toastr.success('Thank you for contacting us!');
-  
+            this.toastr.success('Thank you for contacting us!');
+            this.contactusform.reset();
           }
           this.loading = false;
-  
+
         })
         .catch((error) => {
           this.loading = false;
-           this.toastr.error('Oops, something went wrong.Please try again later');
+          this.toastr.error('Oops, something went wrong.Please try again later');
+          this.contactusform.reset();
         });
     }
 
@@ -73,7 +74,7 @@ export class ContactusComponent implements OnInit {
       .then((data) => {
         if (data !== null) {
           this.markdown = data;
-      
+
         }
       })
       .catch((error) => {
@@ -85,7 +86,7 @@ export class ContactusComponent implements OnInit {
       .then((data) => {
         if (data !== null) {
           this.markdownselect = data;
-      
+
         }
       })
       .catch((error) => {
