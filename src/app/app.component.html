@@ -1,3 +1,8 @@
 <!-- <app-top-bar></app-top-bar> -->
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<div class="loading" *ngIf="loading ; else showList">
+    <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+<ng-template #showList>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+</ng-template>

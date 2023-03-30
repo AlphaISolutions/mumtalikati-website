@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ShortdisplayComponent implements OnInit {
   loading: boolean = false;
+  showfooter!:boolean
   propertyDetail: RentalUnitDetail[] = [];
   areaimg = assetUrl("icons/Area.svg");
   bedroomimg = assetUrl("icons/Bedroom.svg");
@@ -20,85 +21,18 @@ export class ShortdisplayComponent implements OnInit {
   bydefault = assetUrl('img/bydefault.png');
   location = assetUrl("icons/location.svg");
   filterCount: any;
-  @Input() pageShow: boolean = true;
+
   propertyfilter = new PropertyFilter();
-  ownerPropertyFilter: OwnerPropertyFilter[] = []
-  @Input() listid: number = 1;
-  @Input() perpagenumber: number = 8;
-  @Input() page = 1;
-  @Input() governorateid!: number;
-  @Input() subTypeId: number | null = null;
-  @Input() mastertypeid!: number;
-  @Input() unitcategoryid!: number;
-  @Input() minValue!: number;
-  @Input() maxValue!: number;
+  @Input() property: OwnerPropertyFilter[] = []
+
 
   pagination: boolean = false;
-  constructor(private mumtalikatiservic: MumtalikatiService, private router: Router,) { }
+  constructor( private router: Router,) { }
   ngOnInit(): void {
-    let data = this.propertyfilter;
-    data.listingPurposesID = this.listid;
-    data.rowsNumbers = this.perpagenumber;
-    data.pageNumber = this.page;
-    data.gOVERNORATEID = this.governorateid;
-    data.maxPrice = this.maxValue;
-    data.minPrice = this.minValue;
-    data.propertyCategory = this.unitcategoryid;
-    data.propertyMasterSubTypeID = this.subTypeId ?? null;
-    data.propertyMasterTypeID = this.mastertypeid;
-    this.propertyFilter(data);
-    let countPayload = this.propertyfilter;
-    countPayload.listingPurposesID = this.listid;
-    countPayload.gOVERNORATEID = this.governorateid;
-    countPayload.maxPrice = this.maxValue;
-    countPayload.minPrice = this.minValue;
-    countPayload.propertyCategory = this.unitcategoryid;
-    countPayload.propertyMasterSubTypeID = this.subTypeId;
-    countPayload.propertyMasterTypeID = this.mastertypeid;
-    this.postPropertyFilter_Count(countPayload);
+
 
   }
-  async postPropertyFilter_Count(data: PropertyFilter) {
-    this.loading = true;
-    this.mumtalikatiservic.postPropertyFilter_Count(data)
-      .then((data) => {
-        this.filterCount = data;
 
-      }
-      )
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-  propertyFilter(data: any) {
-    this.loading = true;
-    this.mumtalikatiservic.postPropertyFilter(data)
-      .then((data) => {
-        if (data) {
-          this.ownerPropertyFilter = data
-        }
-        this.loading = false;
-      })
-      .catch((error) => {
-        this.loading = false;
-        console.error(error);
-      }
-      );
-  }
-  async pageChange(page: any) {
-    this.loading = true;
-    let data = this.propertyfilter;
-    data.listingPurposesID = this.listid;
-    data.gOVERNORATEID = this.governorateid;
-    data.propertyMasterSubTypeID = this.subTypeId ?? null;
-    data.propertyMasterTypeID = this.mastertypeid;
-    data.propertyCategory = this.unitcategoryid;
-    data.rowsNumbers = this.perpagenumber;
-    data.pageNumber = page;
-    data.maxPrice = this.maxValue;
-    data.minPrice = this.minValue;
-    await this.propertyFilter(data)
-  }
   getsubType(subTypeId: number) {
     return propertySubTypeEnum(subTypeId);
   }

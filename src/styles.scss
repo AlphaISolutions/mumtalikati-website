@@ -319,7 +319,10 @@ hr{
 .ngx-slider .ngx-slider-pointer:after {
     background-color: #FFFFFF !important;
 }
-
+.carousel-indicators {
+         bottom: none !important;
+        left: 36% !important;
+}
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

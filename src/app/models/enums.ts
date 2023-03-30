@@ -12,7 +12,9 @@ export enum Status {
     Approved = 11,
     Rejected = 12,
     PartiallyOccupied = 13,
-    Expired = 14
+    Expired = 14,
+    PartiallyRent = 15,
+    Paid = 16
 }
 export enum ListingPurposeTypeEnum {
     Rent = 1,
@@ -115,6 +117,10 @@ export function getstatusType(stutuss: number) {
             return 'PartiallyOccupied';
         case 14:
             return 'Expired';
+        case 15:
+            return 'PartiallyRent';
+        case 16:
+            return 'Paid';
 
         default:
             return "Unknown";

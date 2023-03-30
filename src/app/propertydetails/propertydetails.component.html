@@ -43,7 +43,7 @@
                 </mat-form-field>
                 <ng-template #content let-modal>
                     <div class="modal-header pe-4 ps-4">
-                        <mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)="tabChanged($event)" >
+                        <mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)="tabChanged($event)">
                             <mat-tab label="Residential">
                                 <ng-template matTabContent>
                                     <div class="mat-loading" *ngIf="loading ; else showList">
@@ -53,13 +53,14 @@
                                         <div class="container mt-2">
                                             <div class="row gx-4">
                                                 <div class="col-6  pt-2 ">
-                                                    <button type="button" class="tab-btn" value="null" [ngClass]="{'btn-btn-danger':subTypeId==null && mastertypeid === 1}" 
+                                                    <button type="button" class="tab-btn" value="null"
+                                                        [ngClass]="{'btn-btn-danger':subTypeId==null && mastertypeid === 1}"
                                                         (click)="onsubtypeid(-1)">All</button>
 
                                                 </div>
-                                                <div class="col-6  pt-2 mat-pbtn"
-                                                    *ngFor="let doc of filterFunction(1)">
-                                                    <button type="button" class="tab-btn"  [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
+                                                <div class="col-6  pt-2 mat-pbtn" *ngFor="let doc of filterFunction(1)">
+                                                    <button type="button" class="tab-btn"
+                                                        [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
                                                         [value]="doc.propertySubType.subType"
                                                         (click)="onsubtypeid(doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
 
@@ -79,14 +80,15 @@
                                         <div class="container mt-2">
                                             <div class="row gx-4">
                                                 <div class="col-6  pt-2 ">
-                                                    <button type="button" class="tab-btn" value="null"  [ngClass]="{'btn-btn-danger':subTypeId==null}"
+                                                    <button type="button" class="tab-btn" value="null"
+                                                        [ngClass]="{'btn-btn-danger':subTypeId==null}"
                                                         (click)="onsubtypeid(-1)">All</button>
 
                                                 </div>
-                                                <div class="col-6  pt-2 "
-                                                    *ngFor="let doc of filterFunction(2)">
+                                                <div class="col-6  pt-2 " *ngFor="let doc of filterFunction(2)">
 
-                                                    <button type="button" class="tab-btn" [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
+                                                    <button type="button" class="tab-btn"
+                                                        [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
                                                         [value]="doc.propertySubType.subType"
                                                         (click)="onsubtypeid(doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
 
@@ -104,9 +106,9 @@
                                     <ng-template #showList>
                                         <div class="container mt-2">
                                             <div class="row gx-4">
-                                                <div class="col-6  pt-2 "
-                                                    *ngFor="let doc of filterFunction(3)">
-                                                    <button type="button" class="tab-btn" [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
+                                                <div class="col-6  pt-2 " *ngFor="let doc of filterFunction(3)">
+                                                    <button type="button" class="tab-btn"
+                                                        [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
                                                         [value]="doc.propertySubType.subType"
                                                         (click)="onsubtypeid(doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
 
@@ -124,20 +126,21 @@
 
                             </div>
                             <div class="col-4">
-                                <button type="reset" class="  border-btn hover-color" (click)=resetpropertyCategory()>Reset</button>
+                                <button type="reset" class="  border-btn hover-color"
+                                    (click)=resetpropertyCategory()>Reset</button>
                             </div>
                         </div>
-                        
+
                     </div>
                 </ng-template>
             </div>
             <div class="col">
                 <mat-form-field appearance="outline" *ngIf="propertyUnitCategoryType[0]">
                     <mat-label>Unit category</mat-label>
-                    <mat-select [value]="unitcategoryid || all" >
+                    <mat-select [value]="unitcategoryid || all">
                         <mat-option [value]="all" (click)="allCheck()">All</mat-option>
-                        <mat-option *ngFor="let doc of getPropertyUnitCategory(mastertypeid,listid)" [value]="doc.unitCategory" 
-                            (click)="onUnitcategory(doc.unitCategory)">
+                        <mat-option *ngFor="let doc of getPropertyUnitCategory(mastertypeid,listid)"
+                            [value]="doc.unitCategory" (click)="onUnitcategory(doc.unitCategory)">
                             {{doc.desc}}
                         </mat-option>
                     </mat-select>
@@ -164,7 +167,7 @@
                                         <mat-form-field appearance="outline">
                                             <input matInput placeholder="0" type="number" [value]="minValue"
                                                 [(ngModel)]="minValue">
-                                                <!-- <div matSuffix> <span class="suffix">|</span> OMR</div> -->
+                                            <!-- <div matSuffix> <span class="suffix">|</span> OMR</div> -->
                                         </mat-form-field>
                                     </div>
                                     <div class="col-6 mt-4">
@@ -172,7 +175,7 @@
                                         <mat-form-field appearance="outline">
                                             <input matInput placeholder="any" type="number" [value]="maxValue"
                                                 [(ngModel)]="maxValue">
-                                                <!-- <div matSuffix>| OMR</div> -->
+                                            <!-- <div matSuffix>| OMR</div> -->
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -180,7 +183,10 @@
                             <div class="modal-footer">
                                 <div class="row gx-2">
                                     <div class="col">
-                                        <button type="reset" class="  border-btn" (click)=reSet()>Reset</button>
+                                        <!-- <button type="reset" class="  border-btn" (click)=reSet()>Reset</button> -->
+                                        <button type="button" mat-stroked-button color="primary"
+                                            class=" px-5 border-r btn-width" (click)="reSet()">Reset</button>
+
                                     </div>
                                     <div class="col">
                                         <button type="button" color="primary" class="border-done"
@@ -195,8 +201,34 @@
             </div>
         </div>
         <h4 class="mt-4">Properties for {{getlistpurpose(listid)}} in Oman</h4>
-        <app-shortdisplay [listid]="listid" [governorateid]="governorateid" [subTypeId]="subTypeId"
-            [mastertypeid]=" mastertypeid" [minValue]="minValue" [maxValue]="maxValue"
-            [unitcategoryid]="unitcategoryid"></app-shortdisplay>
+        <div class="loading" *ngIf="loading ; else showList">
+            <mat-spinner [diameter]="50"></mat-spinner>
+        </div>
+        <ng-template #showList>
+            <div class="row mt-4" *ngIf="ownerPropertyFilter">
+                <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3" *ngFor="let property of ownerPropertyFilter| paginate
+                :{
+                      itemsPerPage: perpagenumber,
+                      currentPage: page,
+                      totalItems: filterCount
+                }
+                ">
+                    <app-shortdisplay [property]="property"></app-shortdisplay>
+                </div>
+                <div class=" d-flex align-items-center justify-content-center" style="height: 350px;"
+                    *ngIf="!ownerPropertyFilter[0]">
+                    <p class="">No Property Listed</p>
+                </div>
+                <div>
+                    <nav class="pagination justify-content-end pt-3">
+                        <pagination-controls (pageChange)="pageChange((page = $event))"
+                            class="p-controls"></pagination-controls>
+                    </nav>
+                </div>
+
+
+            </div>
+        </ng-template>
     </div>
+
 </ng-template>
