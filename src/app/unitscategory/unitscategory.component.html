@@ -6,28 +6,37 @@
 <ng-template #showInfo>
     <div class="container mt-4 ">
         <div>
-            <ul class="breadcrumb row p-0">
-                <div class="col float-start">
-                    <li><a href="#" [routerLink]="'../propertydetails'"><i class="fa fa-angle-left pe-2"
-                                aria-hidden="true"></i>Property Listings</a></li>
+            <div class="row p-0">
+                <div class="col-lg-4 float-start">
+                    <ul class="breadcrumb">
+                        <li><a href="#" [routerLink]="'../propertydetails'"><i class="fa fa-angle-left pe-2"
+                                    aria-hidden="true"></i>Property Listings</a></li>
+                    </ul>
+
                 </div>
-                <div class="col" *ngIf="indiviualsUni[0]">
+                <div class="col-lg-8 col-sm-12" *ngIf="indiviualsUni[0]">
                     <div *ngIf="indiviualsUni[0].propertySubTypeId ==15 else propertysubtype">
-                        <li><a routerLink="">Mumtalikati</a></li>
-                        <li><a href="#" routerLink="../propertydetails">{{getenum(propertyMasterTypeID)}}</a></li>
-                        <li *ngIf="indiviualsUni[0]"><a href="#">{{indiviualsUni[0].propertyMasterSubTypeName}}</a></li>
+                        <ul class="breadcrumb">
+                            <li><a routerLink="">Mumtalikati</a></li>
+                            <li><a href="#" routerLink="../propertydetails">{{getenum(propertyMasterTypeID)}}</a></li>
+                            <li *ngIf="indiviualsUni[0]"><a href="#">{{indiviualsUni[0].propertyMasterSubTypeName}}</a>
+                            </li>
+                        </ul>
                     </div>
                     <ng-template #propertysubtype>
-                        <li><a routerLink="">Mumtalikati</a></li>
-                        <li><a href="#" routerLink="../propertydetails">{{getenum(propertyMasterTypeID)}}</a></li>
-                        <li *ngIf="indiviualsUni[0]"><a href="#">{{indiviualsUni[0].propertyMasterSubTypeName}}</a></li>
-                        <li *ngIf="indiviualsUni[0]">{{indiviualsUni[0].propertyUnitName}}</li>
+                        <ul class="breadcrumb">
+                            <li><a routerLink="">Mumtalikati</a></li>
+                            <li><a href="#" routerLink="../propertydetails">{{getenum(propertyMasterTypeID)}}</a></li>
+                            <li *ngIf="indiviualsUni[0]"><a href="#">{{indiviualsUni[0].propertyMasterSubTypeName}}</a>
+                            </li>
+                            <li *ngIf="indiviualsUni[0]">{{indiviualsUni[0].propertyUnitName}}</li>
+                        </ul>
                     </ng-template>
 
                 </div>
-                <div class="col .d-md-none .d-lg-block"></div>
+                <!-- <div class="col-lg-2"></div> -->
 
-            </ul>
+            </div>
         </div>
 
 
@@ -50,8 +59,8 @@
                     <div class="my-card mb-4" (click)="onclick(property.propertyMasterID!,property.propertyUnitID!, property.unitCategoryID!, landLordID ,property.statuss! ,property.propertySubTypeId, property.caption
                     )">
                         <div class="row">
-                            <div class="col-md-5 fill">
-                                <img class="card-img-top m-2" [src]="property.imageString || bydefault" height="150"
+                            <div class="col-md-5  fill">
+                                <img class="card-img-top m-2" [src]="property.imageString || bydefault" height="150px" width="150px"
                                     alt="Card image">
                             </div>
                             <div class="col-md-7 text-cards">

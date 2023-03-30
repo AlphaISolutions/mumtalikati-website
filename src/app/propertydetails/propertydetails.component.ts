@@ -270,7 +270,7 @@ export class PropertydetailsComponent implements OnInit {
     this.mumtalikatiservic.postPropertyFilter(data)
       .then((data) => {
         if (data) {
-
+debugger
           this.ownerPropertyFilter = data
         }
         this.loading = false;
@@ -383,6 +383,7 @@ export class PropertydetailsComponent implements OnInit {
     return propertyMasterTypeEnum(masterTypeId)
   }
   onChangeListPurpose(event: any) {
+    
     if (event && this.listid != event.value) {
       this.listid = event.value;
       let data = this.propertyFilterform.value as PropertyFilter;
