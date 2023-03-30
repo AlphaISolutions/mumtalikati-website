@@ -26,12 +26,12 @@
                     <li *ngIf="propertyDetail[0]">{{propertyDetail[0].propertyUnitDescription}}</li>
                 </ul>
             </div>
-            <!-- <div class="col .d-md-none .d-lg-block"></div> -->
+           
 
         </div>
 
         <div *ngFor="let property of propertyDetail">
-            <div class="row mt-4 pb-4">
+            <div class="row pt-4 pb-4">
                 <div class="col-md-4">
                     <div>
                         <h2 class="h2color">
@@ -148,7 +148,7 @@
 
                     </div>
                 </div>
-                <div class="col-md-8 mt-4" *ngIf="property.imageString">
+                <div class="col-md-8 " *ngIf="property.imageString">
                     <div [style.height]="auto">
                         <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="primary"
                             maxWidth="auto" proportion="50" slides="5" [loop]="true" [hideArrows]="false"
