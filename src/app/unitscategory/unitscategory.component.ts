@@ -57,10 +57,8 @@ export class UnitscategoryComponent implements OnInit {
     this.mumtalikatiservic.getPropertyMasterIndiviualsUnit(propertyMasterTypeID, listingPurposesID, UnitCategoryID, status, pageNumber, rowsNumbers)
       .then((data) => {
         if (data) {
-     
           this.indiviualsUni = data;
-            // let subTypeId = this.indiviualsUni[0].propertySubTypeId
-            //   this.subTypeId = subTypeId;
+          
         }
         this.loading = false;
       })
@@ -70,16 +68,16 @@ export class UnitscategoryComponent implements OnInit {
       });
   }
   async propertyMasterIndiviualsUniCount(propertyMasterTypeID: number, listingPurposesID: number, UnitCategoryID: number, status: number) {
-    this.loading = true;
+
     this.mumtalikatiservic.getPropertyMasterIndiviualsUnitTotalCount(propertyMasterTypeID, listingPurposesID, UnitCategoryID, status)
       .then((data) => {
         if (data) {
           this.IndiviualsUnitTotalCount = data;
         }
-        this.loading = false;
+     
       })
       .catch((error) => {
-        this.loading = false;
+
         console.error(error);
       });
   }
@@ -95,13 +93,13 @@ export class UnitscategoryComponent implements OnInit {
     if (propertySubTypeId == 15) {
       this.router.navigate(['plotdetails'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss },
+          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss, 'listingPurposeID': this.listingPurposeID },
           state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId, 'caption':caption }
         });
     } else {
       this.router.navigate(['propertyfulldisplay'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss },
+          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss,'listingPurposeID': this.listingPurposeID, },
           state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId, 'caption':caption}
         });
     }

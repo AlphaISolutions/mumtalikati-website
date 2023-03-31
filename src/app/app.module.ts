@@ -84,7 +84,8 @@ import { PlotdetailsComponent } from './plotdetails/plotdetails.component';
     NgxSliderModule,
     MatCarouselModule.forRoot(),
     MarkdownModule.forRoot(),
-    MatDialogModule
+    MatDialogModule,
+    
    
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },RxFormBuilder],
