@@ -16,6 +16,7 @@ import { Governorate } from '../models/governorate.model';
 import { SetFiltersServive } from '../services/setfilters.servive';
 import { Options } from "@angular-slider/ngx-slider";
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { BspropertyService } from '../services/behaviour.subject/propertyDetail.bs.service';
 
 @Component({
   selector: 'app-propertydetails',
@@ -66,7 +67,7 @@ export class PropertydetailsComponent implements OnInit {
     floor: 0,
     ceil: 10000
   }
-  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal, private setupFilterServive: SetFiltersServive) {
+  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal, private setupFilterServive: SetFiltersServive , private bsService:BspropertyService) {
     if (this.router.getCurrentNavigation()?.extras.state != undefined) {
       let listingpupose = this.router.getCurrentNavigation()?.extras.state!["listingPurposeID"];
       if (listingpupose != null || listingpupose != undefined) {
@@ -143,6 +144,7 @@ export class PropertydetailsComponent implements OnInit {
       this.setservice.getPropertySubTypes().then((data) => {
         this.propertysubType = data;
         this.setupFilterServive.setPropertySubType(data);
+       
 
         // return tempData;
       }).catch((error) => {
@@ -153,7 +155,6 @@ export class PropertydetailsComponent implements OnInit {
 
   }
   async getlistingPurpose() {
-    this.loading = true;
     this.setservice.getlistingpurposeset()
       .then((data) => {
         if (data) {
@@ -167,7 +168,6 @@ export class PropertydetailsComponent implements OnInit {
       });
   }
   async getPropertyMasterType() {
-    this.loading = true;
     this.setservice.getPropertyMasterTypes()
       .then((data) => {
         if (data) {
@@ -181,7 +181,6 @@ export class PropertydetailsComponent implements OnInit {
       });
   }
   async getPropertySubType() {
-    this.loading = true;
     this.setservice.getPropertySubTypes()
       .then((data) => {
         if (data) {
@@ -195,7 +194,6 @@ export class PropertydetailsComponent implements OnInit {
       });
   }
   async getPropertyUnitCategoryType() {
-    this.loading = true;
     this.setservice.getPropertyUnitCategoryTypes()
       .then((data) => {
         if (data) {
@@ -226,8 +224,9 @@ export class PropertydetailsComponent implements OnInit {
     this.mumtalikatiservic.postPropertyFilter(data)
       .then((data) => {
         if (data) {
-
           this.ownerPropertyFilter = data
+          this.bsService.propertyfilterdata$.next(data);
+          this.bsService.propertyfilterdata$.value
         }
         this.loading = false;
       })

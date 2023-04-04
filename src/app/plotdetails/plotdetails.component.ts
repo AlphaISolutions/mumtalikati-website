@@ -102,9 +102,7 @@ export class PlotdetailsComponent implements OnInit {
     this.mumtalikatiservic.getPropertyFeature(id)
       .then((data) => {
         if (data) {
-      
           this.propertyFeature = data;
-         
         }
         this.loading = false;
       })
@@ -161,5 +159,16 @@ export class PlotdetailsComponent implements OnInit {
     }
     getlist(listid:any){
       return listingPurposeTypeEnum(listid)
+    }
+    redirectToWhatsApp(contact: number) {
+      let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      let phoneNumber = contact;
+      let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid} `;
+  
+      if (isMobile) {
+        window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+      } else {
+      window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
+      }
     }
 }

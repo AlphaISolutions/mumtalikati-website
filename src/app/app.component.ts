@@ -126,8 +126,8 @@ export class AppComponent {
       this.propertysubType = <Array<any>>data.propertyPropertySubType;
       this.propertyUnitCategoryType = <Array<any>>data.propertyUnitCategoryTypes;
       this.governorate = <Array<any>>data.propertyGovernorates;
-      this.setupFilterServive.startSession(
-        this.listingpupose, this.propertymasterType, this.propertysubType, this.propertyUnitCategoryType, this.governorate)
+      // this.setupFilterServive.startSession(
+      //   this.listingpupose, this.propertymasterType, this.propertysubType, this.propertyUnitCategoryType, this.governorate)
       this.loading = false;
     }, error => {
       this.loading = false;
