@@ -58,7 +58,7 @@
                                                         (click)="onsubtypeid(-1)">All</button>
 
                                                 </div>
-                                                <div class="col-6  pt-2 mat-pbtn" *ngFor="let doc of filterFunction(1)">
+                                                <div class="col-6  pt-2 mat-pbtn" *ngFor="let doc of filterFunction(1 ,listid)">
                                                     <button type="button" class="tab-btn"
                                                         [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
                                                         [value]="doc.propertySubType.subType"
@@ -85,7 +85,7 @@
                                                         (click)="onsubtypeid(-1)">All</button>
 
                                                 </div>
-                                                <div class="col-6  pt-2 " *ngFor="let doc of filterFunction(2)">
+                                                <div class="col-6  pt-2 " *ngFor="let doc of filterFunction(2 ,listid)">
 
                                                     <button type="button" class="tab-btn"
                                                         [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"

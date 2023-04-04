@@ -143,7 +143,7 @@
                         </div>
                         <div class="col">
                             <button mat-raised-button color="primary" class="px-5 btn-width"
-                                (click)="oncallclick(call)">Message</button>
+                            (click)="redirectToWhatsApp(property.contact)" >Message</button>
                         </div>
 
                     </div>
@@ -151,7 +151,7 @@
                 <div class="col-md-8 " *ngIf="property.imageString">
                     <div [style.height]="auto">
                         <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="primary"
-                            maxWidth="auto" proportion="50" slides="5" [loop]="true" [hideArrows]="false"
+                            maxWidth="auto" proportion="50" slides="5" [loop]="true" [hideArrows]="property.imageString.length == 1"
                             [hideIndicators]="false" [useKeyboard]="false" [useMouseWheel]="false" orientation="ltr"
                             slideHeight="100px">
                             <mat-carousel-slide #matCarouselSlide

@@ -152,50 +152,6 @@ export class PropertydetailsComponent implements OnInit {
     }
 
   }
-  // getFilterdata() {
-  //   this.loading = true;
-  //   forkJoin({
-  //     propertyListPurpose: this.setFiltersServive.getListingPurpose() ,
-  //     propertyMasterType: this.setFiltersServive.getPropertyMasterType(),
-  //     propertyPropertySubType: this.setservice.getPropertySubTypes(),
-  //     propertyUnitCategoryTypes: this.setservice.getPropertyUnitCategoryTypes(),
-  //     propertyGovernorates: this.setservice.getGovernorate(),
-  //   }).pipe(
-  //     map(response => {
-  //       return response;
-  //     })
-  //   ).subscribe((data) => {
-  //     this.listingpupose = <Array<any>>data.propertyListPurpose;
-  //     this.propertymasterType = <Array<any>>data.propertyMasterType;
-  //     this.propertysubType = <Array<any>>data.propertyPropertySubType;
-  //     this.propertyUnitCategoryType = <Array<any>>data.propertyUnitCategoryTypes;
-  //     this.governorate = <Array<any>>data.propertyGovernorates;
-  //     this.setFiltersServive.startSession(
-  //       this.listingpupose, this.propertymasterType, this.propertysubType, this.propertyUnitCategoryType, this.governorate)
-  //     this.loading = false;
-  //   }, error => {
-  //     this.loading = false;
-  //     console.error(error);
-  //   });
-  // }
-  async onclicks(listingPurposeType: number) {
-    this.listid = listingPurposeType;
-  }
-
-
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-
-
-
   async getlistingPurpose() {
     this.loading = true;
     this.setservice.getlistingpurposeset()
@@ -281,80 +237,6 @@ export class PropertydetailsComponent implements OnInit {
       }
       );
   }
-
-
-  onclickunitid(unitCategory: number) {
-    this.unitcategoryid = unitCategory;
-  }
-  async matTab(masterType: number) {
-    this.mastertypeid = masterType;
-    this.propertyMasterTypeId = this.mastertypeid;
-
-  }
-  async pageChange(page: any) {
-    this.loading = true;
-    let data = this.propertyFilterform.value as PropertyFilter;
-    data.listingPurposesID = this.listid;
-    data.gOVERNORATEID = this.governorateid;
-    data.propertyMasterSubTypeID = this.subTypeId;
-    data.propertyMasterTypeID = this.mastertypeid;
-    data.propertyCategory = this.unitcategoryid;
-    data.rowsNumbers = this.perpagenumber;
-    data.pageNumber = page;
-    await this.propertyFilter(data)
-  }
-
-  onsubType(propertyMasterTypeID: number, subType: number) {
-    let pmtid = propertyMasterTypeID
-    this.subTypeId = subType;
-    this.modalService.dismissAll();
-  }
-  openprice(price: any) {
-    this.modalService.open(price, this.configs).result.then(
-      (result) => {
-        this.closeResult = `Closed with: ${result}`;
-      },
-      (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      },
-    );
-  }
-  openArea(area: any) {
-    this.modalService.open(area, this.configs).result.then(
-      (result) => {
-        this.closeResult = `Closed with: ${result}`;
-      },
-      (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      },
-    );
-  }
-  onpopupclose() {
-    let data = this.propertyFilterform.value as PropertyFilter;
-    data.listingPurposesID = this.listid
-    data.rowsNumbers = this.perpagenumber;
-    data.pageNumber = this.page;
-    data.maxPrice = this.maxValue;
-    data.minPrice = this.minValue
-    this.propertyFilter(data)
-    this.postPropertyFilter_Count(data)
-    this.modalService.dismissAll();
-  }
-  addminprice(value: number) {
-
-    this.propertyFilterform.get('minPrice')?.patchValue(value);
-
-  }
-  addmaxprice(value: number) {
-    this.propertyFilterform.get('maxPrice')?.patchValue(value);
-  }
-  getsubType(subTypeId: number) {
-    return propertySubTypeEnum(subTypeId);
-  }
-
-  all() {
-    this.unitcategoryid = null;
-  }
   async getgovernorates() {
     this.loading = true;
     this.setservice.getGovernorate()
@@ -370,6 +252,23 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
+
+  async pageChange(page: any) {
+    this.loading = true;
+    let data = this.propertyFilterform.value as PropertyFilter;
+    data.listingPurposesID = this.listid;
+    data.gOVERNORATEID = this.governorateid;
+    data.propertyMasterSubTypeID = this.subTypeId;
+    data.propertyMasterTypeID = this.mastertypeid;
+    data.propertyCategory = this.unitcategoryid;
+    data.rowsNumbers = this.perpagenumber;
+    data.pageNumber = page;
+    await this.propertyFilter(data)
+  }
+
+  getsubType(subTypeId: number) {
+    return propertySubTypeEnum(subTypeId);
+  }
   getGovernorate(id: number) {
     this.governorateid = id;
   }
@@ -382,8 +281,10 @@ export class PropertydetailsComponent implements OnInit {
   getpropertyMasterType(masterTypeId: number) {
     return propertyMasterTypeEnum(masterTypeId)
   }
+  async onclicks(listingPurposeType: number) {
+    this.listid = listingPurposeType;
+  }
   onChangeListPurpose(event: any) {
-
     if (event && this.listid != event.value) {
       this.listid = event.value;
       let data = this.propertyFilterform.value as PropertyFilter;
@@ -392,8 +293,6 @@ export class PropertydetailsComponent implements OnInit {
       data.pageNumber = this.page;
       this.propertyFilter(data)
       this.postPropertyFilter_Count(data)
-    } else {
-
     }
   }
   onChangeGovernorate(event: any) {
@@ -409,6 +308,25 @@ export class PropertydetailsComponent implements OnInit {
     } else {
 
     }
+  }
+  onpopupclose() {
+    let data = this.propertyFilterform.value as PropertyFilter;
+    data.listingPurposesID = this.listid
+    data.rowsNumbers = this.perpagenumber;
+    data.pageNumber = this.page;
+    data.maxPrice = this.maxValue;
+    data.minPrice = this.minValue
+    this.propertyFilter(data)
+    this.postPropertyFilter_Count(data)
+    this.modalService.dismissAll();
+  }
+  onclickunitid(unitCategory: number) {
+    this.unitcategoryid = unitCategory;
+  }
+  async matTab(masterType: number) {
+    this.mastertypeid = masterType;
+    this.propertyMasterTypeId = this.mastertypeid;
+
   }
   getPropertyUnitCategory(id: any, listid: any) {
 
@@ -462,16 +380,6 @@ export class PropertydetailsComponent implements OnInit {
   }
 
   open(content: any) {
-    // this.mastertypeid = 1;
-    // this.subTypeId=null;
-    // let data = this.propertyFilterform.value as PropertyFilter;
-    // data.listingPurposesID = this.listid
-    // data.rowsNumbers = this.perpagenumber;
-    // data.pageNumber = this.page;
-    // data.propertyMasterTypeID = 1;
-    // this.propertyFilter(data)
-    // this.postPropertyFilter_Count(data)
-    // this.selectedTab = 0;
     this.get(1)
     this.modalService.open(content, this.configs).result.then(
 
@@ -483,7 +391,35 @@ export class PropertydetailsComponent implements OnInit {
       },
     );
   }
-
+  openprice(price: any) {
+    this.modalService.open(price, this.configs).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      },
+    );
+  }
+  openArea(area: any) {
+    this.modalService.open(area, this.configs).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      },
+    );
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
   tabChanged = async (tabChangeEvent: MatTabChangeEvent): Promise<void> => {
     this.selectedTab = tabChangeEvent.index
     switch (tabChangeEvent.index) {
@@ -515,8 +451,36 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
 
-  filterFunction(propertymastertypeid: any): any[] {
-    return this.propertysubType.filter(buttom => buttom.propertyMasterTypeID == propertymastertypeid);
+  filterFunction(propertymastertypeid: any, listid: any): any {
+
+    switch (propertymastertypeid) {
+      case 1: {
+        if (listid == 1) {
+          let data = this.propertysubType.filter(buttom => buttom.propertyMasterTypeID==propertymastertypeid &&( buttom.propertySubTypeID == 1 || buttom.propertySubTypeID == 2 || buttom.propertySubTypeID == 3 || buttom.propertySubTypeID == 4 || buttom.propertySubTypeID == 5 || buttom.propertySubTypeID == 6 || buttom.propertySubTypeID == 7));
+       
+          return data;
+        } else {
+          let data = this.propertysubType.filter(buttom =>buttom.propertyMasterTypeID==propertymastertypeid && (buttom.propertySubTypeID == 1 || buttom.propertySubTypeID == 2 || buttom.propertySubTypeID == 3 || buttom.propertySubTypeID == 4 || buttom.propertySubTypeID == 5 || buttom.propertySubTypeID == 6 || buttom.propertySubTypeID == 7 || buttom.propertySubTypeID == 15));
+          return data;
+        }
+      }
+      case 2: {
+        if (listid == 1) {
+          let data = this.propertysubType.filter(buttom =>buttom.propertyMasterTypeID==propertymastertypeid && (buttom.propertySubTypeID == 9 || buttom.propertySubTypeID == 10 || buttom.propertySubTypeID == 11 || buttom.propertySubTypeID == 12 || buttom.propertySubTypeID == 13 || buttom.propertySubTypeID == 14) );
+          return data;
+        } else {
+          let data = this.propertysubType.filter(buttom =>buttom.propertyMasterTypeID==propertymastertypeid && (buttom.propertySubTypeID == 9 || buttom.propertySubTypeID == 10 || buttom.propertySubTypeID == 11 || buttom.propertySubTypeID == 12 || buttom.propertySubTypeID == 13 || buttom.propertySubTypeID == 14 || buttom.propertySubTypeID == 15) );
+          return data;
+        }
+      }
+      case 3: {
+        return this.propertysubType.filter(buttom => buttom.propertyMasterTypeID == propertymastertypeid);
+      }
+      default: {
+        break;
+      }
+    }
+
   }
 
 
@@ -543,11 +507,6 @@ export class PropertydetailsComponent implements OnInit {
     data.propertyCategory = this.unitcategoryid;
     this.propertyFilter(data)
     this.postPropertyFilter_Count(data)
-  }
-  reSet() {
-
-    this.minValue = null!;
-    this.maxValue = 10000;
   }
   get(mastertypeid: number) {
     let data = this.propertyFilterform.value as PropertyFilter;
@@ -581,10 +540,16 @@ export class PropertydetailsComponent implements OnInit {
   getsubTyp(subTypeId: number) {
     return propertySubTypeEnum(subTypeId)
   }
+  reSet() {
+    this.minValue = null!;
+    this.maxValue = 10000;
+  }
   resetpropertyCategory() {
     this.mastertypeid = null;
     this.subTypeId = null;
     this.selectedTab = 0;
     this.modalService.dismissAll()
   }
+
+
 }

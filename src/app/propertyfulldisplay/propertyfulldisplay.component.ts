@@ -41,21 +41,22 @@ export class PropertyfulldisplayComponent implements OnInit {
   imageUser!: ProfileImage;
   public page: number = 1;
   public perpagenumber: number = 8;
+  contact!: any;
   listpurID!: any;
   PropertySubTypeID!: any;
-  caption!:string
+  caption!: string
   pMTID!: number;
-  btnColor={'background-color':'#9e2a2b'}
+  btnColor = { 'background-color': '#9e2a2b' }
   closeResult = '';
-  maxheight={'maxheight':'80vh !important'}
+  maxheight = { 'maxheight': '80vh !important' }
 
-  activeroutes = { 'color': '#9e2a2b !important', 'font-weight':'500' };
-  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router,private modalService: NgbModal,private clipboard: Clipboard) {
-    this.listpurID = this.router.getCurrentNavigation()!.extras.state!["listingPurposeID"]!;
+  activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
+  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router, private modalService: NgbModal, private clipboard: Clipboard) {
+    // this.listpurID = this.router.getCurrentNavigation()!.extras.state!["listingPurposeID"]!;
     this.pmid = this.router.getCurrentNavigation()!.extras.state!["propertyMasterTypeID"]!;
     this.PropertySubTypeID = this.router.getCurrentNavigation()!.extras.state!["PropertySubTypeID"]!;
     this.caption = this.router.getCurrentNavigation()!.extras.state!["caption"]!;
-   
+
   }
   async ngOnInit() {
 
@@ -65,7 +66,7 @@ export class PropertyfulldisplayComponent implements OnInit {
       this.unitcatID = +params['unitCategoryID'];
       this.landlordid = +params['landlordid'];
       this.statuss = +params['status'];
-      // this.listpurID = +params['listingPurposeID']
+      this.listpurID= +params['listingPurposeID'];
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
       this.getImageUser(this.landlordid);
@@ -78,8 +79,6 @@ export class PropertyfulldisplayComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.propertyDetail = data;
-       
-        
         }
         this.loading = false;
       })
@@ -89,13 +88,13 @@ export class PropertyfulldisplayComponent implements OnInit {
       });
   }
   async getImageUser(landLordID: number) {
-    this.loading = true;
+   
     this.mumtalikatiservic.getUserImage(landLordID)
       .then((data) => {
         if (data) {
           this.imageUser = data;
         }
-        this.loading = false;
+      
       })
       .catch((error) => {
         this.loading = false;
@@ -103,14 +102,13 @@ export class PropertyfulldisplayComponent implements OnInit {
       });
   }
   async getPropertyFeatures(id: number) {
-    this.loading = true;
     this.mumtalikatiservic.getPropertyFeature(id)
       .then((data) => {
         if (data) {
-    
+
           this.propertyFeature = data;
         }
-        this.loading = false;
+   
       })
       .catch((error) => {
         this.loading = false;
@@ -119,7 +117,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   }
   getenum(propertyMasterTypeID: number) {
     let pmtid = propertyMasterTypeID;
-    this.pMTID=pmtid 
+    this.pMTID = pmtid
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
   getstatus(statuss: number) {
@@ -129,42 +127,53 @@ export class PropertyfulldisplayComponent implements OnInit {
     return getPropertyUnitCategoryEnum(unitcatID)
   }
   addItem(newItem: number) {
-    
-    this.listpurID=newItem;
+
+    this.listpurID = newItem;
   }
   backotsearch() {
     this.router.navigate(
       ['Unitscategory'],
-      { queryParams: { 'propertyMasterID': this.pmid, 'listingPurposeID': this.listpurID, 'unitCategoryID': this.unitcatID, 'status': this.statuss, 'page': this.page, 'perpagenumber': this.perpagenumber,'propertyMasterTypeID':this.pMTID,'landLordID':this.landlordid } });
+      { queryParams: { 'propertyMasterID': this.pmid, 'listingPurposeID': this.listpurID, 'unitCategoryID': this.unitcatID, 'status': this.statuss, 'page': this.page, 'perpagenumber': this.perpagenumber, 'propertyMasterTypeID': this.pMTID, 'landLordID': this.landlordid } });
   }
-  oncallclick(call:any){
-   
-      this.modalService.open(call,{ centered: true } ).result.then(
-        (result) => {
-          this.closeResult = `Closed with: ${result}`;
-        },
-        (reason) => {
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        },
-      );
+  oncallclick(call: any) {
+
+    this.modalService.open(call, { centered: true }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      },
+    );
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
     }
-    private getDismissReason(reason: any): string {
-      if (reason === ModalDismissReasons.ESC) {
-        return 'by pressing ESC';
-      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-        return 'by clicking on a backdrop';
-      } else {
-        return `with: ${reason}`;
-      }
+  }
+  closepop() {
+    this.modalService.dismissAll();
+  }
+  copyHeroName(el: HTMLDivElement) {
+    this.clipboard.copy(el.innerText);
+  }
+  getlist(listid: any) {
+    return listingPurposeTypeEnum(listid)
+  }
+  redirectToWhatsApp(contact: number) {
+    let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    let phoneNumber = contact;
+    let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid} `;
+
+    if (isMobile) {
+      window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+    } else {
+    window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
     }
-    closepop(){
-      this.modalService.dismissAll();
-    }
-    copyHeroName(el: HTMLDivElement) {
-      this.clipboard.copy(el.innerText);
-    }
-    getlist(listid:any){
-      return listingPurposeTypeEnum(listid)
-    }
+  }
 }
 

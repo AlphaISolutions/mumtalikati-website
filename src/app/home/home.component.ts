@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   public listingPurposeType: number | null = 1;
   public listid: number | null = 1
   public pageNumber:number=1;
-  public rowsNumber:number=4;
+  public rowsNumber:number=8  ;
   color: any
   toggle: any;
   isActive: boolean = false;
