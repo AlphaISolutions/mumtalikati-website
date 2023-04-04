@@ -520,7 +520,6 @@ export class PropertydetailsComponent implements OnInit {
 
   }
   onsubtypeid(subTypeid: number) {
-    debugger
     if (subTypeid == -1) {
       this.mastertypeid = this.selectedTab + 1;
       this.subTypeId = null
