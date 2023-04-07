@@ -21,7 +21,7 @@ export class ShortdisplayComponent implements OnInit {
   bydefault = assetUrl('img/bydefault.png');
   location = assetUrl("icons/location.svg");
   filterCount: any;
-
+@Input() listid!:number;
   propertyfilter = new PropertyFilter();
   @Input() property: OwnerPropertyFilter[] = []
 

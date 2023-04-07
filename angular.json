@@ -30,12 +30,14 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              
+              "node_modules/@splidejs/splide/dist/css/splide.min.css",
+              "node_modules/@splidejs/splide/dist/css/themes/splide-default.min.css",
               "src/styles.scss",
               "src/theme.scss"
             ],
             "scripts": ["./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-            "./node_modules/popper.js/dist/umd/popper.min.js"
+            "./node_modules/popper.js/dist/umd/popper.min.js",
+            "node_modules/@splidejs/splide/dist/js/splide.js"
             ],
             "customWebpackConfig": {
               "path": "extra-webpack.config.js",

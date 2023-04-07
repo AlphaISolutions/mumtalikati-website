@@ -25,10 +25,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { UnitscategoryComponent } from './unitscategory/unitscategory.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
-
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
-import { DropdownComponent } from './dropdown/dropdown.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { ToastrModule } from "ngx-toastr";
@@ -39,6 +37,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { MatCarouselModule } from 'ng-mat-carousel';
 import { MarkdownModule } from 'ngx-markdown';
 import { PlotdetailsComponent } from './plotdetails/plotdetails.component';
+
 
 @NgModule({
   declarations: [
@@ -52,9 +51,8 @@ import { PlotdetailsComponent } from './plotdetails/plotdetails.component';
     UnitscategoryComponent,
     ContactusComponent,
     AboutusComponent,
-    DropdownComponent,
     PlotdetailsComponent,
-   
+
   ],
   imports: [
     BrowserModule,
@@ -84,8 +82,8 @@ import { PlotdetailsComponent } from './plotdetails/plotdetails.component';
     NgxSliderModule,
     MatCarouselModule.forRoot(),
     MarkdownModule.forRoot(),
-    MatDialogModule,
-    
+    MatDialogModule
+
    
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },RxFormBuilder],

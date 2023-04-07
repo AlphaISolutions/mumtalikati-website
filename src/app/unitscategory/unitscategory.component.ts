@@ -93,13 +93,13 @@ export class UnitscategoryComponent implements OnInit {
     if (propertySubTypeId == 15) {
       this.router.navigate(['plotdetails'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss, 'listingPurposeID': this.listingPurposeID },
-          state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId, 'caption':caption }
+          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss, 'listingPurposeID': this.listingPurposeID,'PropertySubTypeID': propertySubTypeId,'caption':caption  },
+          state: {  'PropertySubTypeID': propertySubTypeId, 'caption':caption }
         });
     } else {
       this.router.navigate(['propertyfulldisplay'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss,'listingPurposeID': this.listingPurposeID, },
+          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss,'listingPurposeID': this.listingPurposeID,'PropertySubTypeID': propertySubTypeId, 'caption':caption },
           state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId, 'caption':caption}
         });
     }

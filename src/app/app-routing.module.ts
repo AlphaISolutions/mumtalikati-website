@@ -1,5 +1,5 @@
 import { HomeComponent } from './home/home.component';
-import { EmptyRouteComponent } from './empty-route/empty-route.component';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
@@ -8,7 +8,7 @@ import { PropertyfulldisplayComponent } from './propertyfulldisplay/propertyfull
 import { UnitscategoryComponent } from './unitscategory/unitscategory.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
-import { DropdownComponent } from './dropdown/dropdown.component';
+
 import { PlotdetailsComponent } from './plotdetails/plotdetails.component';
 
 const routes: Routes = [
