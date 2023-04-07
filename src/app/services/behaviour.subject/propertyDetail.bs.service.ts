@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 @Injectable({
     providedIn: 'root'
 })
+
 export class BspropertyService {
     public propertyfilterdata$ = new BehaviorSubject<any>(null);
 

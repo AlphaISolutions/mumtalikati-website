@@ -47,26 +47,44 @@ export class PlotdetailsComponent implements OnInit {
   btnColor={'background-color':'#9e2a2b'}
   closeResult = '';
   maxheight={'maxheight':'80vh !important'}
-  caption!:string;
+  caption!:number;
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight':'500' };
+  public imgindex: number = 0;
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router,private modalService: NgbModal,private clipboard: Clipboard) {
-    this.listpurID = this.router.getCurrentNavigation()!.extras.state!["listingPurposeID"]!;
-    this.PropertySubTypeID = this.router.getCurrentNavigation()!.extras.state!["PropertySubTypeID"]!;
-    this.caption = this.router.getCurrentNavigation()!.extras.state!["caption"]!;
+
   }
   async ngOnInit() {
-
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMasterID'];
       this.propertyUnitid = +params['propertyUnitID'];
       this.unitcatID = +params['unitCategoryID'];
       this.landlordid = +params['landlordid'];
       this.statuss = +params['status'];
-      // this.listpurID = +params['listingPurposeID']
+      this.listpurID = +params['listingPurposeID'];
+      this.PropertySubTypeID = +params["PropertySubTypeID"];
+      this.caption = +params["caption"];
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
       this.getImageUser(this.landlordid);
     });
+
+  }
+  imagechange(i: any) {
+    this.imgindex = i;
+  }
+  lessthen(length: any, index: any) {
+    var lengthList = length.length
+    lengthList = lengthList - 1
+    if (index == -1) {
+      index = 0
+    }
+    if (index < lengthList) {
+      this.imgindex = index
+    }
+
+    else if (index = lengthList) {
+      this.imgindex = index
+    }
 
   }
   async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {
@@ -163,7 +181,7 @@ export class PlotdetailsComponent implements OnInit {
     redirectToWhatsApp(contact: number) {
       let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       let phoneNumber = contact;
-      let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid} `;
+      let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid}&listingPurposeID=${this.listpurID}&PropertySubTypeID=${this.PropertySubTypeID}&caption=${this.caption} `;
   
       if (isMobile) {
         window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;

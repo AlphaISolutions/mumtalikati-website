@@ -21,8 +21,8 @@
             <div class="col">
                 <mat-form-field appearance="outline" *ngIf="governorate">
                     <mat-label>Governorate</mat-label>
-                    <mat-select [value]="governorateid ||all" (selectionChange)="onChangeGovernorate($event)">
-                        <mat-option [value]="all" (click)="governorateId()">
+                    <mat-select [value]="governorateid ||0" (selectionChange)="onChangeGovernorate($event)">
+                        <mat-option [value]="0" (click)="governorateId()">
                             All
                         </mat-option>
                         <mat-option *ngFor="let doc of governorate" [value]="doc.id" (click)="getGovernorate(doc.id!)">
@@ -137,8 +137,8 @@
             <div class="col">
                 <mat-form-field appearance="outline" *ngIf="propertyUnitCategoryType[0]">
                     <mat-label>Unit category</mat-label>
-                    <mat-select [value]="unitcategoryid || all">
-                        <mat-option [value]="all" (click)="allCheck()">All</mat-option>
+                    <mat-select [value]="unitcategoryid || 0">
+                        <mat-option [value]="0" (click)="allCheck()">All</mat-option>
                         <mat-option *ngFor="let doc of getPropertyUnitCategory(mastertypeid,listid)"
                             [value]="doc.unitCategory" (click)="onUnitcategory(doc.unitCategory)">
                             {{doc.desc}}
@@ -213,7 +213,7 @@
                       totalItems: filterCount
                 }
                 ">
-                    <app-shortdisplay [property]="property"></app-shortdisplay>
+                    <app-shortdisplay [property]="property" [listid]="listid"></app-shortdisplay>
                 </div>
                 <div class=" d-flex align-items-center justify-content-center" style="height: 350px;"
                     *ngIf="!ownerPropertyFilter[0]">

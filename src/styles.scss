@@ -37,7 +37,10 @@ body {
     margin-left: 0.666667em;
 }
 
-
+.carousel-slide-overlay{
+ 
+    border-radius: 20px !important;
+}
 .col {
     padding-block: 0rem;
     padding-inline: 0px;
@@ -54,6 +57,9 @@ body {
 
 .mat-radio-label {
     margin: 0 15px 0 0;
+}
+.btn-secondary{
+    background-color: #345C66;
 }
 
 .title-center {

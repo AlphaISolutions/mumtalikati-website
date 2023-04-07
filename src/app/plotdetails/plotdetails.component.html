@@ -8,14 +8,14 @@
         <div class="row p-0 pt-4">
 
             <div class="col-md-4 float-start ">
-                <ul class="breadcrumb">
+                <ul class="breadcrumb" *ngIf="propertyDetail[0]">
                     <li><a routerLink="/Unitscategory"
                             [queryParams]="{'propertyMasterID':pmid,'listingPurposeID':listpurID,'unitCategoryID':unitcatID,'status':statuss,'page': page, 'perpagenumber': perpagenumber,'landLordID':landlordid}"
                             (click)="addItem(propertyDetail[0].listingPurposeID!)"><i class="fa fa-angle-left pe-2"
                                 aria-hidden="true"></i>Back to Search</a></li>
                 </ul>
             </div>
-            <div class="col-md-8" *ngIf="propertyDetail">
+            <div class="col-md-8" *ngIf="propertyDetail[0]">
                 <ul class="breadcrumb ">
                     <li><a routerLink="">Mumtalikati</a></li>
                     <li *ngIf="propertyDetail[0]">
@@ -128,53 +128,55 @@
                     </div>
                 </div>
                 <div class="col-md-8 pb-4" *ngIf="property.imageString">
-                    <div [style.height]="auto">
-                        <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="primary"
-                            maxWidth="auto" proportion="50" slides="5" [loop]="true" [hideArrows]="false"
-                            [hideIndicators]="false" [useKeyboard]="false" [useMouseWheel]="false" orientation="ltr">
-                            <mat-carousel-slide #matCarouselSlide
-                                *ngFor="let image of property.imageString; let i = index" [image]="image"
-                                overlayColor="#00000040" [hideOverlay]="false"></mat-carousel-slide>
-                        </mat-carousel>
+                    <div class="card border-0 shadow-none">
+                        <img class="full-image"  
+                        [src]="property.imageString[imgindex]" alt="image">
+
+                    <div class="thumbnails text-center " *ngIf="property.imageString.length>1">
+                        <button type="button"  class="second-color"
+                            (click)="lessthen(property.imageString ,imgindex-1)"><mat-icon>keyboard_arrow_left</mat-icon></button>
+                        <div class="thumbnail active " *ngFor="let image of property.imageString; let i = index">
+                            <img [src]="image" alt="Image {{i}}" (click)="imagechange(i)">
+                        </div>
+                        <button type="button" class="second-color-greate"
+                            (click)="lessthen(property.imageString ,imgindex+1)"><mat-icon>keyboard_arrow_right</mat-icon></button>
                     </div>
-                    <mat-card class="example-card ">
-
-                    
-                        <mat-card-content>
-                            <h5 *ngIf="listpurID ==1   ; else nolistpurposeid">
-                                OMR {{property.rentPrice}}/mon
-                            </h5>
-                            <ng-template #nolistpurposeid>
-                                <h5>
-                                    OMR {{property.sellPrice}}/Sale price
+                    <div class="card-body p-0 pt-4">
+                            <mat-card-content>
+                                <h5 *ngIf="listpurID ==1   ; else nolistpurposeid">
+                                    OMR {{property.rentPrice}}/mon
                                 </h5>
-                            </ng-template>
-
-                            <div class="dis-flex" clas="pe-4">
-                                <p class="icon pe-2"><img class="pe-2" [src]="areaimg">{{property.sqft}}SQM</p>
-                       
-                            </div>
-                            <h5>
-                                Property Details
-                            </h5>
-                            <p>
-                                {{property.propertyMasterDescription}}
-                            </p>
-                            <h5 *ngIf="!propertyFeature.length==0">
-                                Features
-                            </h5>
-                            <div class="container">
-                                <div class="row gx-2 justify-content-md-center btn-row " *ngIf="propertyFeature">
-                                    <div class="col-auto pt-2" *ngFor="let features of propertyFeature">
-                                        <button mat-raised-button class="" [disabled]="true"
-                                            id="view-cmp-btn">{{features.feature.desc}}</button>
+                                <ng-template #nolistpurposeid>
+                                    <h5>
+                                        OMR {{property.sellPrice}}/Sale price
+                                    </h5>
+                                </ng-template>
+    
+                                <div class="dis-flex" clas="pe-4">
+                                    <p class="icon pe-2"><img class="pe-2" [src]="areaimg">{{property.sqft}}SQM</p>
+                           
+                                </div>
+                                <h5>
+                                    Property Details
+                                </h5>
+                                <p>
+                                    {{property.propertyMasterDescription}}
+                                </p>
+                                <h5 *ngIf="!propertyFeature.length==0">
+                                    Features
+                                </h5>
+                                <div class="container">
+                                    <div class="row gx-2 justify-content-md-center btn-row " *ngIf="propertyFeature">
+                                        <div class="col-auto pt-2" *ngFor="let features of propertyFeature">
+                                            <button mat-raised-button class="" [disabled]="true"
+                                                id="view-cmp-btn">{{features.feature.desc}}</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </mat-card-content>
-                    </mat-card>
+                            </mat-card-content>
+                    </div>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>

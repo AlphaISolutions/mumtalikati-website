@@ -215,7 +215,7 @@ export class PropertydetailsComponent implements OnInit {
 
       )
       .catch((error) => {
-
+        this.loading = false;
         console.error(error);
       });
   }
@@ -225,8 +225,7 @@ export class PropertydetailsComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.ownerPropertyFilter = data
-          this.bsService.propertyfilterdata$.next(data);
-          this.bsService.propertyfilterdata$.value
+        
         }
         this.loading = false;
       })
@@ -423,22 +422,19 @@ export class PropertydetailsComponent implements OnInit {
     this.selectedTab = tabChangeEvent.index
     switch (tabChangeEvent.index) {
       case 0: {
-        // this.mastertypeid = 1;
-        // this.subTypeId = null;
+      
         this.get(1);
         break;
       }
 
       case 1: {
-        // this.mastertypeid = 2;
-        // this.subTypeId = null
+    
         this.get(2);
         break;
       }
 
       case 2: {
-        // this.mastertypeid = 3
-        // this.subTypeId = null
+       
         this.get(3);
         break;
       }
