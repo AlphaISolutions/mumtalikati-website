@@ -21,7 +21,7 @@
             <div class="col">
                 <mat-form-field appearance="outline" *ngIf="governorate">
                     <mat-label>Governorate</mat-label>
-                    <mat-select [value]="governorateid ||0" (selectionChange)="onChangeGovernorate($event)">
+                    <mat-select [value]="governorateid || 0" (selectionChange)="onChangeGovernorate($event)">
                         <mat-option [value]="0" (click)="governorateId()">
                             All
                         </mat-option>
@@ -158,7 +158,7 @@
                                 <div class="row gx-2">
                                     <div class="container">
                                         <h6 class="primary">Price Range</h6>
-                                        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue"
+                                        <ngx-slider [(minvalue)]="minValue" [(highValue)]="maxValue"
                                             [options]="options"></ngx-slider>
                                     </div>
 

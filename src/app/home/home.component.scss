@@ -103,10 +103,9 @@
   cursor: pointer;
 }
 .under {
-  color: black;
+  color: $primary;
   text-decoration: underline;
-
-  text-decoration-color: red;
+  text-decoration-color: $primary;
 }
 
 .border-0 {
@@ -145,4 +144,12 @@
 // }
 // .con {
 //   position: relative;
+// }
+// .centered-element{
+//   margin: auto;
+//   // height: 80%;
+//   text-align: center;
+//   vertical-align: middle;
+//   border: 3px solid #73AD21;
+//   padding: 10px;
 // }

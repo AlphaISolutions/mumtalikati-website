@@ -60,7 +60,7 @@ export class PropertydetailsComponent implements OnInit {
   id: number | null = null;
   governorate: Governorate[] = [];
   minValue: number = 0;
-  public maxValue: number | null = 10000;
+  public maxValue : number | null =10000 ;
   @ViewChild('tabGroup') tabGroup: any;
 
   options: Options = {
@@ -294,6 +294,9 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   onChangeGovernorate(event: any) {
+    if(event.value == 0){
+      event.value=null;
+    }
     if (event && this.governorateid != event.value) {
       this.governorateid = event.value;
       let data = this.propertyFilterform.value as PropertyFilter;
@@ -489,8 +492,6 @@ export class PropertydetailsComponent implements OnInit {
     data.propertyCategory = this.unitcategoryid;
     this.propertyFilter(data)
     this.postPropertyFilter_Count(data)
-
-
   }
   allCheck() {
     this.unitcategoryid = null;

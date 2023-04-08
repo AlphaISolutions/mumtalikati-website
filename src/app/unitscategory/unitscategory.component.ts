@@ -110,7 +110,6 @@ export class UnitscategoryComponent implements OnInit {
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
   backtosearch(){
- 
     this.router.navigate(['propertydetails'],
     {
       state: { 'listingPurposeID': this.listingPurposeID, 'propertyMasterTypeID': this.propertyMasterTypeID}

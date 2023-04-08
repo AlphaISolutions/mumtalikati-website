@@ -1,14 +1,10 @@
-import { ChangeDetectorRef, Component, ContentChild, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { PropertyFeature } from '../models/propertyfeature';
 import { MumtalikatiService } from '../services/mumtalikati.service';
-import { getPropertyUnitCategoryEnum, getstatusType, listingPurposeTypeEnum, propertyMasterTypeEnum } from '../models/enums';
 import { ProfileImage } from '../models/profileImage.model';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Clipboard } from '@angular/cdk/clipboard';
-import { MatCarousel } from 'ng-mat-carousel';
 @Component({
   selector: 'app-propertyfulldisplay',
   templateUrl: './propertyfulldisplay.component.html',
@@ -45,17 +41,14 @@ export class PropertyfulldisplayComponent implements OnInit {
   listpurID!: any;
   PropertySubTypeID!: any;
   caption!: number;
-  pMTID!: number;
+  propertyMasterTypeID!: number;
   btnColor = { 'background-color': '#9e2a2b' }
   closeResult = '';
   maxheight = { 'maxheight': '80vh !important' }
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   public imgindex: number = 0;
-  @ViewChild('thumbnaile') thumbnailRef!: ElementRef;
-  @ViewChild('carousel') carousel!: MatCarousel;
-  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router, private modalService: NgbModal, private clipboard: Clipboard, private el: ElementRef, private cdr: ChangeDetectorRef) { }
+  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService) { }
   async ngOnInit() {
-    this.thumbnailRef = this.thumbnailRef;
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMasterID'];
       this.propertyUnitid = +params['propertyUnitID'];
@@ -69,27 +62,6 @@ export class PropertyfulldisplayComponent implements OnInit {
       this.getPropertyFeatures(this.pmid);
       this.getImageUser(this.landlordid);
     });
-
-
-  }
-
-  imagechange(i: any) {
-    this.imgindex = i;
-  }
-  lessthen(length: any, index: any) {
-    var lengthList = length.length
-    lengthList = lengthList - 1
-    if (index == -1) {
-      index = 0
-    }
-    if (index < lengthList) {
-      this.imgindex = index
-    }
-
-    else if (index = lengthList) {
-      this.imgindex = index
-    }
-
   }
   async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {
     this.loading = true;
@@ -132,66 +104,6 @@ export class PropertyfulldisplayComponent implements OnInit {
         this.loading = false;
         console.error(error);
       });
-  }
-  getenum(propertyMasterTypeID: number) {
-    let pmtid = propertyMasterTypeID;
-    this.pMTID = pmtid
-    return propertyMasterTypeEnum(propertyMasterTypeID)
-  }
-  getstatus(statuss: number) {
-    return getstatusType(statuss)
-  }
-  getpropertyunitCategoryid(unitcatID: number) {
-    return getPropertyUnitCategoryEnum(unitcatID)
-  }
-  addItem(newItem: number) {
-
-    this.listpurID = newItem;
-  }
-  backotsearch() {
-    this.router.navigate(
-      ['Unitscategory'],
-      { queryParams: { 'propertyMasterID': this.pmid, 'listingPurposeID': this.listpurID, 'unitCategoryID': this.unitcatID, 'status': this.statuss, 'page': this.page, 'perpagenumber': this.perpagenumber, 'propertyMasterTypeID': this.pMTID, 'landLordID': this.landlordid } });
-  }
-  oncallclick(call: any) {
-
-    this.modalService.open(call, { centered: true }).result.then(
-      (result) => {
-        this.closeResult = `Closed with: ${result}`;
-      },
-      (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      },
-    );
-  }
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-  closepop() {
-    this.modalService.dismissAll();
-  }
-  copyHeroName(el: HTMLDivElement) {
-    this.clipboard.copy(el.innerText);
-  }
-  getlist(listid: any) {
-    return listingPurposeTypeEnum(listid)
-  }
-  redirectToWhatsApp(contact: number) {
-    let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    let phoneNumber = contact;
-    let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid}&listingPurposeID=${this.listpurID}&PropertySubTypeID=${this.PropertySubTypeID}&caption=${this.caption} `;
-
-    if (isMobile) {
-      window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-    } else {
-      window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
-    }
   }
 }
 

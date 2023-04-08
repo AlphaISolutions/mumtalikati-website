@@ -5,135 +5,48 @@
 </div>
 <ng-template #showInfo>
     <div class="container mt-4 ">
-        <div>
-            <div class="row p-0">
-                <div class="col-lg-4 float-start">
-                    <ul class="breadcrumb">
-                        <li><a href="#" [routerLink]="'../propertydetails'"><i class="fa fa-angle-left pe-2"
-                                    aria-hidden="true"></i>Property Listings</a></li>
-                    </ul>
+        <app-breadcrumb [indiviualsUni]="indiviualsUni" [propertyMasterTypeID]="propertyMasterTypeID"></app-breadcrumb>
 
-                </div>
-                <div class="col-lg-8 col-sm-12" *ngIf="indiviualsUni[0]">
-                    <div *ngIf="indiviualsUni[0].propertySubTypeId ==15 else propertysubtype">
-                        <ul class="breadcrumb">
-                            <li><a routerLink="">Mumtalikati</a></li>
-                            <li><a href="#" routerLink="../propertydetails">{{getenum(propertyMasterTypeID)}}</a></li>
-                            <li *ngIf="indiviualsUni[0]"><a href="#">{{indiviualsUni[0].propertyMasterSubTypeName}}</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <ng-template #propertysubtype>
-                        <ul class="breadcrumb">
-                            <li><a routerLink="">Mumtalikati</a></li>
-                            <li><a href="#" routerLink="../propertydetails">{{getenum(propertyMasterTypeID)}}</a></li>
-                            <li *ngIf="indiviualsUni[0]"><a href="#">{{indiviualsUni[0].propertyMasterSubTypeName}}</a>
-                            </li>
-                            <li *ngIf="indiviualsUni[0]">{{indiviualsUni[0].propertyUnitName}}</li>
-                        </ul>
-                    </ng-template>
-
-                </div>
-                <!-- <div class="col-lg-2"></div> -->
-
+        <div *ngIf="indiviualsUni[0]">
+            <div *ngIf="indiviualsUni[0].propertySubTypeId ==15 else notpropertyUnitName">
+                <!-- plot not show propertyUnitName -->
             </div>
         </div>
 
+        <ng-template #notpropertyUnitName>
+            <h4 *ngIf="indiviualsUni[0]">{{indiviualsUni[0].propertyUnitName}}</h4>
+        </ng-template>
+        <div style="height: 600px;">
+            <div *ngIf="indiviualsUni" class="row gx-3">
 
-        <div>
-            <div *ngIf="indiviualsUni[0]">
-                <div *ngIf="indiviualsUni[0].propertySubTypeId ==15 else notpropertyUnitName">
-                    <!-- plot not show propertyUnitName -->
-                </div>
-            </div>
-
-            <ng-template #notpropertyUnitName>
-                <h4 *ngIf="indiviualsUni[0]">{{indiviualsUni[0].propertyUnitName}}</h4>
-            </ng-template>
-            <div style="height: 600px;">
-                <div *ngIf="indiviualsUni" class="row gx-3">
-
-                    <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4" *ngFor="let property of indiviualsUni| paginate
-        :{  itemsPerPage: itemsPerPage,
+                <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4" *ngFor="let property of indiviualsUni| paginate
+         :{  itemsPerPage: itemsPerPage,
             currentPage: page,
             totalItems: IndiviualsUnitTotalCount}">
-                        <div class="my-card mb-4" (click)="onclick(property.propertyMasterID!,property.propertyUnitID!, property.unitCategoryID!, landLordID ,property.statuss! ,property.propertySubTypeId, property.caption
-            )">
-                            <div class="row">
-                                <div class="col-md-5  fill">
-                                    <img class="card-img-top m-2" [src]="property.imageString || bydefault"
-                                        height="150px" width="150px" alt="Card image">
-                                </div>
-                                <div class="col-md-7 text-cards">
-                                    <div class="card-body">
-                                        <div *ngIf="property.propertySubTypeId ==15 else showunits">
-                                            <p class="card-text">Type: {{indiviualsUni[0].propertyMasterSubTypeName}}
-                                            </p>
-                                            <p class="card-text">Plot Number:{{property.plotNumber}}</p>
-                                            <p class="card-text">Unit ID:{{property.propertyUnitID}}</p>
-                                            <div
-                                                *ngIf="property.caption ==0 || property.caption == null  else showCaption">
-                                                <!-- not show Caption -->
-                                            </div>
-                                            <ng-template #showCaption>
-                                                <p class="card-text">Caption: {{property.caption}}</p>
-                                            </ng-template>
+                    <app-unitcategorylist [property]="property" [listingPurposeID]="listingPurposeID"
+                        [landLordID]="landLordID"></app-unitcategorylist>
 
-                                            <p class="card-text"><img class="pe-2 imgcolor"
-                                                    [src]=" location">{{property.addressStr}}</p>
-                                            <p class="card-text">Status: {{getstutus(property.statuss!)}}</p>
-                                        </div>
-                                        <ng-template #showunits>
-                                            <p class="card-text">Type: {{indiviualsUni[0].propertyMasterSubTypeName}}
-                                            </p>
-                                            <p class="card-text">Building ID:{{property.buildingNumber}}</p>
-                                            <p class="card-text">Unit ID:{{property.propertyUnitID}}</p>
-                                            <div *ngIf="property.caption == 0 else showcaption">
-                                                <!-- not show caption -->
-                                            </div>
-                                            <ng-template #showcaption>
-                                                <p class="card-text">Caption: {{property.caption}}</p>
-                                            </ng-template>
 
-                                            <p class="card-text"><img class="pe-2 imgcolor"
-                                                    [src]=" location">{{property.addressStr}}</p>
-                                            <p class="card-text">Status: {{getstutus(property.statuss!)}}</p>
-                                        </ng-template>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="height: 500px;" *ngIf="indiviualsUni.length == 0">
-                            <div class="pt-5 d-flex  justify-content-center align-items-center">
-                                <img [src]="notfound" alt="" width="360px" height="250px">
-                            </div>
-
-                            <div class="  d-flex  justify-content-center align-items-center">
-                                <p class="color-property">No property found</p>
-                            </div>
-                            <div class="pt-3  d-flex  justify-content-center align-items-center align-items-center">
-                                <button type="button" routerLink="../propertydetails" color="primary"
-                                    class="border-done px-5">
-                                    Search Property
-                                </button>
-                            </div>
-
-                        </div>
+                </div>
+                <div style="height: 500px;" *ngIf="indiviualsUni.length == 0">
+                    <div class="pt-5 d-flex  justify-content-center align-items-center">
+                        <img [src]="notfound" alt="" width="360px" height="250px">
                     </div>
 
+                    <div class="  d-flex  justify-content-center align-items-center">
+                        <p class="color-property">No property found</p>
+                    </div>
+                    <div class="pt-3  d-flex  justify-content-center align-items-center align-items-center">
+                        <button type="button" routerLink="../propertydetails" color="primary" class="border-done px-5">
+                            Search Property
+                        </button>
+                    </div>
 
-
-
-                    
                 </div>
             </div>
-            <nav class="pagination justify-content-end pt-3">
-                <pagination-controls (pageChange)="pageChange((page = $event))"></pagination-controls>
-            </nav>
-
         </div>
-
+        <nav class="pagination justify-content-end pt-3">
+            <pagination-controls (pageChange)="pageChange((page = $event))"></pagination-controls>
+        </nav>
     </div>
-
 </ng-template>
