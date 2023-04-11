@@ -31,7 +31,7 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
-  height: 80vh;
+  // height: 80vh;
 
 
 
@@ -103,10 +103,12 @@
   cursor: pointer;
 }
 .under {
-  color: black;
+  color: $primary;
   text-decoration: underline;
-
-  text-decoration-color: red;
+  text-decoration-color: $primary;
+}
+.under:hover{
+  color: #ba393b;
 }
 
 .border-0 {
@@ -128,6 +130,9 @@
   background-color: #FFFFFF !important;
   
 }
+.btn-btn-danger:hover{
+  padding-right: 25px !important;
+}
 
 .transparent {
   background-color: transparent !important;
@@ -135,14 +140,9 @@
   border-radius: 5px !important;
   color: #FFFFFF;
 }
-// .centered-element{
-
-//   height: 80vh;
-//   border: 3px solid green;
-
-//   position: absolute;
-//   margin: 0;
-// }
-// .con {
-//   position: relative;
-// }
+.find-btn:hover{
+background-color:#ba393b ;
+}
+.transparent:hover{
+  padding-right: 25px !important;
+}

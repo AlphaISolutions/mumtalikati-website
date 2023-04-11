@@ -1,0 +1,26 @@
+<div *ngIf="propertyDetail">
+    <div class="row p-0 pt-4">
+
+        <div class="col-md-4 float-start ">
+            <ul class="breadcrumb">
+                <li><a routerLink="/Unitscategory"
+                        [queryParams]="{'propertyMasterID':pmid,'listingPurposeID':listpurID,'unitCategoryID':unitcatID,'status':statuss,'page': page, 'perpagenumber': perpagenumber,'landLordID':landlordid,'propertyMasterTypeID':propertyDetail[0].propertyMasterTypeID}"
+                        (click)="addItem(propertyDetail[0].listingPurposeID!)"><i class="fa fa-angle-left pe-2"
+                            aria-hidden="true"></i>Back to Search</a></li>
+            </ul>
+        </div>
+        <div class="col-md-8" *ngIf="propertyDetail">
+            <ul class="breadcrumb ">
+                <li><a routerLink="">Mumtalikati</a></li>
+                <li *ngIf="propertyDetail[0]">
+                    <a href="#"
+                        routerLink="../propertydetails">{{getenum(propertyDetail[0].propertyMasterTypeID!)}}</a>
+                </li>
+                <li *ngIf="propertyDetail[0]"><a href="#">{{propertyDetail[0].propertySubTypeName}}</a></li>
+                <li *ngIf="propertyDetail[0]">{{propertyDetail[0].propertyUnitDescription}}</li>
+            </ul>
+        </div>
+    
+    
+    </div>
+</div>
