@@ -223,4 +223,29 @@
     width: 100%;
     border-radius: 20px;
   }
+  #main-slider {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#thumbnail-slider {
+    width: 100%;
+    margin-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.splide__slide {
+    border-top-right-radius: 12px !important;
+    border-bottom-right-radius: 12px;
+    border-top-left-radius: 12px !important;
+    border-bottom-left-radius: 12px;
+}
+
+.splide__slide-small {
+    border-top-right-radius: 12px !important;
+    border-bottom-right-radius: 12px;
+    border-top-left-radius: 12px !important;
+    border-bottom-left-radius: 12px;
+}
   

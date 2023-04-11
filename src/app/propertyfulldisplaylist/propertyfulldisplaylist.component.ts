@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { getPropertyUnitCategoryEnum, getstatusType, listingPurposeTypeEnum } from '../models/enums';
@@ -7,6 +7,7 @@ import { PropertyFeature } from '../models/propertyfeature';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ProfileImage } from '../models/profileImage.model';
 import { file } from '@rxweb/reactive-form-validators';
+import Splide from '@splidejs/splide';
 @Component({
   selector: 'app-propertyfulldisplaylist',
   templateUrl: './propertyfulldisplaylist.component.html',
@@ -36,12 +37,53 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   @Input() landlordid!: number;
   @Input() imageUser!: ProfileImage;
   closeResult = '';
+  numVisible = 4;
+  startIndex = 0;
   greaterbutton: boolean = false;
-  lessthenbutton: boolean = true;
+  lessthenbutton: boolean = false;
   constructor(private modalService: NgbModal, private el: ElementRef, private cdr: ChangeDetectorRef, private clipboard: Clipboard,) { }
-
+  mainSlider!: Splide;
+  thumbnailSlider!: Splide;
   ngOnInit(): void {
   }
+  ngAfterViewInit() {
+    this.mainSlider = new Splide('#main-slider', {
+      type: 'loop',
+      heightRatio: 0.5,
+      pagination: true,
+      arrows: false,
+      cover: true,
+   
+    });
+
+    this.mainSlider.mount();
+
+    this.thumbnailSlider = new Splide('#thumbnail-slider', {
+      rewind: true,
+      fixedWidth: 150,
+      fixedHeight: 58,
+      isNavigation: true,
+      gap: 10,
+      focus: 'center',
+      pagination: false,
+      cover: true,
+      dragMinThreshold: {
+        mouse: 4,
+        touch: 10,
+      },
+      breakpoints: {
+        640: {
+          fixedWidth: 100,
+          fixedHeight: 55,
+        },
+      },
+    });
+
+    this.thumbnailSlider.mount();
+
+    this.mainSlider.sync(this.thumbnailSlider);
+  }
+  
   getlist(listid: any) {
     return listingPurposeTypeEnum(listid)
   }
@@ -54,26 +96,40 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   imagechange(i: any) {
     this.imgindex = i;
   }
-  lessthen(length: any, index: any) {
-    var lengthList = length.length
+  lessthen(imglist: any, index: any) {
+    // this.startIndex = (this.startIndex + 1) % imglist.length;
+    var lengthList = imglist.length
     lengthList = lengthList - 1
     if (index == -1) {
-      debugger
+    
       index = 0;
-      this.lessthenbutton = true;
+      // this.lessthenbutton = true;
     }
     if (index < lengthList) {
 
       this.imgindex = index
-      this.lessthenbutton = false
+      // this.lessthenbutton = false
 
     }
 
     else if (index = lengthList) {
       this.imgindex = index;
-      this.greaterbutton = true
+      // this.greaterbutton = true
     }
 
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    if (window.innerWidth < 768) {
+      this.numVisible = 3;
+    } else if (window.innerWidth < 992) {
+      this.numVisible = 4;
+    } else {
+      this.numVisible = 10;
+    }
+  }
+  onClickNext() {
+    // this.startIndex = (this.startIndex + 1) % this.images.length;
   }
   oncallclick(call: any) {
 

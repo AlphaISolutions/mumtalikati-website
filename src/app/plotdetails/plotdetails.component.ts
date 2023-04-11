@@ -6,7 +6,7 @@ import { PropertyFeature } from '../models/propertyfeature';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { getPropertyUnitCategoryEnum, getstatusType, listingPurposeTypeEnum, propertyMasterTypeEnum } from '../models/enums';
 import { ProfileImage } from '../models/profileImage.model';
-import { map } from 'rxjs';
+import Splide from '@splidejs/splide';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Clipboard } from '@angular/cdk/clipboard';
 @Component({
@@ -50,9 +50,12 @@ export class PlotdetailsComponent implements OnInit {
   caption!:number;
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight':'500' };
   public imgindex: number = 0;
+
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router,private modalService: NgbModal,private clipboard: Clipboard) {
 
   }
+  mainSlider!: Splide;
+  thumbnailSlider!: Splide;
   async ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMasterID'];
@@ -68,6 +71,42 @@ export class PlotdetailsComponent implements OnInit {
       this.getImageUser(this.landlordid);
     });
 
+  }
+  ngAfterViewInit() {
+    this.mainSlider = new Splide('#main-slider', {
+      type: 'fade',
+      heightRatio: 0.5,
+      pagination: false,
+      arrows: false,
+      cover: true,
+    });
+
+    this.mainSlider.mount();
+
+    this.thumbnailSlider = new Splide('#thumbnail-slider', {
+      rewind: true,
+      fixedWidth: 104,
+      fixedHeight: 58,
+      isNavigation: true,
+      gap: 10,
+      focus: 'center',
+      pagination: false,
+      cover: true,
+      dragMinThreshold: {
+        mouse: 4,
+        touch: 10,
+      },
+      breakpoints: {
+        640: {
+          fixedWidth: 66,
+          fixedHeight: 38,
+        },
+      },
+    });
+
+    this.thumbnailSlider.mount();
+
+    this.mainSlider.sync(this.thumbnailSlider);
   }
   imagechange(i: any) {
     this.imgindex = i;

@@ -129,18 +129,24 @@
                 </div>
                 <div class="col-md-8 pb-4" *ngIf="property.imageString">
                     <div class="card border-0 shadow-none">
-                        <img class="full-image"  
-                        [src]="property.imageString[imgindex]" alt="image">
-
-                    <div class="thumbnails text-center " *ngIf="property.imageString.length>1">
-                        <button type="button"  class="second-color"
-                            (click)="lessthen(property.imageString ,imgindex-1)"><mat-icon>keyboard_arrow_left</mat-icon></button>
-                        <div class="thumbnail active " *ngFor="let image of property.imageString; let i = index">
-                            <img [src]="image" alt="Image {{i}}" (click)="imagechange(i)">
+                        <div id="main-slider" class="splide">
+                            <div class="splide__track">
+                                <div class="splide__list">
+                                    <div class="splide__slide" *ngFor="let image of property.imageString">
+                                        <img class="full-image" [src]="image" alt="image">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <button type="button" class="second-color-greate"
-                            (click)="lessthen(property.imageString ,imgindex+1)"><mat-icon>keyboard_arrow_right</mat-icon></button>
-                    </div>
+                        <div id="thumbnail-slider" class="splide">
+                            <div class="splide__track">
+                                <div class="splide__list">
+                                    <div class="splide__slide" *ngFor="let image of property.imageString">
+                                        <img [src]="image" alt="Thumbnail">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <div class="card-body p-0 pt-4">
                             <mat-card-content>
                                 <h5 *ngIf="listpurID ==1   ; else nolistpurposeid">

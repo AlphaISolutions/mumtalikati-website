@@ -294,6 +294,7 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   onChangeGovernorate(event: any) {
+    debugger
     if(event.value == 0){
       event.value=null;
     }

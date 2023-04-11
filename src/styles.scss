@@ -329,6 +329,51 @@ hr{
          bottom: none !important;
         left: 36% !important;
 }
-
+.splide__arrow--next{
+    align-items: center;
+    background: $primary !important;
+    border: 0;
+    border-radius: 0;
+    border-top-right-radius: 6px !important;
+    border-bottom-right-radius: 6px !important;
+    cursor: pointer;
+    display: flex;
+    height: 4em;
+    justify-content: center;
+    opacity: .7;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2em;
+    z-index: 1;
+}
+.splide__arrow--prev{
+    align-items: center;
+    background: $primary !important;
+    border: 0;
+    border-radius: 0;
+    border-top-left-radius: 6px !important;
+    border-bottom-left-radius: 6px !important;
+    cursor: pointer;
+    display: flex;
+    height: 4em;
+    justify-content: center;
+    opacity: .7;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2em;
+    z-index: 1;
+}
+.splide__arrow svg {
+    fill: #FFFFFF !important;
+    height: 1.2em;
+    width: 1.2em;
+}
+.splide__track--nav>.splide__list>.splide__slide.is-active {
+    border: none;
+}
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
