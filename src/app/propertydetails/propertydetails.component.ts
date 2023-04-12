@@ -294,7 +294,6 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   onChangeGovernorate(event: any) {
-    debugger
     if(event.value == 0){
       event.value=null;
     }
@@ -519,7 +518,8 @@ export class PropertydetailsComponent implements OnInit {
   onsubtypeid(subTypeid: number) {
     if (subTypeid == -1) {
       this.mastertypeid = this.selectedTab + 1;
-      this.subTypeId = null
+      this.subTypeId = null;
+      this.mastertypeid= null
     } else {
       this.mastertypeid = this.selectedTab + 1;
       this.subTypeId = subTypeid;
