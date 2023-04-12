@@ -16,7 +16,7 @@
         <ng-template #notpropertyUnitName>
             <h4 *ngIf="indiviualsUni[0]">{{indiviualsUni[0].propertyUnitName}}</h4>
         </ng-template>
-        <div style="height: 600px;">
+        <div id="overlap">
             <div *ngIf="indiviualsUni" class="row gx-3">
 
                 <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4" *ngFor="let property of indiviualsUni| paginate

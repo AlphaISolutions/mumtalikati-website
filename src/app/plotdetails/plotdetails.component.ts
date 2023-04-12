@@ -85,7 +85,7 @@ export class PlotdetailsComponent implements OnInit {
 
     this.thumbnailSlider = new Splide('#thumbnail-slider', {
       rewind: true,
-      fixedWidth: 104,
+      fixedWidth: 100,
       fixedHeight: 58,
       isNavigation: true,
       gap: 10,
