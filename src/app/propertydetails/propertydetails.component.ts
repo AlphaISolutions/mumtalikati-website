@@ -59,15 +59,16 @@ export class PropertydetailsComponent implements OnInit {
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   id: number | null = null;
   governorate: Governorate[] = [];
-  minValue: number = 0;
-  public maxValue : number | null =10000 ;
+  public minValue: number = 0;
+  public maxValue: number | null = 10000;
   @ViewChild('tabGroup') tabGroup: any;
 
   options: Options = {
     floor: 0,
-    ceil: 10000
+    ceil: 10000,
+    noSwitching: true
   }
-  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal, private setupFilterServive: SetFiltersServive , private bsService:BspropertyService) {
+  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal, private setupFilterServive: SetFiltersServive, private bsService: BspropertyService) {
     if (this.router.getCurrentNavigation()?.extras.state != undefined) {
       let listingpupose = this.router.getCurrentNavigation()?.extras.state!["listingPurposeID"];
       if (listingpupose != null || listingpupose != undefined) {
@@ -144,7 +145,7 @@ export class PropertydetailsComponent implements OnInit {
       this.setservice.getPropertySubTypes().then((data) => {
         this.propertysubType = data;
         this.setupFilterServive.setPropertySubType(data);
-       
+
 
         // return tempData;
       }).catch((error) => {
@@ -225,7 +226,7 @@ export class PropertydetailsComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.ownerPropertyFilter = data
-        
+
         }
         this.loading = false;
       })
@@ -294,8 +295,8 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   onChangeGovernorate(event: any) {
-    if(event.value == 0){
-      event.value=null;
+    if (event.value == 0) {
+      event.value = null;
     }
     if (event && this.governorateid != event.value) {
       this.governorateid = event.value;
@@ -425,19 +426,19 @@ export class PropertydetailsComponent implements OnInit {
     this.selectedTab = tabChangeEvent.index
     switch (tabChangeEvent.index) {
       case 0: {
-      
+
         this.get(1);
         break;
       }
 
       case 1: {
-    
+
         this.get(2);
         break;
       }
 
       case 2: {
-       
+
         this.get(3);
         break;
       }
@@ -454,20 +455,20 @@ export class PropertydetailsComponent implements OnInit {
     switch (propertymastertypeid) {
       case 1: {
         if (listid == 1) {
-          let data = this.propertysubType.filter(buttom => buttom.propertyMasterTypeID==propertymastertypeid &&( buttom.propertySubTypeID == 1 || buttom.propertySubTypeID == 2 || buttom.propertySubTypeID == 3 || buttom.propertySubTypeID == 4 || buttom.propertySubTypeID == 5 || buttom.propertySubTypeID == 6 || buttom.propertySubTypeID == 7));
-       
+          let data = this.propertysubType.filter(buttom => buttom.propertyMasterTypeID == propertymastertypeid && (buttom.propertySubTypeID == 1 || buttom.propertySubTypeID == 2 || buttom.propertySubTypeID == 3 || buttom.propertySubTypeID == 4 || buttom.propertySubTypeID == 5 || buttom.propertySubTypeID == 6 || buttom.propertySubTypeID == 7));
+
           return data;
         } else {
-          let data = this.propertysubType.filter(buttom =>buttom.propertyMasterTypeID==propertymastertypeid && (buttom.propertySubTypeID == 1 || buttom.propertySubTypeID == 2 || buttom.propertySubTypeID == 3 || buttom.propertySubTypeID == 4 || buttom.propertySubTypeID == 5 || buttom.propertySubTypeID == 6 || buttom.propertySubTypeID == 7 || buttom.propertySubTypeID == 15));
+          let data = this.propertysubType.filter(buttom => buttom.propertyMasterTypeID == propertymastertypeid && (buttom.propertySubTypeID == 1 || buttom.propertySubTypeID == 2 || buttom.propertySubTypeID == 3 || buttom.propertySubTypeID == 4 || buttom.propertySubTypeID == 5 || buttom.propertySubTypeID == 6 || buttom.propertySubTypeID == 7 || buttom.propertySubTypeID == 15));
           return data;
         }
       }
       case 2: {
         if (listid == 1) {
-          let data = this.propertysubType.filter(buttom =>buttom.propertyMasterTypeID==propertymastertypeid && (buttom.propertySubTypeID == 9 || buttom.propertySubTypeID == 10 || buttom.propertySubTypeID == 11 || buttom.propertySubTypeID == 12 || buttom.propertySubTypeID == 13 || buttom.propertySubTypeID == 14) );
+          let data = this.propertysubType.filter(buttom => buttom.propertyMasterTypeID == propertymastertypeid && (buttom.propertySubTypeID == 9 || buttom.propertySubTypeID == 10 || buttom.propertySubTypeID == 11 || buttom.propertySubTypeID == 12 || buttom.propertySubTypeID == 13 || buttom.propertySubTypeID == 14));
           return data;
         } else {
-          let data = this.propertysubType.filter(buttom =>buttom.propertyMasterTypeID==propertymastertypeid && (buttom.propertySubTypeID == 9 || buttom.propertySubTypeID == 10 || buttom.propertySubTypeID == 11 || buttom.propertySubTypeID == 12 || buttom.propertySubTypeID == 13 || buttom.propertySubTypeID == 14 || buttom.propertySubTypeID == 15) );
+          let data = this.propertysubType.filter(buttom => buttom.propertyMasterTypeID == propertymastertypeid && (buttom.propertySubTypeID == 9 || buttom.propertySubTypeID == 10 || buttom.propertySubTypeID == 11 || buttom.propertySubTypeID == 12 || buttom.propertySubTypeID == 13 || buttom.propertySubTypeID == 14 || buttom.propertySubTypeID == 15));
           return data;
         }
       }
@@ -519,7 +520,7 @@ export class PropertydetailsComponent implements OnInit {
     if (subTypeid == -1) {
       this.mastertypeid = this.selectedTab + 1;
       this.subTypeId = null;
-      this.mastertypeid= null
+      this.mastertypeid = null
     } else {
       this.mastertypeid = this.selectedTab + 1;
       this.subTypeId = subTypeid;
