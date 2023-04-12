@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
 import { getstatusType } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
+import { assetUrl } from 'src/single-spa/asset-url';
 
 @Component({
   selector: 'app-unitcategorylist',
@@ -12,6 +13,7 @@ export class UnitcategorylistComponent implements OnInit {
  @Input() property: OwnerPropertyMasterIndiviualUnits[] = []
  @Input()  listingPurposeID!: number;
  @Input()  landLordID!: number;
+ location = assetUrl("icons/location.svg");
   constructor( private router: Router) { }
   ngOnInit(): void {
   }

@@ -158,14 +158,14 @@
                                 <div class="row gx-2">
                                     <div class="container">
                                         <h6 class="primary">Price Range</h6>
-                                        <ngx-slider [(minvalue)]="minValue" [(highValue)]="maxValue"
+                                        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue"
                                             [options]="options"></ngx-slider>
                                     </div>
 
                                     <div class="col-6 mt-4">
                                         <p class="textalign mb-0">Min:</p>
                                         <mat-form-field appearance="outline">
-                                            <input matInput placeholder="0" type="number" [value]="minValue"
+                                            <input matInput placeholder="0" type="number" [(value)]="minValue"
                                                 [(ngModel)]="minValue">
                                             <!-- <div matSuffix> <span class="suffix">|</span> OMR</div> -->
                                         </mat-form-field>
@@ -173,7 +173,7 @@
                                     <div class="col-6 mt-4">
                                         <p class="textalign mb-0">Max:</p>
                                         <mat-form-field appearance="outline">
-                                            <input matInput placeholder="any" type="number" [value]="maxValue"
+                                            <input matInput placeholder="any" type="number" [(value)]="maxValue"
                                                 [(ngModel)]="maxValue">
                                             <!-- <div matSuffix>| OMR</div> -->
                                         </mat-form-field>
