@@ -21,7 +21,7 @@ export class UnitcategorylistComponent implements OnInit {
     if (propertySubTypeId == 15) {
       this.router.navigate(['plotdetails'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landLordID, 'status': statuss, 'listingPurposeID': this.listingPurposeID,'PropertySubTypeID': propertySubTypeId,'caption':caption  },
+          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landLordID, 'status': statuss, 'listingPurposeID': this.listingPurposeID,'PropertySubTypeID': propertySubTypeId,'caption':caption},
           state: {  'PropertySubTypeID': propertySubTypeId, 'caption':caption }
         });
     } else {

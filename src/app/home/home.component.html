@@ -16,7 +16,7 @@
                         <!-- <p class="h1-color">Are You On The Hunt For A Sales Or Letting Agent In Your Local Area?</p> -->
                         <div class="row gx-3 pt-4">
                             <div class="col-auto" *ngFor="let listbtn of listingpupose">
-                                <button mat-flat-button  class="list-btn" [value]="listingPurposeType"
+                                <button mat-flat-button class="list-btn" [value]="listingPurposeType"
                                     [ngClass]="{'btn-btn-danger':listbtn.listingPurposeType==listingPurposeType, 'transparent':listbtn.listingPurposeType!=listingPurposeType}"
                                     (click)="onclick(listbtn.listingPurposeType)">{{listbtn.desc }}</button>
                             </div>
@@ -58,9 +58,10 @@
                                                         placeholder="Wilayat Area City Etc.">
                                                 </mat-form-field>
                                             </div>
-                                            <div class="col-3">
-                                                <button mat-flat-button color="primary" type="button" class="mt-2 px-2 find-btn"
-                                                    height="100px" width="156px" (click)="find()">FIND</button>
+                                            <div class="col-3 pt-2">
+                                                <button mat-flat-button color="primary" type="button"
+                                                    class=" px-2 find-btn" height="100px" width="156px"
+                                                    (click)="find()">FIND</button>
                                             </div>
                                         </div>
                                     </div>
@@ -71,14 +72,26 @@
                     <div class="col-2 .d-sm-none .d-md-none .d-lg-block"></div>
                 </div>
             </div>
-         
+
         </div>
     </div>
     <div class="container section">
-
-        <div class="mt-4">
+        <div id="homesection">
+            <div class="pt-5 ps-4">
+                <h5 class="text-color">
+                    Get bird’s-eye-view of your next home with Floor Plan
+                </h5>
+                <p class="pt-2 text-color">Easily visualise the layout of properties</p>
+            </div>
+            <div class="pt-2 ps-4 pb-5">
+                <button mat-stroked-button color="accent" class="mat-border" [routerLink]="'propertydetails'">View now <mat-icon>keyboard_arrow_right</mat-icon></button>
+            </div>
+           
+        </div>
+        <div class="pt-5">
             <h1 class="inline">Our Quality Standards Never Disappoint</h1>
-            <p class="inline explore float-end" ><a [routerLink]="'propertydetails'" class="under"><b>Explore All</b></a></p>
+            <p class="inline explore float-end"><a [routerLink]="'propertydetails'" class="under"><b>Explore All</b></a>
+            </p>
         </div>
 
         <div class="row mt-4" *ngIf="ownerPropertyFilter">
@@ -95,11 +108,9 @@
                 *ngIf="ownerPropertyFilter.length == 0">
                 <p class="">No Property Listed</p>
             </div>
-          
+
 
 
         </div>
     </div>
 </ng-template>
- 
-   

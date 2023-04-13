@@ -40,7 +40,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   contact!: any;
   listpurID!: any;
   PropertySubTypeID!: any;
-  caption!: number;
+  caption!:string;
   propertyMasterTypeID!: number;
   btnColor = { 'background-color': '#9e2a2b' }
   closeResult = '';
@@ -57,7 +57,7 @@ export class PropertyfulldisplayComponent implements OnInit {
       this.statuss = +params['status'];
       this.listpurID = +params['listingPurposeID'];
       this.PropertySubTypeID = +params["PropertySubTypeID"];
-      this.caption = +params["caption"];
+      this.caption = params["caption"];
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
       this.getImageUser(this.landlordid);

@@ -41,7 +41,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { UnitcategorylistComponent } from './unitcategorylist/unitcategorylist.component';
 import { BreadcrumbpropertyfulldisplayComponent } from './breadcrumbpropertyfulldisplay/breadcrumbpropertyfulldisplay.component';
 import { PropertyfulldisplaylistComponent } from './propertyfulldisplaylist/propertyfulldisplaylist.component';
-
+import { FaqComponent } from './faq/faq.component';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { PropertyfulldisplaylistComponent } from './propertyfulldisplaylist/prop
     UnitcategorylistComponent,
     BreadcrumbpropertyfulldisplayComponent,
     PropertyfulldisplaylistComponent,
+    FaqComponent,
 
   ],
   imports: [
@@ -90,8 +92,8 @@ import { PropertyfulldisplaylistComponent } from './propertyfulldisplaylist/prop
     NgxSliderModule,
     MatCarouselModule.forRoot(),
     MarkdownModule.forRoot(),
-    MatDialogModule
-
+    MatDialogModule,
+    CdkAccordionModule
    
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },RxFormBuilder],
