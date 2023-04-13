@@ -169,8 +169,10 @@ export class PropertyfulldisplaylistComponent implements OnInit {
     let phoneNumber = contact;
     let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid}&listingPurposeID=${this.listpurID}&PropertySubTypeID=${this.PropertySubTypeID}&caption=${this.caption} `;
 
-    if (isMobile) {
+    if (isMobile && typeof window.WhatsApp !== "undefined") {
       window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+    } else if (isMobile && typeof window.WhatsApp === "undefined") {
+      window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
     } else {
       window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
     }
