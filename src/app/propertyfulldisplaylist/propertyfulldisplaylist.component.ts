@@ -27,7 +27,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   favoriteicon = assetUrl("icons/favoriteicon.png");
   bydefault = assetUrl('img/bydefault.png');
   @Input() unitcatID!: number;
-  @Input() caption!: number;
+  @Input() caption!: string;
   @Input() statuss!: number;
   @Input() imgindex: number = 0;
   @Input() listpurID!: any;
@@ -41,7 +41,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   startIndex = 0;
   greaterbutton: boolean = false;
   lessthenbutton: boolean = false;
-  constructor(private modalService: NgbModal, private el: ElementRef, private cdr: ChangeDetectorRef, private clipboard: Clipboard,) { }
+  constructor(private modalService: NgbModal, private el: ElementRef, private cdr: ChangeDetectorRef, private clipboard: Clipboard) { }
   mainSlider!: Splide;
   thumbnailSlider!: Splide;
   ngOnInit(): void {
@@ -131,16 +131,23 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   onClickNext() {
     // this.startIndex = (this.startIndex + 1) % this.images.length;
   }
-  oncallclick(call: any) {
+  oncallclick(call: any ,phone:number) {
+    let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    let phoneNumber = phone;
+    if(isMobile){
+      window.location.href = phoneNumber.toString();
+    }else{
+      this.modalService.open(call, { centered: true }).result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        },
+      );
+    }
 
-    this.modalService.open(call, { centered: true }).result.then(
-      (result) => {
-        this.closeResult = `Closed with: ${result}`;
-      },
-      (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      },
-    );
+
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
