@@ -1,4 +1,4 @@
-<app-top-bar [logred]="color" [data]="logocolor" [active]="coler" [btncolor]="btnColor"
+<app-top-bar [logred]="color" [data]="logocolor" [active]="coler" [btncolor]="btnColor" [togglericon]="togglericon"
     [activeroute]="activeroutes"></app-top-bar>
 <hr>
 <div class="loading" *ngIf="loading ; else showList">
@@ -213,7 +213,7 @@
                       totalItems: filterCount
                 }
                 ">
-                    <app-shortdisplay [property]="property" [listid]="listid"></app-shortdisplay>
+                    <app-shortdisplay [property]="property" [listid]="listid" [governorateid]="governorateid" [subTypeId]="subTypeId" [mastertypeid]="mastertypeid"></app-shortdisplay>
                 </div>
                 <div class=" d-flex align-items-center justify-content-center h-property" 
                     *ngIf="!ownerPropertyFilter[0]">

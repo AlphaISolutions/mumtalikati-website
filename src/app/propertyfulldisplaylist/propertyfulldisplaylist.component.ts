@@ -135,7 +135,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let phoneNumber = phone;
     if(isMobile){
-      window.location.href = phoneNumber.toString();
+       window.open(`tel:${{phoneNumber}}', '_system`);
     }else{
       this.modalService.open(call, { centered: true }).result.then(
         (result) => {
@@ -172,7 +172,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
     if (isMobile && typeof window.WhatsApp !== "undefined") {
       window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
     } else if (isMobile && typeof window.WhatsApp === "undefined") {
-      window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
+      window.open(`https://play.google.com/store/search?q=whatsapp&c=apps&hl=en&gl=US`);
     } else {
       window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
     }

@@ -55,7 +55,8 @@ export class PropertydetailsComponent implements OnInit {
   coler = { ' background-color': 'red' }
   hovercolor = { ' background-color': 'red' }
   public governorateid: number | null = null;
-  btnColor = { 'background-color': '#9e2a2b' }
+  btnColor = { 'background-color': '#9e2a2b' };
+  togglericon = { 'color': '#fffff !important' }
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   id: number | null = null;
   governorate: Governorate[] = [];
@@ -71,6 +72,7 @@ export class PropertydetailsComponent implements OnInit {
   constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal, private setupFilterServive: SetFiltersServive, private bsService: BspropertyService) {
     if (this.router.getCurrentNavigation()?.extras.state != undefined) {
       let listingpupose = this.router.getCurrentNavigation()?.extras.state!["listingPurposeID"];
+
       if (listingpupose != null || listingpupose != undefined) {
         this.listid = listingpupose;
       }
@@ -83,6 +85,7 @@ export class PropertydetailsComponent implements OnInit {
     else {
       this.listid = 1
     }
+ 
   }
   async ngOnInit() {
     this.propertyFilterform = this.rxFormBuilder.formGroup(this.propertyfilter);
@@ -92,6 +95,7 @@ export class PropertydetailsComponent implements OnInit {
     data.pageNumber = this.page;
     data.gOVERNORATEID = this.governorateid;
     data.propertyMasterTypeID = this.mastertypeid;
+    data.propertyCategory = this.unitcategoryid;
     data.maxPrice = this.maxValue;
     data.minPrice = this.minValue;
     this.propertyFilter(data);
@@ -423,6 +427,7 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   tabChanged = async (tabChangeEvent: MatTabChangeEvent): Promise<void> => {
+    debugger
     this.selectedTab = tabChangeEvent.index
     switch (tabChangeEvent.index) {
       case 0: {
@@ -517,6 +522,7 @@ export class PropertydetailsComponent implements OnInit {
 
   }
   onsubtypeid(subTypeid: number) {
+    debugger
     if (subTypeid == -1) {
       this.mastertypeid = this.selectedTab + 1;
       this.subTypeId = null;

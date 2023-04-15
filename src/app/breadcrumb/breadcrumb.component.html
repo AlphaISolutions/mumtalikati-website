@@ -1,8 +1,9 @@
 <div class="row p-0">
     <div class="col-lg-4 float-start">
         <ul class="breadcrumb">
-            <li><a href="#" [routerLink]="'../propertydetails'"><i class="fa fa-angle-left pe-2"
-                        aria-hidden="true"></i>Property Listings</a></li>
+            <li><a href="#" (click)="backtosearch()"
+                   ><i
+                        class="fa fa-angle-left pe-2" aria-hidden="true"></i>Property Listings</a></li>
         </ul>
 
     </div>
@@ -11,7 +12,7 @@
             <ul class="breadcrumb">
                 <li><a routerLink="">Mumtalikati</a></li>
                 <li><a href="#" routerLink="../propertydetails">{{getenum(propertyMasterTypeID)}}</a></li>
-                <li *ngIf="indiviualsUni[0]"><a >{{indiviualsUni[0].propertyMasterSubTypeName}}</a>
+                <li *ngIf="indiviualsUni[0]"><a>{{indiviualsUni[0].propertyMasterSubTypeName}}</a>
                 </li>
             </ul>
         </div>
@@ -19,7 +20,7 @@
             <ul class="breadcrumb">
                 <li><a routerLink="">Mumtalikati</a></li>
                 <li><a href="#" routerLink="../propertydetails">{{getenum(propertyMasterTypeID)}}</a></li>
-                <li *ngIf="indiviualsUni[0]"><a >{{indiviualsUni[0].propertyMasterSubTypeName}}</a>
+                <li *ngIf="indiviualsUni[0]"><a>{{indiviualsUni[0].propertyMasterSubTypeName}}</a>
                 </li>
                 <li *ngIf="indiviualsUni[0]">{{indiviualsUni[0].propertyUnitName}}</li>
             </ul>

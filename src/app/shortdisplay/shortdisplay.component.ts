@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ShortdisplayComponent implements OnInit {
   loading: boolean = false;
-  showfooter!:boolean
+  showfooter!: boolean
   propertyDetail: RentalUnitDetail[] = [];
   areaimg = assetUrl("icons/Area.svg");
   bedroomimg = assetUrl("icons/Bedroom.svg");
@@ -21,13 +21,15 @@ export class ShortdisplayComponent implements OnInit {
   bydefault = assetUrl('img/bydefault.png');
   location = assetUrl("icons/location.svg");
   filterCount: any;
-@Input() listid!:number;
+  @Input() listid!: number;
   propertyfilter = new PropertyFilter();
   @Input() property: OwnerPropertyFilter[] = []
-
+  @Input() governorateid!: number;
+  @Input() subTypeId!:number;
+  @Input() mastertypeid!:number;
 
   pagination: boolean = false;
-  constructor( private router: Router,) { }
+  constructor(private router: Router,) { }
   ngOnInit(): void {
 
 
@@ -39,9 +41,10 @@ export class ShortdisplayComponent implements OnInit {
   getMasterTypeId(propertyMasterTypeId: number) {
     return propertyMasterTypeEnum(propertyMasterTypeId);
   }
-  onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number, landLordID: number, propertyMasterTypeID: number,propertyMasterSubType:number) {
+  onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number, landLordID: number, propertyMasterTypeID: number) {
+   debugger
     this.router.navigate(
       ['Unitscategory'],
-      { queryParams: { 'propertyMasterID': propertyMasterID, 'listingPurposeID': listingPurposeID, 'unitCategoryID': unitCategoryID, 'landLordID': landLordID, 'propertyMasterTypeID': propertyMasterTypeID } });
+      { queryParams: { 'propertyMasterID': propertyMasterID, 'listingPurposeID': listingPurposeID, 'unitCategoryID': unitCategoryID, 'landLordID': landLordID, 'propertyMasterTypeID': this.mastertypeid, 'governorateid':this.governorateid,'propertySubTypeid':this.subTypeId} });
   }
 }
