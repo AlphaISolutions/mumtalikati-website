@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { propertyMasterTypeEnum } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { Router } from '@angular/router';
+import { SetupService } from '../services/setup.service';
+import { Governorate } from '../models/governorate.model';
+import { AnyFunction } from '@splidejs/splide';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -12,13 +15,19 @@ export class BreadcrumbComponent implements OnInit {
   @Input() indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = [];
   @Input() propertyMasterTypeID!: number;
   @Input() unitcategoryid!: number;
-  @Input() listingPurposeID!: number;
+  @Input() listingPurposeID!: any;
   @Input() propertyMasterID!: number;
   @Input() governorateid!: number;
   @Input() subTypeId!: number;
-  constructor(private router: Router) { }
+  // @Input() maxValue!: number;
+  // @Input() minValue!: number;
+  // governorate: Governorate[] = [];
+  governorateName!: any
+  constructor(private router: Router, private setservice: SetupService) { }
   ngOnInit(): void {
-    console.log(this.subTypeId)
+    // this.setservice.getGovernorate().then((data) => {
+    //   this.governorate = data.find(x => x.countryID == this.governorateid)
+    // })
   }
   getenum(propertyMasterTypeID: number) {
     return propertyMasterTypeEnum(propertyMasterTypeID)
@@ -26,8 +35,7 @@ export class BreadcrumbComponent implements OnInit {
   backtosearch() {
     debugger
     this.router.navigate(['propertydetails'],
-      {
-        state: { 'listingPurposeID': this.listingPurposeID, 'propertyMasterTypeID': this.propertyMasterTypeID, 'governorateid': this.governorateid, 'unitcategoryid': this.unitcategoryid, 'subTypeId':this.subTypeId }
-      });
+      { queryParams: { 'purpose': this.listingPurposeID, 'unitCategory': this.unitcategoryid} });
+    // state: { 'listingPurposeID': this.listingPurposeID, 'propertyMasterTypeID': this.propertyMasterTypeID, 'governorateid': this.governorateid, 'unitcategoryid': this.unitcategoryid, 'subTypeId': this.subTypeId ,'maxValue':this.maxValue, 'minValue':this.minValue}
   }
 }

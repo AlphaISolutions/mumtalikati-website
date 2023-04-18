@@ -31,8 +31,9 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
   backotsearch() {
+    debugger
     this.router.navigate(
       ['Unitscategory'],
-      { queryParams: { 'propertyMasterID': this.pmid, 'listingPurposeID': this.listpurID, 'unitCategoryID': this.unitcatID, 'status': this.statuss, 'page': this.page, 'perpagenumber': this.perpagenumber, 'propertyMasterTypeID': this.propertyMasterTypeID, 'landLordID': this.landlordid } });
+      { queryParams: { 'propertyMasterID': this.pmid, 'purpose': this.listpurID, 'unitCategory': this.unitcatID, 'status': this.statuss, 'page': this.page, 'perpagenumber': this.perpagenumber, 'propertyMasterTypeID': this.propertyMasterTypeID, 'landLordID': this.landlordid } });
   }
 }

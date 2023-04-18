@@ -74,6 +74,18 @@ export function listingPurposeTypeEnum(listingPurposeTypeId: number) {
     }
 
 }
+export function listingPurposeTypeEnumSting(listingPurposeTypeId: string) {
+    switch (listingPurposeTypeId) {
+        case 'Rent':
+            return 1;
+        case 'Buy':
+            return 2;
+
+        default:
+            return "Unknown";
+    }
+
+}
 export function propertyMasterTypeEnum(propertyMasterTypeID: number) {
     switch (propertyMasterTypeID) {
         case 1:

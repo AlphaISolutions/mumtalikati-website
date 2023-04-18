@@ -1,9 +1,11 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { assetUrl } from 'src/single-spa/asset-url';
-import { getstatusType, propertyMasterTypeEnum, Status } from '../models/enums';
+import { getstatusType, listingPurposeTypeEnumSting, propertyMasterTypeEnum, Status } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
+import { SetFiltersServive } from '../services/setfilters.servive';
+import { FilterService } from '../services/filterserice';
 @Component({
   selector: 'app-unitscategory',
   templateUrl: './unitscategory.component.html',
@@ -25,10 +27,10 @@ export class UnitscategoryComponent implements OnInit {
   logocolor = false;
   public status: number = 1
   propertyMasterTypeID!: number
-  public subTypeId!: number| null;
+  public subTypeId!: number | null;
   btnColor = { 'background-color': '#9e2a2b' };
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
-  constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router, private setupFilterServive: SetFiltersServive, private filterservice: FilterService) { }
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;
   location = assetUrl("icons/location.svg");
@@ -36,16 +38,27 @@ export class UnitscategoryComponent implements OnInit {
   notfound = assetUrl('img/notfoundproperty.svg');
   parentStyle = { 'background-color': 'black' };
   step: any;
-  governorateid!:number;
+  governorateid!: number;
+  maxValue!: number;
+  minValue!: number;
+  listid: any
+  unitid: any
   async ngOnInit() {
+
     this.route.queryParams.subscribe(params => {
+      debugger
       this.propertyMasterID = +params['propertyMasterID'];
-      this.listingPurposeID = +params['listingPurposeID'];
-      this.unitCategoryID = +params['unitCategoryID'];
+      // this.listingPurposeID = +listingPurposeTypeEnumSting(params['listingPurposeID']);
+      this.listid = this.filterservice.getPurposedesc(params['purpose']);
+      this.listingPurposeID = this.listid;
+      this.unitid = this.setupFilterServive.getUnitCategory().find(x => x.desc == params['unitCategory']);
+      this.unitCategoryID = this.unitid.id;
       this.landLordID = +params['landLordID'];
       this.propertyMasterTypeID = +params['propertyMasterTypeID'];
       this.governorateid = +params['governorateid'];
       this.subTypeId = +params['propertySubTypeid']
+      // this.maxValue = +params['maxValue'];
+      // this.minValue = +params['minValue'];
       this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
       this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
     });
@@ -60,8 +73,8 @@ export class UnitscategoryComponent implements OnInit {
     this.mumtalikatiservic.getPropertyMasterIndiviualsUnit(propertyMasterTypeID, listingPurposesID, UnitCategoryID, status, pageNumber, rowsNumbers)
       .then((data) => {
         if (data) {
-          debugger
-          this.indiviualsUni = data;  
+
+          this.indiviualsUni = data;
           // this.subTypeId=this.indiviualsUni[0].propertySubTypeId  
         }
         this.loading = false;
@@ -78,7 +91,7 @@ export class UnitscategoryComponent implements OnInit {
         if (data) {
           this.IndiviualsUnitTotalCount = data;
         }
-     
+
       })
       .catch((error) => {
 
@@ -97,10 +110,10 @@ export class UnitscategoryComponent implements OnInit {
 
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
-  backtosearch(){
-    this.router.navigate(['propertydetails'],
-    {
-      state: { 'listingPurposeID': this.listingPurposeID, 'propertyMasterTypeID': this.propertyMasterTypeID}
-    });
-  }
+  // backtosearch() {
+  //   this.router.navigate(['propertydetails'],
+  //     {
+  //       state: { 'listingPurposeID': this.listingPurposeID, 'propertyMasterTypeID': this.propertyMasterTypeID }
+  //     });
+  // }
 }

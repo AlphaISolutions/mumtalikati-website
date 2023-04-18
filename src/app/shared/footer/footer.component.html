@@ -5,9 +5,21 @@
                                 <div class="col-lg-3">
                                         <img id="logo" [src]="logo" routerLink="." onclick="window.scrollTo(0,0)"
                                                 class="img-fluid shadow-2-strong go-to-signin " alt="" />
+                                               
                                         <p class="mt-4">Muscat, Oman</p>
                                         <p> <img [src]="phoneimg" alt=""> +968 99160109</p>
                                         <p><img [src]="emailimag" alt=""> Support@mumtalikati.com</p>
+                                        <div>
+                                                <img [src]="googleplay" class="img-fluid shadow-2-strong btn p-0 app-play" (click)="openappstore()"
+                                                width="210px" alt="">
+                                        </div>
+                                        <div class="pt-2">
+                                                
+                                                        <img [src]="appstore" class="img-fluid shadow-2-strong btn p-0 app-play" (click)="opengoogleplay()" 
+                                                        width="210px" alt=""> 
+                                                
+                                               
+                                        </div>
                                 </div>
                                 <div class="col-6 col-lg-2 offset-lg-1 mb-3 ">
                                         <div class="">

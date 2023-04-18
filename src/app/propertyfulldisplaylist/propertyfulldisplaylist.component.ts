@@ -47,41 +47,42 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit() {
-    this.mainSlider = new Splide('#main-slider', {
-      type: 'loop',
-      heightRatio: 0.5,
-      pagination: true,
-      arrows: false,
-      cover: true,
-   
-    });
-
-    this.mainSlider.mount();
-
-    this.thumbnailSlider = new Splide('#thumbnail-slider', {
-      rewind: true,
-      fixedWidth: 100,
-      fixedHeight: 58,
-      isNavigation: true,
-      gap: 10,
-      focus: 'center',
-      pagination: false,
-      cover: true,
-      dragMinThreshold: {
-        mouse: 4,
-        touch: 10,
-      },
-      breakpoints: {
-        640: {
-          fixedWidth: 100,
-          fixedHeight: 55,
+    setTimeout(() => {
+      this.mainSlider = new Splide('#main-slider', {
+        type: 'loop',
+        heightRatio: 0.5,
+        pagination: true,
+        arrows: false,
+        cover: true,
+      });
+  
+      this.mainSlider.mount();
+  
+      this.thumbnailSlider = new Splide('#thumbnail-slider', {
+        rewind: true,
+        fixedWidth: 100,
+        fixedHeight: 58,
+        isNavigation: true,
+        gap: 10,
+        focus: 'center',
+        pagination: false,
+        cover: true,
+        dragMinThreshold: {
+          mouse: 4,
+          touch: 10,
         },
-      },
-    });
-
-    this.thumbnailSlider.mount();
-
-    this.mainSlider.sync(this.thumbnailSlider);
+        breakpoints: {
+          640: {
+            fixedWidth: 100,
+            fixedHeight: 55,
+          },
+        },
+      });
+  
+      this.thumbnailSlider.mount();
+  
+      this.mainSlider.sync(this.thumbnailSlider);
+    }, 1000); // delay of 1 second
   }
   
   getlist(listid: any) {

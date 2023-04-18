@@ -12,10 +12,17 @@ export class FooterComponent implements OnInit {
   mapimg=assetUrl('img/map-particel.svg')
   emailimag=assetUrl('icons/emailicon.png')
   phoneimg=assetUrl('icons/phoneicon.png')
+  googleplay = assetUrl("img/Appstorephoto.png");
+  appstore = assetUrl("img/Playstore.png");
   constructor() {} 
 
   ngOnInit(): void {
    
   }
-
+  opengoogleplay() {
+   window.open('https://play.google.com/store/apps/details?id=com.alphai.mumtalikati.app_mumtalikati')
+  }
+openappstore(){
+  window.open('https://apps.apple.com/pk/app/mumtalikati/id1612677788')
+}
 }
