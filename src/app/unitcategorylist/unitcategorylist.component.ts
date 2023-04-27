@@ -25,13 +25,13 @@ export class UnitcategorylistComponent implements OnInit {
     if (propertySubTypeId == 15) {
       this.router.navigate(['plotdetails'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landLordID, 'status': statuss, 'listingPurposeID': this.listingPurposeID,'PropertySubTypeID': propertySubTypeId,'caption':caption ,'page':this.page,'itemsPerPage':this.itemsPerPage},
+          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landLordID },
          
         });
     } else {
       this.router.navigate(['propertyfulldisplay'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landLordID, 'status': statuss,'listingPurposeID': this.listingPurposeID,'PropertySubTypeID': propertySubTypeId, 'caption':caption,'page':this.page,'itemsPerPage':this.itemsPerPage },
+          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landLordID},
        
         });
     }

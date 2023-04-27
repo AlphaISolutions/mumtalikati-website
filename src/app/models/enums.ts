@@ -140,6 +140,7 @@ export function getstatusType(stutuss: number) {
 
 }
 export function getPropertyUnitCategoryEnum(unitcatID: number) {
+ 
     switch (unitcatID) {
         case 1:
             return '1BHK';

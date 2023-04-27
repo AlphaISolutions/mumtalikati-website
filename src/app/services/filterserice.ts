@@ -32,12 +32,12 @@ export class FilterService {
         return deselist?.desc
     }
     getPropertytMasterSubTypedesc(desc: string) {
-        debugger
+
         const deselist = this.setupFilterServive.getPropertySubType().find(x => x.propertySubType.desc == desc)
         return deselist?.propertySubTypeID
     }
     getPropertytMasterSubTypeid(id: number) {
-        debugger
+     
         const deselist = this.setupFilterServive.getPropertySubType().find(x => x.propertySubType.subType == id)
         return deselist?.propertySubType
     }

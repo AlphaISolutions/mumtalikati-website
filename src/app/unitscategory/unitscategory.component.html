@@ -6,7 +6,7 @@
 <ng-template #showInfo>
     <div class="container mt-4 ">
         <app-breadcrumb [indiviualsUni]="indiviualsUni" [propertyMasterTypeID]="propertyMasterTypeID"
-            [unitcategoryid]="unitCategoryID" [listingPurposeID]="listid.desc"
+            [unitcategoryid]="unitCategoryID" 
             [propertyMasterID]="propertyMasterID" [governorateid]="governorateid"
             [subTypeId]="subTypeId" [maxValue]="maxValue" [minValue]="minValue"></app-breadcrumb>
 
@@ -27,7 +27,7 @@
             currentPage: page,
             totalItems: IndiviualsUnitTotalCount}">
                     <app-unitcategorylist [property]="property" [listingPurposeID]="listingPurposeID"
-                        [itemsPerPage]="itemsPerPage" [page]="page" [landLordID]="landLordID"></app-unitcategorylist>
+                        [itemsPerPage]="itemsPerPage" [page]="page" [landLordID]="property.landlordID"></app-unitcategorylist>
 
 
                 </div>

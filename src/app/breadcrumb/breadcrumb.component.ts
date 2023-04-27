@@ -25,17 +25,14 @@ export class BreadcrumbComponent implements OnInit {
   governorateName!: any
   constructor(private router: Router, private setservice: SetupService) { }
   ngOnInit(): void {
-    // this.setservice.getGovernorate().then((data) => {
-    //   this.governorate = data.find(x => x.countryID == this.governorateid)
-    // })
+    
   }
   getenum(propertyMasterTypeID: number) {
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
   backtosearch() {
-    debugger
+  
     this.router.navigate(['propertydetails'],
       { queryParams: { 'purpose': this.listingPurposeID, 'unitCategory': this.unitcategoryid} });
-    // state: { 'listingPurposeID': this.listingPurposeID, 'propertyMasterTypeID': this.propertyMasterTypeID, 'governorateid': this.governorateid, 'unitcategoryid': this.unitcategoryid, 'subTypeId': this.subTypeId ,'maxValue':this.maxValue, 'minValue':this.minValue}
   }
 }

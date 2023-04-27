@@ -65,7 +65,7 @@ export class PlotdetailsComponent implements OnInit {
       this.statuss = +params['status'];
       this.listpurID = +params['listingPurposeID'];
       this.PropertySubTypeID = +params["PropertySubTypeID"];
-      this.caption = +params["caption"];
+     
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
       this.getImageUser(this.landlordid);
@@ -221,7 +221,7 @@ export class PlotdetailsComponent implements OnInit {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let iPhone=/iPhone|iPad|iPod/.test(navigator.userAgent);
     let phoneNumber = contact;
-    let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid}&listingPurposeID=${this.listpurID}&PropertySubTypeID=${this.PropertySubTypeID}&caption=${this.caption} `;
+    let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid} `;
 
     if (isMobile && typeof window.WhatsApp !== "undefined") {
       window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;

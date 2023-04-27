@@ -61,6 +61,6 @@ export class ShortdisplayComponent implements OnInit {
  
     this.router.navigate(
       ['Unitscategory'],
-      { queryParams: { 'propertyMasterID': propertyMasterID, 'purpose': this.listingPurposeID.desc, 'unitCategory': this.unitCategoryID.desc, 'landLordID': landLordID, 'propertyMasterTypeID': this.mastertypeid, 'governorateid': this.governorateid, 'propertySubTypeid': this.subTypeId} });
+      { queryParams: { 'propertyMasterID': propertyMasterID, 'purpose': this.listingPurposeID.desc, 'unitCategory': this.unitCategoryID.desc,  'propertyMasterTypeID': this.mastertypeid, 'governorateid': this.governorateid, 'propertySubTypeid': this.subTypeId} });
   }
 }

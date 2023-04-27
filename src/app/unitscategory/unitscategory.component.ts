@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { assetUrl } from 'src/single-spa/asset-url';
-import { getstatusType, listingPurposeTypeEnumSting, propertyMasterTypeEnum, Status } from '../models/enums';
+import { getstatusType,  propertyMasterTypeEnum } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { SetFiltersServive } from '../services/setfilters.servive';
@@ -43,22 +43,37 @@ export class UnitscategoryComponent implements OnInit {
   minValue!: number;
   listid: any
   unitid: any
+  listpurID:any;
+  liststring!: string;
+  unitcategoryId: any;
+  unitcategorystring!:string
   async ngOnInit() {
 
     this.route.queryParams.subscribe(params => {
-      debugger
-      this.propertyMasterID = +params['propertyMasterID'];
-      // this.listingPurposeID = +listingPurposeTypeEnumSting(params['listingPurposeID']);
-      this.listid = this.filterservice.getPurposedesc(params['purpose']);
-      this.listingPurposeID = this.listid;
-      this.unitid = this.setupFilterServive.getUnitCategory().find(x => x.desc == params['unitCategory']);
-      this.unitCategoryID = this.unitid.id;
+      this.propertyMasterID = +params['propertyMasterID']; 
+      this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
+      if (this.listpurID) {
+       this.listingPurposeID =this.listpurID
+        this.liststring = params['purpose']
+      } else {
+        this.liststring = 'Rent';
+     
+      }
+
+      this.unitcategoryId = this.filterservice.getPropertytUnitCategorydesc(params['unitCategory'])
+      if (this.unitcategoryId) {
+        this.unitCategoryID = this.unitcategoryId;
+        this.unitcategorystring = params['unitCategory']
+      }
+      else {
+        this.unitcategorystring = 'All'
+      }
+
       this.landLordID = +params['landLordID'];
       this.propertyMasterTypeID = +params['propertyMasterTypeID'];
       this.governorateid = +params['governorateid'];
       this.subTypeId = +params['propertySubTypeid']
-      // this.maxValue = +params['maxValue'];
-      // this.minValue = +params['minValue'];
+   
       this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
       this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
     });
@@ -75,7 +90,7 @@ export class UnitscategoryComponent implements OnInit {
         if (data) {
 
           this.indiviualsUni = data;
-          // this.subTypeId=this.indiviualsUni[0].propertySubTypeId  
+         
         }
         this.loading = false;
       })
@@ -110,10 +125,5 @@ export class UnitscategoryComponent implements OnInit {
 
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
-  // backtosearch() {
-  //   this.router.navigate(['propertydetails'],
-  //     {
-  //       state: { 'listingPurposeID': this.listingPurposeID, 'propertyMasterTypeID': this.propertyMasterTypeID }
-  //     });
-  // }
+
 }

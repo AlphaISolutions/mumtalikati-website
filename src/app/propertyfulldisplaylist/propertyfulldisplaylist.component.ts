@@ -27,7 +27,6 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   favoriteicon = assetUrl("icons/favoriteicon.png");
   bydefault = assetUrl('img/bydefault.png');
   @Input() unitcatID!: number;
-  @Input() caption!: string;
   @Input() statuss!: number;
   @Input() imgindex: number = 0;
   @Input() listpurID!: any;
@@ -168,7 +167,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   redirectToWhatsApp(contact: number) {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let phoneNumber = contact;
-    let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid}&listingPurposeID=${this.listpurID}&PropertySubTypeID=${this.PropertySubTypeID}&caption=${this.caption} `;
+    let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid} `;
 
     if (isMobile && typeof window.WhatsApp !== "undefined") {
       window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;

@@ -85,7 +85,14 @@ export class PropertydetailsComponent implements OnInit {
     ceil: 10000,
     noSwitching: true
   }
-  constructor(private route: ActivatedRoute, private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal, private setupFilterServive: SetFiltersServive, private filterservice: FilterService) { }
+  constructor(private route: ActivatedRoute,
+    private rxFormBuilder: RxFormBuilder,
+    private mumtalikatiservic: MumtalikatiService,
+    private setservice: SetupService,
+    private router: Router,
+    private modalService: NgbModal,
+    private setupFilterServive: SetFiltersServive,
+    private filterservice: FilterService) { }
   async ngOnInit() {
 
     this.route.queryParams.subscribe(params => {
@@ -95,11 +102,11 @@ export class PropertydetailsComponent implements OnInit {
         this.minValue = +params['minValue'] ?? 0;
       }
       if (Number.isNaN(+params['maxValue'])) {
-        this.maxValue=10000
+        this.maxValue = 10000
       } else {
         this.maxValue = +params['maxValue'] ?? 10000;
       }
-     
+
 
       this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
       if (this.listpurID) {
@@ -134,15 +141,7 @@ export class PropertydetailsComponent implements OnInit {
       this.propertyMasterSubTypeID = this.filterservice.getPropertytMasterSubTypedesc(params['propertyMasterSubType'])
       if (this.propertyMasterSubTypeID) {
         this.subTypeId = this.propertyMasterSubTypeID;
-      } else {
-
       }
-
-
-
-
-
-
 
     })
     this.queryParams();
@@ -557,7 +556,7 @@ export class PropertydetailsComponent implements OnInit {
 
   }
   onUnitcategory(unitcategory: number) {
-    debugger
+
     this.unitcategoryid = unitcategory
     let data = this.propertyFilterform.value as PropertyFilter;
     data.listingPurposesID = this.listid
@@ -615,7 +614,7 @@ export class PropertydetailsComponent implements OnInit {
     data.propertyMasterSubTypeID = this.subTypeId;
     this.propertySubTypedesc = this.filterservice.getPropertytMasterSubTypeid(this.subTypeId!)
     this.propertyMasterSubTypeIDstring = this.propertySubTypedesc?.desc
-    console.log(this.propertyMasterSubTypeIDstring )
+
     this.queryParams()
     this.propertyFilter(data)
     this.postPropertyFilter_Count(data);
@@ -635,7 +634,6 @@ export class PropertydetailsComponent implements OnInit {
     this.modalService.dismissAll()
   }
   queryParams() {
-    debugger
     this.router.navigate(
       ['propertydetails'],
       {

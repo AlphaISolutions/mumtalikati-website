@@ -35,4 +35,5 @@ export class OwnerRentDetail {
     vacant!: number | null;
     occupied!: number | null;
     totalUnit!: number | null;
+    caption!:string |null;
 }

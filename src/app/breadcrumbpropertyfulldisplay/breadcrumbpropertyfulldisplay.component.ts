@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { propertyMasterTypeEnum } from '../models/enums';
+import { getPropertyUnitCategoryEnum, listingPurposeTypeEnum, propertyMasterTypeEnum } from '../models/enums';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 
 @Component({
@@ -23,6 +23,7 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
   ngOnInit(): void {
   }
   addItem(newItem: number) {
+
     this.listpurID = newItem;
   }
   getenum(propertyMasterTypeID: number) {
@@ -30,10 +31,10 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
     this.propertyMasterTypeID = pmtid
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
-  backotsearch() {
-    debugger
-    this.router.navigate(
-      ['Unitscategory'],
-      { queryParams: { 'propertyMasterID': this.pmid, 'purpose': this.listpurID, 'unitCategory': this.unitcatID, 'status': this.statuss, 'page': this.page, 'perpagenumber': this.perpagenumber, 'propertyMasterTypeID': this.propertyMasterTypeID, 'landLordID': this.landlordid } });
-  }
+getlist(listid:number){
+return listingPurposeTypeEnum(listid)
+}
+getunit(unitid:number){
+  return getPropertyUnitCategoryEnum(unitid)
+}
 }

@@ -5,6 +5,7 @@ import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { PropertyFeature } from '../models/propertyfeature';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { ProfileImage } from '../models/profileImage.model';
+import { FilterService } from '../services/filterserice';
 @Component({
   selector: 'app-propertyfulldisplay',
   templateUrl: './propertyfulldisplay.component.html',
@@ -47,8 +48,11 @@ export class PropertyfulldisplayComponent implements OnInit {
   maxheight = { 'maxheight': '80vh !important' }
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   public imgindex: number = 0;
-  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService) { }
+  constructor(private route: ActivatedRoute,
+     private mumtalikatiservic: MumtalikatiService,
+     private filterservice: FilterService) { }
   async ngOnInit() {
+   
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMasterID'];
       this.propertyUnitid = +params['propertyUnitID'];
@@ -57,9 +61,6 @@ export class PropertyfulldisplayComponent implements OnInit {
       this.statuss = +params['status'];
       this.listpurID = +params['listingPurposeID'];
       this.PropertySubTypeID = +params["PropertySubTypeID"];
-      this.page = +params["page"];
-      this.perpagenumber = +params["itemsPerPage"];
-      this.caption = params["caption"];
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
       this.getImageUser(this.landlordid);
@@ -73,7 +74,7 @@ export class PropertyfulldisplayComponent implements OnInit {
         if (data) {
           this.propertyDetail = data;
 
-          console.log(this.propertyDetail)
+         
         }
         this.loading = false;
       })
