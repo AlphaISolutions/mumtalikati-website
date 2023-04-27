@@ -7,7 +7,7 @@
             </a></span>
             <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed"
                 aria-label="Toggle navigation" [style]="btncolor" (click)="collapsed = !collapsed">
-                <span class="navbar-toggler-icon"></span>
+                <span [style]="togglericon" class="navbar-toggler-icon"></span>
             </button>
     
             <div class="navbar-collapse" [class.collapse]="collapsed" [attr.aria-expanded]="!collapsed" id="navbarContent">

@@ -21,6 +21,7 @@ export class TopBarComponent implements OnInit {
   @Input() activeroute: any;
   colorFlag: boolean = true;
   @Input() btncolor: any;
+  @Input() togglericon:any;
   coler: any;
   constructor(public dialog: MatDialog) { }
   ngOnInit() {

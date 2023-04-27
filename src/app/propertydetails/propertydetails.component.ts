@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ListingPurpose } from '../models/listing-purpose.model';
 import { PropertyMasterType } from '../models/property-master-type.model';
 import { PropertyUnitCategory } from '../models/propertyUnitCategory.model';
@@ -17,6 +17,7 @@ import { SetFiltersServive } from '../services/setfilters.servive';
 import { Options } from "@angular-slider/ngx-slider";
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { BspropertyService } from '../services/behaviour.subject/propertyDetail.bs.service';
+import { FilterService } from '../services/filterserice';
 
 @Component({
   selector: 'app-propertydetails',
@@ -54,37 +55,96 @@ export class PropertydetailsComponent implements OnInit {
   filterCount: any;
   coler = { ' background-color': 'red' }
   hovercolor = { ' background-color': 'red' }
-  public governorateid: number | null = null;
-  btnColor = { 'background-color': '#9e2a2b' }
+  governorateid!: number;
+  btnColor = { 'background-color': '#9e2a2b' };
+  togglericon = { 'color': '#fffff !important' }
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   id: number | null = null;
   governorate: Governorate[] = [];
   public minValue: number = 0;
-  public maxValue: number | null = 10000;
+  public maxValue: number = 10000;
+  listdesc: any;
+  governoratname: any
+  governoratcountryid: any;
+  propertyMasterTypedesc: any;
+  propertySubTypedesc: any;
+  unitcategorydesc: any;
+  unitcategoryId: any;
+  propertyMasterTypeID: any;
+  propertyMasterSubTypeID: any;
+  allselection: string = 'All'
+  governoratestring!: string;
+  liststring!: string;
+  unitcategorystring!: string;
+  propertyMasterTypestring!: string
+  propertyMasterSubTypeIDstring!: string
   @ViewChild('tabGroup') tabGroup: any;
-
+  listpurID: any
   options: Options = {
     floor: 0,
     ceil: 10000,
     noSwitching: true
   }
-  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private setservice: SetupService, private router: Router, private modalService: NgbModal, private setupFilterServive: SetFiltersServive, private bsService: BspropertyService) {
-    if (this.router.getCurrentNavigation()?.extras.state != undefined) {
-      let listingpupose = this.router.getCurrentNavigation()?.extras.state!["listingPurposeID"];
-      if (listingpupose != null || listingpupose != undefined) {
-        this.listid = listingpupose;
+  constructor(private route: ActivatedRoute,
+    private rxFormBuilder: RxFormBuilder,
+    private mumtalikatiservic: MumtalikatiService,
+    private setservice: SetupService,
+    private router: Router,
+    private modalService: NgbModal,
+    private setupFilterServive: SetFiltersServive,
+    private filterservice: FilterService) { }
+  async ngOnInit() {
+
+    this.route.queryParams.subscribe(params => {
+      if (Number.isNaN(+params['minValue'])) {
+        this.minValue = 0
+      } else {
+        this.minValue = +params['minValue'] ?? 0;
       }
-      else {
-        this.listid = 1;
+      if (Number.isNaN(+params['maxValue'])) {
+        this.maxValue = 10000
+      } else {
+        this.maxValue = +params['maxValue'] ?? 10000;
       }
 
-      this.governorateid = this.router.getCurrentNavigation()?.extras.state!["governorateid"];
-    }
-    else {
-      this.listid = 1
-    }
-  }
-  async ngOnInit() {
+
+      this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
+      if (this.listpurID) {
+        this.listid = this.listpurID;
+        this.liststring = params['purpose']
+      } else {
+        this.liststring = 'Rent';
+      }
+      this.governoratcountryid = this.filterservice.getGovernorateDesc(params['governorate'])
+      if (this.governoratcountryid) {
+        this.governorateid = this.governoratcountryid;
+        this.governoratestring = params['governorate'];
+      } else {
+        this.governoratestring = 'All'
+      }
+      this.unitcategoryId = this.filterservice.getPropertytUnitCategorydesc(params['unitCategory'])
+      if (this.unitcategoryId) {
+        this.unitcategoryid = this.unitcategoryId;
+        this.unitcategorystring = params['unitCategory']
+      }
+      else {
+        this.unitcategorystring = 'All'
+      }
+      this.propertyMasterTypeID = this.filterservice.getPropertytMasterTypedesc(params['propertyMasterType'])
+      if (this.propertyMasterTypeID) {
+        this.mastertypeid = this.propertyMasterTypeID;
+        this.propertyMasterTypestring = params['propertyMasterType']
+      } else {
+        this.propertyMasterTypestring = 'All'
+
+      }
+      this.propertyMasterSubTypeID = this.filterservice.getPropertytMasterSubTypedesc(params['propertyMasterSubType'])
+      if (this.propertyMasterSubTypeID) {
+        this.subTypeId = this.propertyMasterSubTypeID;
+      }
+
+    })
+    this.queryParams();
     this.propertyFilterform = this.rxFormBuilder.formGroup(this.propertyfilter);
     let data = this.propertyFilterform.value as PropertyFilter;
     data.listingPurposesID = this.listid;
@@ -92,6 +152,7 @@ export class PropertydetailsComponent implements OnInit {
     data.pageNumber = this.page;
     data.gOVERNORATEID = this.governorateid;
     data.propertyMasterTypeID = this.mastertypeid;
+    data.propertyCategory = this.unitcategoryid;
     data.maxPrice = this.maxValue;
     data.minPrice = this.minValue;
     this.propertyFilter(data);
@@ -117,6 +178,7 @@ export class PropertydetailsComponent implements OnInit {
   async initiaalizefilters() {
     this.listingpupose = await this.setupFilterServive.getListingPurpose();
     if (!this.listingpupose) {
+
       this.setservice.getlistingpurposeset().then((data) => {
 
         this.listingpupose = data;
@@ -270,9 +332,10 @@ export class PropertydetailsComponent implements OnInit {
   }
   getGovernorate(id: number) {
     this.governorateid = id;
+    this.queryParams();
   }
   governorateId() {
-    this.governorateid = this.id;
+    this.governorateid != null;
   }
   getlistpurpose(listid: number) {
     return listingPurposeTypeEnum(listid);
@@ -287,14 +350,20 @@ export class PropertydetailsComponent implements OnInit {
     if (event && this.listid != event.value) {
       this.listid = event.value;
       let data = this.propertyFilterform.value as PropertyFilter;
-      data.listingPurposesID = this.listid
+      data.listingPurposesID = this.listid;
+      this.listdesc = this.filterservice.getPurposeid(this.listid)
+      this.liststring = this.listdesc
+      this.queryParams()
       data.rowsNumbers = this.perpagenumber;
       data.pageNumber = this.page;
       this.propertyFilter(data)
       this.postPropertyFilter_Count(data)
+
     }
+
   }
   onChangeGovernorate(event: any) {
+
     if (event.value == 0) {
       event.value = null;
     }
@@ -303,6 +372,9 @@ export class PropertydetailsComponent implements OnInit {
       let data = this.propertyFilterform.value as PropertyFilter;
       data.listingPurposesID = this.listid
       data.gOVERNORATEID = this.governorateid;
+      this.governoratname = this.filterservice.getGovernorateid(this.governorateid)
+      this.governoratestring = this.governoratname
+      this.queryParams()
       data.rowsNumbers = this.perpagenumber;
       data.pageNumber = this.page;
       this.propertyFilter(data)
@@ -318,6 +390,7 @@ export class PropertydetailsComponent implements OnInit {
     data.pageNumber = this.page;
     data.maxPrice = this.maxValue;
     data.minPrice = this.minValue
+    this.queryParams()
     this.propertyFilter(data)
     this.postPropertyFilter_Count(data)
     this.modalService.dismissAll();
@@ -382,7 +455,8 @@ export class PropertydetailsComponent implements OnInit {
   }
 
   open(content: any) {
-    this.get(1)
+
+    // this.get(1)
     this.modalService.open(content, this.configs).result.then(
 
       (result) => {
@@ -481,21 +555,26 @@ export class PropertydetailsComponent implements OnInit {
     }
 
   }
-
-
   onUnitcategory(unitcategory: number) {
+
     this.unitcategoryid = unitcategory
     let data = this.propertyFilterform.value as PropertyFilter;
     data.listingPurposesID = this.listid
     data.rowsNumbers = this.perpagenumber;
     data.pageNumber = this.page;
     data.propertyMasterTypeID = this.mastertypeid;
+    this.unitcategorydesc = this.filterservice.getPropertytUnitCategoryid(this.unitcategoryid!)
+    this.unitcategorystring = this.unitcategorydesc
+    this.queryParams()
     data.propertyCategory = this.unitcategoryid;
     this.propertyFilter(data)
     this.postPropertyFilter_Count(data)
   }
   allCheck() {
     this.unitcategoryid = null;
+    this.unitcategorydesc = this.filterservice.getPropertytUnitCategoryid(this.unitcategoryid!)
+    this.unitcategorystring = this.unitcategorydesc
+    this.queryParams()
     let data = this.propertyFilterform.value as PropertyFilter;
     data.listingPurposesID = this.listid
     data.rowsNumbers = this.perpagenumber;
@@ -506,14 +585,14 @@ export class PropertydetailsComponent implements OnInit {
     this.postPropertyFilter_Count(data)
   }
   get(mastertypeid: number) {
-    let data = this.propertyFilterform.value as PropertyFilter;
-    data.listingPurposesID = this.listid
-    data.rowsNumbers = this.perpagenumber;
-    data.pageNumber = this.page;
-    data.propertyMasterTypeID = mastertypeid;
-    data.propertyMasterSubTypeID = null;
-    this.postPropertyFilter_Count(data)
-    this.propertyFilter(data)
+    // let data = this.propertyFilterform.value as PropertyFilter;
+    // data.listingPurposesID = this.listid
+    // data.rowsNumbers = this.perpagenumber;
+    // data.pageNumber = this.page;
+    // data.propertyMasterTypeID = mastertypeid;
+    // data.propertyMasterSubTypeID = null;
+    // this.postPropertyFilter_Count(data)
+    // this.propertyFilter(data)
 
   }
   onsubtypeid(subTypeid: number) {
@@ -530,7 +609,13 @@ export class PropertydetailsComponent implements OnInit {
     data.rowsNumbers = this.perpagenumber;
     data.pageNumber = this.page;
     data.propertyMasterTypeID = this.mastertypeid;
+    this.propertyMasterTypedesc = this.filterservice.getPropertytMasterTypeid(this.mastertypeid!)
+    this.propertyMasterTypestring = this.propertyMasterTypedesc
     data.propertyMasterSubTypeID = this.subTypeId;
+    this.propertySubTypedesc = this.filterservice.getPropertytMasterSubTypeid(this.subTypeId!)
+    this.propertyMasterSubTypeIDstring = this.propertySubTypedesc?.desc
+
+    this.queryParams()
     this.propertyFilter(data)
     this.postPropertyFilter_Count(data);
     this.modalService.dismissAll()
@@ -548,6 +633,20 @@ export class PropertydetailsComponent implements OnInit {
     this.selectedTab = 0;
     this.modalService.dismissAll()
   }
-
+  queryParams() {
+    this.router.navigate(
+      ['propertydetails'],
+      {
+        queryParams: {
+          'purpose': this.liststring,
+          'governorate': this.governoratestring,
+          'propertyMasterType': this.propertyMasterTypestring,
+          'propertyMasterSubType': this.propertyMasterSubTypeIDstring,
+          'unitCategory': this.unitcategorystring,
+          'minValue': this.minValue,
+          'maxValue': this.maxValue
+        }
+      })
+  }
 
 }

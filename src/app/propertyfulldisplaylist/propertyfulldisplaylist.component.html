@@ -3,7 +3,7 @@
         <div class="col-md-4 pb-4">
             <div>
                 <h2 class="h2color">
-                    For {{getlist(listpurID)}}
+                    For {{getlist(property.listingPurposeID)}}
                 </h2>
             </div>
             <div class="group">
@@ -39,12 +39,12 @@
                             <td class="propertyb">{{property.propertyUnitID}}</td>
 
                         </tr>
-                        <ng-container *ngIf="caption==0; else showCaption">
+                        <ng-container *ngIf="property.caption==0; else showCaption">
                         </ng-container>
                         <ng-template #showCaption>
                             <tr>
                                 <th class="header">Caption</th>
-                                <td class="propertyb">{{caption}}</td>
+                                <td class="propertyb">{{property.caption}}</td>
                             </tr>
                         </ng-template>
 
@@ -79,7 +79,7 @@
                         </ng-template>
                         <tr>
                             <th class="header">Status</th>
-                            <td class="propertyb">{{getstatus(statuss)}}</td>
+                            <td class="propertyb">{{getstatus(property.unitStatus)}}</td>
 
                         </tr>
                     </tbody>

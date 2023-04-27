@@ -27,7 +27,6 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   favoriteicon = assetUrl("icons/favoriteicon.png");
   bydefault = assetUrl('img/bydefault.png');
   @Input() unitcatID!: number;
-  @Input() caption!: string;
   @Input() statuss!: number;
   @Input() imgindex: number = 0;
   @Input() listpurID!: any;
@@ -47,41 +46,42 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit() {
-    this.mainSlider = new Splide('#main-slider', {
-      type: 'loop',
-      heightRatio: 0.5,
-      pagination: true,
-      arrows: false,
-      cover: true,
-   
-    });
-
-    this.mainSlider.mount();
-
-    this.thumbnailSlider = new Splide('#thumbnail-slider', {
-      rewind: true,
-      fixedWidth: 100,
-      fixedHeight: 58,
-      isNavigation: true,
-      gap: 10,
-      focus: 'center',
-      pagination: false,
-      cover: true,
-      dragMinThreshold: {
-        mouse: 4,
-        touch: 10,
-      },
-      breakpoints: {
-        640: {
-          fixedWidth: 100,
-          fixedHeight: 55,
+    setTimeout(() => {
+      this.mainSlider = new Splide('#main-slider', {
+        type: 'loop',
+        heightRatio: 0.5,
+        pagination: true,
+        arrows: false,
+        cover: true,
+      });
+  
+      this.mainSlider.mount();
+  
+      this.thumbnailSlider = new Splide('#thumbnail-slider', {
+        rewind: true,
+        fixedWidth: 100,
+        fixedHeight: 58,
+        isNavigation: true,
+        gap: 10,
+        focus: 'center',
+        pagination: false,
+        cover: true,
+        dragMinThreshold: {
+          mouse: 4,
+          touch: 10,
         },
-      },
-    });
-
-    this.thumbnailSlider.mount();
-
-    this.mainSlider.sync(this.thumbnailSlider);
+        breakpoints: {
+          640: {
+            fixedWidth: 100,
+            fixedHeight: 55,
+          },
+        },
+      });
+  
+      this.thumbnailSlider.mount();
+  
+      this.mainSlider.sync(this.thumbnailSlider);
+    }, 1000); // delay of 1 second
   }
   
   getlist(listid: any) {
@@ -135,7 +135,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let phoneNumber = phone;
     if(isMobile){
-      window.location.href = phoneNumber.toString();
+       window.open(`tel:${{phoneNumber}}', '_system`);
     }else{
       this.modalService.open(call, { centered: true }).result.then(
         (result) => {
@@ -167,12 +167,12 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   redirectToWhatsApp(contact: number) {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let phoneNumber = contact;
-    let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid}&listingPurposeID=${this.listpurID}&PropertySubTypeID=${this.PropertySubTypeID}&caption=${this.caption} `;
+    let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid} `;
 
     if (isMobile && typeof window.WhatsApp !== "undefined") {
       window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
     } else if (isMobile && typeof window.WhatsApp === "undefined") {
-      window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
+      window.open(`https://play.google.com/store/search?q=whatsapp&c=apps&hl=en&gl=US`);
     } else {
       window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
     }

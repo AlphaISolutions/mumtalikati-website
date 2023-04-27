@@ -5,6 +5,7 @@ import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { PropertyFeature } from '../models/propertyfeature';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { ProfileImage } from '../models/profileImage.model';
+import { FilterService } from '../services/filterserice';
 @Component({
   selector: 'app-propertyfulldisplay',
   templateUrl: './propertyfulldisplay.component.html',
@@ -35,8 +36,8 @@ export class PropertyfulldisplayComponent implements OnInit {
   myModel = true;
   statuss!: number;
   imageUser!: ProfileImage;
-  public page: number = 1;
-  public perpagenumber: number = 8;
+  public page!: number;
+  public perpagenumber!: number;
   contact!: any;
   listpurID!: any;
   PropertySubTypeID!: any;
@@ -47,8 +48,11 @@ export class PropertyfulldisplayComponent implements OnInit {
   maxheight = { 'maxheight': '80vh !important' }
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   public imgindex: number = 0;
-  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService) { }
+  constructor(private route: ActivatedRoute,
+     private mumtalikatiservic: MumtalikatiService,
+     private filterservice: FilterService) { }
   async ngOnInit() {
+   
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMasterID'];
       this.propertyUnitid = +params['propertyUnitID'];
@@ -57,10 +61,10 @@ export class PropertyfulldisplayComponent implements OnInit {
       this.statuss = +params['status'];
       this.listpurID = +params['listingPurposeID'];
       this.PropertySubTypeID = +params["PropertySubTypeID"];
-      this.caption = params["caption"];
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
       this.getImageUser(this.landlordid);
+      
     });
   }
   async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {
@@ -69,6 +73,8 @@ export class PropertyfulldisplayComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.propertyDetail = data;
+
+         
         }
         this.loading = false;
       })
@@ -92,11 +98,15 @@ export class PropertyfulldisplayComponent implements OnInit {
       });
   }
   async getPropertyFeatures(id: number) {
+
     this.mumtalikatiservic.getPropertyFeature(id)
       .then((data) => {
         if (data) {
 
-          this.propertyFeature = data;
+          
+          this.propertyFeature =  data.filter(x=> x.propertyUnitCategoryID ==this.unitcatID
+        
+            )
         }
 
       })

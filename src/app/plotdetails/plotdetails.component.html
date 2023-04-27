@@ -10,7 +10,7 @@
             <div class="col-md-4 float-start ">
                 <ul class="breadcrumb" *ngIf="propertyDetail[0]">
                     <li><a routerLink="/Unitscategory"
-                            [queryParams]="{'propertyMasterID':pmid,'listingPurposeID':listpurID,'unitCategoryID':unitcatID,'status':statuss,'page': page, 'perpagenumber': perpagenumber,'landLordID':landlordid}"
+                        [queryParams]="{'propertyMasterID':pmid,'purpose':getlist(listpurID),'unitCategory':getunit(unitcatID)}"
                             (click)="addItem(propertyDetail[0].listingPurposeID!)"><i class="fa fa-angle-left pe-2"
                                 aria-hidden="true"></i>Back to Search</a></li>
                 </ul>
@@ -36,7 +36,7 @@
                 <div class="col-md-4">
                     <div>
                         <h2 class="h2color">
-                            For {{getlist(listpurID)}}
+                            For {{getlist(property.listingPurposeID)}}
                         </h2>
                     </div>
                     <div class="group">
@@ -59,14 +59,7 @@
                                     <td class="propertyb">{{property.plotNumber}}</td>
 
                                 </tr>
-                                <ng-container *ngIf="caption==0; else showCaption">
-                                </ng-container>
-                                <ng-template #showCaption>
-                                    <tr>
-                                        <th class="header">Caption</th>
-                                        <td class="propertyb">{{caption}}</td>
-                                    </tr>
-                                </ng-template>
+                               
 
                                 
 
@@ -90,7 +83,7 @@
                                 </ng-template>
                                 <tr>
                                     <th class="header">Status</th>
-                                    <td class="propertyb">{{getstatus(statuss)}}</td>
+                                    <td class="propertyb">{{getstatus(property.unitStatus)}}</td>
 
                                 </tr>
                             </tbody>

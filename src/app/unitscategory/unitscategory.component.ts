@@ -1,9 +1,11 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { assetUrl } from 'src/single-spa/asset-url';
-import { getstatusType, propertyMasterTypeEnum, Status } from '../models/enums';
+import { getstatusType,  propertyMasterTypeEnum } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
+import { SetFiltersServive } from '../services/setfilters.servive';
+import { FilterService } from '../services/filterserice';
 @Component({
   selector: 'app-unitscategory',
   templateUrl: './unitscategory.component.html',
@@ -25,24 +27,53 @@ export class UnitscategoryComponent implements OnInit {
   logocolor = false;
   public status: number = 1
   propertyMasterTypeID!: number
-  subTypeId: number|null =null;
+  public subTypeId!: number | null;
   btnColor = { 'background-color': '#9e2a2b' };
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
-  constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router, private setupFilterServive: SetFiltersServive, private filterservice: FilterService) { }
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;
   location = assetUrl("icons/location.svg");
   bydefault = assetUrl('img/bydefault.png');
   notfound = assetUrl('img/notfoundproperty.svg');
   parentStyle = { 'background-color': 'black' };
-  step: any
+  step: any;
+  governorateid!: number;
+  maxValue!: number;
+  minValue!: number;
+  listid: any
+  unitid: any
+  listpurID:any;
+  liststring!: string;
+  unitcategoryId: any;
+  unitcategorystring!:string
   async ngOnInit() {
+
     this.route.queryParams.subscribe(params => {
-      this.propertyMasterID = +params['propertyMasterID'];
-      this.listingPurposeID = +params['listingPurposeID'];
-      this.unitCategoryID = +params['unitCategoryID'];
+      this.propertyMasterID = +params['propertyMasterID']; 
+      this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
+      if (this.listpurID) {
+       this.listingPurposeID =this.listpurID
+        this.liststring = params['purpose']
+      } else {
+        this.liststring = 'Rent';
+     
+      }
+
+      this.unitcategoryId = this.filterservice.getPropertytUnitCategorydesc(params['unitCategory'])
+      if (this.unitcategoryId) {
+        this.unitCategoryID = this.unitcategoryId;
+        this.unitcategorystring = params['unitCategory']
+      }
+      else {
+        this.unitcategorystring = 'All'
+      }
+
       this.landLordID = +params['landLordID'];
-      this.propertyMasterTypeID = +params['propertyMasterTypeID']
+      this.propertyMasterTypeID = +params['propertyMasterTypeID'];
+      this.governorateid = +params['governorateid'];
+      this.subTypeId = +params['propertySubTypeid']
+   
       this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
       this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
     });
@@ -57,8 +88,9 @@ export class UnitscategoryComponent implements OnInit {
     this.mumtalikatiservic.getPropertyMasterIndiviualsUnit(propertyMasterTypeID, listingPurposesID, UnitCategoryID, status, pageNumber, rowsNumbers)
       .then((data) => {
         if (data) {
+
           this.indiviualsUni = data;
-          
+         
         }
         this.loading = false;
       })
@@ -74,7 +106,7 @@ export class UnitscategoryComponent implements OnInit {
         if (data) {
           this.IndiviualsUnitTotalCount = data;
         }
-     
+
       })
       .catch((error) => {
 
@@ -88,31 +120,10 @@ export class UnitscategoryComponent implements OnInit {
     this.loading = true;
     await this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, page, this.perpagenumber);
   }
-  onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landlordid: number, statuss: number, propertySubTypeId: number, caption:string) {
-  
-    if (propertySubTypeId == 15) {
-      this.router.navigate(['plotdetails'],
-        {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss, 'listingPurposeID': this.listingPurposeID,'PropertySubTypeID': propertySubTypeId,'caption':caption  },
-          state: {  'PropertySubTypeID': propertySubTypeId, 'caption':caption }
-        });
-    } else {
-      this.router.navigate(['propertyfulldisplay'],
-        {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landlordid, 'status': statuss,'listingPurposeID': this.listingPurposeID,'PropertySubTypeID': propertySubTypeId, 'caption':caption },
-          state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId, 'caption':caption}
-        });
-    }
 
-  }
   getenum(propertyMasterTypeID: number) {
 
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
-  backtosearch(){
-    this.router.navigate(['propertydetails'],
-    {
-      state: { 'listingPurposeID': this.listingPurposeID, 'propertyMasterTypeID': this.propertyMasterTypeID}
-    });
-  }
+
 }

@@ -21,4 +21,5 @@ export class OwnerPropertyMasterIndiviualUnits {
     caption!: string;
     totalCount!: number | null;
     imageString!: string;
+    landlordID!: number | null;
 }

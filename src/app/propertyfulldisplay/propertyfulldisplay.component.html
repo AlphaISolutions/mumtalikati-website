@@ -6,14 +6,14 @@
 <ng-template #showList>
     <div class="container" *ngIf="propertyDetail">
         <app-breadcrumbpropertyfulldisplay [propertyDetail]="propertyDetail"
-            [propertyMasterTypeID]="propertyMasterTypeID" [pmid]="pmid" [listpurID]="listpurID" [unitcatID]="unitcatID"
-            [statuss]="statuss" [page]="page" [perpagenumber]="perpagenumber"
-            [landlordid]="landlordid" [propertyMasterTypeID]="propertyMasterTypeID"></app-breadcrumbpropertyfulldisplay>
+            [propertyMasterTypeID]="propertyMasterTypeID" [pmid]="pmid" [unitcatID]="unitcatID"
+            [listpurID]="propertyDetail[0].listingPurposeID"
+            [propertyMasterTypeID]="propertyMasterTypeID"></app-breadcrumbpropertyfulldisplay>
 
         <app-propertyfulldisplaylist [propertyDetail]="propertyDetail" [propertyFeature]="propertyFeature"
-            [unitcatID]="unitcatID" [caption]="caption" [statuss]="statuss" [imgindex]="imgindex"
-            [listpurID]="listpurID" [PropertySubTypeID]="PropertySubTypeID" [pmid]="pmid"
-            [propertyUnitid]="propertyUnitid" [landlordid]="landlordid" [imageUser]="imageUser"></app-propertyfulldisplaylist>
+            [unitcatID]="unitcatID" [statuss]="statuss" [imgindex]="imgindex" [listpurID]="listpurID"
+            [PropertySubTypeID]="PropertySubTypeID" [pmid]="pmid" [propertyUnitid]="propertyUnitid"
+            [landlordid]="landlordid" [imageUser]="imageUser"></app-propertyfulldisplaylist>
 
     </div>
 

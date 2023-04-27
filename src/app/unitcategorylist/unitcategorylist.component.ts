@@ -13,22 +13,26 @@ export class UnitcategorylistComponent implements OnInit {
  @Input() property: OwnerPropertyMasterIndiviualUnits[] = []
  @Input()  listingPurposeID!: number;
  @Input()  landLordID!: number;
+ @Input() itemsPerPage!:number;
+ @Input() page!:number;
  location = assetUrl("icons/location.svg");
   constructor( private router: Router) { }
   ngOnInit(): void {
+   
   }
-  onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landLordID: number, statuss: number, propertySubTypeId: number, caption:string) {
+  onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landLordID: number, statuss: number, propertySubTypeId: number, caption:string ) {
+
     if (propertySubTypeId == 15) {
       this.router.navigate(['plotdetails'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landLordID, 'status': statuss, 'listingPurposeID': this.listingPurposeID,'PropertySubTypeID': propertySubTypeId,'caption':caption},
-          state: {  'PropertySubTypeID': propertySubTypeId, 'caption':caption }
+          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landLordID },
+         
         });
     } else {
       this.router.navigate(['propertyfulldisplay'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landLordID, 'status': statuss,'listingPurposeID': this.listingPurposeID,'PropertySubTypeID': propertySubTypeId, 'caption':caption },
-          state: { 'listingPurposeID': this.listingPurposeID, 'PropertySubTypeID': propertySubTypeId, 'caption':caption}
+          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landLordID},
+       
         });
     }
 

@@ -5,7 +5,10 @@
 </div>
 <ng-template #showInfo>
     <div class="container mt-4 ">
-        <app-breadcrumb [indiviualsUni]="indiviualsUni" [propertyMasterTypeID]="propertyMasterTypeID"></app-breadcrumb>
+        <app-breadcrumb [indiviualsUni]="indiviualsUni" [propertyMasterTypeID]="propertyMasterTypeID"
+            [unitcategoryid]="unitCategoryID" 
+            [propertyMasterID]="propertyMasterID" [governorateid]="governorateid"
+            [subTypeId]="subTypeId" [maxValue]="maxValue" [minValue]="minValue"></app-breadcrumb>
 
         <div *ngIf="indiviualsUni[0]">
             <div *ngIf="indiviualsUni[0].propertySubTypeId ==15 else notpropertyUnitName">
@@ -24,11 +27,11 @@
             currentPage: page,
             totalItems: IndiviualsUnitTotalCount}">
                     <app-unitcategorylist [property]="property" [listingPurposeID]="listingPurposeID"
-                        [landLordID]="landLordID"></app-unitcategorylist>
+                        [itemsPerPage]="itemsPerPage" [page]="page" [landLordID]="property.landlordID"></app-unitcategorylist>
 
 
                 </div>
-                <div class="h-message"  *ngIf="indiviualsUni.length == 0">
+                <div class="h-message" *ngIf="indiviualsUni.length == 0">
                     <div class="pt-5 d-flex  justify-content-center align-items-center">
                         <img [src]="notfound" alt="" width="360px" height="250px">
                     </div>

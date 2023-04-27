@@ -65,3 +65,18 @@ img.footer-logo {
 //       width: 100%;
 //     }
 //   }
+@media only screen and (max-width: 540px) {
+    .app-play {
+      width: 50%;
+    }
+  }
+  @media only screen and (min-width: 992px) {
+    .app-play {
+      width: 50%;
+    }
+  }
+  @media only screen and (min-width: 540px) {
+    .app-play {
+      width: 40%;
+    }
+  }

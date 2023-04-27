@@ -1,4 +1,4 @@
-<app-top-bar [logred]="color" [data]="logocolor" [active]="coler" [btncolor]="btnColor"
+<app-top-bar [logred]="color" [data]="logocolor" [active]="coler" [btncolor]="btnColor" [togglericon]="togglericon"
     [activeroute]="activeroutes"></app-top-bar>
 <hr>
 <div class="loading" *ngIf="loading ; else showList">
@@ -58,7 +58,8 @@
                                                         (click)="onsubtypeid(-1)">All</button>
 
                                                 </div>
-                                                <div class="col-6  pt-2 mat-pbtn" *ngFor="let doc of filterFunction(1 ,listid)">
+                                                <div class="col-6  pt-2 mat-pbtn"
+                                                    *ngFor="let doc of filterFunction(1 ,listid)">
                                                     <button type="button" class="tab-btn"
                                                         [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
                                                         [value]="doc.propertySubType.subType"
@@ -190,7 +191,7 @@
                                     </div>
                                     <div class="col">
                                         <button type="button" color="primary" class="border-done"
-                                            (click)=onpopupclose()>Done</button>
+                                            (click)="onpopupclose()">Done</button>
                                     </div>
 
                                 </div>
@@ -213,9 +214,11 @@
                       totalItems: filterCount
                 }
                 ">
-                    <app-shortdisplay [property]="property" [listid]="listid"></app-shortdisplay>
+                    <app-shortdisplay [property]="property" [listid]="listid" [governorateid]="governorateid" [datalist]="datalist"
+                        [subTypeId]="subTypeId" [mastertypeid]="mastertypeid" [minValue]="minValue" [unitcategoryid]="unitcategoryid"
+                        [maxValue]="maxValue"></app-shortdisplay>
                 </div>
-                <div class=" d-flex align-items-center justify-content-center h-property" 
+                <div class=" d-flex align-items-center justify-content-center h-property"
                     *ngIf="!ownerPropertyFilter[0]">
                     <p class="">No Property Listed</p>
                 </div>
