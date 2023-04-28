@@ -14,18 +14,18 @@ import { AnyFunction } from '@splidejs/splide';
 export class BreadcrumbComponent implements OnInit {
   @Input() indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = [];
   @Input() propertyMasterTypeID!: number;
-  @Input() unitcategoryid!: number;
+  @Input() unitcategoryId!: number;
   @Input() listingPurposeID!: any;
   @Input() propertyMasterID!: number;
   @Input() governorateid!: number;
   @Input() subTypeId!: number;
-  // @Input() maxValue!: number;
-  // @Input() minValue!: number;
+  @Input() maxValue!: number;
+  @Input() minValue!: number;
   // governorate: Governorate[] = [];
   governorateName!: any
   constructor(private router: Router, private setservice: SetupService) { }
   ngOnInit(): void {
-    
+
   }
   getenum(propertyMasterTypeID: number) {
     return propertyMasterTypeEnum(propertyMasterTypeID)
@@ -33,6 +33,14 @@ export class BreadcrumbComponent implements OnInit {
   backtosearch() {
   
     this.router.navigate(['propertydetails'],
-      { queryParams: { 'purpose': this.listingPurposeID, 'unitCategory': this.unitcategoryid} });
+      {
+        state: {
+          'purpose': this.listingPurposeID,
+          'governorate': this.governorateid,
+          'propertyMasterType': this.propertyMasterTypeID,
+          'propertyMasterSubType': this.subTypeId, 'minValue': this.minValue,
+          'maxValue': this.maxValue, 'unitCategory': this.unitcategoryId
+        }
+      });
   }
 }

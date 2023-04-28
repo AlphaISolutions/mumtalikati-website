@@ -20,9 +20,10 @@ export class UnitcategorylistComponent implements OnInit {
   ngOnInit(): void {
    
   }
-  onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landLordID: number, statuss: number, propertySubTypeId: number, caption:string ) {
+  onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landLordID: number,  propertySubTypeId: number) {
 
     if (propertySubTypeId == 15) {
+  
       this.router.navigate(['plotdetails'],
         {
           queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landLordID },

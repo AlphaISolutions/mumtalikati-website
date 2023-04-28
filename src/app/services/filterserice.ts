@@ -1,10 +1,6 @@
 import { Injectable } from "@angular/core";
-import { SetupService } from "./setup.service";
 import { SetFiltersServive } from "./setfilters.servive";
-
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class FilterService {
     constructor(private setupFilterServive: SetFiltersServive) { }
     getPurposedesc(desc: string) {

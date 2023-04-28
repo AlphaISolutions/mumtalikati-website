@@ -8,6 +8,7 @@ import { listingPurposeTypeEnum, propertyMasterTypeEnum, propertySubTypeEnum } f
 import { Router } from '@angular/router';
 import { SetupService } from '../services/setup.service';
 import { PropertyUnitCategory } from '../models/propertyUnitCategory.model';
+import { state } from '@angular/animations';
 @Component({
   selector: 'app-shortdisplay',
   templateUrl: './shortdisplay.component.html',
@@ -32,6 +33,7 @@ export class ShortdisplayComponent implements OnInit {
   @Input() mastertypeid!: number;
   @Input() minValue!: number;
   @Input() maxValue!: number;
+  @Input() unitcategoryid!:number;
   listingPurposeID: any
   unitCategoryTypes: PropertyUnitCategory[] = [];
   pagination: boolean = false;
@@ -56,11 +58,22 @@ export class ShortdisplayComponent implements OnInit {
     return propertyMasterTypeEnum(propertyMasterTypeId);
   }
   onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number, landLordID: number, propertyMasterTypeID: number) {
-    
-    this.unitCategoryID =this.unitCategoryTypes.find(x=> x.unitCategory ==unitCategoryID)
- 
+
+    this.unitCategoryID = this.unitCategoryTypes.find(x => x.unitCategory == unitCategoryID)
+  
     this.router.navigate(
       ['Unitscategory'],
-      { queryParams: { 'propertyMasterID': propertyMasterID, 'purpose': this.listingPurposeID.desc, 'unitCategory': this.unitCategoryID.desc,  'propertyMasterTypeID': this.mastertypeid, 'governorateid': this.governorateid, 'propertySubTypeid': this.subTypeId} });
+      {
+        queryParams: { 'propertyMasterID': propertyMasterID, 'purpose': this.listingPurposeID.desc, 'unitCategory': this.unitCategoryID.desc, 'propertyMasterTypeID': this.mastertypeid, 'governorateid': this.governorateid, 'propertySubTypeid': this.subTypeId },
+        state: {
+          'purpose': this.listid,
+          'governorate': this.governorateid,
+          'propertyMasterType': this.mastertypeid,
+          'propertyMasterSubType': this.subTypeId,
+          'unitCategory':this.unitcategoryid,
+          'minValue': this.minValue,
+          'maxValue': this.maxValue
+        }
+      });
   }
 }
