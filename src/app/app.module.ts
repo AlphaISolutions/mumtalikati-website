@@ -43,6 +43,7 @@ import { BreadcrumbpropertyfulldisplayComponent } from './breadcrumbpropertyfull
 import { PropertyfulldisplaylistComponent } from './propertyfulldisplaylist/propertyfulldisplaylist.component';
 import { FaqComponent } from './faq/faq.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
     BreadcrumbpropertyfulldisplayComponent,
     PropertyfulldisplaylistComponent,
     FaqComponent,
+    LoginComponent,
 
   ],
   imports: [

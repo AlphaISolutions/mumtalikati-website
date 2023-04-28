@@ -27,16 +27,18 @@ export class UnitscategoryComponent implements OnInit {
   public status: number = 1
   propertyMasterTypeID!: number
   public subTypeId!: number | null;
+  unitsid!:number;
   btnColor = { 'background-color': '#9e2a2b' };
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   constructor(private mumtalikatiservic: MumtalikatiService, private router: Router,
     private route: ActivatedRoute, private filterservice: FilterService) { 
+debugger
       if(this.router.getCurrentNavigation()?.extras.state != undefined){
         this.listingPurposeID =this.router.getCurrentNavigation()?.extras.state!["purpose"];
         this.governorateid=this.router.getCurrentNavigation()?.extras.state!["governorate"];
         this.propertyMasterTypeID=this.router.getCurrentNavigation()?.extras.state!["propertyMasterType"];
         this.subTypeId=this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubType"];
-        this.unitcategoryId=this.router.getCurrentNavigation()?.extras.state!["unitCategory"]
+        this.unitsid=this.router.getCurrentNavigation()?.extras.state!["unitCategory"]
         this.minValue=this.router.getCurrentNavigation()?.extras.state!["minValue"];
         this.maxValue=this.router.getCurrentNavigation()?.extras.state!["maxValue"]
       }
@@ -109,6 +111,7 @@ export class UnitscategoryComponent implements OnInit {
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
   InItQueryparams() {
+    debugger
     this.route.queryParams.subscribe(params => {
       this.propertyMasterID = +params['propertyMasterID'];
       this.listpurID = this.filterservice.getPurposedesc(params['purpose'])

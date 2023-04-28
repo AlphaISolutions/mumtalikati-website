@@ -10,7 +10,7 @@
             <div class="col-md-4 float-start ">
                 <ul class="breadcrumb" *ngIf="propertyDetail[0]">
                     <li><a routerLink="/Unitscategory"
-                        [queryParams]="{'propertyMasterID':pmid,'purpose':getlist(listpurID),'unitCategory':getunit(unitcatID)}"
+                        [queryParams]="{'propertyMasterID':pmid,'purpose':getlist(propertyDetail[0].listingPurposeID),'unitCategory':getunit(unitcatID)}"
                             (click)="addItem(propertyDetail[0].listingPurposeID!)"><i class="fa fa-angle-left pe-2"
                                 aria-hidden="true"></i>Back to Search</a></li>
                 </ul>

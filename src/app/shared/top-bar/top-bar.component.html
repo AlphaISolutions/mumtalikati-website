@@ -30,8 +30,8 @@
                         <a class="nav-link" [style]="logred" [routerLink]="'../contactus'" (click)="collapsed = !collapsed" >Contact Us</a>
                     </li>
                    
-                    <li  class="nav-item nav-right" *ngIf="addPropperty">
-                        <button class="nav-link nav-btn-link mx-3 my-1 px-2" mat-raised-button color="primary"  >Add Property</button>
+                    <li  class="nav-item nav-right" >
+                        <button class="nav-link nav-btn-link mx-3 my-1 px-2" mat-raised-button color="primary" (click)="openDialog('0ms', '0ms')">Login</button>
                         
                     </li>
                 </ul>

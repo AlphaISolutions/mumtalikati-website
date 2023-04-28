@@ -216,6 +216,7 @@ export class PlotdetailsComponent implements OnInit {
       this.clipboard.copy(el.innerText);
     }
     getlist(listid:any){
+
       return listingPurposeTypeEnum(listid)
     }
   redirectToWhatsApp(contact: number) {
@@ -239,6 +240,7 @@ export class PlotdetailsComponent implements OnInit {
   }
  
     getunit(unitid:number){
+
       return getPropertyUnitCategoryEnum(unitid)
     }
 }
