@@ -57,14 +57,15 @@ export class PlotdetailsComponent implements OnInit {
   mainSlider!: Splide;
   thumbnailSlider!: Splide;
   async ngOnInit() {
+  
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMasterID'];
       this.propertyUnitid = +params['propertyUnitID'];
       this.unitcatID = +params['unitCategoryID'];
       this.landlordid = +params['landlordid'];
-      this.statuss = +params['status'];
-      this.listpurID = +params['listingPurposeID'];
-      this.PropertySubTypeID = +params["PropertySubTypeID"];
+      // this.statuss = +params['status'];
+      // this.listpurID = +params['listingPurposeID'];
+      // this.PropertySubTypeID = +params["PropertySubTypeID"];
      
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
@@ -236,4 +237,8 @@ export class PlotdetailsComponent implements OnInit {
       window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
     }
   }
+ 
+    getunit(unitid:number){
+      return getPropertyUnitCategoryEnum(unitid)
+    }
 }

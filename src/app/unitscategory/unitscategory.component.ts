@@ -1,10 +1,9 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { assetUrl } from 'src/single-spa/asset-url';
-import { getstatusType,  propertyMasterTypeEnum } from '../models/enums';
+import { getstatusType, propertyMasterTypeEnum } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
-import { SetFiltersServive } from '../services/setfilters.servive';
 import { FilterService } from '../services/filterserice';
 @Component({
   selector: 'app-unitscategory',
@@ -30,7 +29,19 @@ export class UnitscategoryComponent implements OnInit {
   public subTypeId!: number | null;
   btnColor = { 'background-color': '#9e2a2b' };
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
-  constructor(private mumtalikatiservic: MumtalikatiService, private route: ActivatedRoute, private router: Router, private setupFilterServive: SetFiltersServive, private filterservice: FilterService) { }
+  constructor(private mumtalikatiservic: MumtalikatiService, private router: Router,
+    private route: ActivatedRoute, private filterservice: FilterService) { 
+      if(this.router.getCurrentNavigation()?.extras.state != undefined){
+        this.listingPurposeID =this.router.getCurrentNavigation()?.extras.state!["purpose"];
+        this.governorateid=this.router.getCurrentNavigation()?.extras.state!["governorate"];
+        this.propertyMasterTypeID=this.router.getCurrentNavigation()?.extras.state!["propertyMasterType"];
+        this.subTypeId=this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubType"];
+        this.unitcategoryId=this.router.getCurrentNavigation()?.extras.state!["unitCategory"]
+        this.minValue=this.router.getCurrentNavigation()?.extras.state!["minValue"];
+        this.maxValue=this.router.getCurrentNavigation()?.extras.state!["maxValue"]
+      }
+
+    }
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;
   location = assetUrl("icons/location.svg");
@@ -43,40 +54,12 @@ export class UnitscategoryComponent implements OnInit {
   minValue!: number;
   listid: any
   unitid: any
-  listpurID:any;
+  listpurID: any;
   liststring!: string;
   unitcategoryId: any;
-  unitcategorystring!:string
+  unitcategorystring!: string
   async ngOnInit() {
-
-    this.route.queryParams.subscribe(params => {
-      this.propertyMasterID = +params['propertyMasterID']; 
-      this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
-      if (this.listpurID) {
-       this.listingPurposeID =this.listpurID
-        this.liststring = params['purpose']
-      } else {
-        this.liststring = 'Rent';
-     
-      }
-
-      this.unitcategoryId = this.filterservice.getPropertytUnitCategorydesc(params['unitCategory'])
-      if (this.unitcategoryId) {
-        this.unitCategoryID = this.unitcategoryId;
-        this.unitcategorystring = params['unitCategory']
-      }
-      else {
-        this.unitcategorystring = 'All'
-      }
-
-      this.landLordID = +params['landLordID'];
-      this.propertyMasterTypeID = +params['propertyMasterTypeID'];
-      this.governorateid = +params['governorateid'];
-      this.subTypeId = +params['propertySubTypeid']
-   
-      this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
-      this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
-    });
+    this.InItQueryparams();
     this.config = {
       itemsPerPage: this.itemsPerPage,
       currentPage: this.page,
@@ -90,7 +73,7 @@ export class UnitscategoryComponent implements OnInit {
         if (data) {
 
           this.indiviualsUni = data;
-         
+
         }
         this.loading = false;
       })
@@ -125,5 +108,34 @@ export class UnitscategoryComponent implements OnInit {
 
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
+  InItQueryparams() {
+    this.route.queryParams.subscribe(params => {
+      this.propertyMasterID = +params['propertyMasterID'];
+      this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
+      if (this.listpurID) {
+        this.listingPurposeID = this.listpurID
+        this.liststring = params['purpose']
+      } else {
+        this.liststring = 'Rent';
 
+      }
+
+      this.unitcategoryId = this.filterservice.getPropertytUnitCategorydesc(params['unitCategory'])
+      if (this.unitcategoryId) {
+        this.unitCategoryID = this.unitcategoryId;
+        this.unitcategorystring = params['unitCategory']
+      }
+      else {
+        this.unitcategorystring = 'All'
+      }
+
+      this.landLordID = +params['landLordID'];
+      this.propertyMasterTypeID = +params['propertyMasterTypeID'];
+      this.governorateid = +params['governorateid'];
+      this.subTypeId = +params['propertySubTypeid']
+
+      this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
+      this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
+    });
+  }
 }

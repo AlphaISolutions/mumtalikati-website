@@ -41,7 +41,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   contact!: any;
   listpurID!: any;
   PropertySubTypeID!: any;
-  caption!:string;
+  caption!: string;
   propertyMasterTypeID!: number;
   btnColor = { 'background-color': '#9e2a2b' }
   closeResult = '';
@@ -49,23 +49,10 @@ export class PropertyfulldisplayComponent implements OnInit {
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   public imgindex: number = 0;
   constructor(private route: ActivatedRoute,
-     private mumtalikatiservic: MumtalikatiService,
-     private filterservice: FilterService) { }
+    private mumtalikatiservic: MumtalikatiService,
+  ) { }
   async ngOnInit() {
-   
-    this.route.queryParams.subscribe(params => {
-      this.pmid = +params['propertyMasterID'];
-      this.propertyUnitid = +params['propertyUnitID'];
-      this.unitcatID = +params['unitCategoryID'];
-      this.landlordid = +params['landlordid'];
-      this.statuss = +params['status'];
-      this.listpurID = +params['listingPurposeID'];
-      this.PropertySubTypeID = +params["PropertySubTypeID"];
-      this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
-      this.getPropertyFeatures(this.pmid);
-      this.getImageUser(this.landlordid);
-      
-    });
+    this.inIt();
   }
   async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {
     this.loading = true;
@@ -73,8 +60,6 @@ export class PropertyfulldisplayComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.propertyDetail = data;
-
-         
         }
         this.loading = false;
       })
@@ -84,7 +69,6 @@ export class PropertyfulldisplayComponent implements OnInit {
       });
   }
   async getImageUser(landLordID: number) {
-
     this.mumtalikatiservic.getUserImage(landLordID)
       .then((data) => {
         if (data) {
@@ -98,15 +82,11 @@ export class PropertyfulldisplayComponent implements OnInit {
       });
   }
   async getPropertyFeatures(id: number) {
-
     this.mumtalikatiservic.getPropertyFeature(id)
       .then((data) => {
         if (data) {
-
-          
-          this.propertyFeature =  data.filter(x=> x.propertyUnitCategoryID ==this.unitcatID
-        
-            )
+          this.propertyFeature = data.filter(x => x.propertyUnitCategoryID == this.unitcatID
+          )
         }
 
       })
@@ -114,6 +94,21 @@ export class PropertyfulldisplayComponent implements OnInit {
         this.loading = false;
         console.error(error);
       });
+  }
+  inIt() {
+    this.route.queryParams.subscribe(params => {
+      this.pmid = +params['propertyMasterID'];
+      this.propertyUnitid = +params['propertyUnitID'];
+      this.unitcatID = +params['unitCategoryID'];
+      this.landlordid = +params['landlordid'];
+      this.statuss = +params['status'];
+      this.listpurID = +params['listingPurposeID'];
+      this.PropertySubTypeID = +params["PropertySubTypeID"];
+      this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
+      this.getPropertyFeatures(this.pmid);
+      this.getImageUser(this.landlordid);
+
+    });
   }
 }
 

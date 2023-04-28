@@ -106,7 +106,7 @@ export class HomeComponent implements OnInit {
   find() {
     this.router.navigate(['propertydetails'],
       {
-        state: { 'listingPurposeID': this.listingPurposeType, 'governorateid': this.governorateid }
+        state: { 'purpose': this.listingPurposeType, 'governorate': this.governorateid }
       });
   }
   getcolor(listid: number) {
