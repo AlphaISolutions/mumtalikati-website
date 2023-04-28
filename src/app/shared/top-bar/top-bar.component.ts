@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from 'src/app/login/login.component';
+import { LoginComponent } from '../../login/login.component';
 
 import { assetUrl } from 'src/single-spa/asset-url';
 @Component({
@@ -49,16 +49,15 @@ export class TopBarComponent implements OnInit {
   closeNav() {
     this.collapsed = false;
   }
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.closeNav();
+  openDialog(): void {
+   
     this.dialog.open(LoginComponent, {
-    
+     
     });
     this.dialog.afterAllClosed.subscribe(() => {
-      // this.bsSignupService.onboardingStep$.next(1);
-      // this.bsSignupService.investorType$.next(null);
-      // this.bsSignupService.userRole$.next(null);
+
     })
+    
   }
 }
 

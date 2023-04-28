@@ -44,6 +44,10 @@ import { PropertyfulldisplaylistComponent } from './propertyfulldisplaylist/prop
 import { FaqComponent } from './faq/faq.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { LoginComponent } from './login/login.component';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { SelectRoleComponent } from './select-role/select-role.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +68,9 @@ import { LoginComponent } from './login/login.component';
     PropertyfulldisplaylistComponent,
     FaqComponent,
     LoginComponent,
+    SigninComponent,
+    SignupComponent,
+    SelectRoleComponent,
 
   ],
   imports: [
@@ -95,7 +102,8 @@ import { LoginComponent } from './login/login.component';
     MatCarouselModule.forRoot(),
     MarkdownModule.forRoot(),
     MatDialogModule,
-    CdkAccordionModule
+    CdkAccordionModule,
+    NgxMatIntlTelInputComponent
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }, RxFormBuilder],

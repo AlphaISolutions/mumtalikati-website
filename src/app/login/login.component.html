@@ -1,71 +1,10 @@
-<h3 class="center-align"> Welcome to Mumtalikati</h3>
-<mat-tab label="Login">
-    <div class="block-heading">
-        <p id="heading">Login with your <b>username</b> and <b>password</b></p>
-        <mat-tab-group dynamicHeight [(selectedIndex)]="selectedIndex">
-        <mat-dialog-content>
-            <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
-                <div class="row" [ngSwitch]="onbodystep">
-                    <div *ngSwitchCase=1>
-                        <div class="form-group">
-                            <div class="input-container">
-                                <mat-form-field appearance="outline">
-                                    <input matInput type="text" placeholder="Email or Phone"
-                                        formControlName="userName" class="input-field long form-input-style"
-                                        [ngClass]="{'is-invalid': submitted && fval.userName.errors }" required>
-                                </mat-form-field>
-                            </div>
-                            <div *ngIf="submitted && fval.userName.errors" class="invalid-feedback">
-                                <div *ngIf="fval.userName.errors.required">Please provide email or username
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 10px;">
-                    <div>
-                        <div class="form-group">
-                            <div class="input-container">
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Password</mat-label>
-                                    <input matInput [type]="hide ? 'password' : 'text'"
-                                        formControlName="password" required>
-                                    <span matSuffix (click)="hide = !hide"> <i *ngIf="!hide"
-                                            class=" fas fa-eye "></i>
-                                        <i *ngIf="hide" class="fas fa-eye-slash"></i>
-                                    </span>
-                                </mat-form-field>
-                            </div>
-
-                            <!-- <div *ngIf="submitted && fval.password.errors" class="invalid-feedback">
-                                <div *ngIf="fval.password.errors.required">Password is required</div>
-                            </div> -->
-                            <a class="float-right text-color text-style go-to-signin secondary-font center-align"
-                                (click)="lostpas()">Forgot Your
-                                Password?</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div>
-                        <div class="form-group">
-                            <!-- <div class="error-small" *ngIf="loginForm.errors?.unauthenticated">
-                                Invalid credentials!
-                            </div> -->
-                            <!-- <div class="error-small" *ngIf="loginForm.errors?.error">
-                                Requested resource could not be found on this account
-                            </div> -->
-                            <button mat-raised-button color="primary"  class="btn-login">
-                                <span  class="spinner-border spinner-border-sm mr-1"></span>
-                                {{"Login " | titlecase }}
-                            </button>
-
-                        </div>
-                    </div>
-                </div>
-
-            </form>
-        </mat-dialog-content>
-        </mat-tab-group>
-    </div>
+<h4 class="center-align"> Welcome to Mumtalikati</h4>
+<mat-tab-group dynamicHeight [(selectedIndex)]="selectedIndex">
+<mat-tab label="Sign In">
+   <app-signin></app-signin>
 </mat-tab>
+ <!-- Sign up -->
+ <mat-tab label="New Account">
+<app-signup></app-signup>
+</mat-tab>
+</mat-tab-group>

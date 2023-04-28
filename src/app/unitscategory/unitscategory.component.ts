@@ -32,7 +32,6 @@ export class UnitscategoryComponent implements OnInit {
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   constructor(private mumtalikatiservic: MumtalikatiService, private router: Router,
     private route: ActivatedRoute, private filterservice: FilterService) { 
-debugger
       if(this.router.getCurrentNavigation()?.extras.state != undefined){
         this.listingPurposeID =this.router.getCurrentNavigation()?.extras.state!["purpose"];
         this.governorateid=this.router.getCurrentNavigation()?.extras.state!["governorate"];
@@ -111,7 +110,6 @@ debugger
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
   InItQueryparams() {
-    debugger
     this.route.queryParams.subscribe(params => {
       this.propertyMasterID = +params['propertyMasterID'];
       this.listpurID = this.filterservice.getPurposedesc(params['purpose'])

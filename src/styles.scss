@@ -23,7 +23,7 @@ body {
 
 .mat-form-field {
     width: 100%;
-    display: unset !important;
+    // display: unset !important;
     height: 20px;
     font-size: 0.7rem;
     padding-bottom: 0px !important;
@@ -210,6 +210,9 @@ h5 {
     background-color:  #edf1fc !important ;
 }
 
+.mat-checkbox-frame { 
+    border-color:   #9e2a2b !important;
+}
 .card {
     background: $white-color;
     box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.15);

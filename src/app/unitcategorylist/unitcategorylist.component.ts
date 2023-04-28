@@ -22,7 +22,6 @@ export class UnitcategorylistComponent implements OnInit {
   }
   onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landLordID: number, propertySubTypeId: number) {
     if (propertySubTypeId == 15) {
-
       this.router.navigate(['plotdetails'],
         {
           queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landLordID },
@@ -31,7 +30,7 @@ export class UnitcategorylistComponent implements OnInit {
     } else {
       this.router.navigate(['propertyfulldisplay'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategoryID': unitCategoryID, 'landlordid': landLordID },
+          queryParams: { 'propertyMaster': propertyMasterID, 'propertyUnit': propertyUnitID, 'unitCategory': unitCategoryID, 'landlord': landLordID,'PropertySubType':propertySubTypeId },
 
         });
     }
