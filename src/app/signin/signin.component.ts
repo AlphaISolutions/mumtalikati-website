@@ -26,7 +26,7 @@ export class SigninComponent implements OnInit {
   }
   get fval() { return this.loginForm.controls; }
   onFormSubmit() {
-    debugger
+
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;

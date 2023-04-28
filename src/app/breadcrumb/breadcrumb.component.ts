@@ -32,7 +32,7 @@ export class BreadcrumbComponent implements OnInit {
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
   backtosearch() {
-  debugger
+
     this.router.navigate(['propertydetails'],
       {
         state: {
