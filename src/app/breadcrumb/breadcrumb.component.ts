@@ -21,6 +21,7 @@ export class BreadcrumbComponent implements OnInit {
   @Input() subTypeId!: number;
   @Input() maxValue!: number;
   @Input() minValue!: number;
+  @Input() unitsid!:number;
   // governorate: Governorate[] = [];
   governorateName!: any
   constructor(private router: Router, private setservice: SetupService) { }
@@ -31,7 +32,7 @@ export class BreadcrumbComponent implements OnInit {
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
   backtosearch() {
-  
+
     this.router.navigate(['propertydetails'],
       {
         state: {
@@ -39,7 +40,7 @@ export class BreadcrumbComponent implements OnInit {
           'governorate': this.governorateid,
           'propertyMasterType': this.propertyMasterTypeID,
           'propertyMasterSubType': this.subTypeId, 'minValue': this.minValue,
-          'maxValue': this.maxValue, 'unitCategory': this.unitcategoryId
+          'maxValue': this.maxValue, 'unitCategory': this.unitsid
         }
       });
   }

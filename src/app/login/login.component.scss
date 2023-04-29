@@ -1,0 +1,30 @@
+@import "../../variables.scss";
+.block-heading {
+    padding-block-start: 1rem;
+  }
+  #heading {
+    font-weight: 500;
+    color: $primary-color;
+  }
+  .text-style {
+    font-size: 12px;
+    font-weight: 200;
+    padding-block-end: 8px;
+    padding-block-start: 4px;
+    color: $primary-color;
+  } 
+  .float-right {
+    float: right;
+  }
+  .signdiv {
+    color:$primary-color
+  }
+  .fa-eye-slash:before {
+
+    color: $primary-color !important;
+  }
+  
+  .fa-eye:before {
+  
+    color: $primary-color !important;
+  }

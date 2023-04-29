@@ -97,13 +97,13 @@ export class PropertyfulldisplayComponent implements OnInit {
   }
   inIt() {
     this.route.queryParams.subscribe(params => {
-      this.pmid = +params['propertyMasterID'];
-      this.propertyUnitid = +params['propertyUnitID'];
-      this.unitcatID = +params['unitCategoryID'];
-      this.landlordid = +params['landlordid'];
+      this.pmid = +params['propertyMaster'];
+      this.propertyUnitid = +params['propertyUnit'];
+      this.unitcatID = +params['unitCategory'];
+      this.landlordid = +params['landlord'];
       this.statuss = +params['status'];
       this.listpurID = +params['listingPurposeID'];
-      this.PropertySubTypeID = +params["PropertySubTypeID"];
+      this.PropertySubTypeID = +params["PropertySubType"];
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
       this.getImageUser(this.landlordid);

@@ -27,6 +27,7 @@ export class UnitscategoryComponent implements OnInit {
   public status: number = 1
   propertyMasterTypeID!: number
   public subTypeId!: number | null;
+  unitsid!:number;
   btnColor = { 'background-color': '#9e2a2b' };
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   constructor(private mumtalikatiservic: MumtalikatiService, private router: Router,
@@ -36,7 +37,7 @@ export class UnitscategoryComponent implements OnInit {
         this.governorateid=this.router.getCurrentNavigation()?.extras.state!["governorate"];
         this.propertyMasterTypeID=this.router.getCurrentNavigation()?.extras.state!["propertyMasterType"];
         this.subTypeId=this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubType"];
-        this.unitcategoryId=this.router.getCurrentNavigation()?.extras.state!["unitCategory"]
+        this.unitsid=this.router.getCurrentNavigation()?.extras.state!["unitCategory"]
         this.minValue=this.router.getCurrentNavigation()?.extras.state!["minValue"];
         this.maxValue=this.router.getCurrentNavigation()?.extras.state!["maxValue"]
       }

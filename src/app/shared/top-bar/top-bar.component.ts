@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../../login/login.component';
 
 import { assetUrl } from 'src/single-spa/asset-url';
 @Component({
@@ -48,7 +49,16 @@ export class TopBarComponent implements OnInit {
   closeNav() {
     this.collapsed = false;
   }
+  openDialog(): void {
+   
+    this.dialog.open(LoginComponent, {
+     
+    });
+    this.dialog.afterAllClosed.subscribe(() => {
 
+    })
+    
+  }
 }
 
 

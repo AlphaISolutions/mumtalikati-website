@@ -1,5 +1,5 @@
 <div class="my-card mb-4" *ngIf="property"  onclick="window.scrollTo(0,0)"
-    (click)="onclick(property.propertyMasterID!,property.propertyUnitID!, property.unitCategoryID!, landLordID ,property.statuss! ,property.propertySubTypeId, property.caption)">
+    (click)="onclick(property.propertyMasterID!,property.propertyUnitID!, property.unitCategoryID!, landLordID ,property.propertySubTypeId!)">
     <div class="row">
         <div class="col-md-5  fill">
             <img class="card-img-top m-2" [src]="property.imageString || bydefault" height="150px" width="150px"
