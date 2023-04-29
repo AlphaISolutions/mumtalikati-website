@@ -43,11 +43,12 @@ import { BreadcrumbpropertyfulldisplayComponent } from './breadcrumbpropertyfull
 import { PropertyfulldisplaylistComponent } from './propertyfulldisplaylist/propertyfulldisplaylist.component';
 import { FaqComponent } from './faq/faq.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './sign-up/login/login.component';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
-import { SelectRoleComponent } from './select-role/select-role.component';
+import { SigninComponent } from './sign-up/signin/signin.component';
+import { SignupComponent } from './sign-up/signup/signup.component';
+import { SelectRoleComponent } from './sign-up/select-role/select-role.component';
+import { PhoneNumberComponent } from './sign-up/phone-number/phone-number.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { SelectRoleComponent } from './select-role/select-role.component';
     SigninComponent,
     SignupComponent,
     SelectRoleComponent,
+    PhoneNumberComponent,
 
   ],
   imports: [

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../../login/login.component';
+import { LoginComponent } from 'src/app/sign-up/login/login.component';
+
 
 import { assetUrl } from 'src/single-spa/asset-url';
 @Component({

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../services/user.service';
-import { UserLogin } from '../models/login.model';
+
 import { error } from '@rxweb/reactive-form-validators';
+import { BspropertyService } from '../../services/behaviour.subject/propertyDetail.bs.service';
+import { UserService } from 'src/app/services/user.service';
+import { UserLogin } from 'src/app/models/login.model';
 
 @Component({
   selector: 'app-signin',
@@ -23,6 +25,7 @@ export class SigninComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required],
     });
+  
   }
   get fval() { return this.loginForm.controls; }
   onFormSubmit() {

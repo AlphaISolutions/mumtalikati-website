@@ -12,7 +12,9 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { PlotdetailsComponent } from './plotdetails/plotdetails.component';
 import { FaqComponent } from './faq/faq.component';
 
+
 const routes: Routes = [
+
   {path: 'faq', component: FaqComponent},
   {path: 'plotdetails', component: PlotdetailsComponent},
   { path: 'aboutus', component: AboutusComponent},

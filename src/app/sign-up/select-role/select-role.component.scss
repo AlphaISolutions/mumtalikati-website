@@ -1,0 +1,76 @@
+@import "../../../variables.scss";
+
+
+.role-card {
+    // height: 130px;
+    width: 100%;
+    text-align: left;
+    border-radius: 10px;
+}
+
+.applicant-role {
+    color: $role-card-color ;
+    background: #DADADA;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+}
+
+.card-role {
+    color: $role-card-color ;
+    // background-color: $investor-role-card;
+    background: #DADADA !important;
+}
+
+img {
+    height: 80;
+    width: 80px;
+}
+
+p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+.check {
+    border-radius: 30px;
+    position: absolute;
+    right: 0%;
+
+    top: 5px;
+    // bottom: 0px;
+    color: $primary-color;
+    font-weight: bold;
+    z-index: 2;
+    // background-color: pink;
+    // background:$primary-color;
+    // border: 1px solid $primary-color;
+    // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+}
+
+.fill :hover {
+    cursor: pointer;
+}
+
+.check>.active {
+    background-color: green !important;
+}
+
+.bg-role {
+    background: rgba(158, 42, 43, 0.2) !important;
+    border: 1px solid $primary-color;
+    box-shadow: 0px 2px 8px 2px rgba(155, 61, 157, 0.1);
+}
+.signdiv{
+    color: $primary-color;
+}

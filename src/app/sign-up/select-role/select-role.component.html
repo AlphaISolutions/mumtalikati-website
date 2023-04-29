@@ -1,11 +1,13 @@
-<p>Select Your Role</p>
+<p class="pt-2">Select Your Role</p>
+
+
 <div class="pb-2" style="position: relative;" (click)="selectUserRole(1)">
     <div *ngIf="selectedRole && selectedRole === 1" class="mr-3  px-2 py-1 check">
         <i class="fa-regular fa-circle-check"></i>
     </div>
     <div class="fill" >
-        <div class="role-card ps-4 applicant-role center mt-2">
-            <img [src]="phoneimg" alt="img">
+        <div class="role-card ps-4 card-role center mt-2" [ngClass]="{'bg-role':selectedRole === 1}">
+            <img [src]="emailimag" alt="img">
             <p class="p-3">Landlord</p>
         </div>
     </div>
@@ -16,38 +18,40 @@
         <i class="fa-regular fa-circle-check"></i>
     </div>
     <div class="fill" >
-        <div class="role-card ps-4 investor-role center mt-2">
-            <img [src]="phoneimg" alt="img">
+        <div class="role-card ps-4 card-role center mt-2" [ngClass]="{'bg-role':selectedRole === 2}">
+            <img [src]="emailimag" alt="img">
             <p class="p-3">Tenant</p>
         </div>
     </div>
 </div>
-<div class="pb-2" style="position: relative;" (click)="selectUserRole(2)">
-    <div *ngIf="selectedRole && selectedRole === 2" class="mr-3  px-2 py-1 check">
+<div *ngIf="selectedRole === 2" class="pt-2"> </div>
+<div class="pb-2" style="position: relative;" (click)="selectUserRole(3)">
+    <div *ngIf="selectedRole && selectedRole === 3" class="mr-3  px-2 py-1 check" >
         <i class="fa-regular fa-circle-check"></i>
     </div>
     <div class="fill" >
-        <div class="role-card ps-4 investor-role center mt-2">
+        <div class="role-card ps-4 card-role center mt-2" [ngClass]="{'bg-role':selectedRole === 3}">
             <img [src]="emailimag" alt="img">
             <p class="p-3">Service Provider</p>
         </div>
     </div>
 </div>
-<div class="pb-2" style="position: relative;" (click)="selectUserRole(2)">
-    <div *ngIf="selectedRole && selectedRole === 2" class="mr-3  px-2 py-1 check">
+<div *ngIf="selectedRole === 3" class="pt-2"> </div>
+<div class="pb-2" style="position: relative;" (click)="selectUserRole(4)">
+    <div *ngIf="selectedRole && selectedRole === 4" class="mr-3  px-2 py-1 check" >
         <i class="fa-regular fa-circle-check"></i>
     </div>
     <div class="fill" >
-        <div class="role-card ps-4 investor-role center mt-2">
+        <div class="role-card ps-4 card-role center mt-2" [ngClass]="{'bg-role':selectedRole === 4}">
             <img [src]="emailimag" alt="img">
             <p class="p-3">Listing Portal</p>
         </div>
     </div>
 </div>
-<div class="right-align pt-2">
+<!-- <div class="right-align pt-2">
     <button type="button" [disabled]="!selectedRole" mat-flat-button color="primary" (click)="next()">
         <span></span>{{"Next" | titlecase}}</button>
-</div>
+</div> -->
 <div class="pb-4"></div>
 <div class="go-to-signin secondary-font center-align pt-4">
     Have an account? <span class="signdiv" (click)="onchangetab(0)">Sign in</span>
