@@ -15,22 +15,23 @@ import { FaqComponent } from './faq/faq.component';
 
 const routes: Routes = [
 
-  {path: 'faq', component: FaqComponent},
-  {path: 'plotdetails', component: PlotdetailsComponent},
-  { path: 'aboutus', component: AboutusComponent},
+  { path: 'faq', component: FaqComponent },
+  { path: 'plotdetails', component: PlotdetailsComponent },
+  { path: 'aboutus', component: AboutusComponent },
   { path: 'contactus', component: ContactusComponent },
-  { path: 'propertyfulldisplay', component: PropertyfulldisplayComponent},
-  { path: 'Unitscategory', component: UnitscategoryComponent},
-  { path: 'propertydetails', component: PropertydetailsComponent},
-  { path: '', component: HomeComponent},
-  { path: '**', component: HomeComponent}
+  { path: 'propertyfulldisplay', component: PropertyfulldisplayComponent },
+  { path: 'Unitscategory', component: UnitscategoryComponent },
+  { path: 'propertydetails', component: PropertydetailsComponent },
+  // { path: 'propertydetails/purpose/:liststring/governorate/:governoratestring/propertyMasterType/:propertyMasterTypestring/propertyMasterSubType/:propertyMasterSubTypeIDstring/unitCategory/:unitcategorystring/minValue/:minValue/maxValue/:maxValue', component: PropertydetailsComponent},
+  { path: '', component: HomeComponent },
+  { path: '**', component: HomeComponent }
 
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+  providers: [{ provide: APP_BASE_HREF, useValue: "/" }],
   exports: [RouterModule]
- 
+
 })
 export class AppRoutingModule { }

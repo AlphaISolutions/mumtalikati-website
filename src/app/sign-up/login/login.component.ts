@@ -10,11 +10,15 @@ import { BspropertyService } from '../../services/behaviour.subject/propertyDeta
 })
 export class LoginComponent implements OnInit {
   selectedIndex = 0;
+  lostpassword: boolean = false;
   constructor(  private formBuilder: FormBuilder,public dialog: MatDialog,private dialogRef: MatDialogRef<1>,private bsSignupService: BspropertyService) { }
 
   ngOnInit(): void {
     this.bsSignupService.selectedTab$.subscribe(res => {
       this.selectedIndex = res;
+    });
+    this.bsSignupService.lostpassword$.subscribe(res => {
+      this.lostpassword = res;
     });
   }
 

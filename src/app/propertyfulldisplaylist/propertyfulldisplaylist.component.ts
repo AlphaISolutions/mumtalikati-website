@@ -35,6 +35,9 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   @Input() pmid!: number
   @Input() landlordid!: number;
   @Input() imageUser!: ProfileImage;
+  @Input() unitcategorydesc!:string;
+  @Input() propertysubdesc!:string;
+
   closeResult = '';
   numVisible = 4;
   startIndex = 0;
@@ -45,7 +48,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   thumbnailSlider!: Splide;
   ngOnInit(): void {
   }
-  ngAfterViewInit() {
+  ngAfterViewInit() { 
     setTimeout(() => {
       this.mainSlider = new Splide('#main-slider', {
         type: 'loop',
@@ -167,8 +170,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   redirectToWhatsApp(contact: number) {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let phoneNumber = contact;
-    let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid} `;
-
+    let message = `https://www.mumtalikati.com/propertyfulldisplay/propertyMaster=${this.pmid}/unitCategory=${this.unitcategorydesc}/propertyUnit=${this.propertyUnitid}/landlord=${this.landlordid}/PropertySubTyp=${this.propertysubdesc}`;
     if (isMobile && typeof window.WhatsApp !== "undefined") {
       window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
     } else if (isMobile && typeof window.WhatsApp === "undefined") {

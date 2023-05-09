@@ -4,7 +4,7 @@
 </p>
 <div class="phone-input pt-4">
         <mat-form-field appearance="outline">
-            <ngx-mat-intl-tel-input placeholder="Phone number" formControlName="phoneNumber"
+            <ngx-mat-intl-tel-input placeholder="Phone number" 
                 [enablePlaceholder]="true" [enableSearch]="true" [preferredCountries]="['om']"
                 name="phone">
             </ngx-mat-intl-tel-input>
@@ -14,8 +14,8 @@
 
 <div class="button-wrapper pt-4">
     <button type="button" mat-flat-button class="block" (click)="getOtp()" color="primary"
-        [disabled]="getthecodeloading" ><span
-            *ngIf="getthecodeloading"
+         ><span
+           
             class="spinner-border spinner-border-sm mr-1"></span>{{" Get the code "|
         titlecase
         }}</button>

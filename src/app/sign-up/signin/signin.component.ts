@@ -18,14 +18,15 @@ export class SigninComponent implements OnInit {
   submitted = false;
   loading: boolean = false;
   userlogin!: UserLogin
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private bsSignupService: BspropertyService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       userName: ['', Validators.required],
       password: ['', Validators.required],
     });
-  
+
   }
   get fval() { return this.loginForm.controls; }
   onFormSubmit() {
@@ -35,17 +36,21 @@ export class SigninComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.userService.postUserLogin(this.loginForm.value).then((data:any) => {
+    this.userService.postUserLogin(this.loginForm.value).then((data: any) => {
       if (data) {
         this.userlogin = data
       }
-    
-    }).catch((error:any)=>{
+
+    }).catch((error: any) => {
       console.error(error)
     })
-    
+
   }
   lostpas() {
-
+   this.bsSignupService.lostpassword$.next(true)
+  }
+  registernow() {
+    debugger
+    this.bsSignupService.selectedTab$.next(1)
   }
 }

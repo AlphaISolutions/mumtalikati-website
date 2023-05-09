@@ -80,6 +80,7 @@ export class PropertydetailsComponent implements OnInit {
   propertyMasterSubTypeIDstring!: string
   minValuestate!: number;
   maxValuestate!: number;
+
   @ViewChild('tabGroup') tabGroup: any;
   listpurID: any
   options: Options = {
@@ -119,10 +120,17 @@ export class PropertydetailsComponent implements OnInit {
     else {
       this.listid = 1
     }
-
-
   }
   async ngOnInit() {
+    // this.listpurID =this.filterservice.getPurposedesc(this.route.snapshot.paramMap.get('liststring')!) ;
+    // if (this.listpurID) {
+    //       this.listid = this.listpurID;
+    //       this.liststring = this.route.snapshot.paramMap.get('liststring')!
+    //     } else if (this.listid == 1) {
+    //       this.liststring = 'Rent';
+    //     } else {
+    //       this.liststring = 'Buy';
+    //     }
     this.inIt();
     this.propertyFilterInIt();
     this.propertyFilterCountInIt();
@@ -594,24 +602,62 @@ export class PropertydetailsComponent implements OnInit {
     this.selectedTab = 0;
     this.modalService.dismissAll()
   }
+  // queryParams() {
+  //   debugger
+  //   const queryParams = {
+  //     'purpose':this.liststring,
+  //     'governorate':this.governoratestring,
+  //     'propertyMasterType':this.propertyMasterTypestring,
+  //     'propertyMasterSubType':this.propertyMasterSubTypeIDstring ?? this.allselection,
+  //     'unitCategory':this.unitcategorystring,
+  //     'minValue': this.minValue,
+  //     'maxValue': this.maxValue
+  //   };
+  //   const queryParamArray = [];
+  //   for (const [key,value] of Object.entries(queryParams)) {
+  //     queryParamArray.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
+  //   }
+  //   const queryString = queryParamArray.join('/');
+  //   this.router.navigate(['propertydetails',queryString]);
+  // }
   queryParams() {
-    this.router.navigate(
-      ['propertydetails'],
-      {
-        queryParams: {
-          'purpose': this.liststring,
-          'governorate': this.governoratestring,
-          'propertyMasterType': this.propertyMasterTypestring,
-          'propertyMasterSubType': this.propertyMasterSubTypeIDstring,
-          'unitCategory': this.unitcategorystring,
-          'minValue': this.minValue,
-          'maxValue': this.maxValue
-        }
-      })
+    const queryParams = {
+      'purpose': this.liststring,
+      'governorate': this.governoratestring,
+      'propertyMasterType': this.propertyMasterTypestring,
+      'propertyMasterSubType': this.propertyMasterSubTypeIDstring ?? this.allselection,
+      'unitCategory': this.unitcategorystring,
+      'minValue': this.minValue,
+      'maxValue': this.maxValue
+    };
+
+    const queryParamArray = [];
+    for (const [key, value] of Object.entries(queryParams)) {
+      queryParamArray.push(`${key}=${encodeURIComponent(value)}`);
+    }
+
+    const queryString = queryParamArray.join('/');
+    // const url = 'propertydetails' + queryString.replaceAll(/%2F/g, '/');
+    // const decodedQueryString = decodeURIComponent(url);
+    this.router.navigate(['propertydetails'+ queryString] );
+
   }
+
   inIt() {
-    this.route.queryParams.subscribe(params => {
-  
+    this.route.params.subscribe(params => {
+      this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
+      if (this.listpurID) {
+        this.listid = this.listpurID;
+
+        this.liststring = params['purpose']
+      } else if (this.listid == 1) {
+        this.liststring = 'Rent';
+      } else {
+        this.liststring = 'Buy';
+      }
+    })
+    this.route.params.subscribe(params => {
+
       if (this.minValuestate != undefined) {
         this.minValue = this.minValuestate
       } else if (Number.isNaN(+params['minValue'])) {
@@ -630,7 +676,7 @@ export class PropertydetailsComponent implements OnInit {
       this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
       if (this.listpurID) {
         this.listid = this.listpurID;
-       
+
         this.liststring = params['purpose']
       } else if (this.listid == 1) {
         this.liststring = 'Rent';

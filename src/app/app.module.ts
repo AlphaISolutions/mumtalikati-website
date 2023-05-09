@@ -49,6 +49,12 @@ import { SigninComponent } from './sign-up/signin/signin.component';
 import { SignupComponent } from './sign-up/signup/signup.component';
 import { SelectRoleComponent } from './sign-up/select-role/select-role.component';
 import { PhoneNumberComponent } from './sign-up/phone-number/phone-number.component';
+import { NgOtpInputModule } from 'ng-otp-input';
+import { SignUpFormComponent } from './sign-up/sign-up-form/sign-up-form.component';
+import { SetYouPasswordComponent } from './sign-up/set-you-password/set-you-password.component';
+import { ForgotpasswordComponent } from './sign-up/lost-password/forgotpassword/forgotpassword.component';
+import { OtpVerificationComponent } from './sign-up/otp-verification/otp-verification.component';
+import { SetyouPasswordComponent } from './sign-up/setyou-password/setyou-password.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +79,12 @@ import { PhoneNumberComponent } from './sign-up/phone-number/phone-number.compon
     SignupComponent,
     SelectRoleComponent,
     PhoneNumberComponent,
+    SignUpFormComponent,
+  
+    SetYouPasswordComponent,
+    ForgotpasswordComponent,
+    OtpVerificationComponent,
+    SetyouPasswordComponent,
 
   ],
   imports: [
@@ -105,7 +117,8 @@ import { PhoneNumberComponent } from './sign-up/phone-number/phone-number.compon
     MarkdownModule.forRoot(),
     MatDialogModule,
     CdkAccordionModule,
-    NgxMatIntlTelInputComponent
+    NgxMatIntlTelInputComponent,
+    NgOtpInputModule
 
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }, RxFormBuilder],

@@ -48,8 +48,11 @@ export class PropertyfulldisplayComponent implements OnInit {
   maxheight = { 'maxheight': '80vh !important' }
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   public imgindex: number = 0;
+  unitCategory!:any
+  unitcategorydesc!:string;
+  propertysubdesc!:string;
   constructor(private route: ActivatedRoute,
-    private mumtalikatiservic: MumtalikatiService,
+    private mumtalikatiservic: MumtalikatiService,private filterservice: FilterService
   ) { }
   async ngOnInit() {
     this.inIt();
@@ -99,11 +102,10 @@ export class PropertyfulldisplayComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMaster'];
       this.propertyUnitid = +params['propertyUnit'];
-      this.unitcatID = +params['unitCategory'];
+      this.unitCategory=this.filterservice.getPropertytUnitCategorydesc(this.unitcategorydesc=params['unitCategory'])
+      this.unitcatID = this.unitCategory;
+      this.PropertySubTypeID=this.filterservice.getPropertytMasterSubTypedesc(this.propertysubdesc=params["PropertySubType"])
       this.landlordid = +params['landlord'];
-      this.statuss = +params['status'];
-      this.listpurID = +params['listingPurposeID'];
-      this.PropertySubTypeID = +params["PropertySubType"];
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
       this.getImageUser(this.landlordid);

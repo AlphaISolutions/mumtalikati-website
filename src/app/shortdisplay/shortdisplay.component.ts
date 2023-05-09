@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { Input } from '@angular/core';
-import {  propertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
+import { propertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
 import { Router } from '@angular/router';
 import { SetupService } from '../services/setup.service';
 import { PropertyUnitCategory } from '../models/propertyUnitCategory.model';
@@ -37,10 +37,10 @@ export class ShortdisplayComponent implements OnInit {
   unitCategoryTypes: PropertyUnitCategory[] = [];
   pagination: boolean = false;
   unitCategoryID!: any
-  liststring!:any;
+  liststring!: any;
   constructor(private router: Router, private setservice: SetupService, private filterservice: FilterService) { }
   ngOnInit(): void {
-      this.setservice.getlistingpurposeset().then((data) => {
+    this.setservice.getlistingpurposeset().then((data) => {
 
       this.listingPurposeID = data.find(x => x.listingPurposeType == this.listid)
     })
@@ -58,14 +58,17 @@ export class ShortdisplayComponent implements OnInit {
   getMasterTypeId(propertyMasterTypeId: number) {
     return propertyMasterTypeEnum(propertyMasterTypeId);
   }
-  onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number, landLordID: number, propertyMasterTypeID: number) {
+  onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number) {
     this.unitCategoryID = this.unitCategoryTypes.find(x => x.unitCategory == unitCategoryID)
     this.liststring = this.filterservice.getPurposeid(1)
     if (this.listingPurposeID == undefined) {
       this.router.navigate(
-        ['Unitscategory'],
-        { 
-          queryParams: { 'propertyMasterID': propertyMasterID, 'purpose':this.liststring, 'unitCategory': this.unitCategoryID.desc, 'propertyMasterTypeID': this.mastertypeid, 'governorateid': this.governorateid, 'propertySubTypeid': this.subTypeId },
+        ['Unitscategory',{    'purpose': this.liststring,
+        'unitCategory': this.unitCategoryID.desc,
+        'propertyMasterID': propertyMasterID,
+        }],
+        {
+         
           state: {
             'purpose': this.listid,
             'governorate': this.governorateid,
@@ -76,12 +79,12 @@ export class ShortdisplayComponent implements OnInit {
             'maxValue': this.maxValue
           }
         });
-    } 
+    }
     else {
+      debugger
       this.router.navigate(
-        ['Unitscategory'],
+        ['Unitscategory',{'purpose': encodeURIComponent(this.listingPurposeID.desc).replace(';','/'),'unitCategory': this.unitCategoryID.desc,'propertyMasterID': propertyMasterID}],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'purpose': this.listingPurposeID.desc, 'unitCategory': this.unitCategoryID.desc, 'propertyMasterTypeID': this.mastertypeid, 'governorateid': this.governorateid, 'propertySubTypeid': this.subTypeId },
           state: {
             'purpose': this.listid,
             'governorate': this.governorateid,

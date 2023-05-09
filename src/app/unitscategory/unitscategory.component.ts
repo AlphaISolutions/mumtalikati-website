@@ -110,7 +110,8 @@ export class UnitscategoryComponent implements OnInit {
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
   InItQueryparams() {
-    this.route.queryParams.subscribe(params => {
+    debugger
+    this.route.params.subscribe(params => {
       this.propertyMasterID = +params['propertyMasterID'];
       this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
       if (this.listpurID) {
@@ -129,12 +130,6 @@ export class UnitscategoryComponent implements OnInit {
       else {
         this.unitcategorystring = 'All'
       }
-
-      this.landLordID = +params['landLordID'];
-      this.propertyMasterTypeID = +params['propertyMasterTypeID'];
-      this.governorateid = +params['governorateid'];
-      this.subTypeId = +params['propertySubTypeid']
-
       this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
       this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
     });

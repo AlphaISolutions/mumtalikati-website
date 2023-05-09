@@ -31,6 +31,7 @@
     "@splidejs/splide": "^4.1.4",
     "bootstrap": "^5.2.3",
     "ng-mat-carousel": "^0.11.1",
+    "ng-otp-input": "^1.8.5",
     "ngx-markdown": "^14.0.0",
     "ngx-mat-intl-tel-input": "^5.0.0",
     "ngx-pagination": "^6.0.3",
