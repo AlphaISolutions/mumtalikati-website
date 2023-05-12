@@ -1,0 +1,23 @@
+
+<!-- <img [src]="otpImg" class="center-align" alt=""> -->
+<h5 class="center-align pt-4">OTP verification</h5>
+<p class="center-align secondary-font-regular">Enter the OTP</p>
+<ng-otp-input class="center-align" (onInputChange)="onOtpChange($event)"
+    [config]="{length:4}">  
+</ng-otp-input>
+<p class="mt-2 center-align secondary-font-regular">Didn't receive OTP? <span
+        class="signdiv">Resend</span></p>
+<div class="pb-3"></div>
+<div class="button-wrapper ">
+    <button type="button" mat-flat-button class="block" (click)="verifyOtp()"
+        color="primary">Verify &
+        Continue</button>
+</div>
+<!-- <div class="container p-0" style="width: 100%">
+    <button class="float-start m-0 p-0" type="button" mat-button color="primary"
+        (click)="goBack()">Go back</button>
+</div> -->
+<div class="pb-4"></div>
+<div class="go-to-signin secondary-font center-align pt-4">
+    Have an account? <span class="signdiv" (click)="onchangetab()">Sign in</span>
+</div>

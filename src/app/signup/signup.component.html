@@ -1,6 +1,12 @@
 <div class="signup-block">
-    
-        <app-select-role></app-select-role>
+    <div [ngSwitch]="onboardingStep">
+        <div *ngSwitchCase=1>
+            <app-select-role></app-select-role>
 
+        </div>
+        <div *ngSwitchCase=2>
+
+        </div>
+    </div>
 
 </div>

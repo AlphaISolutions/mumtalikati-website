@@ -9,6 +9,7 @@ import { ProfileImage } from '../models/profileImage.model';
 import Splide from '@splidejs/splide';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { FilterService } from '../services/filterserice';
 @Component({
   selector: 'app-plotdetails',
   templateUrl: './plotdetails.component.html',
@@ -50,23 +51,21 @@ export class PlotdetailsComponent implements OnInit {
   caption!:number;
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight':'500' };
   public imgindex: number = 0;
-
-  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router,private modalService: NgbModal,private clipboard: Clipboard) {
+  unitCategory!:any
+  unitcategory!:string;
+  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private router: Router,private modalService: NgbModal,private clipboard: Clipboard,private filterservice: FilterService) {
 
   }
   mainSlider!: Splide;
   thumbnailSlider!: Splide;
   async ngOnInit() {
-  
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMasterID'];
       this.propertyUnitid = +params['propertyUnitID'];
-      this.unitcatID = +params['unitCategoryID'];
+      this.unitCategory=this.filterservice.getPropertytUnitCategorydesc(this.unitcategory=params['unitCategory'])
+      this.unitcatID=this.unitCategory;
+      
       this.landlordid = +params['landlordid'];
-      // this.statuss = +params['status'];
-      // this.listpurID = +params['listingPurposeID'];
-      // this.PropertySubTypeID = +params["PropertySubTypeID"];
-     
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
       this.getImageUser(this.landlordid);
@@ -74,40 +73,42 @@ export class PlotdetailsComponent implements OnInit {
 
   }
   ngAfterViewInit() {
-    this.mainSlider = new Splide('#main-slider', {
-      type: 'fade',
-      heightRatio: 0.5,
-      pagination: false,
-      arrows: false,
-      cover: true,
-    });
-
-    this.mainSlider.mount();
-
-    this.thumbnailSlider = new Splide('#thumbnail-slider', {
-      rewind: true,
-      fixedWidth: 100,
-      fixedHeight: 58,
-      isNavigation: true,
-      gap: 10,
-      focus: 'center',
-      pagination: false,
-      cover: true,
-      dragMinThreshold: {
-        mouse: 4,
-        touch: 10,
-      },
-      breakpoints: {
-        640: {
-          fixedWidth: 66,
-          fixedHeight: 38,
+    setTimeout(() => {
+      this.mainSlider = new Splide('#main-slider', {
+        type: 'loop',
+        heightRatio: 0.5,
+        pagination: true,
+        arrows: false,
+        cover: true,
+      });
+  
+      this.mainSlider.mount();
+  
+      this.thumbnailSlider = new Splide('#thumbnail-slider', {
+        rewind: true,
+        fixedWidth: 100,
+        fixedHeight: 58,
+        isNavigation: true,
+        gap: 10,
+        focus: 'center',
+        pagination: false,
+        cover: true,
+        dragMinThreshold: {
+          mouse: 4,
+          touch: 10,
         },
-      },
-    });
-
-    this.thumbnailSlider.mount();
-
-    this.mainSlider.sync(this.thumbnailSlider);
+        breakpoints: {
+          640: {
+            fixedWidth: 100,
+            fixedHeight: 55,
+          },
+        },
+      });
+  
+      this.thumbnailSlider.mount();
+  
+      this.mainSlider.sync(this.thumbnailSlider);
+    }, 1000); // delay of 1 second
   }
   imagechange(i: any) {
     this.imgindex = i;
@@ -223,7 +224,7 @@ export class PlotdetailsComponent implements OnInit {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let iPhone=/iPhone|iPad|iPod/.test(navigator.userAgent);
     let phoneNumber = contact;
-    let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid} `;
+    let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMaster=${this.pmid}&unitCategory=${this.unitcategory}&propertyUnit=${this.propertyUnitid}&landlord=${this.landlordid} `;
 
     if (isMobile && typeof window.WhatsApp !== "undefined") {
       window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;

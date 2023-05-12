@@ -48,9 +48,31 @@ export class PropertyfulldisplayComponent implements OnInit {
   maxheight = { 'maxheight': '80vh !important' }
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   public imgindex: number = 0;
-  constructor(private route: ActivatedRoute,
-    private mumtalikatiservic: MumtalikatiService,
-  ) { }
+  unitCategory!: any
+  unitcategorydesc!: string;
+  propertysubdesc!: string;
+  wholeBuildingdes!: string;
+  listingPurposeID!: number;
+  governorateid!: number;
+  subTypeId!: number;
+  unitsid!: number;
+  minValue!: number;
+  maxValue!: number
+  wholeBuildinglist!: any;
+  propertyMasterSubType!: number
+
+  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private filterservice: FilterService, private router: Router,) {
+    if (this.router.getCurrentNavigation()?.extras.state != undefined) {
+      this.listingPurposeID = this.router.getCurrentNavigation()?.extras.state!["purpose"];
+      this.governorateid = this.router.getCurrentNavigation()?.extras.state!["governorate"];
+      this.propertyMasterTypeID = this.router.getCurrentNavigation()?.extras.state!["propertyMasterType"];
+      this.subTypeId = this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubType"];
+      this.unitsid = this.router.getCurrentNavigation()?.extras.state!["unitCategory"]
+      this.minValue = this.router.getCurrentNavigation()?.extras.state!["minValue"];
+      this.maxValue = this.router.getCurrentNavigation()?.extras.state!["maxValue"]
+      this.propertyMasterSubType = this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubtype"]
+    }
+  }
   async ngOnInit() {
     this.inIt();
   }
@@ -68,6 +90,7 @@ export class PropertyfulldisplayComponent implements OnInit {
         console.error(error);
       });
   }
+
   async getImageUser(landLordID: number) {
     this.mumtalikatiservic.getUserImage(landLordID)
       .then((data) => {
@@ -99,11 +122,10 @@ export class PropertyfulldisplayComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMaster'];
       this.propertyUnitid = +params['propertyUnit'];
-      this.unitcatID = +params['unitCategory'];
+      this.unitCategory = this.filterservice.getPropertytUnitCategorydesc(this.unitcategorydesc = params['unitCategory'])
+      this.unitcatID = this.unitCategory;
+      this.PropertySubTypeID = this.filterservice.getPropertytMasterSubTypedesc(this.propertysubdesc = params["PropertySubType"])
       this.landlordid = +params['landlord'];
-      this.statuss = +params['status'];
-      this.listpurID = +params['listingPurposeID'];
-      this.PropertySubTypeID = +params["PropertySubType"];
       this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
       this.getPropertyFeatures(this.pmid);
       this.getImageUser(this.landlordid);

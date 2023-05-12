@@ -8,6 +8,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { ProfileImage } from '../models/profileImage.model';
 import { file } from '@rxweb/reactive-form-validators';
 import Splide from '@splidejs/splide';
+import { OwnerPropertyWholeBuilding } from '../models/ownerPropertyWholeBuilding.model';
 @Component({
   selector: 'app-propertyfulldisplaylist',
   templateUrl: './propertyfulldisplaylist.component.html',
@@ -35,6 +36,10 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   @Input() pmid!: number
   @Input() landlordid!: number;
   @Input() imageUser!: ProfileImage;
+  @Input() unitcategorydesc!: string;
+  @Input() propertysubdesc!: string;
+  @Input() propertyMasterSubType!:number;
+  @Input()  unitsid!:number
   closeResult = '';
   numVisible = 4;
   startIndex = 0;
@@ -54,9 +59,9 @@ export class PropertyfulldisplaylistComponent implements OnInit {
         arrows: false,
         cover: true,
       });
-  
+
       this.mainSlider.mount();
-  
+
       this.thumbnailSlider = new Splide('#thumbnail-slider', {
         rewind: true,
         fixedWidth: 100,
@@ -77,13 +82,13 @@ export class PropertyfulldisplaylistComponent implements OnInit {
           },
         },
       });
-  
+
       this.thumbnailSlider.mount();
-  
+
       this.mainSlider.sync(this.thumbnailSlider);
     }, 1000); // delay of 1 second
   }
-  
+
   getlist(listid: any) {
     return listingPurposeTypeEnum(listid)
   }
@@ -101,7 +106,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
     var lengthList = imglist.length
     lengthList = lengthList - 1
     if (index == -1) {
-    
+
       index = 0;
       // this.lessthenbutton = true;
     }
@@ -119,7 +124,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
 
   }
   @HostListener('window:resize', ['$event'])
-  onResize(event:any) {
+  onResize(event: any) {
     if (window.innerWidth < 768) {
       this.numVisible = 3;
     } else if (window.innerWidth < 992) {
@@ -131,12 +136,12 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   onClickNext() {
     // this.startIndex = (this.startIndex + 1) % this.images.length;
   }
-  oncallclick(call: any ,phone:number) {
+  oncallclick(call: any, phone: number) {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let phoneNumber = phone;
-    if(isMobile){
-       window.open(`tel:${{phoneNumber}}', '_system`);
-    }else{
+    if (isMobile) {
+      window.open(`tel:${{ phoneNumber }}', '_system`);
+    } else {
       this.modalService.open(call, { centered: true }).result.then(
         (result) => {
           this.closeResult = `Closed with: ${result}`;
@@ -167,8 +172,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   redirectToWhatsApp(contact: number) {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let phoneNumber = contact;
-    let message = `https://www.mumtalikati.com/propertyfulldisplay?propertyMasterID=${this.pmid}&unitCategoryID=${this.unitcatID}&propertyUnitID=${this.propertyUnitid}&landlordid=${this.landlordid} `;
-
+    let message = `https://www.mumtalikati.com/propertyfulldisplay?unitCategory=${this.unitcategorydesc}&PropertySubTyp=${this.propertysubdesc}&propertyMaster=${this.pmid}&propertyUnit=${this.propertyUnitid}&landlord=${this.landlordid}`;
     if (isMobile && typeof window.WhatsApp !== "undefined") {
       window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
     } else if (isMobile && typeof window.WhatsApp === "undefined") {

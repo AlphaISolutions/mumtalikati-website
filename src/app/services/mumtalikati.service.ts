@@ -9,6 +9,7 @@ import { SendEmail } from '../models/sendemail.model';
 import { PropertyFeature } from '../models/propertyfeature';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { ProfileImage } from '../models/profileImage.model';
+import { OwnerPropertyWholeBuilding } from '../models/ownerPropertyWholeBuilding.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -72,6 +73,7 @@ export class MumtalikatiService {
         `@mumtalikati-api/PropertyDetail/GetPropertyUnitDetails`, { params: queryParams }
       )).then(res => res as OwnerRentDetail[]).catch(err => { return Promise.reject(err) });
   }
+
   async getUserImage( userID:number): Promise<ProfileImage> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("userID", userID);
@@ -105,3 +107,4 @@ export class MumtalikatiService {
     .catch(err =>{return Promise.reject(err.json().error || 'error');});
  }
 }
+// PropertyDetail/GetPropertyUnitDetails?LandLordID=205&UnitCategoryID=12&PropertyMasterID=147

@@ -117,7 +117,8 @@ export class UnitscategoryComponent implements OnInit {
         this.listingPurposeID = this.listpurID
         this.liststring = params['purpose']
       } else {
-        this.liststring = 'Rent';
+        const purposestring = this.filterservice.getPurposeid(1);
+        this.liststring!=purposestring;
 
       }
 
@@ -129,12 +130,6 @@ export class UnitscategoryComponent implements OnInit {
       else {
         this.unitcategorystring = 'All'
       }
-
-      this.landLordID = +params['landLordID'];
-      this.propertyMasterTypeID = +params['propertyMasterTypeID'];
-      this.governorateid = +params['governorateid'];
-      this.subTypeId = +params['propertySubTypeid']
-
       this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
       this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
     });

@@ -1,3 +1,4 @@
+<div *ngIf="lostpassword==false ; else lostpassworddiv">
 <h4 class="center-align"> Welcome to Mumtalikati</h4>
 <mat-tab-group dynamicHeight [(selectedIndex)]="selectedIndex">
 <mat-tab label="Sign In">
@@ -8,3 +9,7 @@
 <app-signup></app-signup>
 </mat-tab>
 </mat-tab-group>
+</div>
+<ng-template #lostpassworddiv>
+  <app-forgotpassword></app-forgotpassword>
+</ng-template>

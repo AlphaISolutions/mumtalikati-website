@@ -32,7 +32,7 @@
   
 
         <div *ngFor="let property of propertyDetail">
-            <div class="row pt-4 ">
+            <div class="row pt-4 pb-4">
                 <div class="col-md-4">
                     <div>
                         <h2 class="h2color">
@@ -120,7 +120,7 @@
 
                     </div>
                 </div>
-                <div class="col-md-8 pb-4" *ngIf="property.imageString">
+                <div class="col-md-8 " *ngIf="property.imageString">
                     <div class="card border-0 shadow-none">
                         <div id="main-slider" class="splide">
                             <div class="splide__track">
@@ -131,30 +131,45 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="thumbnail-slider" class="splide">
+                        <div id="thumbnail-slider" class="splide" *ngIf="property.imageString.length>1">
                             <div class="splide__track">
                                 <div class="splide__list">
-                                    <div class="splide__slide" *ngFor="let image of property.imageString">
+                                    <div class="splide__slide thumbnail" *ngFor="let image of property.imageString">
                                         <img [src]="image" alt="Thumbnail">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    <div class="card-body p-0 pt-4">
+                        <div class="card-body p-0 pt-4">
                             <mat-card-content>
                                 <h5 *ngIf="listpurID ==1   ; else nolistpurposeid">
-                                    OMR {{property.rentPrice}}/mon
+                                    OMR {{property.rentPrice}}/Monthly
                                 </h5>
                                 <ng-template #nolistpurposeid>
                                     <h5>
-                                        OMR {{property.sellPrice}}/Sale price
+                                        OMR {{property.sellPrice}}/Sale Price
                                     </h5>
                                 </ng-template>
-    
-                                <div class="dis-flex" clas="pe-4">
-                                    <p class="icon pe-2"><img class="pe-2" [src]="areaimg">{{property.sqft}}SQM</p>
-                           
+                                <div *ngIf="property.unitCategoryID== 12 else unitcatid">
+                                    <!-- unitCategoryID== 12 show empty data -->
                                 </div>
+                                <ng-template #unitcatid>
+                                    <div class="dis-flex" clas="pe-4">
+                                        <p class="icon pe-2"><img class="pe-2" [src]="areaimg">{{property.sqft}}SQM</p>
+                                        <p class="icon pe-2"><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}}
+                                            Bedrooms
+                                        </p>
+                                        <p class="icon pe-2"><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
+                                            Bathrooms
+                                        </p>
+                                        <p class="icon pe-2"><img class="pe-2" [src]="kitchen">{{property.kitchen}}
+                                            Kitchen
+                                        </p>
+                                        <p class="icon pe-2"><img class="pe-2" [src]="hall">{{property.hall}} Hall
+                                        </p>
+                                    </div>
+                                </ng-template>
+        
                                 <h5>
                                     Property Details
                                 </h5>
@@ -164,7 +179,7 @@
                                 <h5 *ngIf="!propertyFeature.length==0">
                                     Features
                                 </h5>
-                                <div class="container">
+                                <div class="">
                                     <div class="row gx-2 justify-content-md-center btn-row " *ngIf="propertyFeature">
                                         <div class="col-auto pt-2" *ngFor="let features of propertyFeature">
                                             <button mat-raised-button class="" [disabled]="true"
@@ -173,8 +188,10 @@
                                     </div>
                                 </div>
                             </mat-card-content>
+                        </div>
+        
                     </div>
-                    </div>
+        
                 </div>
             </div>
         </div>

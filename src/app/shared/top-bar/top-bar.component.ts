@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../../login/login.component';
+import { Router } from '@angular/router';
+import { LoginComponent } from 'src/app/sign-up/login/login.component';
+
 
 import { assetUrl } from 'src/single-spa/asset-url';
 @Component({
@@ -23,8 +25,16 @@ export class TopBarComponent implements OnInit {
   colorFlag: boolean = true;
   @Input() btncolor: any;
   @Input() togglericon:any;
+  liststring:string='Rent';
+  governoratestring='All';
+  propertyMasterTypestring='All';
+  propertyMasterSubTypeIDstring='All';
+  unitcategorystring='All';
+  minValue=0;
+  maxValue=10000;
+  
   coler: any;
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,private router: Router) { }
   ngOnInit() {
     if (this.activeroute == true) {
 
@@ -59,6 +69,13 @@ export class TopBarComponent implements OnInit {
     })
     
   }
+  getUrl(){
+
+    this.router.navigate(
+      ['propertydetails/',this.liststring] 
+      )
+    }
+
 }
 
 

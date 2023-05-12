@@ -1,0 +1,21 @@
+<div class="signup-block">
+    <div [ngSwitch]="onboardingStep">
+        <div *ngSwitchCase=1>
+            <app-select-role></app-select-role>
+
+        </div>
+        <div *ngSwitchCase=2>
+            <app-phone-number></app-phone-number>
+        </div>
+        <div *ngSwitchCase=3>
+          <app-otp-verification></app-otp-verification>
+        </div>
+        <div *ngSwitchCase=4>
+            <app-sign-up-form></app-sign-up-form>
+        </div>
+        <div *ngSwitchCase=5>
+            <app-set-you-password></app-set-you-password>
+        </div>
+    </div>
+
+</div>

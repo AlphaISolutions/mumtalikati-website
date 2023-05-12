@@ -1,0 +1,124 @@
+<div class="row gx-0 pt-4">
+    <div class="col  pe-2">
+        <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="First Name">
+            <mat-error>
+                First Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="col">
+        <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Last Name">
+            <mat-error>
+                Last Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+</div>
+
+<!-- Country -->
+<mat-form-field appearance="outline" class="pt-4 pb-5">
+    <mat-label>Country</mat-label>
+    <mat-select name="nationality">
+        <mat-option>None</mat-option>
+        <!-- <mat-option *ngFor="let country of countriesList" [value]="country.name">
+            {{country.name}}
+        </mat-option> -->
+    </mat-select>
+</mat-form-field>
+<form>
+    <div class="pt-4">
+        <div>
+            <div class="form-group identity-doc-box border ">
+                <!-- Document type -->
+                <mat-form-field appearance="outline" class="pt-3 ps-2 pe-2">
+                    <mat-label>ID Number</mat-label>
+                    <input matInput placeholder="ID Number">
+                    <mat-error>
+                        ID Number is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <!-- Number -->
+
+                <!-- Date -->
+                <div class="row gx-0 pt-4 pb-4 ps-2 pe-2">
+                    <div class="col  pe-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Issue date</mat-label>
+                            <input matInput placeholder="Issue Date">
+                            <mat-error>
+                                Issue date is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                
+                    <div class="col">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Expiry date</mat-label>
+                            <input matInput placeholder="Expiry Date">
+                            <mat-error>
+                                Expiry date is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+  
+                <!-- Add more button -->
+                <div class="pe-2 ps-2 pb-2">
+                    <div class="input-file">
+                        <div class="with-prefix"></div>
+                        <div class="prefix-file">
+                            <button type="button" mat-flat-button color="primary" (click)="fileInput.click()">Choose
+                                File</button>
+                            <input hidden #fileInput type="file" accept="image/png, image/gif, image/jpeg" required>
+                            <!-- <span class="file-name">{{imageName(i)}}</span> -->
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- <div class="textline mt-2">
+                    <button class="me-2 simple-button-red" type="button" style="color: red;" mat-button>Remove
+                    </button>
+                    <button mat-button class="btn-sm" color="primary">Add more</button>
+                </div> -->
+            </div>
+            <section class="example-section pt-2" >
+                <div>
+                    <mat-checkbox class="example-margin" value="termCondition"
+                        >
+                    </mat-checkbox><span class="agreement-text ps-2"
+                        >I
+                        agree with User Terms and
+                        conditions</span>
+                </div>
+             
+                <div>
+                    <mat-checkbox class="example-margin" 
+                        >
+
+                    </mat-checkbox>
+                    <span class="agreement-text ps-2" >I agree with
+                        Privacy Policy</span>
+
+                </div>
+            </section>
+            <div class="container p-0" style="width: 100%">
+              
+                <button class="float-end" mat-raised-button color="primary"  (click)="onSubmit()"
+                   >
+                    <span 
+                        class="spinner-border spinner-border-sm mr-1"></span>{{"Submit" | titlecase
+                    }}</button>
+            </div>
+             <!-- Sign in action -->
+             <div class="go-to-signin secondary-font center-align pt-5">
+                Have an account? <span class="signdiv" (click)="onchangetab()">Sign in</span>
+            </div>
+        </div>
+    </div>
+</form>

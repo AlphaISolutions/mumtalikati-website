@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { Input } from '@angular/core';
-import {  propertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
+import { propertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
 import { Router } from '@angular/router';
 import { SetupService } from '../services/setup.service';
 import { PropertyUnitCategory } from '../models/propertyUnitCategory.model';
@@ -36,11 +36,12 @@ export class ShortdisplayComponent implements OnInit {
   listingPurposeID: any
   unitCategoryTypes: PropertyUnitCategory[] = [];
   pagination: boolean = false;
-  unitCategoryID!: any
-  liststring!:any;
+  unitCategoryId!: any
+  liststring!: any;
+  propertyMasterSubTypeid !: number
   constructor(private router: Router, private setservice: SetupService, private filterservice: FilterService) { }
   ngOnInit(): void {
-      this.setservice.getlistingpurposeset().then((data) => {
+    this.setservice.getlistingpurposeset().then((data) => {
 
       this.listingPurposeID = data.find(x => x.listingPurposeType == this.listid)
     })
@@ -49,39 +50,50 @@ export class ShortdisplayComponent implements OnInit {
     })
 
   }
-  // getPropertyPurposeTypeid(){
-  //   return listingPurposeTypeEnum()
-  // }
+
   getsubType(subTypeId: number) {
     return propertySubTypeEnum(subTypeId);
   }
   getMasterTypeId(propertyMasterTypeId: number) {
     return propertyMasterTypeEnum(propertyMasterTypeId);
   }
-  onclick(propertyMasterID: number, listingPurposeID: number, unitCategoryID: number, landLordID: number, propertyMasterTypeID: number) {
-    this.unitCategoryID = this.unitCategoryTypes.find(x => x.unitCategory == unitCategoryID)
+  onclick(unitCategoryID: number, landLordID: number, propertyMasterID: number, propertyMasterSubType: number) {
+    this.unitCategoryId = this.unitCategoryTypes.find(x => x.unitCategory == unitCategoryID)
     this.liststring = this.filterservice.getPurposeid(1)
-    if (this.listingPurposeID == undefined) {
-      this.router.navigate(
-        ['Unitscategory'],
-        { 
-          queryParams: { 'propertyMasterID': propertyMasterID, 'purpose':this.liststring, 'unitCategory': this.unitCategoryID.desc, 'propertyMasterTypeID': this.mastertypeid, 'governorateid': this.governorateid, 'propertySubTypeid': this.subTypeId },
+    this.propertyMasterSubTypeid = propertyMasterSubType
+    if (propertyMasterSubType == 15) {
+      this.router.navigate(['propertyfulldisplay'],
+        {
+          queryParams: { 'unitCategory': this.unitCategoryId.desc, 'landlord': landLordID, 'propertyMaster': propertyMasterID, 'propertyUnit': 0 },
           state: {
-            'purpose': this.listid,
+            'purpose': this.listingPurposeID,
             'governorate': this.governorateid,
             'propertyMasterType': this.mastertypeid,
-            'propertyMasterSubType': this.subTypeId,
+            'propertyMasterSubType': this.subTypeId, 'minValue': this.minValue,
+            'maxValue': this.maxValue,
             'unitCategory': this.unitcategoryid,
-            'minValue': this.minValue,
-            'maxValue': this.maxValue
+            'propertyMasterSubtype': this.propertyMasterSubTypeid
           }
         });
-    } 
+    }
+    else if (unitCategoryID == 12) {
+      this.router.navigate(['propertyfulldisplay'],
+        {
+          queryParams: { 'unitCategory': this.unitCategoryId.desc, 'landlord': landLordID, 'propertyMaster': propertyMasterID, 'propertyUnit': 0 },
+          state: {
+            'purpose': this.listingPurposeID,
+            'governorate': this.governorateid,
+            'propertyMasterType': this.mastertypeid,
+            'propertyMasterSubType': this.subTypeId, 'minValue': this.minValue,
+            'maxValue': this.maxValue, 'unitCategory': this.unitcategoryid
+          }
+        });
+    }
     else {
       this.router.navigate(
         ['Unitscategory'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'purpose': this.listingPurposeID.desc, 'unitCategory': this.unitCategoryID.desc, 'propertyMasterTypeID': this.mastertypeid, 'governorateid': this.governorateid, 'propertySubTypeid': this.subTypeId },
+          queryParams: { 'purpose': this.listingPurposeID.desc, 'unitCategory': this.unitCategoryId.desc, 'propertyMasterID': propertyMasterID },
           state: {
             'purpose': this.listid,
             'governorate': this.governorateid,
@@ -93,6 +105,5 @@ export class ShortdisplayComponent implements OnInit {
           }
         });
     }
-
   }
 }

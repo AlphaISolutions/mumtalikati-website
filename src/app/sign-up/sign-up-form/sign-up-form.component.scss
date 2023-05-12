@@ -1,0 +1,27 @@
+@import "../../../variables.scss";
+.input-file {
+    width: 100%;
+    // border-radius: 5px;
+    margin: auto;
+    position: relative;
+    padding-block: 13px;
+    background-color: $input-field-bg !important;
+    border: 0.5px solid #dee2e6;
+    display: inline-block;
+  }
+  .with-prefix {
+    padding-right: 35px;
+    padding-block: 10px;
+  }
+  
+  .prefix-file {
+    margin: 5px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0px;
+    border-radius: 30px;
+  }
+  .signdiv {
+    color:$primary-color
+  }

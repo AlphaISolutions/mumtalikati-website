@@ -7,8 +7,8 @@
     <div class="container mt-4 ">
         <app-breadcrumb [indiviualsUni]="indiviualsUni" [propertyMasterTypeID]="propertyMasterTypeID"
             [unitcategoryId]="unitcategoryId" [listingPurposeID]="listingPurposeID" [unitsid]="unitsid"
-            [propertyMasterID]="propertyMasterID" [governorateid]="governorateid"
-            [subTypeId]="subTypeId" [maxValue]="maxValue" [minValue]="minValue"></app-breadcrumb>
+            [propertyMasterID]="propertyMasterID" [governorateid]="governorateid" [subTypeId]="subTypeId"
+            [maxValue]="maxValue" [minValue]="minValue"></app-breadcrumb>
 
         <div *ngIf="indiviualsUni[0]">
             <div *ngIf="indiviualsUni[0].propertySubTypeId ==15 else notpropertyUnitName">
@@ -27,7 +27,10 @@
             currentPage: page,
             totalItems: IndiviualsUnitTotalCount}">
                     <app-unitcategorylist [property]="property" [listingPurposeID]="listingPurposeID"
-                        [itemsPerPage]="itemsPerPage" [page]="page" [landLordID]="property.landlordID"></app-unitcategorylist>
+                        [itemsPerPage]="itemsPerPage" [page]="page" [maxValue]="maxValue" [minValue]="minValue"
+                        [unitsid]="unitsid" [propertyMasterTypeID]="propertyMasterTypeID"
+                        [landLordID]="property.landlordID" [propertyMasterID]="propertyMasterID"
+                        [governorateid]="governorateid" [subTypeId]="subTypeId"></app-unitcategorylist>
 
 
                 </div>
@@ -48,8 +51,16 @@
                 </div>
             </div>
         </div>
-        <nav class="pagination justify-content-end pt-3">
-            <pagination-controls (pageChange)="pageChange((page = $event))"></pagination-controls>
-        </nav>
+        <div *ngIf="IndiviualsUnitTotalCount>9 else divshows">
+            <nav class="pagination justify-content-end pt-3">
+                <pagination-controls (pageChange)="pageChange((page = $event))"></pagination-controls>
+            </nav>
+        </div>
+        <ng-template #divshows>
+            <div style="height:120px ;">
+
+            </div>
+        </ng-template>
+
     </div>
 </ng-template>

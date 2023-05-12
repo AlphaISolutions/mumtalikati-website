@@ -1,0 +1,27 @@
+
+<h5 class="center-align pt-4">Enter your phone number</h5>
+<p class="center-align secondary-font-regular">We will send you 4 digits verification code
+</p>
+<div class="phone-input pt-4">
+        <mat-form-field appearance="outline">
+            <ngx-mat-intl-tel-input placeholder="Phone number" 
+                [enablePlaceholder]="true" [enableSearch]="true" [preferredCountries]="['om']"
+                name="phone">
+            </ngx-mat-intl-tel-input>
+        </mat-form-field>
+</div>
+
+
+<div class="button-wrapper pt-4">
+    <button type="button" mat-flat-button class="block" (click)="getOtp()" color="primary"
+         ><span
+           
+            class="spinner-border spinner-border-sm mr-1"></span>{{" Get the code "|
+        titlecase
+        }}</button>
+</div>
+
+<div class="pb-4"></div>
+<div class="go-to-signin secondary-font center-align pt-4">
+    Have an account? <span class="signdiv" (click)="onchangetab(0)">Sign in</span>
+</div>

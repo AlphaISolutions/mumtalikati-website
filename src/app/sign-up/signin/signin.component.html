@@ -1,3 +1,4 @@
+
 <div class="block-heading">
     <p id="heading">Login with your <b>username</b> and <b>password</b></p>
     <mat-dialog-content>
@@ -39,7 +40,7 @@
                             <div >Password is required</div>
                         </div>
                         <div class="pt-4 pb-3">
-                            <mat-checkbox class="example-margin text-style">Keep me signed in</mat-checkbox>
+                            <mat-checkbox class="example-margin "><span class="text-style">Keep me signed in</span></mat-checkbox>
                             <a class="float-right text-color text-style go-to-signin secondary-font center-align"
                                 (click)="lostpas()">Forgot Your
                                 Password?</a>
@@ -64,7 +65,7 @@
 
                     </div>
                     <div class="go-to-signin secondary-font center-align pt-4">
-                        New User to MumtaliKati? <span class="signdiv">Register now.</span>
+                        New User to MumtaliKati? <span class="signdiv" (click)="registernow()">Register now.</span>
                     </div>
                 </div>
             </div>
@@ -72,3 +73,5 @@
         </form>
     </mat-dialog-content>
 </div>
+
+

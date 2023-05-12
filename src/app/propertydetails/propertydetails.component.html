@@ -6,7 +6,7 @@
 </div>
 <ng-template #showList>
     <div class="container p-4">
-        <div class="row gx-2 " *ngIf="listingpupose">
+        <div class="row gx-2 border-bottom" *ngIf="listingpupose">
             <div class="col">
                 <mat-form-field appearance="outline" *ngIf="listingpupose[0]">
                     <mat-label>Purpose</mat-label>
@@ -19,13 +19,13 @@
                 </mat-form-field>
             </div>
             <div class="col">
-                <mat-form-field appearance="outline" *ngIf="governorate">
+                <mat-form-field appearance="outline">
                     <mat-label>Governorate</mat-label>
                     <mat-select [value]="governorateid || 0" (selectionChange)="onChangeGovernorate($event)">
                         <mat-option [value]="0" (click)="governorateId()">
                             All
                         </mat-option>
-                        <mat-option *ngFor="let doc of governorate" [value]="doc.id" (click)="getGovernorate(doc.id!)">
+                        <mat-option *ngFor="let doc of governorate" [value]="doc.id" >
                             {{doc.name}}
                         </mat-option>
                     </mat-select>
@@ -43,7 +43,7 @@
                 </mat-form-field>
                 <ng-template #content let-modal>
                     <div class="modal-header pe-4 ps-4">
-                        <mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)="tabChanged($event)">
+                        <mat-tab-group [(selectedIndex)]="selectedTab">
                             <mat-tab label="Residential">
                                 <ng-template matTabContent>
                                     <div class="mat-loading" *ngIf="loading ; else showList">
@@ -62,7 +62,7 @@
                                                     *ngFor="let doc of filterFunction(1 ,listid)">
                                                     <button type="button" class="tab-btn"
                                                         [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
-                                                        [value]="doc.propertySubType.subType"
+                                                        [(value)]="doc.propertySubType.subType"
                                                         (click)="onsubtypeid(doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
 
                                                 </div>
@@ -128,7 +128,7 @@
                             </div>
                             <div class="col-4">
                                 <button type="reset" class="  border-btn hover-color"
-                                    (click)=resetpropertyCategory()>Reset</button>
+                                    (click)="resetpropertyCategory()">Reset</button>
                             </div>
                         </div>
 
@@ -184,9 +184,8 @@
                             <div class="modal-footer">
                                 <div class="row gx-2">
                                     <div class="col">
-                                        <!-- <button type="reset" class="  border-btn" (click)=reSet()>Reset</button> -->
                                         <button type="button" mat-stroked-button color="primary"
-                                            class=" px-5 border-r btn-width" (click)="reSet()">Reset</button>
+                                            class=" px-5 border-r btn-width" (click)="reset()">Reset</button>
 
                                     </div>
                                     <div class="col">

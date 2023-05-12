@@ -13,10 +13,10 @@ export class FilterService {
     }
     getGovernorateDesc(desc: string) {
         const deselist = this.setupFilterServive.getGovernorate().find(x => x.name == desc);
-        return deselist?.countryID
+        return deselist?.id
     }
     getGovernorateid(id: number) {
-        const deselist = this.setupFilterServive.getGovernorate().find(x => x.countryID == id);
+        const deselist = this.setupFilterServive.getGovernorate().find(x => x.id === id);
         return deselist?.name
     }
     getPropertytMasterTypedesc(desc: string) {
@@ -28,14 +28,12 @@ export class FilterService {
         return deselist?.desc
     }
     getPropertytMasterSubTypedesc(desc: string) {
-
         const deselist = this.setupFilterServive.getPropertySubType().find(x => x.propertySubType.desc == desc)
         return deselist?.propertySubTypeID
     }
     getPropertytMasterSubTypeid(id: number) {
-     
         const deselist = this.setupFilterServive.getPropertySubType().find(x => x.propertySubType.subType == id)
-        return deselist?.propertySubType
+        return deselist?.propertySubType?.desc
     }
     getPropertytUnitCategorydesc(desc: string) {  
         const deselist = this.setupFilterServive.getUnitCategory().find(x => x.desc == desc)
