@@ -110,15 +110,15 @@ export class UnitscategoryComponent implements OnInit {
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
   InItQueryparams() {
-    debugger
-    this.route.params.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       this.propertyMasterID = +params['propertyMasterID'];
       this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
       if (this.listpurID) {
         this.listingPurposeID = this.listpurID
         this.liststring = params['purpose']
       } else {
-        this.liststring = 'Rent';
+        const purposestring = this.filterservice.getPurposeid(1);
+        this.liststring!=purposestring;
 
       }
 

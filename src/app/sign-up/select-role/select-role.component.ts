@@ -39,7 +39,6 @@ export class SelectRoleComponent implements OnInit {
   // }
 
   onchangetab(index: number) {
-    debugger
     this.bsSignupService.selectedTab$.next(0);
     this.bsSignupService.onboardingStep$.next(1);
   }

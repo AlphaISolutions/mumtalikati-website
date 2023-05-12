@@ -16,7 +16,7 @@ export class OtpVerificationComponent implements OnInit {
 
   }
   verifyOtp(){
-    debugger
+ 
     if(this.bsSignupService.onchangepasswordStep$){
       this.bsSignupService.onchangepasswordStep$.next(4)
     }

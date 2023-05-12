@@ -16,30 +16,51 @@ export class UnitcategorylistComponent implements OnInit {
   @Input() landLordID!: number;
   @Input() itemsPerPage!: number;
   @Input() page!: number;
+  @Input() maxValue!: number;
+  @Input() minValue!: number;
+  @Input() unitsid!: number;
+  @Input() propertyMasterTypeID!: number;
+  @Input() governorateid!: number;
+  @Input() subTypeId!: number;
+
+
+
   location = assetUrl("icons/location.svg");
   constructor(private router: Router, private filterservice: FilterService) { }
   ngOnInit(): void {
 
   }
   onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landLordID: number, propertySubTypeId: number) {
-  let unitCategory  =this.filterservice.getPropertytUnitCategoryid(unitCategoryID)
-  let propertySubType =this.filterservice.getPropertytMasterSubTypeid(propertySubTypeId)
+    let unitCategory = this.filterservice.getPropertytUnitCategoryid(unitCategoryID)
+    let propertySubType = this.filterservice.getPropertytMasterSubTypeid(propertySubTypeId)
     if (propertySubTypeId == 15) {
       this.router.navigate(['plotdetails'],
         {
-          queryParams: { 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, 'unitCategory': unitCategory, 'landlordid': landLordID },
-
+          queryParams: { 'unitCategory': unitCategory, 'landlordid': landLordID, 'propertyMasterID': propertyMasterID, 'propertyUnitID': propertyUnitID, },
+          state:{
+            'purpose': this.listingPurposeID,
+            'governorate': this.governorateid,
+            'propertyMasterType': this.propertyMasterTypeID,
+            'propertyMasterSubType': this.subTypeId, 'minValue': this.minValue,
+            'maxValue': this.maxValue, 'unitCategory': this.unitsid
+      }
         });
-    } else {
-      this.router.navigate(['propertyfulldisplay'],
-        {
-          queryParams: { 'propertyMaster': propertyMasterID, 'propertyUnit': propertyUnitID, 'unitCategory': unitCategory, 'landlord': landLordID, 'PropertySubType': propertySubType?.desc },
-
-        });
-    }
+  } else {
+  this.router.navigate(['propertyfulldisplay'],
+    {
+      queryParams: { 'unitCategory': unitCategory, 'PropertySubType': propertySubType, 'landlord': landLordID, 'propertyMaster': propertyMasterID, 'propertyUnit': propertyUnitID },
+      state:{
+        'purpose': this.listingPurposeID,
+        'governorate': this.governorateid,
+        'propertyMasterType': this.propertyMasterTypeID,
+        'propertyMasterSubType': this.subTypeId, 'minValue': this.minValue,
+        'maxValue': this.maxValue, 'unitCategory': this.unitsid
+  }
+    });
+}
 
   }
-  getstutus(stutuss: number) {
-    return getstatusType(stutuss);
-  }
+getstutus(stutuss: number) {
+  return getstatusType(stutuss);
+}
 }

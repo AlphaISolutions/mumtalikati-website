@@ -27,8 +27,10 @@
             currentPage: page,
             totalItems: IndiviualsUnitTotalCount}">
                     <app-unitcategorylist [property]="property" [listingPurposeID]="listingPurposeID"
-                        [itemsPerPage]="itemsPerPage" [page]="page"
-                        [landLordID]="property.landlordID"></app-unitcategorylist>
+                        [itemsPerPage]="itemsPerPage" [page]="page" [maxValue]="maxValue" [minValue]="minValue"
+                        [unitsid]="unitsid" [propertyMasterTypeID]="propertyMasterTypeID"
+                        [landLordID]="property.landlordID" [propertyMasterID]="propertyMasterID"
+                        [governorateid]="governorateid" [subTypeId]="subTypeId"></app-unitcategorylist>
 
 
                 </div>

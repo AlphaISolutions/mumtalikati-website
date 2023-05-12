@@ -50,7 +50,6 @@ export class SigninComponent implements OnInit {
    this.bsSignupService.lostpassword$.next(true)
   }
   registernow() {
-    debugger
     this.bsSignupService.selectedTab$.next(1)
   }
 }

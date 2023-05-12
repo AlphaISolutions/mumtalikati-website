@@ -70,17 +70,12 @@ export class TopBarComponent implements OnInit {
     
   }
   getUrl(){
-    debugger
+
     this.router.navigate(
       ['propertydetails/',this.liststring] 
       )
     }
-    // getUrl(){
-    //   debugger
-    //   this.router.navigate(
-    //     ['propertydetails/purpose/governorate/propertyMasterType/propertyMasterSubType/unitCategory/minValue/maxValue',this.liststring,this.governoratestring,this.propertyMasterTypestring,this.propertyMasterSubTypeIDstring,this.unitcategorystring,this.minValue,this.maxValue] 
-    //     )
-    //   }
+
 }
 
 

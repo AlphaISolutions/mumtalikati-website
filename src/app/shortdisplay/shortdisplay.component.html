@@ -1,5 +1,4 @@
-<div class="card  border-r mb-4 shadow-none border-0" *ngIf="property"  onclick="window.scrollTo(0,0)" (click)="onclick(property.propertyMasterID!,property.listingPurposeID!, property.unitCategoryID! ,property.propertyMasterTypeID!
-        )">
+<div class="card  border-r mb-4 shadow-none border-0" *ngIf="property"  onclick="window.scrollTo(0,0)" (click)="onclick( property.unitCategoryID!, property.landLordID!, property.propertyMasterID!,property.propertyMasterSubType!)">
     <img [src]="property.imageString || bydefault" class=" imagecss main" alt="Card Image">
     <div class="card-body cd p-0  pt-2">
         <div *ngIf="property.propertyMasterSubType== 15 else propertyMasterName">

@@ -13,7 +13,7 @@ export class PhoneNumberComponent implements OnInit {
   ngOnInit(): void {
   }
   getOtp() {
-    debugger
+ 
     if(this.bsSignupService.onchangepasswordStep$){
       this.bsSignupService.onchangepasswordStep$.next(3)
     }else{

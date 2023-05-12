@@ -22,7 +22,6 @@ const routes: Routes = [
   { path: 'propertyfulldisplay', component: PropertyfulldisplayComponent },
   { path: 'Unitscategory', component: UnitscategoryComponent },
   { path: 'propertydetails', component: PropertydetailsComponent },
-  // { path: 'propertydetails/purpose/:liststring/governorate/:governoratestring/propertyMasterType/:propertyMasterTypestring/propertyMasterSubType/:propertyMasterSubTypeIDstring/unitCategory/:unitcategorystring/minValue/:minValue/maxValue/:maxValue', component: PropertydetailsComponent},
   { path: '', component: HomeComponent },
   { path: '**', component: HomeComponent }
 
