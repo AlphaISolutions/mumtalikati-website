@@ -49,7 +49,6 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
   }
 
   backtosearch() {
-    debugger
     if (this.unitcatID == 12 || this.propertyMasterSubType==15) {
       this.subid = this.filterservice.getPropertytMasterSubTypeid(this.subTypeId);
       this.router.navigate(['propertydetails'], {
