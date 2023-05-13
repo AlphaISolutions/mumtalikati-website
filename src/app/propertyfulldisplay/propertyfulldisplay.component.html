@@ -7,7 +7,7 @@
     <div class="container" *ngIf="propertyDetail">
         <app-breadcrumbpropertyfulldisplay [propertyDetail]="propertyDetail"
             [propertyMasterTypeID]="propertyMasterTypeID" [pmid]="pmid" [unitcatID]="unitcatID"
-            [listpurID]="propertyDetail[0].listingPurposeID"
+            [listpurID]="propertyDetail[0].listingPurposeID"[propertyMasterType]="propertyMasterTypeID"
             [propertyMasterTypeID]="propertyMasterTypeID"[listingPurposeID]="listingPurposeID" [governorateid]="governorateid"
              [subTypeId]="subTypeId" [unitsid]="unitsid"
             [minValue]="minValue" [maxValue]="maxValue" [propertyMasterSubType]="propertyMasterSubType"></app-breadcrumbpropertyfulldisplay>

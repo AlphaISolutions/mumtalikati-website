@@ -48,21 +48,17 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   constructor(private modalService: NgbModal, private el: ElementRef, private cdr: ChangeDetectorRef, private clipboard: Clipboard) { }
   mainSlider!: Splide;
   thumbnailSlider!: Splide;
-  ngOnInit(): void {
-  }
-  ngAfterViewInit() {
+ async ngOnInit() {
     setTimeout(() => {
-      this.mainSlider = new Splide('#main-slider', {
+      this.mainSlider = new Splide('.main-slider', {
         type: 'loop',
         heightRatio: 0.5,
         pagination: true,
         arrows: false,
         cover: true,
       });
-
       this.mainSlider.mount();
-
-      this.thumbnailSlider = new Splide('#thumbnail-slider', {
+      this.thumbnailSlider = new Splide('.thumbnail-slider',   {
         rewind: true,
         fixedWidth: 100,
         fixedHeight: 58,
@@ -86,7 +82,10 @@ export class PropertyfulldisplaylistComponent implements OnInit {
       this.thumbnailSlider.mount();
 
       this.mainSlider.sync(this.thumbnailSlider);
-    }, 1000); // delay of 1 second
+    }, 1000); 
+  }
+  ngAfterViewInit() {
+
   }
 
   getlist(listid: any) {

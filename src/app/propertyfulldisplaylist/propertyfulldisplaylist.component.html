@@ -213,7 +213,7 @@
         </div>
         <div class="col-md-8 " *ngIf="property.imageString">
             <div class="card border-0 shadow-none">
-                <div id="main-slider" class="splide">
+                <div id="main-slider" class="splide main-slider">
                     <div class="splide__track">
                         <div class="splide__list">
                             <div class="splide__slide" *ngFor="let image of property.imageString">
@@ -222,7 +222,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="thumbnail-slider" class="splide" *ngIf="property.imageString.length>1">
+                <div id="thumbnail-slider" class="thumbnail-slider splide" *ngIf="property.imageString.length>1">
                     <div class="splide__track">
                         <div class="splide__list">
                             <div class="splide__slide thumbnail" *ngFor="let image of property.imageString">
