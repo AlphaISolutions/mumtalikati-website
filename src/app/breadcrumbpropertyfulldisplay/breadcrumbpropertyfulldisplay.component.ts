@@ -23,7 +23,7 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
   @Input() minValue!: number;
   @Input() unitsid!: number;
   @Input() listingPurposeID!: number;
-  //  @Input() propertyMasterTypeID!: number;
+   @Input() propertyMasterType!: number;
   @Input() governorateid!: number;
   @Input() subTypeId!: number;
   @Input() propertyMasterSubType!:number;
@@ -49,13 +49,14 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
   }
 
   backtosearch() {
+    debugger
     if (this.unitcatID == 12 || this.propertyMasterSubType==15) {
       this.subid = this.filterservice.getPropertytMasterSubTypeid(this.subTypeId);
       this.router.navigate(['propertydetails'], {
         queryParams: {
           'purpose': this.filterservice.getPurposeid(this.listingPurposeID),
           'governorate': this.filterservice.getGovernorateid(this.governorateid),
-          'propertyMasterType': this.filterservice.getPropertytMasterTypeid(this.propertyMasterTypeID),
+          'propertyMasterType': this.filterservice.getPropertytMasterTypeid(this.propertyMasterType),
           'propertyMasterSubType': this.subid,
           'unitCategory': this.filterservice.getPropertytUnitCategoryid(this.unitsid),
           'minValue': this.minValue,
@@ -65,7 +66,7 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
         state: {
           'purpose': this.listingPurposeID,
           'governorate': this.governorateid,
-          'propertyMasterType': this.propertyMasterTypeID,
+          'propertyMasterType': this.propertyMasterType,
           'propertyMasterSubType': this.subTypeId, 'minValue': this.minValue,
           'maxValue': this.maxValue, 'unitCategory': this.unitsid
         }
@@ -81,7 +82,7 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
         state: {
           'purpose': this.listingPurposeID,
           'governorate': this.governorateid,
-          'propertyMasterType': this.propertyMasterTypeID,
+          'propertyMasterType': this.propertyMasterType,
           'propertyMasterSubType': this.subTypeId, 'minValue': this.minValue,
           'maxValue': this.maxValue, 'unitCategory': this.unitsid
         }

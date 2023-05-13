@@ -9,6 +9,8 @@ export class SendEmail {
     @prop({ defaultValue: "" })
     email!: string;
     @prop()
+    phonenumber!:string
+    @prop()
     subject!: string;
     @prop()
     body!: string;

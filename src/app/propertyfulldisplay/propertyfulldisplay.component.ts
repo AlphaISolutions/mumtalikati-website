@@ -63,6 +63,8 @@ export class PropertyfulldisplayComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private filterservice: FilterService, private router: Router,) {
     if (this.router.getCurrentNavigation()?.extras.state != undefined) {
+
+      debugger
       this.listingPurposeID = this.router.getCurrentNavigation()?.extras.state!["purpose"];
       this.governorateid = this.router.getCurrentNavigation()?.extras.state!["governorate"];
       this.propertyMasterTypeID = this.router.getCurrentNavigation()?.extras.state!["propertyMasterType"];
