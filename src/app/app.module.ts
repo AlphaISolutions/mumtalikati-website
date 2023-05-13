@@ -55,7 +55,7 @@ import { SetYouPasswordComponent } from './sign-up/set-you-password/set-you-pass
 import { ForgotpasswordComponent } from './sign-up/lost-password/forgotpassword/forgotpassword.component';
 import { OtpVerificationComponent } from './sign-up/otp-verification/otp-verification.component';
 import { SetyouPasswordComponent } from './sign-up/setyou-password/setyou-password.component';
-
+import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyload-image';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,6 +88,7 @@ import { SetyouPasswordComponent } from './sign-up/setyou-password/setyou-passwo
 
   ],
   imports: [
+    LazyLoadImageModule,
     BrowserModule,
     AppRoutingModule,
     MatInputModule,
@@ -121,7 +122,7 @@ import { SetyouPasswordComponent } from './sign-up/setyou-password/setyou-passwo
     NgOtpInputModule
 
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }, RxFormBuilder],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }, RxFormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

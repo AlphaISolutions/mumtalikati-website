@@ -37,12 +37,17 @@
                                 <td class="propertyb">{{property.plotNumber}}</td>
 
                             </tr>
-                          
+                          <ng-container *ngIf="property.residentialUnits ==null else residential">
+
+                          </ng-container>
+                          <ng-template #residential>
                             <tr>
                                 <th class="header">Residential Units</th>
                                 <td class="propertyb">{{property.residentialUnits}}</td>
 
                             </tr>
+                          </ng-template>
+                           
                             
                             <tr>
                                 <th class="header">Build in year</th>
@@ -130,7 +135,7 @@
                                     <td class="propertyb">{{property.propertyUnitID}}</td>
         
                                 </tr>
-                                <ng-container *ngIf="property.caption==null; else showCaption">
+                                <ng-container *ngIf="property.caption== null || '0'; else showCaption">
                                 </ng-container>
                                 <ng-template #showCaption>
                                     <tr>
@@ -213,27 +218,32 @@
         </div>
         <div class="col-md-8 " *ngIf="property.imageString">
             <div class="card border-0 shadow-none">
-                <div id="main-slider" class="splide main-slider">
-                    <div class="splide__track">
-                        <div class="splide__list">
-                            <div class="splide__slide" *ngFor="let image of property.imageString">
-                                <img class="full-image" [src]="image" alt="image">
+               
+               
+                    <div id="main-slider" class="splide main-slider">
+                        <div class="splide__track">
+                            <div class="splide__list">
+                                <div class="splide__slide" *ngFor="let image of property.imageString">
+                                    <img class="img-fluid" [src]="image" alt="image">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="thumbnail-slider" class="thumbnail-slider splide" *ngIf="property.imageString.length>1">
-                    <div class="splide__track">
-                        <div class="splide__list">
-                            <div class="splide__slide thumbnail" *ngFor="let image of property.imageString">
-                                <img [src]="image" alt="Thumbnail">
+                    <div id="thumbnail-slider" class="thumbnail-slider splide" *ngIf="property.imageString.length>1">
+                        <div class="splide__track">
+                            <div class="splide__list">
+                                <div class="splide__slide thumbnail" *ngFor="let image of property.imageString">
+                                    <img [src]="image" alt="Thumbnail">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+              
+               
                 <div class="card-body p-0 pt-4">
                     <mat-card-content>
-                        <h5 *ngIf="listpurID ==1   ; else nolistpurposeid">
+                        
+                        <h5 *ngIf="property.listingPurposeID ==1 else nolistpurposeid">
                             OMR {{property.rentPrice}}/Monthly
                         </h5>
                         <ng-template #nolistpurposeid>
