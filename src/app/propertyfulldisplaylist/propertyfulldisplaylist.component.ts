@@ -27,6 +27,8 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   hall = assetUrl("icons/hall.png");
   favoriteicon = assetUrl("icons/favoriteicon.png");
   bydefault = assetUrl('img/bydefault.png');
+  defaultperfile: string = 'https://p.kindpng.com/picc/s/24-248729_stockvader-predicted-adig-user-profile-image-png-transparent.png';
+  loading:boolean=true
   @Input() unitcatID!: number;
   @Input() statuss!: number;
   @Input() imgindex: number = 0;
@@ -49,6 +51,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   mainSlider!: Splide;
   thumbnailSlider!: Splide;
  async ngOnInit() {
+  this.loading=true
     setTimeout(() => {
       this.mainSlider = new Splide('.main-slider', {
         type: 'loop',

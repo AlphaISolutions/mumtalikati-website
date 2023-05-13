@@ -482,9 +482,9 @@ export class PropertydetailsComponent implements OnInit {
     data.propertyMasterTypeID = this.mastertypeid;
     data.propertyMasterSubTypeID = this.subTypeId;
     this.propertyMasterTypedesc = this.filterservice.getPropertytMasterTypeid(this.mastertypeid!)
-    this.propertyMasterTypestring = this.propertyMasterTypedesc;
+    // this.propertyMasterTypestring = this.propertyMasterTypedesc;
     this.propertySubTypedesc = this.filterservice.getPropertytMasterSubTypeid(this.subTypeId!)
-    this.propertyMasterSubTypeIDstring = this.propertySubTypedesc?.desc;
+    // this.propertyMasterSubTypeIDstring = this.propertySubTypedesc?.desc;
     this.propertyFilter(data);
     this.postPropertyFilter_Count(data);
     this.queryParams();
@@ -510,7 +510,7 @@ export class PropertydetailsComponent implements OnInit {
         queryParams: {
           'purpose': this.liststring,
           'governorate': this.governoratestring,
-          'propertyMasterType': this.propertyMasterTypestring,
+          'propertyMasterType': this.propertyMasterTypedesc,
           'propertyMasterSubType': this.propertySubTypedesc,
           'unitCategory': this.unitcategorystring,
           'minValue': this.minValue,
@@ -528,11 +528,12 @@ export class PropertydetailsComponent implements OnInit {
       this.getPropertyMasterSubTypeID(params);
       this.getunitcategoryId(params);
       this.getminPrice(params)
-      this.propertyFilterInIt();
-      this.propertyFilterCountInIt();
-      this.initiaalizefilters();
-      this.getPropertyUnitCategory(this.mastertypeid, this.listid);
+
     })
+    this.propertyFilterInIt();
+    this.propertyFilterCountInIt();
+    this.initiaalizefilters();
+    this.getPropertyUnitCategory(this.mastertypeid, this.listid);
   }
   getPropertyListPurposeId(params: any) {
     this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
@@ -565,13 +566,13 @@ export class PropertydetailsComponent implements OnInit {
       this.unitcategorystring = 'All'
     }
   }
-  getpropertyMasterTypeID(params: any){
+  getpropertyMasterTypeID(params: any) {
     this.propertyMasterTypeID = this.filterservice.getPropertytMasterTypedesc(params['propertyMasterType'])
     if (this.propertyMasterTypeID) {
       this.mastertypeid = this.propertyMasterTypeID;
-      this.propertyMasterTypestring = params['propertyMasterType']
+      this.propertyMasterTypedesc = params['propertyMasterType']
     } else {
-      this.propertyMasterTypestring = 'All'
+      this.propertyMasterTypedesc = 'All'
 
     }
   }
@@ -609,6 +610,7 @@ export class PropertydetailsComponent implements OnInit {
     data.pageNumber = this.page;
     data.gOVERNORATEID = this.governorateid;
     data.propertyMasterTypeID = this.mastertypeid;
+    data.propertyMasterSubTypeID=this.subTypeId;
     data.propertyCategory = this.unitcategoryid;
     data.maxPrice = this.maxValue;
     data.minPrice = this.minValue;
