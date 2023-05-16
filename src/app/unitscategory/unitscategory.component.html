@@ -5,10 +5,8 @@
 </div>
 <ng-template #showInfo>
     <div class="container mt-4 ">
-        <app-breadcrumb [indiviualsUni]="indiviualsUni" [propertyMasterTypeID]="propertyMasterTypeID"
-            [unitcategoryId]="unitcategoryId" [listingPurposeID]="listingPurposeID" [unitsid]="unitsid"
-            [propertyMasterID]="propertyMasterID" [governorateid]="governorateid" [subTypeId]="subTypeId"
-            [maxValue]="maxValue" [minValue]="minValue"></app-breadcrumb>
+        <app-breadcrumb [indiviualsUni]="indiviualsUni" [sharedmodel]="sharedmodel"
+            [propertyMasterTypeID]="propertyMasterTypeID"></app-breadcrumb>
 
         <div *ngIf="indiviualsUni[0]">
             <div *ngIf="indiviualsUni[0].propertySubTypeId ==15 else notpropertyUnitName">
@@ -26,11 +24,11 @@
          :{  itemsPerPage: itemsPerPage,
             currentPage: page,
             totalItems: IndiviualsUnitTotalCount}">
-                    <app-unitcategorylist [property]="property" [listingPurposeID]="listingPurposeID"
-                        [itemsPerPage]="itemsPerPage" [page]="page" [maxValue]="maxValue" [minValue]="minValue"
-                        [unitsid]="unitsid" [propertyMasterTypeID]="propertyMasterTypeID"
-                        [landLordID]="property.landlordID" [propertyMasterID]="propertyMasterID"
-                        [governorateid]="governorateid" [subTypeId]="subTypeId"></app-unitcategorylist>
+                    <app-unitcategorylist [property]="property" [sharedmodel]="sharedmodel" [listingPurposeID]="listingPurposeID"
+                        [governorateid]="governorateid" [propertyMasterTypeID]="propertyMasterTypeID"
+                        [subTypeId]="subTypeId" [itemsPerPage]="itemsPerPage" [page]="page" [maxValue]="maxValue"
+                        [minValue]="minValue" [unitsid]="unitsid" [landLordID]="property.landlordID"
+                        [propertyMasterID]="propertyMasterID"></app-unitcategorylist>
 
 
                 </div>

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { getPropertyUnitCategoryEnum, listingPurposeTypeEnum, propertyMasterTypeEnum } from '../models/enums';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { FilterService } from '../services/filterserice';
+import { State } from '../models/state.model';
 
 @Component({
   selector: 'app-breadcrumbpropertyfulldisplay',
@@ -13,27 +14,25 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
   @Input() propertyDetail: OwnerRentDetail[] = [];
   @Input() propertyMasterTypeID!: number;
   @Input() unitcatID!: number;
-  @Input() landlordid!: number;
   @Input() listpurID!: number;
   @Input() pmid!: number;
-  @Input() statuss!: number;
   @Input() page!: number;
   @Input() perpagenumber!: number
   @Input() maxValue!: number;
   @Input() minValue!: number;
   @Input() unitsid!: number;
   @Input() listingPurposeID!: number;
-   @Input() propertyMasterType!: number;
+  @Input() propertyMasterType!: number;
   @Input() governorateid!: number;
   @Input() subTypeId!: number;
-  @Input() propertyMasterSubType!:number;
+  @Input() propertyMasterSubType!: number;
+  @Input() sharedmodel=new State
   subid: any;
   constructor(private router: Router, private filterservice: FilterService) { }
 
   ngOnInit(): void {
   }
   addItem(newItem: number) {
-
     this.listpurID = newItem;
   }
   getenum(propertyMasterTypeID: number) {
@@ -49,25 +48,26 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
   }
 
   backtosearch() {
-    if (this.unitcatID == 12 || this.propertyMasterSubType==15) {
-      this.subid = this.filterservice.getPropertytMasterSubTypeid(this.subTypeId);
+    if (this.unitcatID == 12 || this.propertyMasterSubType == 15) {
+      this.subid = this.filterservice.getPropertytMasterSubTypeid(this.sharedmodel.propertyMasterSubTypeID!);
       this.router.navigate(['propertydetails'], {
         queryParams: {
-          'purpose': this.filterservice.getPurposeid(this.listingPurposeID),
-          'governorate': this.filterservice.getGovernorateid(this.governorateid),
-          'propertyMasterType': this.filterservice.getPropertytMasterTypeid(this.propertyMasterType),
+          'purpose': this.filterservice.getPurposeid(this.sharedmodel.listingPurposesID!),
+          'governorate': this.filterservice.getGovernorateid(this.sharedmodel.gOVERNORATEID!),
+          'propertyMasterType': this.filterservice.getPropertytMasterTypeid(this.sharedmodel.propertyMasterTypeID!),
           'propertyMasterSubType': this.subid,
-          'unitCategory': this.filterservice.getPropertytUnitCategoryid(this.unitsid),
-          'minValue': this.minValue,
-          'maxValue': this.maxValue
+          'unitCategory': this.filterservice.getPropertytUnitCategoryid(this.sharedmodel.propertyCategory!),
+          'minValue': this.sharedmodel.minPrice,
+          'maxValue': this.sharedmodel.maxPrice
         },
-
         state: {
-          'purpose': this.listingPurposeID,
-          'governorate': this.governorateid,
-          'propertyMasterType': this.propertyMasterType,
-          'propertyMasterSubType': this.subTypeId, 'minValue': this.minValue,
-          'maxValue': this.maxValue, 'unitCategory': this.unitsid
+          'purpose': this.sharedmodel.listingPurposesID,
+          'governorate': this.sharedmodel.gOVERNORATEID,
+          'propertyMasterType': this.sharedmodel.propertyMasterTypeID,
+          'propertyMasterSubType': this.sharedmodel.propertyMasterSubTypeID, 
+          'minValue':  this.sharedmodel.minPrice,
+          'maxValue': this.sharedmodel.maxPrice, 
+          'unitCategory': this.sharedmodel.propertyCategory
         }
       });
     } else {
@@ -77,13 +77,14 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
           'purpose': this.getlist(this.listpurID),
           'unitCategory': this.getunit(this.unitcatID)
         },
-
         state: {
-          'purpose': this.listingPurposeID,
-          'governorate': this.governorateid,
-          'propertyMasterType': this.propertyMasterType,
-          'propertyMasterSubType': this.subTypeId, 'minValue': this.minValue,
-          'maxValue': this.maxValue, 'unitCategory': this.unitsid
+          'purpose': this.sharedmodel.listingPurposesID,
+          'governorate': this.sharedmodel.gOVERNORATEID,
+          'propertyMasterType': this.sharedmodel.propertyMasterTypeID,
+          'propertyMasterSubType': this.sharedmodel.propertyMasterSubTypeID, 
+          'minValue':  this.sharedmodel.minPrice,
+          'maxValue': this.sharedmodel.maxPrice, 
+          'unitCategory': this.sharedmodel.propertyCategory
         }
       });
     }

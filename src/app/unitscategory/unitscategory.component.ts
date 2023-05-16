@@ -5,6 +5,7 @@ import { getstatusType, propertyMasterTypeEnum } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { FilterService } from '../services/filterserice';
+import { State } from '../models/state.model';
 @Component({
   selector: 'app-unitscategory',
   templateUrl: './unitscategory.component.html',
@@ -14,7 +15,6 @@ export class UnitscategoryComponent implements OnInit {
   loading: boolean = false;
   propertyMasterID!: number;
   listingPurposeID!: number;
-  public myId: number = 123;
   unitCategoryID!: number;
   landLordID!: number;
   config: any;
@@ -24,25 +24,10 @@ export class UnitscategoryComponent implements OnInit {
   itemsPerPage = 9;
   color = { 'color': 'black!important' };
   logocolor = false;
-  public status: number = 1
+  status: number = 1
   propertyMasterTypeID!: number
-  public subTypeId!: number | null;
-  unitsid!:number;
-  btnColor = { 'background-color': '#9e2a2b' };
-  activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
-  constructor(private mumtalikatiservic: MumtalikatiService, private router: Router,
-    private route: ActivatedRoute, private filterservice: FilterService) { 
-      if(this.router.getCurrentNavigation()?.extras.state != undefined){
-        this.listingPurposeID =this.router.getCurrentNavigation()?.extras.state!["purpose"];
-        this.governorateid=this.router.getCurrentNavigation()?.extras.state!["governorate"];
-        this.propertyMasterTypeID=this.router.getCurrentNavigation()?.extras.state!["propertyMasterType"];
-        this.subTypeId=this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubType"];
-        this.unitsid=this.router.getCurrentNavigation()?.extras.state!["unitCategory"]
-        this.minValue=this.router.getCurrentNavigation()?.extras.state!["minValue"];
-        this.maxValue=this.router.getCurrentNavigation()?.extras.state!["maxValue"]
-      }
-
-    }
+  subTypeId!: number | null;
+  unitsid!: number;
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;
   location = assetUrl("icons/location.svg");
@@ -59,8 +44,16 @@ export class UnitscategoryComponent implements OnInit {
   liststring!: string;
   unitcategoryId: any;
   unitcategorystring!: string
+  btnColor = { 'background-color': '#9e2a2b' };
+  activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
+  sharedmodel =new State;
+  constructor(private mumtalikatiservic: MumtalikatiService, private router: Router,
+    private route: ActivatedRoute, private filterservice: FilterService) {
+    this.getState()
+  }
   async ngOnInit() {
     this.InItQueryparams();
+    this.statedatalist()
     this.config = {
       itemsPerPage: this.itemsPerPage,
       currentPage: this.page,
@@ -72,9 +65,7 @@ export class UnitscategoryComponent implements OnInit {
     this.mumtalikatiservic.getPropertyMasterIndiviualsUnit(propertyMasterTypeID, listingPurposesID, UnitCategoryID, status, pageNumber, rowsNumbers)
       .then((data) => {
         if (data) {
-
           this.indiviualsUni = data;
-
         }
         this.loading = false;
       })
@@ -84,16 +75,13 @@ export class UnitscategoryComponent implements OnInit {
       });
   }
   async propertyMasterIndiviualsUniCount(propertyMasterTypeID: number, listingPurposesID: number, UnitCategoryID: number, status: number) {
-
     this.mumtalikatiservic.getPropertyMasterIndiviualsUnitTotalCount(propertyMasterTypeID, listingPurposesID, UnitCategoryID, status)
       .then((data) => {
         if (data) {
           this.IndiviualsUnitTotalCount = data;
         }
-
       })
       .catch((error) => {
-
         console.error(error);
       });
   }
@@ -106,7 +94,6 @@ export class UnitscategoryComponent implements OnInit {
   }
 
   getenum(propertyMasterTypeID: number) {
-
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
   InItQueryparams() {
@@ -118,10 +105,8 @@ export class UnitscategoryComponent implements OnInit {
         this.liststring = params['purpose']
       } else {
         const purposestring = this.filterservice.getPurposeid(1);
-        this.liststring!=purposestring;
-
+        this.liststring != purposestring;
       }
-
       this.unitcategoryId = this.filterservice.getPropertytUnitCategorydesc(params['unitCategory'])
       if (this.unitcategoryId) {
         this.unitCategoryID = this.unitcategoryId;
@@ -133,5 +118,28 @@ export class UnitscategoryComponent implements OnInit {
       this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
       this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
     });
+  }
+  getState() {
+    if (this.router.getCurrentNavigation()?.extras.state != undefined) {
+      this.listingPurposeID = this.router.getCurrentNavigation()?.extras.state!["purpose"];
+      this.governorateid = this.router.getCurrentNavigation()?.extras.state!["governorate"];
+      this.propertyMasterTypeID = this.router.getCurrentNavigation()?.extras.state!["propertyMasterType"];
+      this.subTypeId = this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubType"];
+      this.unitsid = this.router.getCurrentNavigation()?.extras.state!["unitCategory"]
+      this.minValue = this.router.getCurrentNavigation()?.extras.state!["minValue"];
+      this.maxValue = this.router.getCurrentNavigation()?.extras.state!["maxValue"]
+    }
+  }
+  statedatalist() {
+    let data = this.sharedmodel
+    data.listingPurposesID = this.listingPurposeID;
+    data.gOVERNORATEID = this.governorateid;
+    data.propertyMasterTypeID =  this.propertyMasterTypeID;
+    data.propertyMasterSubTypeID = this.subTypeId;
+    data.propertyCategory = this.unitsid;
+    data.minPrice = this.minValue;
+    data.maxPrice = this.maxValue;
+    data.pageNumber = this.page;
+    data.rowsNumbers = this.perpagenumber;
   }
 }

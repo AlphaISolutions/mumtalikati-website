@@ -41,26 +41,20 @@ export class AppComponent {
       .then((data) => {
         if (data) {
           this.listingpupose = data
-
         }
-        //  this.loading=false;
       })
       .catch((error) => {
-        // this.loading=false;
         console.error(error);
       });
   }
   async getPropertyMasterType() {
-
     this.setservice.getPropertyMasterTypes()
       .then((data) => {
         if (data) {
           this.propertymasterType = data
         }
-        // this.loading=false;
       })
       .catch((error) => {
-        // this.loading=false;
         console.error(error);
       });
   }
@@ -71,36 +65,28 @@ export class AppComponent {
         if (data) {
           this.propertysubType = data
         }
-        // this.loading=false;
       })
       .catch((error) => {
-        // this.loading=false;
         console.error(error);
       });
   }
   async getPropertyUnitCategoryType() {
-
     this.setservice.getPropertyUnitCategoryTypes()
       .then((data) => {
         if (data) {
           this.propertyUnitCategoryType = data
         }
-        // this.loading=false;
       })
       .catch((error) => {
-        // this.loading=false;
         console.error(error);
       });
   }
   async getgovernorates() {
-
     this.setservice.getGovernorate()
       .then((data) => {
         if (data) {
           this.governorate = data
-
         }
-        // this.loading=false;
       })
       .catch((error) => {
         this.loading = false;
@@ -126,8 +112,6 @@ export class AppComponent {
       this.propertysubType = <Array<any>>data.propertyPropertySubType;
       this.propertyUnitCategoryType = <Array<any>>data.propertyUnitCategoryTypes;
       this.governorate = <Array<any>>data.propertyGovernorates;
-      // this.setupFilterServive.startSession(
-      //   this.listingpupose, this.propertymasterType, this.propertysubType, this.propertyUnitCategoryType, this.governorate)
       this.loading = false;
     }, error => {
       this.loading = false;

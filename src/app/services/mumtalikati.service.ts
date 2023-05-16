@@ -107,4 +107,3 @@ export class MumtalikatiService {
     .catch(err =>{return Promise.reject(err.json().error || 'error');});
  }
 }
-// PropertyDetail/GetPropertyUnitDetails?LandLordID=205&UnitCategoryID=12&PropertyMasterID=147

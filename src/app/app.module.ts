@@ -36,7 +36,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { MatCarouselModule } from 'ng-mat-carousel';
 import { MarkdownModule } from 'ngx-markdown';
-import { PlotdetailsComponent } from './plotdetails/plotdetails.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { UnitcategorylistComponent } from './unitcategorylist/unitcategorylist.component';
 import { BreadcrumbpropertyfulldisplayComponent } from './breadcrumbpropertyfulldisplay/breadcrumbpropertyfulldisplay.component';
@@ -68,7 +67,6 @@ import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyl
     UnitscategoryComponent,
     ContactusComponent,
     AboutusComponent,
-    PlotdetailsComponent,
     BreadcrumbComponent,
     UnitcategorylistComponent,
     BreadcrumbpropertyfulldisplayComponent,

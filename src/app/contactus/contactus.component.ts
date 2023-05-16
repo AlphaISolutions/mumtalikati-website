@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { } from 'googlemaps';
 import { FormGroup } from '@angular/forms';

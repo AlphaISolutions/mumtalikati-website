@@ -15,21 +15,21 @@ import { SetupService } from '../services/setup.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private setservice: SetupService, private router: Router ,private setFilterService:SetFiltersServive,private mumtalikatiservic: MumtalikatiService,) { }
+  constructor(private setservice: SetupService, private router: Router, private setFilterService: SetFiltersServive, private mumtalikatiservic: MumtalikatiService,) { }
   loading: boolean = false;
   governorate: Governorate[] = [];
   listingpupose: ListingPurpose[] = [];
   propertyfilter = new PropertyFilter();
   ownerPropertyFilter: OwnerPropertyFilter[] = []
-  public governorateid: number|null =null ;
-  public listingPurposeType: number | null = 1;
-  public listid: number | null = 1
-  public pageNumber:number=1;
-  public rowsNumber:number=8  ;
+  governorateid: number | null = null;
+  listingPurposeType: number | null = 1;
+  listid: number | null = 1
+  pageNumber: number = 1;
+  rowsNumber: number = 8;
   color: any
   toggle: any;
   isActive: boolean = false;
-  page:boolean=false;
+  page: boolean = false;
   elementStyles: any = {
     'color': this.isActive ? 'green' : 'red'
   }
@@ -37,22 +37,22 @@ export class HomeComponent implements OnInit {
     return this.isActive ? 'active' : 'inactive';
   }
   async ngOnInit() {
-    let governorate=this.setFilterService.getGovernorate()
-    if(governorate){
+    let governorate = this.setFilterService.getGovernorate()
+    if (governorate) {
       this.governorate = governorate
     }
-    else{
+    else {
       this.getgovernorates();
     }
-    let listpurpose=this.setFilterService.getListingPurpose()
-    if(listpurpose){
-      this.listingpupose=listpurpose;
-    }else{
+    let listpurpose = this.setFilterService.getListingPurpose()
+    if (listpurpose) {
+      this.listingpupose = listpurpose;
+    } else {
       this.getlistingPurpose();
     }
     this.getgovernorates();
     this.getlistingPurpose();
-   
+
     if (this.toggle) {
 
       this.color = { 'background-color': 'white!important', 'color': 'black!important' }
@@ -60,9 +60,9 @@ export class HomeComponent implements OnInit {
       this.color = { 'background-color': 'transparent!important' }
     }
     let data = this.propertyfilter;
-    data.listingPurposesID=this.listid;
-    data.pageNumber=this.pageNumber;
-    data.rowsNumbers=this.rowsNumber;
+    data.listingPurposesID = this.listid;
+    data.pageNumber = this.pageNumber;
+    data.rowsNumbers = this.rowsNumber;
     this.propertyFilter(data)
   }
 
@@ -81,9 +81,7 @@ export class HomeComponent implements OnInit {
       });
   }
   onclicks(id: number) {
-
     this.governorateid = id
-  
   }
   async getlistingPurpose() {
     this.loading = true;
@@ -101,7 +99,6 @@ export class HomeComponent implements OnInit {
   }
   onclick(listingPurposeType: number) {
     this.listingPurposeType = listingPurposeType;
-
   }
   find() {
     this.router.navigate(['propertydetails'],
@@ -122,20 +119,15 @@ export class HomeComponent implements OnInit {
     this.governorateid != null;
   }
   propertyFilter(data: any) {
-
     this.mumtalikatiservic.postPropertyFilter(data)
       .then((data) => {
         if (data) {
           this.ownerPropertyFilter = data
         }
-
-        
       })
       .catch((error) => {
-        
         console.error(error);
       }
       );
   }
-
 }

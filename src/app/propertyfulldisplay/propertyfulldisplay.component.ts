@@ -6,6 +6,7 @@ import { PropertyFeature } from '../models/propertyfeature';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { ProfileImage } from '../models/profileImage.model';
 import { FilterService } from '../services/filterserice';
+import { State } from '../models/state.model';
 @Component({
   selector: 'app-propertyfulldisplay',
   templateUrl: './propertyfulldisplay.component.html',
@@ -18,63 +19,39 @@ export class PropertyfulldisplayComponent implements OnInit {
   landlordid!: number;
   loading: boolean = false;
   propertyDetail: OwnerRentDetail[] = [];
-  location = assetUrl("icons/location.svg");
-  areaimg = assetUrl("icons/Area.svg");
-  phoneicon = assetUrl("icons/phoneicon.png");
-  copyIcon = assetUrl("icons/copyicon.png");
-  bedroomimg = assetUrl("icons/Bedroom.svg");
-  washroomimg = assetUrl("icons/Washroom.svg");
-  kitchen = assetUrl("icons/kitchen.png");
-  hall = assetUrl("icons/hall.png");
-  favoriteicon = assetUrl("icons/favoriteicon.png");
-  bydefault = assetUrl('img/bydefault.png');
-  defaultperfile: string = 'https://p.kindpng.com/picc/s/24-248729_stockvader-predicted-adig-user-profile-image-png-transparent.png';
   parentStyle = { 'background-color': 'black' };
   color = { 'color': 'black!important' };
   logocolor = false;
   propertyFeature: PropertyFeature[] = []
-  myModel = true;
   statuss!: number;
   imageUser!: ProfileImage;
-  public page!: number;
-  public perpagenumber!: number;
-  contact!: any;
+  page!: number;
+  perpagenumber!: number;
   listpurID!: any;
   PropertySubTypeID!: any;
-  caption!: string;
   propertyMasterTypeID!: number;
   btnColor = { 'background-color': '#9e2a2b' }
   closeResult = '';
   maxheight = { 'maxheight': '80vh !important' }
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
-  public imgindex: number = 0;
+  imgindex: number = 0;
   unitCategory!: any
   unitcategorydesc!: string;
   propertysubdesc!: string;
-  wholeBuildingdes!: string;
   listingPurposeID!: number;
   governorateid!: number;
   subTypeId!: number;
   unitsid!: number;
   minValue!: number;
   maxValue!: number
-  wholeBuildinglist!: any;
-  propertyMasterSubType!: number
-
+  propertyMasterSubType!: number;
+  sharedmodel =new State;
   constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private filterservice: FilterService, private router: Router,) {
-    if (this.router.getCurrentNavigation()?.extras.state != undefined) {
-      this.listingPurposeID = this.router.getCurrentNavigation()?.extras.state!["purpose"];
-      this.governorateid = this.router.getCurrentNavigation()?.extras.state!["governorate"];
-      this.propertyMasterTypeID = this.router.getCurrentNavigation()?.extras.state!["propertyMasterType"];
-      this.subTypeId = this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubType"];
-      this.unitsid = this.router.getCurrentNavigation()?.extras.state!["unitCategory"]
-      this.minValue = this.router.getCurrentNavigation()?.extras.state!["minValue"];
-      this.maxValue = this.router.getCurrentNavigation()?.extras.state!["maxValue"]
-      this.propertyMasterSubType = this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubtype"]
-    }
+  this.getState()
   }
   async ngOnInit() {
     this.inIt();
+    this.statedatalist()
   }
   async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {
     this.loading = true;
@@ -97,7 +74,6 @@ export class PropertyfulldisplayComponent implements OnInit {
         if (data) {
           this.imageUser = data;
         }
-
       })
       .catch((error) => {
         this.loading = false;
@@ -111,7 +87,6 @@ export class PropertyfulldisplayComponent implements OnInit {
           this.propertyFeature = data.filter(x => x.propertyUnitCategoryID == this.unitcatID
           )
         }
-
       })
       .catch((error) => {
         this.loading = false;
@@ -131,6 +106,31 @@ export class PropertyfulldisplayComponent implements OnInit {
       this.getImageUser(this.landlordid);
 
     });
+  }
+  getState(){
+    debugger
+    if (this.router.getCurrentNavigation()?.extras.state != undefined) {
+      this.listingPurposeID = this.router.getCurrentNavigation()?.extras.state!["purpose"];
+      this.governorateid = this.router.getCurrentNavigation()?.extras.state!["governorate"];
+      this.propertyMasterTypeID = this.router.getCurrentNavigation()?.extras.state!["propertyMasterType"];
+      this.subTypeId = this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubType"];
+      this.unitsid = this.router.getCurrentNavigation()?.extras.state!["unitCategory"]
+      this.minValue = this.router.getCurrentNavigation()?.extras.state!["minValue"];
+      this.maxValue = this.router.getCurrentNavigation()?.extras.state!["maxValue"]
+      this.propertyMasterSubType = this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubtype"]
+    }
+  }
+  statedatalist() {
+    let data = this.sharedmodel
+    data.listingPurposesID = this.listingPurposeID;
+    data.gOVERNORATEID = this.governorateid;
+    data.propertyMasterTypeID =  this.propertyMasterTypeID;
+    data.propertyMasterSubTypeID = this.subTypeId;
+    data.propertyCategory = this.unitsid;
+    data.minPrice = this.minValue;
+    data.maxPrice = this.maxValue;
+    data.pageNumber = this.page;
+    data.rowsNumbers = this.perpagenumber;
   }
 }
 

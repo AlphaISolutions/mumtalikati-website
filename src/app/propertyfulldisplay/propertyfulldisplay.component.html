@@ -7,16 +7,17 @@
     <div class="container" *ngIf="propertyDetail">
         <app-breadcrumbpropertyfulldisplay [propertyDetail]="propertyDetail"
             [propertyMasterTypeID]="propertyMasterTypeID" [pmid]="pmid" [unitcatID]="unitcatID"
-            [listpurID]="propertyDetail[0].listingPurposeID"[propertyMasterType]="propertyMasterTypeID"
-            [propertyMasterTypeID]="propertyMasterTypeID"[listingPurposeID]="listingPurposeID" [governorateid]="governorateid"
-             [subTypeId]="subTypeId" [unitsid]="unitsid"
-            [minValue]="minValue" [maxValue]="maxValue" [propertyMasterSubType]="propertyMasterSubType"></app-breadcrumbpropertyfulldisplay>
+            [listpurID]="propertyDetail[0].listingPurposeID" [propertyMasterType]="propertyMasterTypeID"
+            [propertyMasterTypeID]="propertyMasterTypeID" [listingPurposeID]="listingPurposeID"
+            [governorateid]="governorateid" [subTypeId]="subTypeId" [unitsid]="unitsid" [minValue]="minValue"
+            [maxValue]="maxValue" [propertyMasterSubType]="propertyMasterSubType"></app-breadcrumbpropertyfulldisplay>
 
         <app-propertyfulldisplaylist [propertyDetail]="propertyDetail" [propertyFeature]="propertyFeature"
             [unitcatID]="unitcatID" [statuss]="statuss" [imgindex]="imgindex" [listpurID]="listpurID"
             [PropertySubTypeID]="PropertySubTypeID" [pmid]="pmid" [propertyUnitid]="propertyUnitid"
             [unitcategorydesc]="unitcategorydesc" [propertysubdesc]="propertysubdesc" [landlordid]="landlordid"
-            [imageUser]="imageUser" [propertyMasterSubType]="propertyMasterSubType" [unitsid]="unitsid"></app-propertyfulldisplaylist>
+            [imageUser]="imageUser" [propertyMasterSubType]="propertyMasterSubType"
+            [unitsid]="unitsid"></app-propertyfulldisplaylist>
 
     </div>
 
