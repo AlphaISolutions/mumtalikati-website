@@ -21,7 +21,7 @@
 
 
             <div class="mt-2">
-                <h6 *ngIf="listid ==1   ; else nolistpurposeid">
+                <h6 *ngIf="property.listingPurposeID ==1; else nolistpurposeid">
                     OMR <span class="font-price">{{property.rentPrice}}</span>/Monthly
                 </h6>
                 <ng-template #nolistpurposeid>

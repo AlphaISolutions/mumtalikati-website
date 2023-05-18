@@ -5,6 +5,7 @@ import { PropertyUnitCategory } from '../models/propertyUnitCategory.model';
 import { Governorate } from '../models/governorate.model';
 import { PropertyMasterType } from '../models/property-master-type.model';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
+import { State } from '../models/state.model';
 
 @Injectable({
     providedIn: 'root'
@@ -36,9 +37,9 @@ export class SetFiltersServive {
         let tempData = JSON.parse(localStorage.getItem('listingpupose')!);
         if (!tempData) {
             this.setupService.getlistingpurposeset().then((data) => {
-                tempData=data
+                tempData = data
                 this.setListingPurpose(data)
-              return tempData;
+                return tempData;
             })
         }
         return tempData;
@@ -55,9 +56,9 @@ export class SetFiltersServive {
         let tempDatas = JSON.parse(localStorage.getItem('propertymasterType')!);
         if (!tempDatas) {
             this.setupService.getPropertyMasterTypes().then((data) => {
-                tempDatas=data
+                tempDatas = data
                 this.setPropertyMasterType(data)
-              return tempDatas;
+                return tempDatas;
             })
         }
         return tempDatas;
@@ -71,9 +72,9 @@ export class SetFiltersServive {
         let tempData = JSON.parse(localStorage.getItem('propertysubType')!);
         if (!tempData) {
             this.setupService.getPropertySubTypes().then((data) => {
-                tempData=data
+                tempData = data
                 this.setPropertySubType(data)
-              return tempData;
+                return tempData;
             })
         }
         return tempData;
@@ -90,9 +91,9 @@ export class SetFiltersServive {
         let tempDatass = JSON.parse(localStorage.getItem('propertyUnitCategoryType')!);
         if (!tempDatass) {
             this.setupService.getPropertyUnitCategoryTypes().then((data) => {
-                tempDatass=data
+                tempDatass = data
                 this.setUnitCategory(data)
-              return tempDatass;
+                return tempDatass;
             })
         }
 
@@ -108,9 +109,9 @@ export class SetFiltersServive {
         let tempData = JSON.parse(localStorage.getItem('governorate')!);
         if (!tempData) {
             this.setupService.getGovernorate().then((data) => {
-              tempData=data
-              this.setGovernorate(data)
-              return tempData;
+                tempData = data
+                this.setGovernorate(data)
+                return tempData;
             })
         }
 
@@ -120,7 +121,17 @@ export class SetFiltersServive {
 
     }
     setGovernorate(data: any) {
-
         localStorage.setItem('governorate', JSON.stringify(data));
+    }
+    getsharedmodel(): State {
+        let model = JSON.parse(localStorage.getItem('state')!);
+        if (model) {
+            this.setsharedmodel(model)
+            return model;
+        }
+        return model;
+    }
+    setsharedmodel(data: any) {
+        localStorage.setItem('state', JSON.stringify(data));
     }
 }

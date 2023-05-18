@@ -5,34 +5,17 @@
 </div>
 <ng-template #showInfo>
     <div class="container mt-4 ">
-        <app-breadcrumb [indiviualsUni]="indiviualsUni" [propertyMasterTypeID]="propertyMasterTypeID"
-            [unitcategoryId]="unitcategoryId" [listingPurposeID]="listingPurposeID" [unitsid]="unitsid"
-            [propertyMasterID]="propertyMasterID" [governorateid]="governorateid" [subTypeId]="subTypeId"
-            [maxValue]="maxValue" [minValue]="minValue"></app-breadcrumb>
-
-        <div *ngIf="indiviualsUni[0]">
-            <div *ngIf="indiviualsUni[0].propertySubTypeId ==15 else notpropertyUnitName">
-                <!-- plot not show propertyUnitName -->
-            </div>
-        </div>
-
-        <ng-template #notpropertyUnitName>
-            <h4 *ngIf="indiviualsUni[0]">{{indiviualsUni[0].propertyUnitName}}</h4>
-        </ng-template>
-        <div id="overlap">
+        <app-breadcrumb [indiviualsUni]="indiviualsUni" [sharedmodel]="sharedmodel"
+            [propertyMasterTypeID]="propertyMasterTypeID"></app-breadcrumb>
+        <div>
             <div *ngIf="indiviualsUni" class="row gx-3">
 
                 <div class="col-md-6 col-sm-6 col-lg-4 col-xl-4" *ngFor="let property of indiviualsUni| paginate
          :{  itemsPerPage: itemsPerPage,
             currentPage: page,
             totalItems: IndiviualsUnitTotalCount}">
-                    <app-unitcategorylist [property]="property" [listingPurposeID]="listingPurposeID"
-                        [itemsPerPage]="itemsPerPage" [page]="page" [maxValue]="maxValue" [minValue]="minValue"
-                        [unitsid]="unitsid" [propertyMasterTypeID]="propertyMasterTypeID"
-                        [landLordID]="property.landlordID" [propertyMasterID]="propertyMasterID"
-                        [governorateid]="governorateid" [subTypeId]="subTypeId"></app-unitcategorylist>
-
-
+                    <app-unitcategorylist [property]="property" [sharedmodel]="sharedmodel"
+                        [landLordID]="property.landlordID"></app-unitcategorylist>
                 </div>
                 <div class="h-message" *ngIf="indiviualsUni.length == 0">
                     <div class="pt-5 d-flex  justify-content-center align-items-center">
@@ -57,7 +40,7 @@
             </nav>
         </div>
         <ng-template #divshows>
-            <div style="height:120px ;">
+            <div style="height:150px;">
 
             </div>
         </ng-template>

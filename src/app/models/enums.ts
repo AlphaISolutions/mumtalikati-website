@@ -62,28 +62,20 @@ export enum PropertyType {
     Parent = 1,
     Child = 2
 }
-export function listingPurposeTypeEnum(listingPurposeTypeId: number) {
-    switch (listingPurposeTypeId) {
-        case 1:
-            return 'Rent';
-        case 2:
-            return 'Buy';
-
-        default:
-            return "Unknown";
+export function listingPurposeTypeEnum(listingPurposeTypeId: number): string {
+    var purpose = {
+        1: "Rent",
+        2: "Sale"
     }
-
+    return purpose[listingPurposeTypeId] || "Unknown";
 }
 export function listingPurposeTypeEnumSting(listingPurposeTypeId: string) {
-    switch (listingPurposeTypeId) {
-        case 'Rent':
-            return 1;
-        case 'Buy':
-            return 2;
 
-        default:
-            return "Unknown";
+    var purpose = {
+        "Rent": 1,
+        "Buy": 2,
     }
+    return purpose[listingPurposeTypeId] || "Unknown";
 
 }
 export function propertyMasterTypeEnum(propertyMasterTypeID: number) {
@@ -140,36 +132,21 @@ export function getstatusType(stutuss: number) {
 
 }
 export function getPropertyUnitCategoryEnum(unitcatID: number) {
- 
-    switch (unitcatID) {
-        case 1:
-            return '1BHK';
-        case 2:
-            return '2BHK';
-        case 3:
-            return '3BHK';
-        case 4:
-            return '4BHK';
-        case 5:
-            return '5BHK';
-        case 6:
-            return 'Shop';
-        case 7:
-            return 'Office';
-        case 8:
-            return 'WareHouse';
-        case 9:
-            return 'Factory';
-        case 10:
-            return 'Hall';
-        case 11:
-            return 'BusinessCenter';
-        case 12:
-            return 'WholeBuilding';
-        default:
-            return '';
+    var unitCategory = {
+        1: '1BHK',
+        2: '2BHK',
+        3: '3BHK',
+        4: '4BHK',
+        5: '5BHK',
+        6: 'Shop',
+        7: 'Office',
+        8: 'WareHouse',
+        9: 'Factory',
+        10: 'Hall',
+        11: 'BusinessCenter',
+        12: 'WholeBuilding'
     }
-
+    return unitCategory[unitcatID] || "Unknown";
 }
 export function propertySubTypeEnum(subTypeId: any) {
     switch (subTypeId) {

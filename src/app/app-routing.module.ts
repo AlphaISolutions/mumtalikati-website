@@ -1,5 +1,4 @@
 import { HomeComponent } from './home/home.component';
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
@@ -8,15 +7,9 @@ import { PropertyfulldisplayComponent } from './propertyfulldisplay/propertyfull
 import { UnitscategoryComponent } from './unitscategory/unitscategory.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
-
-import { PlotdetailsComponent } from './plotdetails/plotdetails.component';
 import { FaqComponent } from './faq/faq.component';
-
-
 const routes: Routes = [
-
   { path: 'faq', component: FaqComponent },
-  { path: 'plotdetails', component: PlotdetailsComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contactus', component: ContactusComponent },
   { path: 'propertyfulldisplay', component: PropertyfulldisplayComponent },

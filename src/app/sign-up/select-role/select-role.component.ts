@@ -20,9 +20,6 @@ export class SelectRoleComponent implements OnInit {
     this.selectedRole = id;
    
       this.bsSignupService.onboardingStep$.next(2)
-    
-  
-
     // this.bsSignupService.userRole$.next(id);
     // if(this.selectedRole === 1){
     //   this.bsSignupService.userTypeId$.next(UserTypeEnum.Applicant);

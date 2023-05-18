@@ -1,4 +1,4 @@
-<div class="card mb-4   b-radius" *ngIf="property"  onclick="window.scrollTo(0,0)"
+<div class="card mb-4   b-radius" *ngIf="property" onclick="window.scrollTo(0,0)"
     (click)="onclick(property.propertyMasterID!,property.propertyUnitID!, property.unitCategoryID!, landLordID ,property.propertySubTypeId!)">
     <div class="row">
         <div class="col-md-5 fill">
@@ -6,38 +6,19 @@
                 alt="Card image">
         </div>
         <div class="col-md-7 text-cards">
-            <div class="">
-                <div *ngIf="property.propertySubTypeId ==15 else showunits">
-                    <p class="card-text">Type: {{property.propertyMasterSubTypeName}}
-                    </p>
-                    <p class="card-text">Plot Number:{{property.plotNumber}}</p>
-                    <p class="card-text">Unit ID:{{property.propertyUnitID}}</p>
-                    <div *ngIf="property.caption ==0 || property.caption == null  else showCaption">
-                        <!-- not show Caption -->
-                    </div>
-                    <ng-template #showCaption>
-                        <p class="card-text">Caption: {{property.caption}}</p>
-                    </ng-template>
-
-                    <p class="card-text"><img class="pe-2 imgcolor" [src]=" location">{{property.addressStr}}</p>
-                    <p class="card-text">Status: {{getstutus(property.statuss!)}}</p>
+            <div>
+                <p class="card-text">Type: {{property.propertyMasterSubTypeName}}
+                </p>
+                <p class="card-text">Building ID:{{property.buildingNumber}}</p>
+                <p class="card-text">Unit ID:{{property.propertyUnitID}}</p>
+                <div *ngIf="property.caption == 0 || property.caption == null else showcaption">
+                    <!-- not show caption -->
                 </div>
-                <ng-template #showunits>
-                    <p class="card-text">Type: {{property.propertyMasterSubTypeName}}
-                    </p>
-                    <p class="card-text">Building ID:{{property.buildingNumber}}</p>
-                    <p class="card-text">Unit ID:{{property.propertyUnitID}}</p>
-                    <div *ngIf="property.caption == 0 else showcaption">
-                        <!-- not show caption -->
-                    </div>
-                    <ng-template #showcaption>
-                        <p class="card-text">Caption: {{property.caption}}</p>
-                    </ng-template>
-
-                    <p class="card-text"><img class="pe-2 imgcolor" [src]=" location">{{property.addressStr}}</p>
-                    <p class="card-text">Status: {{getstutus(property.statuss!)}}</p>
+                <ng-template #showcaption>
+                    <p class="card-text">Caption: {{property.caption}}</p>
                 </ng-template>
-
+                <p class="card-text"><img class="pe-2 imgcolor" [src]=" location">{{property.addressStr}}</p>
+                <p class="card-text">Status: {{getstutus(property.statuss!)}}</p>
             </div>
         </div>
     </div>

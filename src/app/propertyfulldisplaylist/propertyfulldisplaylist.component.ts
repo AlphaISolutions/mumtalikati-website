@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit } from '@angular/core';
+import {  Component, Input, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { getPropertyUnitCategoryEnum, getstatusType, listingPurposeTypeEnum } from '../models/enums';
@@ -6,9 +6,8 @@ import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { PropertyFeature } from '../models/propertyfeature';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ProfileImage } from '../models/profileImage.model';
-import { file } from '@rxweb/reactive-form-validators';
 import Splide from '@splidejs/splide';
-import { OwnerPropertyWholeBuilding } from '../models/ownerPropertyWholeBuilding.model';
+import { State } from '../models/state.model';
 @Component({
   selector: 'app-propertyfulldisplaylist',
   templateUrl: './propertyfulldisplaylist.component.html',
@@ -31,8 +30,6 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   loading:boolean=true
   @Input() unitcatID!: number;
   @Input() statuss!: number;
-  @Input() imgindex: number = 0;
-  @Input() listpurID!: any;
   @Input() PropertySubTypeID: any;
   @Input() propertyUnitid!: number;
   @Input() pmid!: number
@@ -42,12 +39,9 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   @Input() propertysubdesc!: string;
   @Input() propertyMasterSubType!:number;
   @Input()  unitsid!:number
+  @Input() sharedmodel=new State
   closeResult = '';
-  numVisible = 4;
-  startIndex = 0;
-  greaterbutton: boolean = false;
-  lessthenbutton: boolean = false;
-  constructor(private modalService: NgbModal, private el: ElementRef, private cdr: ChangeDetectorRef, private clipboard: Clipboard) { }
+  constructor(private modalService: NgbModal, private clipboard: Clipboard) { }
   mainSlider!: Splide;
   thumbnailSlider!: Splide;
  async ngOnInit() {
@@ -59,6 +53,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
         pagination: true,
         arrows: false,
         cover: true,
+        autoplay: true,
       });
       this.mainSlider.mount();
       this.thumbnailSlider = new Splide('.thumbnail-slider',   {
@@ -81,16 +76,11 @@ export class PropertyfulldisplaylistComponent implements OnInit {
           },
         },
       });
-
       this.thumbnailSlider.mount();
-
       this.mainSlider.sync(this.thumbnailSlider);
     }, 1000); 
   }
-  ngAfterViewInit() {
-
-  }
-
+ 
   getlist(listid: any) {
     return listingPurposeTypeEnum(listid)
   }
@@ -100,43 +90,8 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   getstatus(statuss: number) {
     return getstatusType(statuss)
   }
-  imagechange(i: any) {
-    this.imgindex = i;
-  }
-  lessthen(imglist: any, index: any) {
-    // this.startIndex = (this.startIndex + 1) % imglist.length;
-    var lengthList = imglist.length
-    lengthList = lengthList - 1
-    if (index == -1) {
-
-      index = 0;
-      // this.lessthenbutton = true;
-    }
-    if (index < lengthList) {
-
-      this.imgindex = index
-      // this.lessthenbutton = false
-
-    }
-
-    else if (index = lengthList) {
-      this.imgindex = index;
-      // this.greaterbutton = true
-    }
-
-  }
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    if (window.innerWidth < 768) {
-      this.numVisible = 3;
-    } else if (window.innerWidth < 992) {
-      this.numVisible = 4;
-    } else {
-      this.numVisible = 10;
-    }
-  }
-  onClickNext() {
-    // this.startIndex = (this.startIndex + 1) % this.images.length;
+  toggleReadMore(property: any) {
+    property.isExpanded = !property.isExpanded;
   }
   oncallclick(call: any, phone: number) {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -153,8 +108,6 @@ export class PropertyfulldisplaylistComponent implements OnInit {
         },
       );
     }
-
-
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

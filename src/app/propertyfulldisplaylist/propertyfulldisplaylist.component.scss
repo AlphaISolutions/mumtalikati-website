@@ -268,3 +268,16 @@ icon {
 .thumbnail.is-active {
     opacity: 1;
   }
+  p.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-height: 40px; /* Adjust the height as per your design */
+  }
+  
+  div.expanded p.truncate {
+    max-height: none;
+  }
+  .readmore{
+    cursor: pointer;
+  }

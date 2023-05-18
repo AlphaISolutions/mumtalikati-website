@@ -6,6 +6,8 @@ import { SetupService } from '../services/setup.service';
 import { Governorate } from '../models/governorate.model';
 import { AnyFunction } from '@splidejs/splide';
 import { FilterService } from '../services/filterserice';
+import { State } from '../models/state.model';
+import { SetFiltersServive } from '../services/setfilters.servive';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -15,42 +17,44 @@ import { FilterService } from '../services/filterserice';
 export class BreadcrumbComponent implements OnInit {
   @Input() indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = [];
   @Input() propertyMasterTypeID!: number;
-  @Input() unitcategoryId!: number;
-  @Input() listingPurposeID!: any;
-  @Input() propertyMasterID!: number;
-  @Input() governorateid!: number;
-  @Input() subTypeId!: number;
-  @Input() maxValue!: number;
-  @Input() minValue!: number;
-  @Input() unitsid!: number;
+  @Input() sharedmodel = new State
   subid: any;
   governorateName!: any
-  constructor(private router: Router, private filterservice: FilterService) { }
+  constructor(private router: Router, private filterservice: FilterService, private localstorage: SetFiltersServive) { }
   ngOnInit(): void {
   }
   getenum(propertyMasterTypeID: number) {
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
-  backtosearch() {
-    this.subid = this.filterservice.getPropertytMasterSubTypeid(this.subTypeId);
-    this.router.navigate(['propertydetails'], {
-      queryParams: {
-        'purpose': this.filterservice.getPurposeid(this.listingPurposeID),
-        'governorate': this.filterservice.getGovernorateid(this.governorateid),
-        'propertyMasterType': this.filterservice.getPropertytMasterTypeid(this.propertyMasterTypeID),
-        'propertyMasterSubType': this.subid,
-        'unitCategory': this.filterservice.getPropertytUnitCategoryid(this.unitsid),
-        'minValue': this.minValue,
-        'maxValue': this.maxValue
-      },
+  backtosearch(){
+    if (this.sharedmodel == undefined) {
+      this.sharedmodel = this.localstorage.getsharedmodel()!
+      this.subid = this.filterservice.getPropertytMasterSubTypeid(this.sharedmodel.propertyMasterSubTypeID!);
+      this.router.navigate(['propertydetails'], {
+        queryParams: {
+          'purpose': this.filterservice.getPurposeid(this.sharedmodel.listingPurposesID!),
+          'governorate': this.filterservice.getGovernorateid(this.sharedmodel.gOVERNORATEID!),
+          'propertyMasterType': this.filterservice.getPropertytMasterTypeid(this.sharedmodel.propertyMasterTypeID!),
+          'propertyMasterSubType': this.subid,
+          'unitCategory': this.filterservice.getPropertytUnitCategoryid(this.sharedmodel.propertyCategory!),
+          'minValue': this.sharedmodel.minPrice,
+          'maxValue': this.sharedmodel.maxPrice
+        }
+      });
+    } else {
+      this.subid = this.filterservice.getPropertytMasterSubTypeid(this.sharedmodel.propertyMasterSubTypeID!);
+      this.router.navigate(['propertydetails'], {
+        queryParams: {
+          'purpose': this.filterservice.getPurposeid(this.sharedmodel.listingPurposesID!),
+          'governorate': this.filterservice.getGovernorateid(this.sharedmodel.gOVERNORATEID!),
+          'propertyMasterType': this.filterservice.getPropertytMasterTypeid(this.sharedmodel.propertyMasterTypeID!),
+          'propertyMasterSubType': this.subid,
+          'unitCategory': this.filterservice.getPropertytUnitCategoryid(this.sharedmodel.propertyCategory!),
+          'minValue': this.sharedmodel.minPrice,
+          'maxValue': this.sharedmodel.maxPrice
+        }
+      });
+    }
 
-      state: {
-        'purpose': this.listingPurposeID,
-        'governorate': this.governorateid,
-        'propertyMasterType': this.propertyMasterTypeID,
-        'propertyMasterSubType': this.subTypeId, 'minValue': this.minValue,
-        'maxValue': this.maxValue, 'unitCategory': this.unitsid
-      }
-    });
   }
 }
