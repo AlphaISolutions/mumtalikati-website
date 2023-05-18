@@ -5,7 +5,7 @@ import { Governorate } from '../models/governorate.model';
 import { ListingPurpose } from '../models/listing-purpose.model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
-
+import { Meta, MetaDefinition } from '@angular/platform-browser';
 import { SetFiltersServive } from '../services/setfilters.servive';
 import { SetupService } from '../services/setup.service';
 

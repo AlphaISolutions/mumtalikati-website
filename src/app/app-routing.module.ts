@@ -15,7 +15,10 @@ const routes: Routes = [
   { path: 'propertyfulldisplay', component: PropertyfulldisplayComponent },
   { path: 'Unitscategory', component: UnitscategoryComponent },
   { path: 'propertydetails', component: PropertydetailsComponent },
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent,data:{
+    title: 'Title for Home Component',
+    descrption: 'Description of Home Component',robots: 'noindex, nofollow'}
+  },
   { path: '**', component: HomeComponent }
 
 ];
