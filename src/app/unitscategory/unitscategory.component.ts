@@ -129,8 +129,6 @@ export class UnitscategoryComponent implements OnInit {
     data.maxPrice = this.maxValue;
     data.pageNumber = this.page;
     data.rowsNumbers = this.perpagenumber;
-  
-
   }
   getlistPurpose(params: any) {
     this.propertyMasterID = +params['propertyMasterID'];
