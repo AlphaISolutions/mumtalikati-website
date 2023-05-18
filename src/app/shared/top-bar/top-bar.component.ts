@@ -14,7 +14,7 @@ export class TopBarComponent implements OnInit {
   logo: any
   shownnow: boolean = true;
   collapsed = true;
-  addPropperty: boolean = true;
+  addPropperty: boolean = false;
   public isMenuCollapsed = true;
   navbarOpen = false;
   @Input() childStyle: any;
