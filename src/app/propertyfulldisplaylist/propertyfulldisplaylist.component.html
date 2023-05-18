@@ -280,9 +280,21 @@
                         <h5>
                             Property Details
                         </h5>
-                        <p>
+                        <div *ngFor="let property of propertyDetail">
+                            <div [ngClass]="{'expanded': property.isExpanded}">
+                              <p [ngClass]="{'truncate': !property.isExpanded}">
+                                {{ property.propertyMasterDescription | slice:0:property.maxLength }}
+                                <span *ngIf="!property.isExpanded && property.propertyMasterDescription.length > property.maxLength">...</span>
+                              </p>
+                            </div>
+                            <a class="readmore" (click)="toggleReadMore(property)">
+                              {{ property.isExpanded ? 'Read Less' : 'Read More' }}
+                            </a>
+                          </div>
+                          
+                        <!-- <p>
                             {{property.propertyMasterDescription}}
-                        </p>
+                        </p> -->
                         <h5 *ngIf="!propertyFeature.length==0">
                             Features
                         </h5>

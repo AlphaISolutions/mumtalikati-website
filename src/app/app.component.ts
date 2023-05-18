@@ -36,7 +36,6 @@ export class AppComponent {
     this.getFilterdata()
   }
   async getlistingPurpose() {
-
     this.setservice.getlistingpurposeset()
       .then((data) => {
         if (data) {
@@ -59,7 +58,6 @@ export class AppComponent {
       });
   }
   async getPropertySubType() {
-
     this.setservice.getPropertySubTypes()
       .then((data) => {
         if (data) {

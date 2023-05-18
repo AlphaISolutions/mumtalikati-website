@@ -12,17 +12,9 @@ import { State } from '../models/state.model';
 })
 export class UnitcategorylistComponent implements OnInit {
   @Input() property: OwnerPropertyMasterIndiviualUnits[] = []
-  // @Input() listingPurposeID!: number;
   @Input() landLordID!: number;
-  // @Input() itemsPerPage!: number;
-  // @Input() page!: number;
-  // @Input() maxValue!: number;
-  // @Input() minValue!: number;
-  // @Input() unitsid!: number;
-  // @Input() propertyMasterTypeID!: number;
-  // @Input() governorateid!: number;
-  // @Input() subTypeId!: number;
   @Input() sharedmodel=new State
+  bydefault = assetUrl('img/bydefault.png');
   location = assetUrl("icons/location.svg");
   constructor(private router: Router, private filterservice: FilterService) { }
   ngOnInit(): void {
@@ -30,10 +22,10 @@ export class UnitcategorylistComponent implements OnInit {
   getstutus(stutuss: number) {
     return getstatusType(stutuss);
   }
+ 
   onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landLordID: number, propertySubTypeId: number) {
     let unitCategory = this.filterservice.getPropertytUnitCategoryid(unitCategoryID)
     let propertySubType = this.filterservice.getPropertytMasterSubTypeid(propertySubTypeId)
-    debugger
     this.router.navigate(['propertyfulldisplay'],
       {
         queryParams: { 'unitCategory': unitCategory, 'PropertySubType': propertySubType, 'landlord': landLordID, 'propertyMaster': propertyMasterID, 'propertyUnit': propertyUnitID },

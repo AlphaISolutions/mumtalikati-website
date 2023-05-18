@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { assetUrl } from 'src/single-spa/asset-url';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { PropertyFeature } from '../models/propertyfeature';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { ProfileImage } from '../models/profileImage.model';
 import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
+import {SetFiltersServive} from '../services/setfilters.servive';
 @Component({
   selector: 'app-propertyfulldisplay',
   templateUrl: './propertyfulldisplay.component.html',
@@ -45,9 +45,9 @@ export class PropertyfulldisplayComponent implements OnInit {
   minValue!: number;
   maxValue!: number
   propertyMasterSubType!: number;
-  sharedmodel =new State;
-  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private filterservice: FilterService, private router: Router,) {
-  this.getState()
+  sharedmodel = new State;
+  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private filterservice: FilterService, private router: Router, private SetFiltersServive: SetFiltersServive) {
+    this.getState()
   }
   async ngOnInit() {
     this.inIt();
@@ -101,14 +101,12 @@ export class PropertyfulldisplayComponent implements OnInit {
       this.unitcatID = this.unitCategory;
       this.PropertySubTypeID = this.filterservice.getPropertytMasterSubTypedesc(this.propertysubdesc = params["PropertySubType"])
       this.landlordid = +params['landlord'];
-      this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
-      this.getPropertyFeatures(this.pmid);
-      this.getImageUser(this.landlordid);
-
     });
+    this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
+    this.getPropertyFeatures(this.pmid);
+    this.getImageUser(this.landlordid);
   }
-  getState(){
-    debugger
+  getState() {
     if (this.router.getCurrentNavigation()?.extras.state != undefined) {
       this.listingPurposeID = this.router.getCurrentNavigation()?.extras.state!["purpose"];
       this.governorateid = this.router.getCurrentNavigation()?.extras.state!["governorate"];
@@ -121,16 +119,18 @@ export class PropertyfulldisplayComponent implements OnInit {
     }
   }
   statedatalist() {
+
     let data = this.sharedmodel
     data.listingPurposesID = this.listingPurposeID;
     data.gOVERNORATEID = this.governorateid;
-    data.propertyMasterTypeID =  this.propertyMasterTypeID;
+    data.propertyMasterTypeID = this.propertyMasterTypeID;
     data.propertyMasterSubTypeID = this.subTypeId;
     data.propertyCategory = this.unitsid;
     data.minPrice = this.minValue;
     data.maxPrice = this.maxValue;
     data.pageNumber = this.page;
     data.rowsNumbers = this.perpagenumber;
+    this.SetFiltersServive.setsharedmodel(data);
   }
 }
 

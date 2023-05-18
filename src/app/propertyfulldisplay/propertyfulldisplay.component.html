@@ -5,18 +5,16 @@
 </div>
 <ng-template #showList>
     <div class="container" *ngIf="propertyDetail">
-        <app-breadcrumbpropertyfulldisplay [propertyDetail]="propertyDetail"
+        <app-breadcrumbpropertyfulldisplay [propertyDetail]="propertyDetail" [sharedmodel]="sharedmodel"
             [propertyMasterTypeID]="propertyMasterTypeID" [pmid]="pmid" [unitcatID]="unitcatID"
-            [listpurID]="propertyDetail[0].listingPurposeID" [propertyMasterType]="propertyMasterTypeID"
-            [propertyMasterTypeID]="propertyMasterTypeID" [listingPurposeID]="listingPurposeID"
-            [governorateid]="governorateid" [subTypeId]="subTypeId" [unitsid]="unitsid" [minValue]="minValue"
-            [maxValue]="maxValue" [propertyMasterSubType]="propertyMasterSubType"></app-breadcrumbpropertyfulldisplay>
+            [listpurID]="propertyDetail[0].listingPurposeID" [propertyMasterTypeID]="propertyMasterTypeID"
+            [propertyMasterSubType]="propertyMasterSubType"></app-breadcrumbpropertyfulldisplay>
 
         <app-propertyfulldisplaylist [propertyDetail]="propertyDetail" [propertyFeature]="propertyFeature"
-            [unitcatID]="unitcatID" [statuss]="statuss" [imgindex]="imgindex" [listpurID]="listpurID"
+            [unitcatID]="unitcatID" [statuss]="statuss"  [imageUser]="imageUser"
             [PropertySubTypeID]="PropertySubTypeID" [pmid]="pmid" [propertyUnitid]="propertyUnitid"
             [unitcategorydesc]="unitcategorydesc" [propertysubdesc]="propertysubdesc" [landlordid]="landlordid"
-            [imageUser]="imageUser" [propertyMasterSubType]="propertyMasterSubType"
+             [propertyMasterSubType]="propertyMasterSubType"
             [unitsid]="unitsid"></app-propertyfulldisplaylist>
 
     </div>

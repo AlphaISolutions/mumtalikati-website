@@ -30,8 +30,6 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   loading:boolean=true
   @Input() unitcatID!: number;
   @Input() statuss!: number;
-  @Input() imgindex: number = 0;
-  @Input() listpurID!: any;
   @Input() PropertySubTypeID: any;
   @Input() propertyUnitid!: number;
   @Input() pmid!: number
@@ -55,6 +53,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
         pagination: true,
         arrows: false,
         cover: true,
+        autoplay: true,
       });
       this.mainSlider.mount();
       this.thumbnailSlider = new Splide('.thumbnail-slider',   {
@@ -91,7 +90,9 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   getstatus(statuss: number) {
     return getstatusType(statuss)
   }
-
+  toggleReadMore(property: any) {
+    property.isExpanded = !property.isExpanded;
+  }
   oncallclick(call: any, phone: number) {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let phoneNumber = phone;

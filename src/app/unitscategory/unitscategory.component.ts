@@ -6,6 +6,7 @@ import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMaster
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
+import { SetFiltersServive } from '../services/setfilters.servive';
 @Component({
   selector: 'app-unitscategory',
   templateUrl: './unitscategory.component.html',
@@ -31,7 +32,6 @@ export class UnitscategoryComponent implements OnInit {
   indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
   IndiviualsUnitTotalCount: any;
   location = assetUrl("icons/location.svg");
-  bydefault = assetUrl('img/bydefault.png');
   notfound = assetUrl('img/notfoundproperty.svg');
   parentStyle = { 'background-color': 'black' };
   step: any;
@@ -46,11 +46,10 @@ export class UnitscategoryComponent implements OnInit {
   unitcategorystring!: string
   btnColor = { 'background-color': '#9e2a2b' };
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
-  sharedmodel =new State;
+  sharedmodel = new State;
+  statedata:any
   constructor(private mumtalikatiservic: MumtalikatiService, private router: Router,
-    private route: ActivatedRoute, private filterservice: FilterService) {
-    this.getState()
-  }
+    private route: ActivatedRoute, private filterservice: FilterService) { this.getState(); }
   async ngOnInit() {
     this.InItQueryparams();
     this.statedatalist()
@@ -98,26 +97,11 @@ export class UnitscategoryComponent implements OnInit {
   }
   InItQueryparams() {
     this.route.queryParams.subscribe(params => {
-      this.propertyMasterID = +params['propertyMasterID'];
-      this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
-      if (this.listpurID) {
-        this.listingPurposeID = this.listpurID
-        this.liststring = params['purpose']
-      } else {
-        const purposestring = this.filterservice.getPurposeid(1);
-        this.liststring != purposestring;
-      }
-      this.unitcategoryId = this.filterservice.getPropertytUnitCategorydesc(params['unitCategory'])
-      if (this.unitcategoryId) {
-        this.unitCategoryID = this.unitcategoryId;
-        this.unitcategorystring = params['unitCategory']
-      }
-      else {
-        this.unitcategorystring = 'All'
-      }
-      this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
-      this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
+      this.getlistPurpose(params)
+      this.getUnitCategory(params)
     });
+    this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
+    this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
   }
   getState() {
     if (this.router.getCurrentNavigation()?.extras.state != undefined) {
@@ -129,17 +113,44 @@ export class UnitscategoryComponent implements OnInit {
       this.minValue = this.router.getCurrentNavigation()?.extras.state!["minValue"];
       this.maxValue = this.router.getCurrentNavigation()?.extras.state!["maxValue"]
     }
+    else{
+      this.sharedmodel = undefined
+    }
+
   }
   statedatalist() {
     let data = this.sharedmodel
     data.listingPurposesID = this.listingPurposeID;
     data.gOVERNORATEID = this.governorateid;
-    data.propertyMasterTypeID =  this.propertyMasterTypeID;
+    data.propertyMasterTypeID = this.propertyMasterTypeID;
     data.propertyMasterSubTypeID = this.subTypeId;
     data.propertyCategory = this.unitsid;
     data.minPrice = this.minValue;
     data.maxPrice = this.maxValue;
     data.pageNumber = this.page;
     data.rowsNumbers = this.perpagenumber;
+  
+
+  }
+  getlistPurpose(params: any) {
+    this.propertyMasterID = +params['propertyMasterID'];
+    this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
+    if (this.listpurID) {
+      this.listingPurposeID = this.listpurID
+      this.liststring = params['purpose']
+    } else {
+      const purposestring = this.filterservice.getPurposeid(1);
+      this.liststring != purposestring;
+    }
+  }
+  getUnitCategory(params: any) {
+    this.unitcategoryId = this.filterservice.getPropertytUnitCategorydesc(params['unitCategory'])
+    if (this.unitcategoryId) {
+      this.unitCategoryID = this.unitcategoryId;
+      this.unitcategorystring = params['unitCategory']
+    }
+    else {
+      this.unitcategorystring = 'All'
+    }
   }
 }

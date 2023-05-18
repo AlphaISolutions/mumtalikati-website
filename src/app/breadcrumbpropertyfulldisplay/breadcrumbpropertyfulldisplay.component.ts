@@ -16,17 +16,8 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
   @Input() unitcatID!: number;
   @Input() listpurID!: number;
   @Input() pmid!: number;
-  @Input() page!: number;
-  @Input() perpagenumber!: number
-  @Input() maxValue!: number;
-  @Input() minValue!: number;
-  @Input() unitsid!: number;
-  @Input() listingPurposeID!: number;
-  @Input() propertyMasterType!: number;
-  @Input() governorateid!: number;
-  @Input() subTypeId!: number;
   @Input() propertyMasterSubType!: number;
-  @Input() sharedmodel=new State
+  @Input() sharedmodel = new State
   subid: any;
   constructor(private router: Router, private filterservice: FilterService) { }
 
@@ -59,16 +50,8 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
           'unitCategory': this.filterservice.getPropertytUnitCategoryid(this.sharedmodel.propertyCategory!),
           'minValue': this.sharedmodel.minPrice,
           'maxValue': this.sharedmodel.maxPrice
-        },
-        state: {
-          'purpose': this.sharedmodel.listingPurposesID,
-          'governorate': this.sharedmodel.gOVERNORATEID,
-          'propertyMasterType': this.sharedmodel.propertyMasterTypeID,
-          'propertyMasterSubType': this.sharedmodel.propertyMasterSubTypeID, 
-          'minValue':  this.sharedmodel.minPrice,
-          'maxValue': this.sharedmodel.maxPrice, 
-          'unitCategory': this.sharedmodel.propertyCategory
         }
+       
       });
     } else {
       this.router.navigate(['Unitscategory'], {
@@ -81,10 +64,11 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
           'purpose': this.sharedmodel.listingPurposesID,
           'governorate': this.sharedmodel.gOVERNORATEID,
           'propertyMasterType': this.sharedmodel.propertyMasterTypeID,
-          'propertyMasterSubType': this.sharedmodel.propertyMasterSubTypeID, 
-          'minValue':  this.sharedmodel.minPrice,
-          'maxValue': this.sharedmodel.maxPrice, 
-          'unitCategory': this.sharedmodel.propertyCategory
+          'propertyMasterSubType': this.sharedmodel.propertyMasterSubTypeID,
+          'unitCategory': this.sharedmodel.propertyCategory,
+          'minValue': this.sharedmodel.minPrice,
+          'maxValue': this.sharedmodel.maxPrice
+          
         }
       });
     }

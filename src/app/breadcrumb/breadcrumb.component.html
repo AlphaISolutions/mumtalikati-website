@@ -1,29 +1,17 @@
 <div class="row p-0">
     <div class="col-lg-4 float-start">
         <ul class="breadcrumb">
-            <li><a href="" (click)="backtosearch()"><i class="fa fa-angle-left pe-2" aria-hidden="true"></i>Back To Search
-                    </a></li>
+            <li><a href="" (click)="backtosearch()"><i class="fa fa-angle-left pe-2" aria-hidden="true"></i>Back To
+                    Search</a></li>
         </ul>
-
     </div>
     <div class="col-lg-8 col-sm-12" *ngIf="indiviualsUni[0]">
-        <div *ngIf="indiviualsUni[0].propertySubTypeId ==15 else propertysubtype">
-            <ul class="breadcrumb">
-                <li><a routerLink="">Mumtalikati</a></li>
-                <li><a href="#" routerLink="../propertydetails">{{getenum(propertyMasterTypeID)}}</a></li>
-                <li *ngIf="indiviualsUni[0]"><a>{{indiviualsUni[0].propertyMasterSubTypeName}}</a>
-                </li>
-            </ul>
-        </div>
-        <ng-template #propertysubtype>
-            <ul class="breadcrumb">
-                <li><a routerLink="">Mumtalikati</a></li>
-                <li><a href="#" routerLink="../propertydetails">{{getenum(propertyMasterTypeID)}}</a></li>
-                <li *ngIf="indiviualsUni[0]"><a>{{indiviualsUni[0].propertyMasterSubTypeName}}</a>
-                </li>
-                <li *ngIf="indiviualsUni[0]">{{indiviualsUni[0].propertyUnitName}}</li>
-            </ul>
-        </ng-template>
-
+        <ul class="breadcrumb">
+            <li><a routerLink="">Mumtalikati</a></li>
+            <li><a href="#" routerLink="../propertydetails">{{getenum(propertyMasterTypeID)}}</a></li>
+            <li><a>{{indiviualsUni[0].propertyMasterSubTypeName}}</a>
+            </li>
+            <li>{{indiviualsUni[0].propertyUnitName}}</li>
+        </ul>
     </div>
 </div>
