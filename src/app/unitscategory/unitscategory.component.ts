@@ -49,7 +49,7 @@ export class UnitscategoryComponent implements OnInit {
   sharedmodel = new State;
   statedata:any
   constructor(private mumtalikatiservic: MumtalikatiService, private router: Router,
-    private route: ActivatedRoute, private filterservice: FilterService) { this.getState(); }
+    private route: ActivatedRoute, private filterservice: FilterService,private localstorage: SetFiltersServive) { this.getState(); }
   async ngOnInit() {
     this.InItQueryparams();
     this.statedatalist()
@@ -119,16 +119,21 @@ export class UnitscategoryComponent implements OnInit {
 
   }
   statedatalist() {
-    let data = this.sharedmodel
-    data.listingPurposesID = this.listingPurposeID;
-    data.gOVERNORATEID = this.governorateid;
-    data.propertyMasterTypeID = this.propertyMasterTypeID;
-    data.propertyMasterSubTypeID = this.subTypeId;
-    data.propertyCategory = this.unitsid;
-    data.minPrice = this.minValue;
-    data.maxPrice = this.maxValue;
-    data.pageNumber = this.page;
-    data.rowsNumbers = this.perpagenumber;
+    if(this.sharedmodel == undefined){
+      this.sharedmodel=this.localstorage.getsharedmodel()!
+    }else{
+      let data = this.sharedmodel
+      data.listingPurposesID = this.listingPurposeID;
+      data.gOVERNORATEID = this.governorateid;
+      data.propertyMasterTypeID = this.propertyMasterTypeID;
+      data.propertyMasterSubTypeID = this.subTypeId;
+      data.propertyCategory = this.unitsid;
+      data.minPrice = this.minValue;
+      data.maxPrice = this.maxValue;
+      data.pageNumber = this.page;
+      data.rowsNumbers = this.perpagenumber;
+    }
+
   }
   getlistPurpose(params: any) {
     this.propertyMasterID = +params['propertyMasterID'];
