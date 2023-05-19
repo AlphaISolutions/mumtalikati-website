@@ -20,8 +20,8 @@
                                 <td class="propertyb">{{property.propertyUnitDescription}}</td>
 
                             </tr>
-                    
-                      
+
+
                             <tr>
                                 <th class="header">Building ID</th>
                                 <td class="propertyb">{{property.buildingNumber}}</td>
@@ -37,18 +37,18 @@
                                 <td class="propertyb">{{property.plotNumber}}</td>
 
                             </tr>
-                          <ng-container *ngIf="property.residentialUnits ==null else residential">
+                            <ng-container *ngIf="property.residentialUnits ==null else residential">
 
-                          </ng-container>
-                          <ng-template #residential>
-                            <tr>
-                                <th class="header">Residential Units</th>
-                                <td class="propertyb">{{property.residentialUnits}}</td>
+                            </ng-container>
+                            <ng-template #residential>
+                                <tr>
+                                    <th class="header">Residential Units</th>
+                                    <td class="propertyb">{{property.residentialUnits}}</td>
 
-                            </tr>
-                          </ng-template>
-                           
-                            
+                                </tr>
+                            </ng-template>
+
+
                             <tr>
                                 <th class="header">Build in year</th>
                                 <td class="propertyb">{{property.builtYear}}</td>
@@ -68,19 +68,19 @@
                                 <tr>
                                     <th class="header">Type</th>
                                     <td class="propertyb">{{property.propertySubTypeName}}</td>
-    
+
                                 </tr>
-                        
-                          
+
+
                                 <tr>
                                     <th class="header">Plot Number</th>
                                     <td class="propertyb">{{property.plotNumber}}</td>
-    
+
                                 </tr>
-                               
-    
-                                
-    
+
+
+
+
                                 <ng-container *ngIf="PropertySubTypeID == 1 || PropertySubTypeID == 9; else noOfFloor">
                                     <tr *ngIf="property.unitCategoryID == 12 else nofloor">
                                         <th class="header">No of Floor(s)</th>
@@ -102,7 +102,7 @@
                                 <tr>
                                     <th class="header">Status</th>
                                     <td class="propertyb">{{getstatus(property.unitStatus)}}</td>
-    
+
                                 </tr>
                             </tbody>
                         </table>
@@ -113,27 +113,27 @@
                                 <tr>
                                     <th class="header">Type</th>
                                     <td class="propertyb">{{property.propertySubTypeName}}</td>
-        
+
                                 </tr>
                                 <tr>
                                     <th class="header">Building ID</th>
                                     <td class="propertyb">{{property.buildingNumber}}</td>
-        
+
                                 </tr>
                                 <tr>
                                     <th class="header">Building Name</th>
                                     <td class="propertyb">{{property.propertyMasterName}}</td>
-        
+
                                 </tr>
                                 <tr>
                                     <th class="header">Plot Number</th>
                                     <td class="propertyb">{{property.plotNumber}}</td>
-        
+
                                 </tr>
                                 <tr>
                                     <th class="header">Unit ID</th>
                                     <td class="propertyb">{{property.propertyUnitID}}</td>
-        
+
                                 </tr>
                                 <ng-container *ngIf="property.caption== null || '0'; else showCaption">
                                 </ng-container>
@@ -143,47 +143,37 @@
                                         <td class="propertyb">{{property.caption}}</td>
                                     </tr>
                                 </ng-template>
-        
+
                                 <tr>
                                     <th class="header">Unit Category</th>
                                     <td class="propertyb">{{getpropertyunitCategoryid(unitcatID)}}</td>
-        
+
                                 </tr>
                                 <tr>
                                     <th class="header">Built in year</th>
                                     <td class="propertyb">{{property.builtYear}}</td>
-        
+
                                 </tr>
-        
-                                <ng-container *ngIf="PropertySubTypeID == 1 || PropertySubTypeID == 9; else noOfFloor">
-                                    <tr *ngIf="property.unitCategoryID == 12 else nofloor">
-                                        <th class="header">No of Floor(s)</th>
-                                        <td class="propertyb">{{property.numberofFloors}}</td>
-                                    </tr>
-                                    <ng-template #nofloor>
-                                        <tr>
-                                            <th class="header">Floor #</th>
-                                            <td class="propertyb">{{property.floorNumber}}</td>
-                                        </tr>
-                                    </ng-template>
-                                </ng-container>
-                                <ng-template #noOfFloor *ngIf="property.numberofFloors == null ">
+                                <tr *ngIf="property.floorNumber==null  else floorno ">
+                                    
+                                </tr>
+                                <ng-template #floorno>
                                     <tr>
-                                        <th class="header">No of Floor(s)</th>
-                                        <td class="propertyb">{{property.numberofFloors}}</td>
+                                        <th class="header">Floor #</th>
+                                    <td class="propertyb">{{property.floorNumber}}</td>
                                     </tr>
                                 </ng-template>
                                 <tr>
                                     <th class="header">Status</th>
                                     <td class="propertyb">{{getstatus(property.unitStatus)}}</td>
-        
+
                                 </tr>
                             </tbody>
                         </table>
                     </ng-template>
                 </ng-template>
 
-                
+
             </div>
             <div id="main">
                 <p><img class="pe-2 addess h2color" [src]=" location">{{property.addressStr}}</p>
@@ -218,31 +208,30 @@
         </div>
         <div class="col-md-8 " *ngIf="property.imageString">
             <div class="card border-0 shadow-none">
-               
-               
-                    <div id="main-slider" class="splide main-slider">
-                        <div class="splide__track">
-                            <div class="splide__list">
-                                <div class="splide__slide" *ngFor="let image of property.imageString">
-                                    <img class="img-fluid" [src]="image" alt="image">
-                                </div>
+
+
+                <div id="main-slider" class="splide main-slider">
+                    <div class="splide__track">
+                        <div class="splide__list">
+                            <div class="splide__slide" *ngFor="let image of property.imageString">
+                                <img class="img-fluid" [src]="image" alt="image">
                             </div>
                         </div>
                     </div>
-                    <div id="thumbnail-slider" class="thumbnail-slider splide" *ngIf="property.imageString.length>1">
-                        <div class="splide__track">
-                            <div class="splide__list">
-                                <div class="splide__slide thumbnail" *ngFor="let image of property.imageString">
-                                    <img [src]="image" alt="Thumbnail">
-                                </div>
+                </div>
+                <div id="thumbnail-slider" class="thumbnail-slider splide" *ngIf="property.imageString.length>1">
+                    <div class="splide__track">
+                        <div class="splide__list">
+                            <div class="splide__slide thumbnail" *ngFor="let image of property.imageString">
+                                <img [src]="image" alt="Thumbnail">
                             </div>
                         </div>
                     </div>
-              
-               
+                </div>
+
+
                 <div class="card-body p-0 pt-4">
                     <mat-card-content>
-                        
                         <h5 *ngIf="property.listingPurposeID ==1 else nolistpurposeid">
                             OMR {{property.rentPrice}}/Monthly
                         </h5>
@@ -273,7 +262,7 @@
                                     <p class="icon pe-2"><img class="pe-2" [src]="hall">{{property.hall}} Hall
                                     </p>
                                 </ng-template>
-                               
+
                             </div>
                         </ng-template>
 
@@ -282,19 +271,15 @@
                         </h5>
                         <div *ngFor="let property of propertyDetail">
                             <div [ngClass]="{'expanded': property.isExpanded}">
-                              <p [ngClass]="{'truncate': !property.isExpanded}">
-                                {{ property.propertyMasterDescription | slice:0:property.maxLength }}
-                                <span *ngIf="!property.isExpanded && property.propertyMasterDescription.length > property.maxLength">...</span>
-                              </p>
+                                <p [ngClass]="{'truncate': !property.isExpanded}">
+                                    {{ property.propertyMasterDescription}}
+                                </p>
                             </div>
-                            <a class="readmore" (click)="toggleReadMore(property)">
-                              {{ property.isExpanded ? 'Read Less' : 'Read More' }}
+                            <a class="readmore" *ngIf="property.propertyMasterDescription.length > 100"
+                                (click)="toggleReadMore(property)">
+                                {{ property.isExpanded ? 'Read Less' : 'Read More' }}
                             </a>
-                          </div>
-                          
-                        <!-- <p>
-                            {{property.propertyMasterDescription}}
-                        </p> -->
+                        </div>
                         <h5 *ngIf="!propertyFeature.length==0">
                             Features
                         </h5>

@@ -57,7 +57,7 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
       this.router.navigate(['Unitscategory'], {
         queryParams: {
           'propertyMasterID': this.pmid,
-          'purpose': this.getlist(this.listpurID),
+          'purpose': this.filterservice.getPurposeid(this.listpurID),
           'unitCategory': this.getunit(this.unitcatID)
         },
         state: {

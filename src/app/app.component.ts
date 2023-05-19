@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { forkJoin, map } from 'rxjs';
-
+import { filter, forkJoin, map } from 'rxjs';
 import { Governorate } from './models/governorate.model';
 import { ListingPurpose } from './models/listing-purpose.model';
 import { PropertyMasterType } from './models/property-master-type.model';
 import { PropertyMasterSubType } from './models/propertyMasterSubType .model';
 import { PropertyUnitCategory } from './models/propertyUnitCategory.model';
-import { SetFiltersServive } from './services/setfilters.servive';
 import { SetupService } from './services/setup.service';
+import { Router,NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +25,7 @@ export class AppComponent {
   propertysubType: PropertyMasterSubType[] = []
   propertyUnitCategoryType: PropertyUnitCategory[] = [];
   governorate: Governorate[] = [];
-  constructor(private setservice: SetupService, private setupFilterServive: SetFiltersServive) { }
+  constructor(private setservice: SetupService, private router: Router, private metaService: Meta,private titleService: Title,private activatedRoute: ActivatedRoute) { }
   showfooter: boolean = false;
   async ngOnInit() {
     this.getlistingPurpose();
@@ -34,7 +34,20 @@ export class AppComponent {
     this.getPropertyUnitCategoryType();
     this.getgovernorates();
     this.getFilterdata()
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)
+    ).subscribe(()=>{
+    var rt=this.getChild(this.activatedRoute)
+    rt.data.subscribe(data=>{
+      this.titleService.setTitle(data.title)
+          if (data.descrption) {
+            this.metaService.updateTag({ name: 'description', content: data.descrption })
+          } else {
+            this.metaService.removeTag("name='description'")
+          }
+    })
+    })
   }
+
   async getlistingPurpose() {
     this.setservice.getlistingpurposeset()
       .then((data) => {
@@ -115,5 +128,13 @@ export class AppComponent {
       this.loading = false;
       console.error(error);
     });
+  }
+  getChild(activatedRoute: ActivatedRoute) {
+    if (activatedRoute.firstChild) {
+      return this.getChild(activatedRoute.firstChild);
+    } else {
+      return activatedRoute;
+    }
+ 
   }
 }
