@@ -11,7 +11,7 @@ import { State } from '../models/state.model';
   styleUrls: ['./breadcrumbpropertyfulldisplay.component.scss']
 })
 export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
-  @Input() propertyDetail: OwnerRentDetail[] = [];
+  @Input() propertyDetail: OwnerRentDetail;
   @Input() propertyMasterTypeID!: number;
   @Input() unitcatID!: number;
   @Input() listpurID!: number;

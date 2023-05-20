@@ -1,4 +1,4 @@
-import {  Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { getPropertyUnitCategoryEnum, getstatusType, listingPurposeTypeEnum } from '../models/enums';
@@ -14,7 +14,7 @@ import { State } from '../models/state.model';
   styleUrls: ['./propertyfulldisplaylist.component.scss']
 })
 export class PropertyfulldisplaylistComponent implements OnInit {
-  @Input() propertyDetail: OwnerRentDetail[] = [];
+  @Input() propertyDetail: OwnerRentDetail;
   @Input() propertyFeature: PropertyFeature[] = []
   location = assetUrl("icons/location.svg");
   areaimg = assetUrl("icons/Area.svg");
@@ -27,7 +27,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   favoriteicon = assetUrl("icons/favoriteicon.png");
   bydefault = assetUrl('img/bydefault.png');
   defaultperfile: string = 'https://p.kindpng.com/picc/s/24-248729_stockvader-predicted-adig-user-profile-image-png-transparent.png';
-  loading:boolean=true
+  loading: boolean = true
   @Input() unitcatID!: number;
   @Input() statuss!: number;
   @Input() PropertySubTypeID: any;
@@ -37,17 +37,19 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   @Input() imageUser!: ProfileImage;
   @Input() unitcategorydesc!: string;
   @Input() propertysubdesc!: string;
-  @Input() propertyMasterSubType!:number;
-  @Input()  unitsid!:number
-  @Input() sharedmodel=new State
+  @Input() propertyMasterSubType!: number;
+  @Input() unitsid!: number
+  @Input() sharedmodel = new State
   closeResult = '';
   constructor(private modalService: NgbModal, private clipboard: Clipboard) { }
-  mainSlider!: Splide;
-  thumbnailSlider!: Splide;
- async ngOnInit() {
-  this.loading=true
-    setTimeout(() => {
-      this.mainSlider = new Splide('.main-slider', {
+  mainSlider: Splide;
+  thumbnailSlider: Splide;
+  ngOnInit() {
+  
+  }
+  ngAfterViewInit(){
+    if (this.propertyDetail && this.propertyDetail.imageString.length > 0) {
+      this.mainSlider = new Splide('#main-slider', {
         type: 'loop',
         heightRatio: 0.5,
         pagination: true,
@@ -56,7 +58,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
         autoplay: true,
       });
       this.mainSlider.mount();
-      this.thumbnailSlider = new Splide('.thumbnail-slider',   {
+      this.thumbnailSlider = new Splide('#thumbnail-slider', {
         rewind: true,
         fixedWidth: 100,
         fixedHeight: 58,
@@ -78,9 +80,9 @@ export class PropertyfulldisplaylistComponent implements OnInit {
       });
       this.thumbnailSlider.mount();
       this.mainSlider.sync(this.thumbnailSlider);
-    }, 1000); 
+    } 
   }
- 
+
   getlist(listid: any) {
     return listingPurposeTypeEnum(listid)
   }
@@ -136,4 +138,6 @@ export class PropertyfulldisplaylistComponent implements OnInit {
       window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
     }
   }
+ 
+
 }

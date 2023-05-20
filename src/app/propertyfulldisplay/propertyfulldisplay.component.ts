@@ -18,7 +18,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   unitcatID!: number;
   landlordid!: number;
   loading: boolean = false;
-  propertyDetail: OwnerRentDetail[] = [];
+  propertyDetail: OwnerRentDetail;
   parentStyle = { 'background-color': 'black' };
   color = { 'color': 'black!important' };
   logocolor = false;
@@ -58,7 +58,8 @@ export class PropertyfulldisplayComponent implements OnInit {
     this.mumtalikatiservic.getPropertyUnitDetails(landLordID, UnitCategoryID, PropertyMasterID, propertyUnitid)
       .then((data) => {
         if (data) {
-          this.propertyDetail = data;
+          this.propertyDetail = data[0];
+        
         }
         this.loading = false;
       })

@@ -7,7 +7,7 @@
     <div class="container" *ngIf="propertyDetail">
         <app-breadcrumbpropertyfulldisplay [propertyDetail]="propertyDetail" [sharedmodel]="sharedmodel"
             [propertyMasterTypeID]="propertyMasterTypeID" [pmid]="pmid" [unitcatID]="unitcatID"
-            [listpurID]="propertyDetail[0].listingPurposeID" [propertyMasterTypeID]="propertyMasterTypeID"
+            [listpurID]="propertyDetail.listingPurposeID" [propertyMasterTypeID]="propertyMasterTypeID"
             [propertyMasterSubType]="propertyMasterSubType"></app-breadcrumbpropertyfulldisplay>
 
         <app-propertyfulldisplaylist [propertyDetail]="propertyDetail" [propertyFeature]="propertyFeature"

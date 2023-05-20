@@ -4,29 +4,29 @@
         <div class="col-md-4 float-start ">
             <ul class="breadcrumb">
                 <li class="backtosearch"><a href="" (click)="backtosearch()"
-                        (click)="addItem(propertyDetail[0].listingPurposeID!)"><i class="fa fa-angle-left pe-2"
+                        (click)="addItem(propertyDetail.listingPurposeID!)"><i class="fa fa-angle-left pe-2"
                             aria-hidden="true"></i>Back to Search</a></li>
             </ul>
         </div>
         <div class="col-md-8" *ngIf="propertyDetail">
             <ul class="breadcrumb " *ngIf="propertyMasterSubType ==15 else building">
                 <li><a routerLink="">Mumtalikati</a></li>
-                <li *ngIf="propertyDetail[0]">
+                <li *ngIf="propertyDetail">
                     <a href="#"
-                        routerLink="../propertydetails">{{getenum(propertyDetail[0].propertyMasterTypeID!)}}</a>
+                        routerLink="../propertydetails">{{getenum(propertyDetail.propertyMasterTypeID!)}}</a>
                 </li>
-                <li *ngIf="propertyDetail[0]"><a href="#">{{propertyDetail[0].propertySubTypeName}}</a></li>
+                <li *ngIf="propertyDetail"><a href="#">{{propertyDetail.propertySubTypeName}}</a></li>
                 
             </ul>
             <ng-template #building>
                 <ul class="breadcrumb ">
                     <li><a routerLink="">Mumtalikati</a></li>
-                    <li *ngIf="propertyDetail[0]">
+                    <li *ngIf="propertyDetail">
                         <a href="#"
-                            routerLink="../propertydetails">{{getenum(propertyDetail[0].propertyMasterTypeID!)}}</a>
+                            routerLink="../propertydetails">{{getenum(propertyDetail.propertyMasterTypeID!)}}</a>
                     </li>
-                    <li *ngIf="propertyDetail[0]"><a >{{propertyDetail[0].propertySubTypeName}}</a></li>
-                    <li *ngIf="propertyDetail[0]">{{propertyDetail[0].propertyUnitDescription}}</li>
+                    <li *ngIf="propertyDetail"><a >{{propertyDetail.propertySubTypeName}}</a></li>
+                    <li *ngIf="propertyDetail">{{propertyDetail.propertyUnitDescription}}</li>
                 </ul>
             </ng-template>
        
