@@ -62,16 +62,16 @@ export class MumtalikatiService {
         `@mumtalikati-api/OwnerPropertyDetail/GetPropertyMasterIndiviualsUnitTotalCount`, { params: queryParams }
       )).then(res => res as Number).catch(err => { return Promise.reject(err) });
   }
-  async getPropertyUnitDetails( landLordID: number, UnitCategoryID: number, PropertyMasterID: number,  propertyUnitid: number): Promise<OwnerRentDetail[]> {
+  async getPropertyUnitDetails( landLordID: number, UnitCategoryID: number, PropertyMasterID: number,  propertyUnitid: number): Promise<OwnerRentDetail> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("LandLordID", landLordID);
     queryParams = queryParams.append("UnitCategoryID", UnitCategoryID);
     queryParams = queryParams.append("PropertyMasterID", PropertyMasterID);
     queryParams = queryParams.append("PropertyUnitID", propertyUnitid);
     return await firstValueFrom(this.http
-      .get<OwnerRentDetail[]>(
+      .get<OwnerRentDetail>(
         `@mumtalikati-api/PropertyDetail/GetPropertyUnitDetails`, { params: queryParams }
-      )).then(res => res as OwnerRentDetail[]).catch(err => { return Promise.reject(err) });
+      )).then(res => res as OwnerRentDetail).catch(err => { return Promise.reject(err) });
   }
 
   async getUserImage( userID:number): Promise<ProfileImage> {

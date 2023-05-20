@@ -33,8 +33,6 @@ import { ToastrModule } from "ngx-toastr";
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
-import { MatCarouselModule } from 'ng-mat-carousel';
 import { MarkdownModule } from 'ngx-markdown';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { UnitcategorylistComponent } from './unitcategorylist/unitcategorylist.component';
@@ -54,7 +52,10 @@ import { SetYouPasswordComponent } from './sign-up/set-you-password/set-you-pass
 import { ForgotpasswordComponent } from './sign-up/lost-password/forgotpassword/forgotpassword.component';
 import { OtpVerificationComponent } from './sign-up/otp-verification/otp-verification.component';
 import { SetyouPasswordComponent } from './sign-up/setyou-password/setyou-password.component';
-import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyload-image';
+import {MatSliderModule} from '@angular/material/slider'; 
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {NgxSliderModule } from '@angular-slider/ngx-slider'
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +79,6 @@ import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyl
     SelectRoleComponent,
     PhoneNumberComponent,
     SignUpFormComponent,
-  
     SetYouPasswordComponent,
     ForgotpasswordComponent,
     OtpVerificationComponent,
@@ -86,7 +86,6 @@ import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyl
 
   ],
   imports: [
-    LazyLoadImageModule,
     BrowserModule,
     AppRoutingModule,
     MatInputModule,
@@ -111,16 +110,18 @@ import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyl
     }),
     MatListModule,
     MatGridListModule,
-    NgxSliderModule,
-    MatCarouselModule.forRoot(),
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
     MarkdownModule.forRoot(),
     MatDialogModule,
     CdkAccordionModule,
     NgxMatIntlTelInputComponent,
-    NgOtpInputModule
-
+    NgOtpInputModule,
+    NgxSliderModule
+   
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }, RxFormBuilder],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }, RxFormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
