@@ -64,6 +64,7 @@ export class UnitscategoryComponent implements OnInit {
     this.mumtalikatiservic.getPropertyMasterIndiviualsUnit(propertyMasterTypeID, listingPurposesID, UnitCategoryID, status, pageNumber, rowsNumbers)
       .then((data) => {
         if (data) {
+     
           this.indiviualsUni = data;
         }
         this.loading = false;

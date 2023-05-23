@@ -27,6 +27,7 @@ export class AppComponent {
   governorate: Governorate[] = [];
   constructor(private setservice: SetupService, private router: Router, private metaService: Meta,private titleService: Title,private activatedRoute: ActivatedRoute) { }
   showfooter: boolean = false;
+  currentRoute!:string
   async ngOnInit() {
     this.getlistingPurpose();
     this.getPropertyMasterType();
@@ -34,16 +35,21 @@ export class AppComponent {
     this.getPropertyUnitCategoryType();
     this.getgovernorates();
     this.getFilterdata()
+
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)
     ).subscribe(()=>{
     var rt=this.getChild(this.activatedRoute)
     rt.data.subscribe(data=>{
-      this.titleService.setTitle(data.title)
+      if(data.title == undefined){
+      }else{
+        this.titleService.setTitle(data.title)
           if (data.descrption) {
             this.metaService.updateTag({ name: 'description', content: data.descrption })
-          } else {
+          } else { 
             this.metaService.removeTag("name='description'")
           }
+      }
+      
     })
     })
   }
