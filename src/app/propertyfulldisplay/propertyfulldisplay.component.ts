@@ -6,7 +6,8 @@ import { MumtalikatiService } from '../services/mumtalikati.service';
 import { ProfileImage } from '../models/profileImage.model';
 import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
-import {SetFiltersServive} from '../services/setfilters.servive';
+import { SetFiltersServive } from '../services/setfilters.servive';
+import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-propertyfulldisplay',
   templateUrl: './propertyfulldisplay.component.html',
@@ -46,11 +47,13 @@ export class PropertyfulldisplayComponent implements OnInit {
   maxValue!: number
   propertyMasterSubType!: number;
   sharedmodel = new State;
-  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private filterservice: FilterService, private router: Router, private SetFiltersServive: SetFiltersServive) {
+  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private filterservice: FilterService, private router: Router, private SetFiltersServive: SetFiltersServive, private metaService: Meta,
+    private titleService: Title) {
     this.getState()
   }
   async ngOnInit() {
     this.inIt();
+    this. getMeteTag();
     this.statedatalist()
   }
   async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {
@@ -59,7 +62,6 @@ export class PropertyfulldisplayComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.propertyDetail = data[0];
-        
         }
         this.loading = false;
       })
@@ -120,7 +122,6 @@ export class PropertyfulldisplayComponent implements OnInit {
     }
   }
   statedatalist() {
-
     let data = this.sharedmodel
     data.listingPurposesID = this.listingPurposeID;
     data.gOVERNORATEID = this.governorateid;
@@ -132,6 +133,17 @@ export class PropertyfulldisplayComponent implements OnInit {
     data.pageNumber = this.page;
     data.rowsNumbers = this.perpagenumber;
     this.SetFiltersServive.setsharedmodel(data);
+  }
+  getMeteTag() {
+    if (this.listingPurposeID == 1) {
+      var title = "Find Your Ideal Rental Property in Oman with Mumtalikati "
+      this.titleService.setTitle(title);
+      this.metaService.addTag({id:"Rent", descrption: "Looking for a rental property in Oman? Mumtalikati has you covered. Explore our extensive listings and find your ideal home. Begin your search now." })
+    }else{
+      var title = "Buy Your Dream Property in Oman with Mumtalikati"
+      this.titleService.setTitle(title);
+      this.metaService.addTag({id:"Buy", descrption: "Looking for a house to buy? Mumtalikati offers a diverse range of properties for sale in Oman. Browse through our listings and find a property that suits best." })
+    }
   }
 }
 

@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'aboutus', component: AboutusComponent,
-    data: {
+    data: { 
       title: 'Seamlessly discover properties in Oman through Mumtalikati',
       descrption: 'Thinking to rent, buy or sell a property in Oman\'s real estate market? Try Mumtalikati which connects you to the perfect solution.'
     }
@@ -39,7 +39,10 @@ const routes: Routes = [
    
   },
   {
-    path: 'propertydetails', component: PropertydetailsComponent
+    path: 'propertydetails', component: PropertydetailsComponent, data:{
+      title: 'Property Listings',
+      descrption: '',
+    }
    
   },
   {

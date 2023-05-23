@@ -17,6 +17,7 @@ import { SetFiltersServive } from '../services/setfilters.servive';
 import { Options } from "@angular-slider/ngx-slider";
 import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
+import { Meta, Title } from '@angular/platform-browser';
 
 
 
@@ -77,7 +78,7 @@ export class PropertydetailsComponent implements OnInit {
   minValuestate!: number;
   maxValuestate!: number;
   listpurID: any
-  sharedmodel =new State;
+  sharedmodel = new State;
   options: Options = {
     floor: 0,
     ceil: 10000,
@@ -90,7 +91,9 @@ export class PropertydetailsComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal,
     private setupFilterServive: SetFiltersServive,
-    private filterservice: FilterService) { this.getstate() }
+    private filterservice: FilterService,
+    private metaService: Meta,
+    private titleService: Title) { this.getstate() }
   async ngOnInit() {
     this.inIt();
     this.queryParams();
@@ -253,6 +256,7 @@ export class PropertydetailsComponent implements OnInit {
       data.pageNumber = this.page;
       this.listdesc = this.filterservice.getPurposeid(this.listid)
       this.liststring = this.listdesc
+      this.getpurposeMetatag()
       this.queryParams()
       this.propertyFilter(data)
       this.postPropertyFilter_Count(data)
@@ -419,6 +423,7 @@ export class PropertydetailsComponent implements OnInit {
     let data = this.propertyFilterform.value as PropertyFilter;
     this.unitcategorydesc = this.filterservice.getPropertytUnitCategoryid(this.unitcategoryid!)
     this.unitcategorystring = this.unitcategorydesc
+    this.getUnitMT(this.unitcategoryid);
     this.queryParams()
     data.propertyCategory = this.unitcategoryid;
     this.propertyFilter(data)
@@ -444,6 +449,8 @@ export class PropertydetailsComponent implements OnInit {
     this.propertySubTypedesc = this.filterservice.getPropertytMasterSubTypeid(this.subTypeId!)
     this.propertyFilter(data);
     this.postPropertyFilter_Count(data);
+    this.getPropertyMasterMT(this.mastertypeid);
+    this.getPropertySubMetatag(this.subTypeId);
     this.queryParams();
     this.statedatalist()
     this.modalService.dismissAll()
@@ -486,6 +493,10 @@ export class PropertydetailsComponent implements OnInit {
       this.getunitcategoryId(params);
       this.getminPrice(params)
     })
+    this.getpurposeMetatag();
+    this.getPropertyMasterMT(this.mastertypeid);
+    this.getPropertySubMetatag(this.subTypeId);
+    this.getUnitMT(this.unitcategoryid);
     this.propertyFilterInIt();
     this.propertyFilterCountInIt();
     this.initiaalizefilters();
@@ -587,7 +598,6 @@ export class PropertydetailsComponent implements OnInit {
       this.governorateid = this.router.getCurrentNavigation()?.extras.state!["governorate"];
     }
     else {
-
       this.listid = 1
     }
   }
@@ -602,5 +612,160 @@ export class PropertydetailsComponent implements OnInit {
     data.maxPrice = this.maxValue;
     data.pageNumber = this.page;
     data.rowsNumbers = this.perpagenumber;
+  }
+  getpurposeMetatag() {
+    if (this.listid == 1) {
+      this.metaService.addTag({id:this.liststring, descrption: " Looking for a rental property in Oman? Mumtalikati has you covered. Explore our extensive listings and find your ideal home. Begin your search now." })
+    } else {
+      this.metaService.addTag({id:this.liststring,  descrption: "Looking for a house to buy? Mumtalikati offers a diverse range of properties for sale in Oman. Browse through our listings and find a property that suits best." })
+    }
+  }
+
+  getPropertySubMetatag(id: number): any {
+    switch (id) {
+      case 1: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "A comprehensive real estate listing portal showcases wide range of building properties in Oman's vibrant market" })
+        return
+      }
+      case 2: {
+        this.metaService.addTag({ id:this.propertySubTypedesc, descrption: "Discover a wide range of exquisite townhouse properties in Oman's premier real estate listing portal. Find your perfect home in Mumtalikati today!" })
+        return
+      }
+      case 3: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Are you in need of a lower portion property? Explore a wide range of lower-portion properties through our comprehensive real estate listing portal." })
+        return
+      }
+      case 4: {
+     
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Ready to elevate your living experience? Discover the allure of upper-portion properties in Oman's real estate market and find your dream home in Mumtalikati " })
+        return
+      }
+      case 5: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Unlock a collection of exquisite penthouse properties in Oman's premier real estate listing portal" })
+        return
+      }
+      case 6: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Seeking the Perfect Retreat? Mumtalikati offers you a diverse selection of stunning villa properties in Oman's " })
+        return
+      }
+      case 7: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Finding Your Serene Space? Explore Room Rentals in Mumtalikati, Oman Today!" })
+        return
+      }
+      case 8: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Looking for the Perfect Modern Flat? Explore Mumtalikati, Oman's Contemporary Living!" })
+        return
+      }
+      case 9: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Ready for a Fusion of Styles? Explore Mumtalikati Now to Discover MixHouse Properties " })
+        return
+      }
+      case 10: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Looking for Spacious Warehousing Solutions? Unlock a world of expansive storage options with our comprehensive listings" })
+        return
+      }
+      case 11: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Finding perfect space to establish or expand your business? Discover a world of retail opportunities with our extensive listing of shop properties in Mumtalikati" })
+        return
+      }
+      case 12: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Elevate your business operations with our premium selection of business center spaces in Mumtalikati. Find the perfect environment to thrive and succeed!" })
+        return
+      }
+      case 13: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Explore Factory Spaces and find the ideal setting to bring your industrial vision to life with Mumtalikati" })
+        return
+      }
+      case 14: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Find the perfect venue for your events and gatherings with our diverse range of hall listings in Mumtalikati" })
+        return
+      }
+      case 15: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Unlock endless possibilities with plots in Mumtalikati, Oman. Create your ideal property from the ground up!" })
+        return
+      }
+      case 16: {
+        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Discover exciting development projects in Mumtalikati and join the journey towards extraordinary accomplishments!" })
+        return
+      }
+      default: {
+        break;
+      }
+    }
+
+  }
+  getPropertyMasterMT(id: number): any {
+    switch (id) {
+      case 1: {
+        this.metaService.addTag({id: this.propertyMasterTypedesc, descrption: "Finding a place to call home? Discover such perfect residential properties with Mumtalikati offering the ideal blend of modern living and comfor" })
+        return
+      }
+      case 2: {
+        this.metaService.addTag({id: this.propertyMasterTypedesc,  descrption: "Explore exclusive opportunities to rent, buy, and sell commercial properties in Oman's thriving market. Find your ideal property in Mumtalikati today" })
+        return
+      }
+      case 3: {
+        this.metaService.addTag({id: this.propertyMasterTypedesc,  descrption: "Finding your dream investment? Unlock exclusive opportunities to transact residential commercial properties in Oman's real estate market." })
+        return
+      }
+      default: {
+        break;
+      }
+    }
+  }
+  getUnitMT(id: number): any {
+    switch (id) {
+      case 1: {
+        this.metaService.addTag({id:this.unitcategorystring, descrption: "Find your perfect living space with 1BHK properties in Mumtalikati. Experience Comfort and Style in your new home!" })
+        return
+      }
+      case 2: {
+        this.metaService.addTag({id:this.unitcategorystring, descrption: "Discover the perfect balance of space and comfort with 2BHK properties in Mumtalikati" })
+        return
+      }
+      case 3: {
+        this.metaService.addTag({id:this.unitcategorystring, descrption: "Want to experience the epitome of luxury? Find your ideal 3BHK home for an elevated living! with Mumtalikati" })
+        return
+      }
+      case 4: {
+        this.metaService.addTag({id:this.unitcategorystring, descrption: "Spacious and Elegant Homes with 4BHK properties in Mumtalikati. Enhance your Lifestyle to new Heights! " })
+        return
+      }
+      case 5: {
+        this.metaService.addTag({id:this.unitcategorystring, descrption: "Find your dream home and Indulge in luxurious living with 5BHK properties in Mumtalikati" })
+        return
+      }
+      case 6: {
+        this.metaService.addTag({id:this.unitcategorystring, descrption: "Finding perfect space to establish or expand your business? Discover a world of retail opportunities with our extensive listing of shop properties in Mumtalikati" })
+        return
+      }
+      case 7: {
+        this.metaService.addTag({id:this.unitcategorystring, descrption: "Find the Perfect Space in Oman withbMumtalikati. Boost Productivity and success in a professional environment!" })
+        return
+      }
+      case 8: {
+        this.metaService.addTag({id:this.unitcategorystring, descrption: "Looking for Spacious Warehousing Solutions? Unlock a world of expansive storage options with our comprehensive listings" })
+        return
+      }
+      case 9: {
+        this.metaService.addTag({ id:this.unitcategorystring,descrption: "Explore Factory Spaces and find the ideal setting to bring your industrial vision to life with Mumtalikati" })
+        return
+      }
+      case 10: {
+        this.metaService.addTag({id:this.unitcategorystring, descrption: "Find the perfect venue for your events and gatherings with our diverse range of hall listings in Mumtalikati" })
+        return
+      }
+      case 11: {
+        this.metaService.addTag({id:this.unitcategorystring, descrption: "Elevate your business operations with our premium selection of business center spaces in Mumtalikati. Find the perfect environment to thrive and succeed! " })
+        return
+      }
+      case 12: {
+        this.metaService.addTag({id:this.unitcategorystring, descrption: "Seamlessly accommodate your business needs and aspirations with Mumtalikati’s diverse listings of Whole Building Properties" })
+        return
+      }
+      default: {
+        break;
+      }
+    }
   }
 }

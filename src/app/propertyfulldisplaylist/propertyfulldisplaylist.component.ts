@@ -56,6 +56,8 @@ export class PropertyfulldisplaylistComponent implements OnInit {
         arrows: false,
         cover: true,
         autoplay: true,
+        width: '100%',
+       
       });
       this.mainSlider.mount();
       this.thumbnailSlider = new Splide('#thumbnail-slider', {
