@@ -15,7 +15,6 @@ import { AssetsService } from '../services/assetsServiceservice';
 export class ContactusComponent implements OnInit {
   markdown!: string;
   markdownselect!: string;
-
   aboutSectionImg = assetUrl("img/contact-building.jpg");
   // @ViewChild('map') mapElement: any;
   // map!: google.maps.Map ;
@@ -25,7 +24,7 @@ export class ContactusComponent implements OnInit {
   linkin = assetUrl("icons/linkin.png");
   contactus = assetUrl("doc/contact-us.md");
   sendEmail = new SendEmail();
-  loading: boolean = false;
+  loading: boolean=false;
   constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private toastr: ToastrService, private assetsService: AssetsService) {
   }
 
@@ -42,6 +41,7 @@ export class ContactusComponent implements OnInit {
   }
   get contactusformValid() {
     if (this.contactusform.valid) {
+      debugger
       return false;
     }
     else {
@@ -58,7 +58,6 @@ export class ContactusComponent implements OnInit {
             this.contactusform.reset();
           }
           this.loading = false;
-
         })
         .catch((error) => {
           this.loading = false;
