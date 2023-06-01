@@ -55,7 +55,11 @@ import { SetyouPasswordComponent } from './sign-up/setyou-password/setyou-passwo
 import {MatSliderModule} from '@angular/material/slider'; 
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {NgxSliderModule } from '@angular-slider/ngx-slider'
+import {NgxSliderModule } from '@angular-slider/ngx-slider';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment.development';
+import * as firebase from 'firebase/app';
+firebase.initializeApp(environment.firebase)
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,7 +122,9 @@ import {NgxSliderModule } from '@angular-slider/ngx-slider'
     CdkAccordionModule,
     NgxMatIntlTelInputComponent,
     NgOtpInputModule,
-    NgxSliderModule
+    NgxSliderModule,
+    AngularFireModule,
+  
    
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }, RxFormBuilder],
