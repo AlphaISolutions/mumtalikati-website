@@ -1,21 +1,19 @@
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Governorate } from '../models/governorate.model';
 import { ListingPurpose } from '../models/listing-purpose.model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
-import { Meta, MetaDefinition } from '@angular/platform-browser';
 import { SetFiltersServive } from '../services/setfilters.servive';
 import { SetupService } from '../services/setup.service';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private setservice: SetupService, private router: Router, private setFilterService: SetFiltersServive, private mumtalikatiservic: MumtalikatiService,) { }
+  constructor(private setservice: SetupService, private router: Router, private setFilterService: SetFiltersServive, private mumtalikatiservic: MumtalikatiService) { }
   loading: boolean = false;
   governorate: Governorate[] = [];
   listingpupose: ListingPurpose[] = [];
@@ -65,7 +63,9 @@ export class HomeComponent implements OnInit {
     data.rowsNumbers = this.rowsNumber;
     this.propertyFilter(data)
   }
-
+  AfterViewInit() {
+  
+  }
   async getgovernorates() {
     this.loading = true;
     this.setservice.getGovernorate()
