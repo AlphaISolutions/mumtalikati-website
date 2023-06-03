@@ -100,8 +100,9 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   oncallclick(call: any, phone: number) {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let phoneNumber = phone;
+    console.log(phone)
     if (isMobile) {
-      window.open(`tel:${{ phoneNumber }}', '_system`);
+      window.open(`tel:${phone}`);
     } else {
       this.modalService.open(call, { centered: true }).result.then(
         (result) => {
