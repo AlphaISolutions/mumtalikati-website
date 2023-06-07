@@ -10,6 +10,7 @@ import { PropertyFeature } from '../models/propertyfeature';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { ProfileImage } from '../models/profileImage.model';
 import { OwnerPropertyWholeBuilding } from '../models/ownerPropertyWholeBuilding.model';
+import { maxValueModel } from '../models/maxValue.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -104,6 +105,12 @@ export class MumtalikatiService {
   return await firstValueFrom(this.http
     .post<number>(`@mumtalikati-api/PropertyFilter/GetPropertyFilter_Count`,propertyFilte))
     .then(res => res as number)
+    .catch(err =>{return Promise.reject(err.json().error || 'error');});
+ }
+ async getMaxUnitPrice():Promise<maxValueModel>{
+  return await firstValueFrom(this.http
+    .get<maxValueModel>(`@mumtalikati-api/PropertyFilter/GetMaxUnitPrice`))
+    .then(res => res as maxValueModel)
     .catch(err =>{return Promise.reject(err.json().error || 'error');});
  }
 }

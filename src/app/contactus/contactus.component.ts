@@ -13,8 +13,7 @@ import { AssetsService } from '../services/assetsServiceservice';
   styleUrls: ['./contactus.component.scss']
 })
 export class ContactusComponent implements OnInit {
-  markdown!: string;
-  markdownselect!: string;
+ 
   aboutSectionImg = assetUrl("img/contact-building.jpg");
   // @ViewChild('map') mapElement: any;
   // map!: google.maps.Map ;
@@ -25,6 +24,8 @@ export class ContactusComponent implements OnInit {
   contactus = assetUrl("doc/contact-us.md");
   sendEmail = new SendEmail();
   loading: boolean=false;
+  markdownselect:string;
+  markdown:string;
   constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private toastr: ToastrService, private assetsService: AssetsService) {
   }
 
@@ -36,8 +37,7 @@ export class ContactusComponent implements OnInit {
     //   mapTypeId: google.maps.MapTypeId.ROADMAP
     // };
     // this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
-    this.getContactus();
-    this.getContactset();
+
   }
   get contactusformValid() {
     if (this.contactusform.valid) {
@@ -68,18 +68,6 @@ export class ContactusComponent implements OnInit {
 
 
   }
-  async getContactus() {
-    this.assetsService.getcontact()
-      .then((data) => {
-        if (data !== null) {
-          this.markdown = data;
-
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
   async getContactset() {
     this.assetsService.getcontactmum()
       .then((data) => {
@@ -92,4 +80,17 @@ export class ContactusComponent implements OnInit {
         console.error(error);
       });
   }
+  async getContactus() {
+    this.assetsService.getcontact()
+      .then((data) => {
+        if (data !== null) {
+          this.markdown = data;
+
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
 }

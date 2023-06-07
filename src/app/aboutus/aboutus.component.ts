@@ -15,7 +15,7 @@ export class AboutusComponent implements OnInit {
   constructor(private router: Router,private assetsService:AssetsService) { }
 
   ngOnInit(): void {
-    this.getAbout();
+
   }
   goTo(url: string) {
     this.router.navigateByUrl(url)
