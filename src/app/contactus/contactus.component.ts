@@ -24,6 +24,8 @@ export class ContactusComponent implements OnInit {
   contactus = assetUrl("doc/contact-us.md");
   sendEmail = new SendEmail();
   loading: boolean=false;
+  markdownselect:string;
+  markdown:string;
   constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private toastr: ToastrService, private assetsService: AssetsService) {
   }
 
@@ -66,6 +68,29 @@ export class ContactusComponent implements OnInit {
 
 
   }
+  async getContactset() {
+    this.assetsService.getcontactmum()
+      .then((data) => {
+        if (data !== null) {
+          this.markdownselect = data;
 
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  async getContactus() {
+    this.assetsService.getcontact()
+      .then((data) => {
+        if (data !== null) {
+          this.markdown = data;
+
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
 }

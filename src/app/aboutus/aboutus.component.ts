@@ -20,7 +20,18 @@ export class AboutusComponent implements OnInit {
   goTo(url: string) {
     this.router.navigateByUrl(url)
   }
-
+  async getAbout() {
+    this.assetsService.getAbout()
+      .then((data) => {
+        if (data !== null) {
+          this.markdown = data;
+      
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
   opengoogleplay() {
     open('https://play.google.com/store/apps/details?id=com.alphai.mumtalikati.app_mumtalikati')
   }
