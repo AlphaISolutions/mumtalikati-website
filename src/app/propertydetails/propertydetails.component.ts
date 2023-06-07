@@ -777,31 +777,21 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getmaxPrice() {
-    this.mumtalikatiservic.getMaxUnitPrice()
-      .then((data) => {
-        if (data) {
-          this.maxPricedata = data
-          if (this.listid === 1) {
-            this.maxValue = this.maxPricedata.maxRentPrice;
-            this.options.ceil = this.maxPricedata.maxRentPrice
-          }
-          else {
-            this.maxValue = this.maxPricedata.maxSellPrice;
-            this.options.ceil = this.maxPricedata.maxSellPrice
-          }
-        }
-      })
-      .catch((error) => {
-        this.loading = false;
-        console.error(error);
-      });
+    if (this.listid === 1) {
+      this.maxValue = this.maxPricedata.maxRentPrice;
+      this.options.ceil = this.maxPricedata.maxRentPrice
+    }
+    else {
+      this.maxValue = this.maxPricedata.maxSellPrice;
+      this.options.ceil = this.maxPricedata.maxSellPrice
+    }
   }
   getceil() {
     this.mumtalikatiservic.getMaxUnitPrice()
       .then((data) => {
         if (data) {
           this.maxPricedata = data
-          if(this.maxValue===undefined){
+          if (this.maxValue === undefined) {
             if (this.listid === 1) {
               this.maxValue = this.maxPricedata.maxRentPrice;
               this.ceilvalue = this.maxPricedata.maxRentPrice
@@ -812,7 +802,7 @@ export class PropertydetailsComponent implements OnInit {
               }
               this.options = opt
             }
-            else{
+            else {
               this.maxValue = this.maxPricedata.maxSellPrice;
               this.ceilvalue = this.maxPricedata.maxRentPrice
               let opt = {
@@ -824,8 +814,8 @@ export class PropertydetailsComponent implements OnInit {
               this.options = opt
             }
           }
-          else{
-            if(this.listid === 1){
+          else {
+            if (this.listid === 1) {
               this.ceilvalue = this.maxPricedata.maxRentPrice
               let opt = {
                 floor: 0,
@@ -833,7 +823,7 @@ export class PropertydetailsComponent implements OnInit {
                 noSwitching: true
               }
               this.options = opt
-            }else{
+            } else {
               this.ceilvalue = this.maxPricedata.maxRentPrice
               let opt = {
                 floor: 0,
