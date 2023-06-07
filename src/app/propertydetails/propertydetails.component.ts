@@ -92,12 +92,11 @@ export class PropertydetailsComponent implements OnInit {
     private modalService: NgbModal,
     private setupFilterServive: SetFiltersServive,
     private filterservice: FilterService,
-    private metaService: Meta,
-    private titleService: Title) { this.getstate() }
+    private metaService: Meta) { this.getstate() }
   async ngOnInit() {
-
-    this.inIt();
-    this.queryParams();
+     this.getceil();
+   
+    
     this.configs = {
       backdrop: true,
       ignoreBackdropClick: true,
@@ -494,7 +493,7 @@ export class PropertydetailsComponent implements OnInit {
       this.getpropertyMasterTypeID(params)
       this.getPropertyMasterSubTypeID(params);
       this.getunitcategoryId(params);
-      this.getminPrice(params)
+      this.getminPrice(params);
     })
     this.getpurposeMetatag();
     this.getPropertyMasterMT(this.mastertypeid);
@@ -503,10 +502,6 @@ export class PropertydetailsComponent implements OnInit {
     this.propertyFilterInIt();
     this.propertyFilterCountInIt();
     this.initiaalizefilters();
-    this.getceil();
-
-
-
     this.getPropertyUnitCategory(this.mastertypeid, this.listid);
   }
   getPropertyListPurposeId(params: any) {
@@ -564,11 +559,11 @@ export class PropertydetailsComponent implements OnInit {
     else {
       this.minValue = +params['minValue'] ?? 0;
     }
-
+    debugger
     if (this.maxValuestate != undefined) {
       this.maxValue = this.maxValuestate
     } else if (Number.isNaN(+params['maxValue'])) {
-      this.maxValue = this.maxValue
+      this.maxValue = this.maxValue 
     } else {
       this.maxValue = +params['maxValue'] ?? this.maxValue;
     }
@@ -787,12 +782,15 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getceil() {
+    debugger
     this.mumtalikatiservic.getMaxUnitPrice()
       .then((data) => {
         if (data) {
+          debugger
           this.maxPricedata = data
           if (this.maxValue === undefined) {
             if (this.listid === 1) {
+              debugger
               this.maxValue = this.maxPricedata.maxRentPrice;
               this.ceilvalue = this.maxPricedata.maxRentPrice
               let opt = {
@@ -801,6 +799,8 @@ export class PropertydetailsComponent implements OnInit {
                 noSwitching: true
               }
               this.options = opt
+              this.inIt();
+              this.queryParams();
             }
             else {
               this.maxValue = this.maxPricedata.maxSellPrice;
@@ -812,6 +812,8 @@ export class PropertydetailsComponent implements OnInit {
                 showTicks: true
               }
               this.options = opt
+              this.inIt();
+              this.queryParams();
             }
           }
           else {
@@ -823,6 +825,8 @@ export class PropertydetailsComponent implements OnInit {
                 noSwitching: true
               }
               this.options = opt
+              this.inIt();
+              this.queryParams();
             } else {
               this.ceilvalue = this.maxPricedata.maxRentPrice
               let opt = {
@@ -831,6 +835,8 @@ export class PropertydetailsComponent implements OnInit {
                 noSwitching: true
               }
               this.options = opt
+              this.inIt();
+              this.queryParams();
             }
           }
         }
