@@ -15,23 +15,12 @@ export class AboutusComponent implements OnInit {
   constructor(private router: Router,private assetsService:AssetsService) { }
 
   ngOnInit(): void {
-    this.getAbout();
+
   }
   goTo(url: string) {
     this.router.navigateByUrl(url)
   }
-  async getAbout() {
-    this.assetsService.getAbout()
-      .then((data) => {
-        if (data !== null) {
-          this.markdown = data;
-      
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
+
   opengoogleplay() {
     open('https://play.google.com/store/apps/details?id=com.alphai.mumtalikati.app_mumtalikati')
   }

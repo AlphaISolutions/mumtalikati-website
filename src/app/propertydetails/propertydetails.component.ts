@@ -11,13 +11,14 @@ import { listingPurposeTypeEnum, propertyMasterTypeEnum, propertySubTypeEnum } f
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { FormGroup } from '@angular/forms';
-import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { RxFormBuilder, error } from '@rxweb/reactive-form-validators';
 import { Governorate } from '../models/governorate.model';
 import { SetFiltersServive } from '../services/setfilters.servive';
 import { Options } from "@angular-slider/ngx-slider";
 import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
 import { Meta, Title } from '@angular/platform-browser';
+import { maxValueModel } from '../models/maxValue.model';
 
 
 
@@ -59,7 +60,7 @@ export class PropertydetailsComponent implements OnInit {
   id: number | null = null;
   governorate: Governorate[] = [];
   minValue: number = 0;
-  maxValue: number = 10000;
+  maxValue!: number;
   listdesc: any;
   governoratname: any
   governoratcountryid: any;
@@ -79,11 +80,10 @@ export class PropertydetailsComponent implements OnInit {
   maxValuestate!: number;
   listpurID: any
   sharedmodel = new State;
-  options: Options = {
-    floor: 0,
-    ceil: 10000,
-    noSwitching: true
-  }
+  maxPricedata!: maxValueModel;
+  ceilvalue: number;
+  options: Options | null = null;
+
   constructor(private route: ActivatedRoute,
     private rxFormBuilder: RxFormBuilder,
     private mumtalikatiservic: MumtalikatiService,
@@ -95,6 +95,7 @@ export class PropertydetailsComponent implements OnInit {
     private metaService: Meta,
     private titleService: Title) { this.getstate() }
   async ngOnInit() {
+
     this.inIt();
     this.queryParams();
     this.configs = {
@@ -261,6 +262,8 @@ export class PropertydetailsComponent implements OnInit {
       this.propertyFilter(data)
       this.postPropertyFilter_Count(data)
       this.statedatalist()
+      this.getmaxPrice();
+
     }
   }
   onChangeGovernorate(event: any) {
@@ -460,7 +463,7 @@ export class PropertydetailsComponent implements OnInit {
   }
   reset() {
     this.minValue = null!;
-    this.maxValue = 10000;
+    this.maxValue = this.maxValue;
   }
   resetpropertyCategory() {
     this.mastertypeid = null;
@@ -500,6 +503,10 @@ export class PropertydetailsComponent implements OnInit {
     this.propertyFilterInIt();
     this.propertyFilterCountInIt();
     this.initiaalizefilters();
+    this.getceil();
+
+
+
     this.getPropertyUnitCategory(this.mastertypeid, this.listid);
   }
   getPropertyListPurposeId(params: any) {
@@ -557,12 +564,13 @@ export class PropertydetailsComponent implements OnInit {
     else {
       this.minValue = +params['minValue'] ?? 0;
     }
+
     if (this.maxValuestate != undefined) {
       this.maxValue = this.maxValuestate
     } else if (Number.isNaN(+params['maxValue'])) {
-      this.maxValue = 10000
+      this.maxValue = this.maxValue
     } else {
-      this.maxValue = +params['maxValue'] ?? 10000;
+      this.maxValue = +params['maxValue'] ?? this.maxValue;
     }
   }
   propertyFilterInIt() {
@@ -615,77 +623,77 @@ export class PropertydetailsComponent implements OnInit {
   }
   getpurposeMetatag() {
     if (this.listid == 1) {
-      this.metaService.addTag({id:this.liststring, descrption: " Looking for a rental property in Oman? Mumtalikati has you covered. Explore our extensive listings and find your ideal home. Begin your search now." })
+      this.metaService.addTag({ id: this.liststring, descrption: " Looking for a rental property in Oman? Mumtalikati has you covered. Explore our extensive listings and find your ideal home. Begin your search now." })
     } else {
-      this.metaService.addTag({id:this.liststring,  descrption: "Looking for a house to buy? Mumtalikati offers a diverse range of properties for sale in Oman. Browse through our listings and find a property that suits best." })
+      this.metaService.addTag({ id: this.liststring, descrption: "Looking for a house to buy? Mumtalikati offers a diverse range of properties for sale in Oman. Browse through our listings and find a property that suits best." })
     }
   }
 
   getPropertySubMetatag(id: number): any {
     switch (id) {
       case 1: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "A comprehensive real estate listing portal showcases wide range of building properties in Oman's vibrant market" })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "A comprehensive real estate listing portal showcases wide range of building properties in Oman's vibrant market" })
         return
       }
       case 2: {
-        this.metaService.addTag({ id:this.propertySubTypedesc, descrption: "Discover a wide range of exquisite townhouse properties in Oman's premier real estate listing portal. Find your perfect home in Mumtalikati today!" })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Discover a wide range of exquisite townhouse properties in Oman's premier real estate listing portal. Find your perfect home in Mumtalikati today!" })
         return
       }
       case 3: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Are you in need of a lower portion property? Explore a wide range of lower-portion properties through our comprehensive real estate listing portal." })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Are you in need of a lower portion property? Explore a wide range of lower-portion properties through our comprehensive real estate listing portal." })
         return
       }
       case 4: {
-     
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Ready to elevate your living experience? Discover the allure of upper-portion properties in Oman's real estate market and find your dream home in Mumtalikati " })
+
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Ready to elevate your living experience? Discover the allure of upper-portion properties in Oman's real estate market and find your dream home in Mumtalikati " })
         return
       }
       case 5: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Unlock a collection of exquisite penthouse properties in Oman's premier real estate listing portal" })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Unlock a collection of exquisite penthouse properties in Oman's premier real estate listing portal" })
         return
       }
       case 6: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Seeking the Perfect Retreat? Mumtalikati offers you a diverse selection of stunning villa properties in Oman's " })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Seeking the Perfect Retreat? Mumtalikati offers you a diverse selection of stunning villa properties in Oman's " })
         return
       }
       case 7: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Finding Your Serene Space? Explore Room Rentals in Mumtalikati, Oman Today!" })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Finding Your Serene Space? Explore Room Rentals in Mumtalikati, Oman Today!" })
         return
       }
       case 8: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Looking for the Perfect Modern Flat? Explore Mumtalikati, Oman's Contemporary Living!" })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Looking for the Perfect Modern Flat? Explore Mumtalikati, Oman's Contemporary Living!" })
         return
       }
       case 9: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Ready for a Fusion of Styles? Explore Mumtalikati Now to Discover MixHouse Properties " })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Ready for a Fusion of Styles? Explore Mumtalikati Now to Discover MixHouse Properties " })
         return
       }
       case 10: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Looking for Spacious Warehousing Solutions? Unlock a world of expansive storage options with our comprehensive listings" })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Looking for Spacious Warehousing Solutions? Unlock a world of expansive storage options with our comprehensive listings" })
         return
       }
       case 11: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Finding perfect space to establish or expand your business? Discover a world of retail opportunities with our extensive listing of shop properties in Mumtalikati" })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Finding perfect space to establish or expand your business? Discover a world of retail opportunities with our extensive listing of shop properties in Mumtalikati" })
         return
       }
       case 12: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Elevate your business operations with our premium selection of business center spaces in Mumtalikati. Find the perfect environment to thrive and succeed!" })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Elevate your business operations with our premium selection of business center spaces in Mumtalikati. Find the perfect environment to thrive and succeed!" })
         return
       }
       case 13: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Explore Factory Spaces and find the ideal setting to bring your industrial vision to life with Mumtalikati" })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Explore Factory Spaces and find the ideal setting to bring your industrial vision to life with Mumtalikati" })
         return
       }
       case 14: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Find the perfect venue for your events and gatherings with our diverse range of hall listings in Mumtalikati" })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Find the perfect venue for your events and gatherings with our diverse range of hall listings in Mumtalikati" })
         return
       }
       case 15: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Unlock endless possibilities with plots in Mumtalikati, Oman. Create your ideal property from the ground up!" })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Unlock endless possibilities with plots in Mumtalikati, Oman. Create your ideal property from the ground up!" })
         return
       }
       case 16: {
-        this.metaService.addTag({id:this.propertySubTypedesc, descrption: "Discover exciting development projects in Mumtalikati and join the journey towards extraordinary accomplishments!" })
+        this.metaService.addTag({ id: this.propertySubTypedesc, descrption: "Discover exciting development projects in Mumtalikati and join the journey towards extraordinary accomplishments!" })
         return
       }
       default: {
@@ -697,15 +705,15 @@ export class PropertydetailsComponent implements OnInit {
   getPropertyMasterMT(id: number): any {
     switch (id) {
       case 1: {
-        this.metaService.addTag({id: this.propertyMasterTypedesc, descrption: "Finding a place to call home? Discover such perfect residential properties with Mumtalikati offering the ideal blend of modern living and comfor" })
+        this.metaService.addTag({ id: this.propertyMasterTypedesc, descrption: "Finding a place to call home? Discover such perfect residential properties with Mumtalikati offering the ideal blend of modern living and comfor" })
         return
       }
       case 2: {
-        this.metaService.addTag({id: this.propertyMasterTypedesc,  descrption: "Explore exclusive opportunities to rent, buy, and sell commercial properties in Oman's thriving market. Find your ideal property in Mumtalikati today" })
+        this.metaService.addTag({ id: this.propertyMasterTypedesc, descrption: "Explore exclusive opportunities to rent, buy, and sell commercial properties in Oman's thriving market. Find your ideal property in Mumtalikati today" })
         return
       }
       case 3: {
-        this.metaService.addTag({id: this.propertyMasterTypedesc,  descrption: "Finding your dream investment? Unlock exclusive opportunities to transact residential commercial properties in Oman's real estate market." })
+        this.metaService.addTag({ id: this.propertyMasterTypedesc, descrption: "Finding your dream investment? Unlock exclusive opportunities to transact residential commercial properties in Oman's real estate market." })
         return
       }
       default: {
@@ -716,51 +724,51 @@ export class PropertydetailsComponent implements OnInit {
   getUnitMT(id: number): any {
     switch (id) {
       case 1: {
-        this.metaService.addTag({id:this.unitcategorystring, descrption: "Find your perfect living space with 1BHK properties in Mumtalikati. Experience Comfort and Style in your new home!" })
+        this.metaService.addTag({ id: this.unitcategorystring, descrption: "Find your perfect living space with 1BHK properties in Mumtalikati. Experience Comfort and Style in your new home!" })
         return
       }
       case 2: {
-        this.metaService.addTag({id:this.unitcategorystring, descrption: "Discover the perfect balance of space and comfort with 2BHK properties in Mumtalikati" })
+        this.metaService.addTag({ id: this.unitcategorystring, descrption: "Discover the perfect balance of space and comfort with 2BHK properties in Mumtalikati" })
         return
       }
       case 3: {
-        this.metaService.addTag({id:this.unitcategorystring, descrption: "Want to experience the epitome of luxury? Find your ideal 3BHK home for an elevated living! with Mumtalikati" })
+        this.metaService.addTag({ id: this.unitcategorystring, descrption: "Want to experience the epitome of luxury? Find your ideal 3BHK home for an elevated living! with Mumtalikati" })
         return
       }
       case 4: {
-        this.metaService.addTag({id:this.unitcategorystring, descrption: "Spacious and Elegant Homes with 4BHK properties in Mumtalikati. Enhance your Lifestyle to new Heights! " })
+        this.metaService.addTag({ id: this.unitcategorystring, descrption: "Spacious and Elegant Homes with 4BHK properties in Mumtalikati. Enhance your Lifestyle to new Heights! " })
         return
       }
       case 5: {
-        this.metaService.addTag({id:this.unitcategorystring, descrption: "Find your dream home and Indulge in luxurious living with 5BHK properties in Mumtalikati" })
+        this.metaService.addTag({ id: this.unitcategorystring, descrption: "Find your dream home and Indulge in luxurious living with 5BHK properties in Mumtalikati" })
         return
       }
       case 6: {
-        this.metaService.addTag({id:this.unitcategorystring, descrption: "Finding perfect space to establish or expand your business? Discover a world of retail opportunities with our extensive listing of shop properties in Mumtalikati" })
+        this.metaService.addTag({ id: this.unitcategorystring, descrption: "Finding perfect space to establish or expand your business? Discover a world of retail opportunities with our extensive listing of shop properties in Mumtalikati" })
         return
       }
       case 7: {
-        this.metaService.addTag({id:this.unitcategorystring, descrption: "Find the Perfect Space in Oman withbMumtalikati. Boost Productivity and success in a professional environment!" })
+        this.metaService.addTag({ id: this.unitcategorystring, descrption: "Find the Perfect Space in Oman withbMumtalikati. Boost Productivity and success in a professional environment!" })
         return
       }
       case 8: {
-        this.metaService.addTag({id:this.unitcategorystring, descrption: "Looking for Spacious Warehousing Solutions? Unlock a world of expansive storage options with our comprehensive listings" })
+        this.metaService.addTag({ id: this.unitcategorystring, descrption: "Looking for Spacious Warehousing Solutions? Unlock a world of expansive storage options with our comprehensive listings" })
         return
       }
       case 9: {
-        this.metaService.addTag({ id:this.unitcategorystring,descrption: "Explore Factory Spaces and find the ideal setting to bring your industrial vision to life with Mumtalikati" })
+        this.metaService.addTag({ id: this.unitcategorystring, descrption: "Explore Factory Spaces and find the ideal setting to bring your industrial vision to life with Mumtalikati" })
         return
       }
       case 10: {
-        this.metaService.addTag({id:this.unitcategorystring, descrption: "Find the perfect venue for your events and gatherings with our diverse range of hall listings in Mumtalikati" })
+        this.metaService.addTag({ id: this.unitcategorystring, descrption: "Find the perfect venue for your events and gatherings with our diverse range of hall listings in Mumtalikati" })
         return
       }
       case 11: {
-        this.metaService.addTag({id:this.unitcategorystring, descrption: "Elevate your business operations with our premium selection of business center spaces in Mumtalikati. Find the perfect environment to thrive and succeed! " })
+        this.metaService.addTag({ id: this.unitcategorystring, descrption: "Elevate your business operations with our premium selection of business center spaces in Mumtalikati. Find the perfect environment to thrive and succeed! " })
         return
       }
       case 12: {
-        this.metaService.addTag({id:this.unitcategorystring, descrption: "Seamlessly accommodate your business needs and aspirations with Mumtalikati’s diverse listings of Whole Building Properties" })
+        this.metaService.addTag({ id: this.unitcategorystring, descrption: "Seamlessly accommodate your business needs and aspirations with Mumtalikati’s diverse listings of Whole Building Properties" })
         return
       }
       default: {
@@ -768,4 +776,79 @@ export class PropertydetailsComponent implements OnInit {
       }
     }
   }
+  getmaxPrice() {
+    this.mumtalikatiservic.getMaxUnitPrice()
+      .then((data) => {
+        if (data) {
+          this.maxPricedata = data
+          if (this.listid === 1) {
+            this.maxValue = this.maxPricedata.maxRentPrice;
+            this.options.ceil = this.maxPricedata.maxRentPrice
+          }
+          else {
+            this.maxValue = this.maxPricedata.maxSellPrice;
+            this.options.ceil = this.maxPricedata.maxSellPrice
+          }
+        }
+      })
+      .catch((error) => {
+        this.loading = false;
+        console.error(error);
+      });
+  }
+  getceil() {
+    this.mumtalikatiservic.getMaxUnitPrice()
+      .then((data) => {
+        if (data) {
+          this.maxPricedata = data
+          if(this.maxValue===undefined){
+            if (this.listid === 1) {
+              this.maxValue = this.maxPricedata.maxRentPrice;
+              this.ceilvalue = this.maxPricedata.maxRentPrice
+              let opt = {
+                floor: 0,
+                ceil: this.ceilvalue,
+                noSwitching: true
+              }
+              this.options = opt
+            }
+            else{
+              this.maxValue = this.maxPricedata.maxSellPrice;
+              this.ceilvalue = this.maxPricedata.maxRentPrice
+              let opt = {
+                floor: 0,
+                ceil: this.ceilvalue,
+                noSwitching: true,
+                showTicks: true
+              }
+              this.options = opt
+            }
+          }
+          else{
+            if(this.listid === 1){
+              this.ceilvalue = this.maxPricedata.maxRentPrice
+              let opt = {
+                floor: 0,
+                ceil: this.ceilvalue,
+                noSwitching: true
+              }
+              this.options = opt
+            }else{
+              this.ceilvalue = this.maxPricedata.maxRentPrice
+              let opt = {
+                floor: 0,
+                ceil: this.ceilvalue,
+                noSwitching: true
+              }
+              this.options = opt
+            }
+          }
+        }
+      })
+      .catch((error) => {
+        this.loading = false;
+        console.error(error);
+      })
+  }
+
 }

@@ -13,8 +13,7 @@ import { AssetsService } from '../services/assetsServiceservice';
   styleUrls: ['./contactus.component.scss']
 })
 export class ContactusComponent implements OnInit {
-  markdown!: string;
-  markdownselect!: string;
+ 
   aboutSectionImg = assetUrl("img/contact-building.jpg");
   // @ViewChild('map') mapElement: any;
   // map!: google.maps.Map ;
@@ -36,8 +35,7 @@ export class ContactusComponent implements OnInit {
     //   mapTypeId: google.maps.MapTypeId.ROADMAP
     // };
     // this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
-    this.getContactus();
-    this.getContactset();
+
   }
   get contactusformValid() {
     if (this.contactusform.valid) {
@@ -68,28 +66,6 @@ export class ContactusComponent implements OnInit {
 
 
   }
-  async getContactus() {
-    this.assetsService.getcontact()
-      .then((data) => {
-        if (data !== null) {
-          this.markdown = data;
 
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-  async getContactset() {
-    this.assetsService.getcontactmum()
-      .then((data) => {
-        if (data !== null) {
-          this.markdownselect = data;
 
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
 }
