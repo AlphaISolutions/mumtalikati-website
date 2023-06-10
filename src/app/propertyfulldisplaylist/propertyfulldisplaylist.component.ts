@@ -26,7 +26,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   hall = assetUrl("icons/hall.png");
   favoriteicon = assetUrl("icons/favoriteicon.png");
   bydefault = assetUrl('img/bydefault.png');
-  defaultperfile: string = 'https://p.kindpng.com/picc/s/24-248729_stockvader-predicted-adig-user-profile-image-png-transparent.png';
+  defaultperfile = assetUrl('img/landlord-bydefault.png');
   loading: boolean = true
   @Input() unitcatID!: number;
   @Input() statuss!: number;

@@ -22,8 +22,10 @@ ul.breadcrumb {
   
   ul.breadcrumb li a:hover {
     color: #9e2a2b;
-    text-decoration: underline;
+    text-decoration: none;
   }
- .backtosearch {
+
+  .cursor{
     cursor: pointer;
+  
   }

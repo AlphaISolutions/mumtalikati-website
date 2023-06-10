@@ -41,7 +41,6 @@ export class ContactusComponent implements OnInit {
   }
   get contactusformValid() {
     if (this.contactusform.valid) {
-      debugger
       return false;
     }
     else {
