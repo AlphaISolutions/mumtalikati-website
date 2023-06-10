@@ -83,7 +83,6 @@ export class PropertydetailsComponent implements OnInit {
   maxPricedata!: maxValueModel;
   ceilvalue: number;
   options: Options | null = null;
-
   constructor(private route: ActivatedRoute,
     private rxFormBuilder: RxFormBuilder,
     private mumtalikatiservic: MumtalikatiService,
@@ -94,9 +93,7 @@ export class PropertydetailsComponent implements OnInit {
     private filterservice: FilterService,
     private metaService: Meta) { this.getstate() }
   async ngOnInit() {
-     this.getceil();
-   
-    
+    this.getceil();
     this.configs = {
       backdrop: true,
       ignoreBackdropClick: true,
@@ -109,7 +106,6 @@ export class PropertydetailsComponent implements OnInit {
   async initiaalizefilters() {
     this.listingpupose = await this.setupFilterServive.getListingPurpose();
     if (!this.listingpupose) {
-
       this.setservice.getlistingpurposeset().then((data) => {
         this.listingpupose = data;
         this.setupFilterServive.setListingPurpose(data)
@@ -184,7 +180,7 @@ export class PropertydetailsComponent implements OnInit {
       });
   }
   async postPropertyFilter_Count(data: PropertyFilter) {
-    this.loading = true;
+    // this.loading = true;
     this.mumtalikatiservic.postPropertyFilter_Count(data)
       .then((data) => {
         this.filterCount = data;
@@ -209,7 +205,7 @@ export class PropertydetailsComponent implements OnInit {
       });
   }
   async getgovernorates() {
-    this.loading = true;
+    // this.loading = true;
     this.setservice.getGovernorate()
       .then((data) => {
         if (data) {
@@ -559,11 +555,10 @@ export class PropertydetailsComponent implements OnInit {
     else {
       this.minValue = +params['minValue'] ?? 0;
     }
-    debugger
     if (this.maxValuestate != undefined) {
       this.maxValue = this.maxValuestate
     } else if (Number.isNaN(+params['maxValue'])) {
-      this.maxValue = this.maxValue 
+      this.maxValue = this.maxValue
     } else {
       this.maxValue = +params['maxValue'] ?? this.maxValue;
     }
@@ -782,15 +777,13 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getceil() {
-    debugger
+    this.loading=true;
     this.mumtalikatiservic.getMaxUnitPrice()
       .then((data) => {
         if (data) {
-          debugger
           this.maxPricedata = data
           if (this.maxValue === undefined) {
             if (this.listid === 1) {
-              debugger
               this.maxValue = this.maxPricedata.maxRentPrice;
               this.ceilvalue = this.maxPricedata.maxRentPrice
               let opt = {
@@ -840,6 +833,7 @@ export class PropertydetailsComponent implements OnInit {
             }
           }
         }
+        // this.loading=false;
       })
       .catch((error) => {
         this.loading = false;

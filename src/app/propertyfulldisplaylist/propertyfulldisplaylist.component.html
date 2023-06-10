@@ -212,7 +212,9 @@
                     <div class="splide__track">
                         <div class="splide__list">
                             <div class="splide__slide" *ngFor="let image of propertyDetail.imageString">
-                                <img class="img-fluid" [src]="image" alt="image">
+                                <a href="{{ image }}" class="w-100 h-100" target="_blank">
+                                <img class="img-fluid" [src]="image" alt="image" >
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -58,6 +58,14 @@ export enum PropertyUnitCategoryEnum {
     BusinessCenter = 11,
     WholeBuilding = 12
 }
+export enum UserTypeEnum {
+    Landlord = 1,
+    Tenant = 2,
+    ServiceProvider = 3,
+    RealStateAgent = 4,
+    Corporate = 5,
+    Admin = 6
+}
 export enum PropertyType {
     Parent = 1,
     Child = 2

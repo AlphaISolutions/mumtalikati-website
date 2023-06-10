@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { error } from '@rxweb/reactive-form-validators';
 import { BspropertyService } from '../../services/behaviour.subject/propertyDetail.bs.service';
 import { UserService } from 'src/app/services/user.service';
 import { UserLogin } from 'src/app/models/login.model';
-
+import { ToastrService } from 'ngx-toastr';
+import { User } from 'src/app/models/user.model';
+import { UserTypeEnum } from 'src/app/models/enums';
+import { Router } from '@angular/router';
+import { SessionService } from 'src/app/services/sessionService';
+import { UserTypes } from 'src/app/models/userTypes.model';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -16,11 +19,9 @@ export class SigninComponent implements OnInit {
   onbodystep: number = 1;
   hide = true;
   submitted = false;
-  loading: boolean = false;
+  loading = false;
   userlogin!: UserLogin
-  
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private bsSignupService: BspropertyService) { }
-
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private bsSignupService: BspropertyService, private router: Router, private toastr: ToastrService,private session:SessionService) { }
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       userName: ['', Validators.required],
@@ -29,25 +30,50 @@ export class SigninComponent implements OnInit {
 
   }
   get fval() { return this.loginForm.controls; }
+  get isFormInValid() {
+    if (this.loginForm.valid) {
+      return false
+    }
+    else {
+      return true;
+    }
+  }
   onFormSubmit() {
-
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;
     }
     this.loading = true;
-    this.userService.postUserLogin(this.loginForm.value).then((data: any) => {
-      if (data) {
-        this.userlogin = data
+    let data = this.loginForm.value as UserLogin
+    data.userName = data.userName.replace('+', '');
+    this.userService.postUserLogin(data).then(res => {
+      if (res !== null) {
+        const user = res as unknown as User;
+        const userTypes = user.userTypes.map(userType => userType.desc);
+        if (userTypes.includes('Admin')) {
+          this.toastr.success("Admin Login sucessfully");
+          this.router.navigateByUrl('/admin/dashboard');
+          this.session.startSession(user.token)
+          this.loading = false;
+          return
+        } else {
+          this.toastr.error('Authentication Failed', 'Invalid Credentials');
+          this.loginForm.reset();
+          this.loading = false;
+          return;
+        }
       }
-
-    }).catch((error: any) => {
-      console.error(error)
     })
+      .catch(error => {
+        this.toastr.error('Authentication Failed', 'Invalid Credentials');
+        this.loginForm.reset();
+        this.loading = false;
+        console.error(error)
+      })
 
   }
   lostpas() {
-   this.bsSignupService.lostpassword$.next(true)
+    this.bsSignupService.lostpassword$.next(true)
   }
   registernow() {
     this.bsSignupService.selectedTab$.next(1)

@@ -10,7 +10,7 @@
                             <mat-form-field appearance="outline">
                                 <ngx-mat-intl-tel-input placeholder="Phone number" formControlName="userName"
                                     [enablePlaceholder]="true" [enableSearch]="true" [preferredCountries]="['om']"
-                                    name="phone">
+                                    name="phone" [ngClass]="{'is-invalid': submitted && fval.userName.errors }" required>
                                 </ngx-mat-intl-tel-input>
                             </mat-form-field>
                         </div>
@@ -33,6 +33,9 @@
                                         class=" fas fa-eye "></i>
                                     <i *ngIf="hide" class="fas fa-eye-slash"></i>
                                 </span>
+                                <mat-error>
+                                    Password <strong>required</strong>
+                                </mat-error>
                             </mat-form-field>
                         </div>
 
@@ -52,13 +55,13 @@
             <div class="row">
                 <div>
                     <div class="form-group">
-                        <!-- <div class="error-small" *ngIf="loginForm.errors?.unauthenticated">
+                        <div class="error-small" *ngIf="loginForm.errors">
                             Invalid credentials!
-                        </div> -->
-                        <!-- <div class="error-small" *ngIf="loginForm.errors?.error">
+                          </div>
+                          <div class="error-small" *ngIf="loginForm.errors && loginForm.errors['error']">
                             Requested resource could not be found on this account
-                        </div> -->
-                        <button mat-raised-button color="primary" [disabled]="loading" class="btn-login block">
+                          </div>
+                        <button mat-raised-button color="primary" [disabled]="loading" class="btn-login block" [disabled]="isFormInValid">
                             <span *ngIf="loading"  class="spinner-border spinner-border-sm mr-1"></span>
                             {{"Login " | titlecase }}
                         </button>
