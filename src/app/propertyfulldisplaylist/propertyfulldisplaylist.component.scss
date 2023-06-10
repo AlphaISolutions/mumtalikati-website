@@ -281,3 +281,8 @@ icon {
   .readmore{
     cursor: pointer;
   }
+  .images{
+    object-fit: cover;
+    width: 100%;
+    border-radius: 20px;
+  }
