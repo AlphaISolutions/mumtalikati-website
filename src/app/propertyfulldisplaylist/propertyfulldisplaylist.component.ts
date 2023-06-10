@@ -133,11 +133,10 @@ export class PropertyfulldisplaylistComponent implements OnInit {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let phoneNumber = contact;
     let message = `https://www.mumtalikati.com/propertyfulldisplay?unitCategory=${this.unitcategorydesc}&PropertySubTyp=${this.propertysubdesc}&propertyMaster=${this.pmid}&propertyUnit=${this.propertyUnitid}&landlord=${this.landlordid}`;
-    if (isMobile && typeof window.WhatsApp !== "undefined") {
+    if (isMobile) {
       window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-    } else if (isMobile && typeof window.WhatsApp === "undefined") {
-      window.open(`https://play.google.com/store/search?q=whatsapp&c=apps&hl=en&gl=US`);
-    } else {
+    } 
+     else {
       window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
     }
   }
