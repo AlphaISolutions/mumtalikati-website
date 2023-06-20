@@ -6,13 +6,15 @@ import { Injectable } from '@angular/core';
 })
 export class SessionService {
     constructor() { }
-    startSession(token: string) {
+    startSession(token: string,name:string) {
         localStorage.setItem('token', token);
+        localStorage.setItem('name', name);
         // localStorage.setItem('userId', userId);
         // localStorage.setItem('userRole',userRole.toString());
     }
     stopSession() {
         localStorage.removeItem('token');
+        localStorage.removeItem('name');
         // localStorage.removeItem('userId');
         // localStorage.removeItem('userRole');
     }
@@ -25,5 +27,7 @@ export class SessionService {
     // getUserRole() {
     //     return localStorage.getItem('userRole');
     // }
-
+    getUsername() {
+            return localStorage.getItem('name');
+        }
 }
