@@ -34,7 +34,7 @@
                 <!-- unitCategoryID== 12 show empty data -->
             </div>
             <ng-template #unitcatid>
-                <div *ngIf="property.propertyMasterSubType== 15 || property.unitCategoryID==6  else plot">
+                <div *ngIf="property.propertyMasterSubType != null && property.propertyMasterSubType== 15 || property.unitCategoryID !=null && property.unitCategoryID==6  else plot">
                     <p><img class="pe-2" [src]="areaimg">{{property.sqft}} SQM</p>
                 </div>
                 <ng-template #plot>
