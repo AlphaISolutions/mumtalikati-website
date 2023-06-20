@@ -217,7 +217,7 @@
                     <app-shortdisplay [property]="property" [sharedmodel]="sharedmodel"></app-shortdisplay>
                 </div>
                 <div class=" d-flex align-items-center justify-content-center h-property"
-                    *ngIf="!ownerPropertyFilter[0]">
+                    *ngIf="ownerPropertyFilter.length ==0">
                     <p class="">No Property Listed</p>
                 </div>
                 <div>

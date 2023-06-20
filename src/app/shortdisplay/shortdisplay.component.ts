@@ -18,7 +18,7 @@ export class ShortdisplayComponent implements OnInit {
   areaimg = assetUrl("icons/Area.svg");
   bedroomimg = assetUrl("icons/Bedroom.svg");
   washroomimg = assetUrl("icons/Washroom.svg");
-  bydefault = assetUrl('img/bydefault.png');
+  defaultimage = assetUrl('img/bydefault.png');
   location = assetUrl("icons/location.svg");
   propertyfilter = new PropertyFilter();
   @Input() property: OwnerPropertyFilter[] = []
