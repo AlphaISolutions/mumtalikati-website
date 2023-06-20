@@ -243,7 +243,7 @@
                         </div>
                         <ng-template #unitcatid>
                             <div class="dis-flex" clas="pe-4">
-                                <div *ngIf="propertyMasterSubType ==15 else plotsqft">
+                                <div *ngIf="propertyMasterSubType ==15 ||propertyDetail.unitCategoryID==6 else plotsqft">
                                     <p class="icon pe-2"><img class="pe-2" [src]="areaimg">{{propertyDetail.sqft}}SQM</p>
                                 </div>
                                 <ng-template #plotsqft>
