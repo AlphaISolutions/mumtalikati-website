@@ -53,7 +53,7 @@ export class SigninComponent implements OnInit {
         if (userTypes.includes('Admin')) {
           this.toastr.success("Admin Login sucessfully");
           this.router.navigateByUrl('/admin/dashboard');
-          this.session.startSession(user.token)
+          this.session.startSession(user.token,user.name,)
           this.loading = false;
           return
         } else {
