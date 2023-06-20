@@ -1,10 +1,10 @@
-<div *ngIf="property">
+<div>
     <div class="card  border-r mb-4 shadow-none border-0" *ngIf="property" onclick="window.scrollTo(0,0)"
         (click)="onclick( property.unitCategoryID!, property.landLordID!, property.propertyMasterID!,property.propertyMasterSubType!, property.listingPurposeID)">
         <img [src]="property.imageString || bydefault" class=" imagecss main" alt="Card Image">
         <div class="card-body cd p-0  pt-2">
             <div
-                *ngIf="property.propertyMasterSubType !=null && property.propertyMasterSubType== 15 else propertyMasterName">
+                *ngIf="property.propertyMasterSubType== 15 else propertyMasterName">
                 <p><b>{{getMasterTypeId(property.propertyMasterTypeID)}} Plot</b></p>
             </div>
             <ng-template #propertyMasterName>
@@ -13,7 +13,7 @@
 
             <div>
                 <div
-                    *ngIf="(property.unitCategoryID !=null && property.unitCategoryID== 12) || (property.propertyMasterSubTyp != null && property.propertyMasterSubType== 15 ) else unitname">
+                    *ngIf="( property.unitCategoryID== 12) || ( property.propertyMasterSubType== 15 ) else unitname">
                     <h6 class="inline">{{getsubType(property.propertyMasterSubType!)}}</h6>
 
                 </div>
@@ -25,7 +25,7 @@
 
 
                 <div class="mt-2">
-                    <h6 *ngIf="property.listingPurposeID !=null && property.listingPurposeID ==1; else nolistpurposeid">
+                    <h6 *ngIf="property.listingPurposeID ==1; else nolistpurposeid">
                         OMR <span class="font-price">{{property.rentPrice}}</span>/Month
                     </h6>
                     <ng-template #nolistpurposeid>
@@ -39,7 +39,7 @@
                 </div>
                 <ng-template #unitcatid>
                     <div
-                        *ngIf="(property.propertyMasterSubType != null && property.propertyMasterSubType== 15) || (property.unitCategoryID !=null && property.unitCategoryID==6)  else plot">
+                        *ngIf="(property.propertyMasterSubType== 15) || (property.unitCategoryID==6)  else plot">
                         <p><img class="pe-2" [src]="areaimg">{{property.sqft}} SQM</p>
                     </div>
                     <ng-template #plot>
