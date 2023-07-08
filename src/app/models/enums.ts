@@ -95,7 +95,7 @@ export function propertyMasterTypeEnum(propertyMasterTypeID: number) {
         case 3:
             return 'ResidentalCommercial';
         default:
-            return 'All';
+            return '';
     }
 
 }
@@ -159,37 +159,37 @@ export function getPropertyUnitCategoryEnum(unitcatID: number) {
 export function propertySubTypeEnum(subTypeId: any) {
     switch (subTypeId) {
         case 1:
-            return 'Building';
+            return 'مبنى';
         case 2:
-            return 'TownHouse';
+            return 'تاون هاوس';
         case 3:
-            return 'LowerPortion';
+            return 'الجزء السفلي';
         case 4:
-            return 'UpperPortion';
+            return 'الجزء العلوي';
         case 5:
-            return 'PentHouse';
+            return 'كنة';
         case 6:
-            return 'Villa';
+            return 'فيلا';
         case 7:
-            return 'Room';
+            return 'غرفة';
         case 8:
-            return 'Flat';
+            return 'مستوي';
         case 9:
-            return 'MixUse';
+            return 'ميكس';
         case 10:
-            return 'WareHouse';
+            return 'مستودع';
         case 11:
-            return 'Shop';
+            return 'محل';
         case 12:
-            return 'BusinessCenter';
+            return 'بيزنس سنتر';
         case 13:
-            return 'Factory';
+            return 'مصنع';
         case 14:
-            return 'Hall';
+            return 'قاعة';
         case 15:
-            return 'Plot';
+            return 'حبكة';
         case 16:
-            return 'Project';
+            return 'مشروع';
         default:
             return '';
     }

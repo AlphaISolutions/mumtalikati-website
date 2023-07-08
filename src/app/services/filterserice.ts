@@ -4,44 +4,87 @@ import { SetFiltersServive } from "./setfilters.servive";
 export class FilterService {
     constructor(private setupFilterServive: SetFiltersServive) { }
     getPurposedesc(desc: string) {
-        const deselist = this.setupFilterServive.getListingPurpose().find(x => x.desc == desc);
-        return deselist?.listingPurposeType
+        const purposedese=this.setupFilterServive.getListingPurpose();
+        if(purposedese){
+            const deselist = purposedese.find(x => x.desc == desc);
+            return deselist?.listingPurposeType
+        }
+      return null;
     }
     getPurposeid(id: number) {
-        const listid = this.setupFilterServive.getListingPurpose().find(x => x.listingPurposeType == id);
-        return listid?.desc
+        const purposeid=this.setupFilterServive.getListingPurpose();
+        if(purposeid){
+            const listid = purposeid.find(x => x.listingPurposeType == id);
+            return listid?.desc
+        }
+        return null;
     }
     getGovernorateDesc(desc: string) {
-        const deselist = this.setupFilterServive.getGovernorate().find(x => x.name == desc);
-        return deselist?.id
+        const governorateDesc=this.setupFilterServive.getGovernorate();
+        if(governorateDesc){
+            const deselist = governorateDesc.find(x => x.name == desc);
+            return deselist?.id
+        }
+       return null;
     }
     getGovernorateid(id: number) {
-        const deselist = this.setupFilterServive.getGovernorate().find(x => x.id === id);
-        return deselist?.name
+        const governorateid=this.setupFilterServive.getGovernorate();
+        if(governorateid){
+            const deselist = governorateid.find(x => x.id === id);
+            return deselist?.name
+        }
+       return null;
     }
     getPropertytMasterTypedesc(desc: string) {
-        const deselist = this.setupFilterServive.getPropertyMasterType().find(x => x.desc == desc)
-        return deselist?.masterType
+        const masterTypedesc=this.setupFilterServive.getPropertyMasterType();
+        if(masterTypedesc){
+            const deselist = masterTypedesc.find(x => x.desc == desc)
+            return deselist?.masterType
+        }
+      return null;
     }
     getPropertytMasterTypeid(id: number) {
-        const deselist = this.setupFilterServive.getPropertyMasterType().find(x => x.masterType == id)
-        return deselist?.desc
+        const propertytMasterTypeid=this.setupFilterServive.getPropertyMasterType();
+        if(propertytMasterTypeid){
+            const deselist = propertytMasterTypeid.find(x => x.masterType == id)
+            return deselist?.desc
+        }
+       return null;
     }
     getPropertytMasterSubTypedesc(desc: string) {
-        const deselist = this.setupFilterServive.getPropertySubType().find(x => x.propertySubType.desc == desc)
-        return deselist?.propertySubTypeID
+        const PropertytMasterSubTypedesc=this.setupFilterServive.getPropertySubType();
+        if(PropertytMasterSubTypedesc){
+            const deselist = PropertytMasterSubTypedesc.find(x => x.propertySubType.desc == desc)
+            return deselist?.propertySubTypeID
+        }
+        return null;
     }
     getPropertytMasterSubTypeid(id: number) {
-        const deselist = this.setupFilterServive.getPropertySubType().find(x => x.propertySubType.subType == id)
-        return deselist?.propertySubType?.desc
+        const propertytMasterSubType=this.setupFilterServive.getPropertySubType();
+        if(propertytMasterSubType){
+            const deselist = propertytMasterSubType.find(x => x.propertySubType.subType == id)
+            return deselist?.propertySubType?.desc
+        }
+        return null;
     }
-    getPropertytUnitCategorydesc(desc: string) {  
-        const deselist = this.setupFilterServive.getUnitCategory().find(x => x.desc == desc)
-        return deselist?.unitCategory
+    getPropertytUnitCategorydesc(desc: string) {
+
+        const unitdese =this.setupFilterServive.getUnitCategory();
+        if(unitdese){
+            const deselist = unitdese.find(x => x.desc == desc)
+            return deselist?.unitCategory
+        }
+       return null;
     }
     getPropertytUnitCategoryid(id: number) {
-        const deselist = this.setupFilterServive.getUnitCategory().find(x => x.unitCategory == id)
-        return deselist?.desc   
+        const unitCategories = this.setupFilterServive.getUnitCategory();
+        if (unitCategories) {
+            const deselist = unitCategories.find(x => x.unitCategory === id);
+            return deselist?.desc;
+        }
+        return null;
+        // const deselist = this.setupFilterServive.getUnitCategory().find(x => x.unitCategory == id)
+        // return deselist?.desc   
     }
 
 

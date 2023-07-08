@@ -4,16 +4,17 @@ import {
     HttpHandler,
     HttpEvent
 } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, switchMap, take } from "rxjs";
 import { Injectable } from "@angular/core";
 import { SessionService } from "../services/sessionService";
 import { environment } from "src/environments/environment";
+import { LanguageService } from "./language.service";
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
-    constructor(private sessionService: SessionService) { }
+    constructor(private sessionService: SessionService,private languageService: LanguageService) { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let requestUrl = req.url;
-        // const token = this.sessionService.getToken();
+        const token = this.sessionService.getToken();
         if (requestUrl.indexOf('@mumtalikati-api') !== -1) {
             requestUrl = requestUrl.replace('@mumtalikati-api', environment.userBaseUrl);
         }
@@ -22,10 +23,13 @@ export class InterceptorService implements HttpInterceptor {
             requestUrl = requestUrl.replace('@assets-url', environment.assetsBaseUrl);
           } 
         if (!requestUrl.includes(environment.assetsBaseUrl)) {
-            req = req.clone({
-                //   headers: req.headers.set('Authorization', `Bearer ${token}`),
-                url: requestUrl
-            });
+                  req = req.clone({
+                    // headers: req.headers.set('Authorization', `Bearer ${token}`)
+                    headers: req.headers.set('Accept-Language', localStorage.getItem('locale') || 'ar').set('Authorization', `Bearer ${token}`),
+                    url: requestUrl
+                  });
+               
+           
         } else {
             req = req.clone({
                 url: requestUrl

@@ -24,9 +24,16 @@ export class BreadcrumbComponent implements OnInit {
   ngOnInit(): void {
   }
   getenum(propertyMasterTypeID: number) {
-    return propertyMasterTypeEnum(propertyMasterTypeID)
+    // return propertyMasterTypeEnum(propertyMasterTypeID)
+    return this.filterservice.getPropertytMasterTypeid(propertyMasterTypeID)
   }
-  backtosearch(){
+  getsubtypeID(id: number) {
+    return this.filterservice.getPropertytMasterSubTypeid(id)
+  }
+  getUnitcatID(id: number) {
+    return this.filterservice.getPropertytUnitCategoryid(id)
+  }
+  backtosearch() {
     if (this.sharedmodel == undefined) {
       this.sharedmodel = this.localstorage.getsharedmodel()!
       this.subid = this.filterservice.getPropertytMasterSubTypeid(this.sharedmodel.propertyMasterSubTypeID!);

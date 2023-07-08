@@ -4,6 +4,16 @@
   "newProjectRoot": "projects",
   "projects": {
     "mumtalikati-website": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "ar":{
+            "translation":"src/locale/messages.ar.xlf",
+            "baseHref": ""
+          } 
+
+        }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,6 +27,9 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "localize": [
+              "ar"
+            ],
             "outputPath": "dist/mumtalikati-website",
             "index": "src/index.html",
             "main": "src/main.single-spa.ts",
@@ -33,10 +46,12 @@
               "node_modules/@splidejs/splide/dist/css/splide.min.css",
               "node_modules/@splidejs/splide/dist/css/themes/splide-default.min.css",
               "src/styles.scss",
-              "src/theme.scss"],
-            "scripts": ["./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-            "./node_modules/popper.js/dist/umd/popper.min.js",
-            "node_modules/@splidejs/splide/dist/js/splide.js"
+              "src/theme.scss"
+            ],
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "./node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/@splidejs/splide/dist/js/splide.js"
             ],
             "customWebpackConfig": {
               "path": "extra-webpack.config.js",
@@ -87,6 +102,9 @@
             },
             "development": {
               "browserTarget": "mumtalikati-website:build:development"
+            },
+            "ar": {
+              "browserTarget": "mumtalikati-website:build:ar"
             }
           },
           "defaultConfiguration": "development"

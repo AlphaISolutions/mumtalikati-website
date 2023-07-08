@@ -32,10 +32,14 @@ export class ShortdisplayComponent implements OnInit {
    
   }
   getsubType(subTypeId: number) {
-    return propertySubTypeEnum(subTypeId);
+   return this.filterservice.getPropertytMasterSubTypeid(subTypeId)
+    // return propertySubTypeEnum(subTypeId);
   }
   getMasterTypeId(propertyMasterTypeId: number) {
     return propertyMasterTypeEnum(propertyMasterTypeId);
+  }
+  getunitcatid(id:number){
+return this.filterservice.getPropertytUnitCategoryid(id)
   }
   onclick(unitCategoryID: number, landLordID: number, propertyMasterID: number, propertyMasterSubType: number, listingPurposeID: number) {
     this.unitCategoryId = this.filterservice.getPropertytUnitCategoryid(unitCategoryID)

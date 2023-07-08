@@ -29,15 +29,18 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
   getenum(propertyMasterTypeID: number) {
     let pmtid = propertyMasterTypeID;
     this.propertyMasterTypeID = pmtid
-    return propertyMasterTypeEnum(propertyMasterTypeID)
+    return this.filterservice.getPropertytMasterTypeid(propertyMasterTypeID)
+    // return propertyMasterTypeEnum(propertyMasterTypeID)
   }
   getlist(listid: number) {
     return listingPurposeTypeEnum(listid)
   }
   getunit(unitid: number) {
-    return getPropertyUnitCategoryEnum(unitid)
+    return this.filterservice.getPropertytUnitCategoryid(unitid)
   }
-
+  getUnitCatid(id:any) {
+    return this.filterservice.getPropertytUnitCategoryid(id)
+  }
   backtosearch() {
     if (this.unitcatID == 12 || this.propertyMasterSubType == 15) {
       this.subid = this.filterservice.getPropertytMasterSubTypeid(this.sharedmodel.propertyMasterSubTypeID!);
@@ -51,7 +54,7 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
           'minValue': this.sharedmodel.minPrice,
           'maxValue': this.sharedmodel.maxPrice
         }
-       
+
       });
     } else {
       this.router.navigate(['Unitscategory'], {
@@ -68,7 +71,7 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
           'unitCategory': this.sharedmodel.propertyCategory,
           'minValue': this.sharedmodel.minPrice,
           'maxValue': this.sharedmodel.maxPrice
-          
+
         }
       });
     }
