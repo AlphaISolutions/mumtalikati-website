@@ -2,7 +2,7 @@
     <div class="row pt-4 pb-4 pe-xs-2 ps-xs-2">
         <div class="col-md-4 pb-4">
             <div>
-                <h2 class="h2color">
+                <h2 class="h2color" i18n>
                     For {{getlist(propertyDetail.listingPurposeID)}}
                 </h2>
             </div>
@@ -16,24 +16,24 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <th class="header">Building Type</th>
+                                <th class="header" i18n>Building Type</th>
                                 <td class="propertyb">{{propertyDetail.propertyUnitDescription}}</td>
 
                             </tr>
 
 
                             <tr>
-                                <th class="header">Building ID</th>
+                                <th class="header" i18n>Building ID</th>
                                 <td class="propertyb">{{propertyDetail.buildingNumber}}</td>
 
                             </tr>
                             <tr>
-                                <th class="header">Building Name</th>
+                                <th class="header" i18n>Building Name</th>
                                 <td class="propertyb">{{propertyDetail.buildingName}}</td>
 
                             </tr>
                             <tr>
-                                <th class="header">Plot Number</th>
+                                <th class="header" i18n>Plot Number</th>
                                 <td class="propertyb">{{propertyDetail.plotNumber}}</td>
 
                             </tr>
@@ -42,7 +42,7 @@
                             </ng-container>
                             <ng-template #residential>
                                 <tr>
-                                    <th class="header">Residential Units</th>
+                                    <th class="header" i18n>Residential Units</th>
                                     <td class="propertyb">{{propertyDetail.residentialUnits}}</td>
 
                                 </tr>
@@ -50,12 +50,12 @@
 
 
                             <tr>
-                                <th class="header">Build in year</th>
+                                <th class="header" i18n>Build in year</th>
                                 <td class="propertyb">{{propertyDetail.builtYear}}</td>
 
                             </tr>
                             <tr>
-                                <th class="header">No of Floor(s)</th>
+                                <th class="header" i18n>No of Floor(s)</th>
                                 <td class="propertyb">{{propertyDetail.numberofFloors}}</td>
                             </tr>
                         </tbody>
@@ -66,35 +66,35 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <th class="header">Type</th>
+                                    <th class="header" i18n>Type</th>
                                     <td class="propertyb">{{propertyDetail.propertySubTypeName}}</td>
 
                                 </tr>
                                 <tr>
-                                    <th class="header">Plot Number</th>
+                                    <th class="header" i18n>Plot Number</th>
                                     <td class="propertyb">{{propertyDetail.plotNumber}}</td>
 
                                 </tr>
                                 <ng-container *ngIf="(PropertySubTypeID == 1) ||( PropertySubTypeID == 9); else noOfFloor">
                                     <tr *ngIf="propertyDetail.unitCategoryID == 12 else nofloor">
-                                        <th class="header">No of Floor(s)</th>
+                                        <th class="header" i18n>No of Floor(s)</th>
                                         <td class="propertyb">{{propertyDetail.numberofFloors}}</td>
                                     </tr>
                                     <ng-template #nofloor>
                                         <tr>
-                                            <th class="header">Floor #</th>
+                                            <th class="header" i18n>Floor #</th>
                                             <td class="propertyb">{{propertyDetail.floorNumber}}</td>
                                         </tr>
                                     </ng-template>
                                 </ng-container>
                                 <ng-template #noOfFloor *ngIf="propertyDetail.numberofFloors">
                                     <tr>
-                                        <th class="header">No of Floor(s)</th>
+                                        <th class="header" i18n>No of Floor(s)</th>
                                         <td class="propertyb">{{propertyDetail.numberofFloors}}</td>
                                     </tr>
                                 </ng-template>
                                 <tr>
-                                    <th class="header">Status</th>
+                                    <th class="header" i18n>Status</th>
                                     <td class="propertyb">{{getstatus(propertyDetail.unitStatus)}}</td>
 
                                 </tr>
@@ -105,27 +105,27 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <th class="header">Type</th>
+                                    <th class="header" i18n>Type</th>
                                     <td class="propertyb">{{propertyDetail.propertySubTypeName}}</td>
 
                                 </tr>
                                 <tr>
-                                    <th class="header">Building ID</th>
+                                    <th class="header" i18n>Building ID</th>
                                     <td class="propertyb">{{propertyDetail.buildingNumber}}</td>
 
                                 </tr>
                                 <tr>
-                                    <th class="header">Building Name</th>
+                                    <th class="header" i18n>Building Name</th>
                                     <td class="propertyb">{{propertyDetail.propertyMasterName}}</td>
 
                                 </tr>
                                 <tr>
-                                    <th class="header">Plot Number</th>
+                                    <th class="header" i18n>Plot Number</th>
                                     <td class="propertyb">{{propertyDetail.plotNumber}}</td>
 
                                 </tr>
                                 <tr>
-                                    <th class="header">Unit ID</th>
+                                    <th class="header" i18n>Unit ID</th>
                                     <td class="propertyb">{{propertyDetail.propertyUnitID}}</td>
 
                                 </tr>
@@ -133,18 +133,18 @@
                                 </ng-container>
                                 <ng-template #showCaption>
                                     <tr>
-                                        <th class="header">Caption</th>
+                                        <th class="header" i18n>Caption</th>
                                         <td class="propertyb">{{propertyDetail.caption}}</td>
                                     </tr>
                                 </ng-template>
 
                                 <tr>
-                                    <th class="header">Unit Category</th>
+                                    <th class="header" i18n>Unit Category</th>
                                     <td class="propertyb">{{getpropertyunitCategoryid(unitcatID)}}</td>
 
                                 </tr>
                                 <tr>
-                                    <th class="header">Built in year</th>
+                                    <th class="header" i18n>Built in year</th>
                                     <td class="propertyb">{{propertyDetail.builtYear}}</td>
 
                                 </tr>
@@ -159,12 +159,12 @@
                                 </ng-template>
                                 <ng-template #notshowfloor>
                                     <tr>
-                                        <th class="header">Floor #</th>
+                                        <th class="header" i18n>Floor #</th>
                                         <td class="propertyb">{{propertyDetail.floorNumber}}</td>
                                     </tr>
                                 </ng-template>
                                 <tr>
-                                    <th class="header">Status</th>
+                                    <th class="header" i18n>Status</th>
                                     <td class="propertyb">{{getstatus(propertyDetail.unitStatus)}}</td>
 
                                 </tr>
@@ -188,7 +188,7 @@
 
                 <div class="d-flex gap-2 w-100 justify-content-between">
                     <div>
-                        <h6 class="mb-0"><b>Landlord</b></h6>
+                        <h6 class="mb-0"><b i18n>Landlord</b></h6>
                         <p class="mb-0 opacity-75">{{propertyDetail.name}}</p>
                     </div>
 
@@ -197,11 +197,11 @@
             <div class="row gx-2 gy-2">
                 <div class="col">
                     <button mat-stroked-button color="primary" class=" px-5 border-r btn-width "
-                        (click)="oncallclick(call ,propertyDetail.contact)">Call</button>
+                        (click)="oncallclick(call ,propertyDetail.contact)" i18n>Call</button>
                 </div>
                 <div class="col">
                     <button mat-raised-button color="primary" class="px-5 btn-width"
-                        (click)="redirectToWhatsApp(propertyDetail.contact)">Message</button>
+                        (click)="redirectToWhatsApp(propertyDetail.contact)" i18n>Message</button>
                 </div>
 
             </div>
@@ -232,11 +232,11 @@
 
                 <div class="card-body p-0 pt-2">
                     <mat-card-content>
-                        <h5 *ngIf="propertyDetail.listingPurposeID ==1 else nolistpurposeid">
+                        <h5 *ngIf="propertyDetail.listingPurposeID ==1 else nolistpurposeid" i18n>
                             OMR {{propertyDetail.rentPrice}}/Month
                         </h5>
                         <ng-template #nolistpurposeid>
-                            <h5>
+                            <h5 i18n>
                                 OMR {{propertyDetail.sellPrice}}/Sale Price
                             </h5>
                         </ng-template>
@@ -246,31 +246,31 @@
                         <ng-template #unitcatid>
                             <div class="dis-flex" clas="pe-4">
                                 <div
-                                    *ngIf="(propertyMasterSubType ==15 ) ||( propertyDetail.unitCategoryID==6)  else plotsqft">
+                                    *ngIf="(propertyMasterSubType ==15 ) ||( propertyDetail.unitCategoryID==6)  else plotsqft" i18n>
                                     <p class="icon pe-2"><img class="pe-2" [src]="areaimg">{{propertyDetail.sqft}}SQM
                                     </p>
                                 </div>
                                 <ng-template #plotsqft>
-                                    <p class="icon pe-2"><img class="pe-2" [src]="areaimg">{{propertyDetail.sqft}}SQM
+                                    <p class="icon pe-2" i18n><img class="pe-2" [src]="areaimg">{{propertyDetail.sqft}}SQM
                                     </p>
-                                    <p class="icon pe-2"><img class="pe-2" [src]="bedroomimg">{{propertyDetail.bedRoom}}
+                                    <p class="icon pe-2" i18n><img class="pe-2" [src]="bedroomimg">{{propertyDetail.bedRoom}}
                                         Bedrooms
                                     </p>
-                                    <p class="icon pe-2"><img class="pe-2"
+                                    <p class="icon pe-2" i18n><img class="pe-2"
                                             [src]="washroomimg">{{propertyDetail.bathRoom}}
                                         Bathrooms
                                     </p>
-                                    <p class="icon pe-2"><img class="pe-2" [src]="kitchen">{{propertyDetail.kitchen}}
+                                    <p class="icon pe-2" i18n><img class="pe-2" [src]="kitchen">{{propertyDetail.kitchen}}
                                         Kitchen
                                     </p>
-                                    <p class="icon pe-2"><img class="pe-2" [src]="hall">{{propertyDetail.hall}} Hall
+                                    <p class="icon pe-2" i18n><img class="pe-2" [src]="hall">{{propertyDetail.hall}} Hall
                                     </p>
                                 </ng-template>
 
                             </div>
                         </ng-template>
 
-                        <h5>
+                        <h5 i18n>
                             Property Details
                         </h5>
                         <div *ngIf="propertyDetail">
@@ -279,12 +279,12 @@
                                     {{ propertyDetail.propertyMasterDescription}}
                                 </p>
                             </div>
-                            <a class="readmore" *ngIf="propertyDetail.propertyMasterDescription.length > 100"
+                            <a i18n class="readmore" *ngIf="propertyDetail.propertyMasterDescription.length > 100"
                                 (click)="toggleReadMore(propertyDetail)">
                                 {{ propertyDetail.isExpanded ? 'Read Less' : 'Read More' }}
                             </a>
                         </div>
-                        <h5 *ngIf="!propertyFeature.length==0">
+                        <h5 *ngIf="!propertyFeature.length==0" i18n>
                             Features
                         </h5>
                         <div class="">
@@ -310,7 +310,7 @@
     </div>
     <div class="modal-body">
         <div>
-            <h6 class="text-cente">
+            <h6 class="text-cente" i18n>
                 Contact Us
             </h6>
 
@@ -327,14 +327,14 @@
         </div>
         <hr>
         <div *ngIf="propertyDetail">
-            <p class="align-item">
+            <p class="align-item" i18n>
                 Please quote Building ID {{propertyDetail.buildingNumber}}
                 when calling to landlord.
             </p>
         </div>
         <hr>
         <div>
-            <p class="align-item">
+            <p class="align-item" i18n>
                 Do you want more options? Finding the right property for you is easier with notifications
             </p>
         </div>
@@ -342,7 +342,7 @@
     <div class="modal-footer">
         <div class="row gx-2 gy-2">
             <div class="col">
-                <button mat-raised-button color="primary" class="w-100" (click)="closepop()">I want to be
+                <button mat-raised-button color="primary" class="w-100" (click)="closepop()" i18n>I want to be
                     notified</button>
                 <!-- <button mat-raised-button color="primary" class="border-done" (click)="closepop()">I want to be
                     notified</button> -->
@@ -350,7 +350,7 @@
             </div>
             <div class="col">
                 <button type="button" mat-stroked-button color="primary" class=" px-5 border-r btn-width"
-                    (click)="closepop()">Maybe Later</button>
+                    (click)="closepop()" i18n>Maybe Later</button>
             </div>
         </div>
     </div>

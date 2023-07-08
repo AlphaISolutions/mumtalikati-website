@@ -8,6 +8,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { ProfileImage } from '../models/profileImage.model';
 import Splide from '@splidejs/splide';
 import { State } from '../models/state.model';
+import { FilterService } from '../services/filterserice';
 @Component({
   selector: 'app-propertyfulldisplaylist',
   templateUrl: './propertyfulldisplaylist.component.html',
@@ -41,7 +42,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   @Input() unitsid!: number
   @Input() sharedmodel = new State
   closeResult = '';
-  constructor(private modalService: NgbModal, private clipboard: Clipboard) { }
+  constructor(private modalService: NgbModal, private clipboard: Clipboard, private filterService:FilterService) { }
   mainSlider: Splide;
   thumbnailSlider: Splide;
   ngOnInit() {
@@ -86,10 +87,12 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   }
 
   getlist(listid: any) {
-    return listingPurposeTypeEnum(listid)
+   return this.filterService.getPurposeid(listid)
+    // return listingPurposeTypeEnum(listid)
   }
   getpropertyunitCategoryid(unitcatID: number) {
-    return getPropertyUnitCategoryEnum(unitcatID)
+    return this.filterService.getPropertytUnitCategoryid(unitcatID)
+    // return getPropertyUnitCategoryEnum(unitcatID)
   }
   getstatus(statuss: number) {
     return getstatusType(statuss)

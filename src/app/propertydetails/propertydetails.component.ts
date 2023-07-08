@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, VERSION } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListingPurpose } from '../models/listing-purpose.model';
 import { PropertyMasterType } from '../models/property-master-type.model';
@@ -19,6 +19,7 @@ import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
 import { Meta, Title } from '@angular/platform-browser';
 import { maxValueModel } from '../models/maxValue.model';
+import { LanguageService } from '../services/language.service';
 
 
 
@@ -28,6 +29,7 @@ import { maxValueModel } from '../models/maxValue.model';
   styleUrls: ['./propertydetails.component.scss']
 })
 export class PropertydetailsComponent implements OnInit {
+  name = 'Angular ' + VERSION.major;
   loading: boolean = false;
   propertyDetail: RentalUnitDetail[] = [];
   listingpupose: ListingPurpose[] = [];
@@ -71,7 +73,7 @@ export class PropertydetailsComponent implements OnInit {
   propertyMasterTypeID: any;
   propertyMasterSubTypeID: any;
   allselection: string = 'All'
-  governoratestring: string | null = "All";
+  governoratestring: string | null = null;
   liststring!: string;
   unitcategorystring!: string;
   propertyMasterTypestring!: string
@@ -83,6 +85,7 @@ export class PropertydetailsComponent implements OnInit {
   maxPricedata!: maxValueModel;
   ceilvalue: number;
   options: Options | null = null;
+  langCode:string;
   constructor(private route: ActivatedRoute,
     private rxFormBuilder: RxFormBuilder,
     private mumtalikatiservic: MumtalikatiService,
@@ -91,6 +94,7 @@ export class PropertydetailsComponent implements OnInit {
     private modalService: NgbModal,
     private setupFilterServive: SetFiltersServive,
     private filterservice: FilterService,
+    private languageService: LanguageService,
     private metaService: Meta) { this.getstate() }
   async ngOnInit() {
     this.getceil();
@@ -101,7 +105,8 @@ export class PropertydetailsComponent implements OnInit {
       centered: true,
       scrollable: true,
     };
-    this.statedatalist()
+    this.statedatalist();
+  this.langCode=this.languageService.getlang()
   }
   async initiaalizefilters() {
     this.listingpupose = await this.setupFilterServive.getListingPurpose();
@@ -122,6 +127,10 @@ export class PropertydetailsComponent implements OnInit {
     if (!this.propertyUnitCategoryType) {
       this.getPropertyUnitCategoryType();
     }
+    // this.propertymasterType =await this.setupFilterServive.getPropertyMasterType();
+    // if(!this.propertymasterType){
+    //   this.getPropertyMasterType();
+    // }
     this.propertysubType = await this.setupFilterServive.getPropertySubType();
     if (!this.propertysubType) {
       this.setservice.getPropertySubTypes().then((data) => {
@@ -150,6 +159,7 @@ export class PropertydetailsComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.propertymasterType = data
+
         }
       })
       .catch((error) => {
@@ -235,10 +245,12 @@ export class PropertydetailsComponent implements OnInit {
     this.statedatalist()
   }
   getlistpurpose(listid: number) {
-    return listingPurposeTypeEnum(listid);
+    return this.filterservice.getPurposeid(listid)
+    // return listingPurposeTypeEnum(listid);
   }
   getpropertyMasterType(masterTypeId: number) {
-    return propertyMasterTypeEnum(masterTypeId)
+    return this.filterservice.getPropertytMasterTypeid(masterTypeId)
+    // return propertyMasterTypeEnum(masterTypeId)
   }
   async onclicks(listingPurposeType: number) {
     this.listid = listingPurposeType;
@@ -506,18 +518,22 @@ export class PropertydetailsComponent implements OnInit {
       this.listid = this.listpurID;
       this.liststring = params['purpose']
     } else if (this.listid == 1) {
-      this.liststring = 'Rent';
+      this.liststring = this.filterservice.getPurposeid(1);
     } else {
-      this.liststring = 'Buy';
+      this.liststring = this.filterservice.getPurposeid(2);
     }
   }
   getGovernorateId(params: any) {
+    debugger
     this.governoratcountryid = this.filterservice.getGovernorateDesc(params['governorate'])
     if (this.governoratcountryid) {
       this.governorateid = this.governoratcountryid;
       this.governoratestring = params['governorate'];
     } else if (this.governorateid) {
-      this.governoratestring = this.filterservice.getGovernorateid(this.governorateid) ?? "All"
+      this.governoratestring = this.filterservice.getGovernorateid(this.governorateid)
+    }else{
+    
+      this.governoratestring=this.getlang(localStorage.getItem('locale') || 'ar')
     }
   }
   getunitcategoryId(params: any) {
@@ -527,7 +543,8 @@ export class PropertydetailsComponent implements OnInit {
       this.unitcategorystring = params['unitCategory'];
     }
     else {
-      this.unitcategorystring = 'All'
+     
+      this.unitcategorystring =this.getlang(localStorage.getItem('locale') || 'ar')
     }
   }
   getpropertyMasterTypeID(params: any) {
@@ -536,7 +553,8 @@ export class PropertydetailsComponent implements OnInit {
       this.mastertypeid = this.propertyMasterTypeID;
       this.propertyMasterTypedesc = params['propertyMasterType']
     } else {
-      this.propertyMasterTypedesc = 'All'
+   
+      this.propertyMasterTypedesc = this.getlang(localStorage.getItem('locale') || 'ar')
     }
   }
   getPropertyMasterSubTypeID(params: any) {
@@ -777,7 +795,7 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getceil() {
-    this.loading=true;
+    this.loading = true;
     this.mumtalikatiservic.getMaxUnitPrice()
       .then((data) => {
         if (data) {
@@ -841,4 +859,11 @@ export class PropertydetailsComponent implements OnInit {
       })
   }
 
+  getlang(language: string) {
+    var lang = {
+        "en-US": "All",
+        "ar": "الكل",
+    }
+    return lang[language] || "Unknown";
+}
 }

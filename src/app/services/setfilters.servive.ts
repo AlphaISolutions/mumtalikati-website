@@ -52,7 +52,6 @@ export class SetFiltersServive {
 
 
     getPropertyMasterType(): PropertyMasterType[] {
-
         let tempDatas = JSON.parse(localStorage.getItem('propertymasterType')!);
         if (!tempDatas) {
             this.setupService.getPropertyMasterTypes().then((data) => {
@@ -114,11 +113,7 @@ export class SetFiltersServive {
                 return tempData;
             })
         }
-
         return tempData;
-
-
-
     }
     setGovernorate(data: any) {
         localStorage.setItem('governorate', JSON.stringify(data));

@@ -217,7 +217,7 @@ h5 {
 //   }
 .mat-form-field-appearance-outline .mat-form-field-outline {
     background-color: $input-field-bg !important;
-    // border-radius: 30px !important;
+    border-radius: 10px !important;
     font-size: medium;
     color: $primary-color;
 }
@@ -417,7 +417,22 @@ hr {
 .splide__track--nav>.splide__list>.splide__slide.is-active {
     border: none;
 }
-
-
+.no-label.mat-form-field-infix{
+    width: 12px !important; 
+}
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+   color:none !important ; 
+}
+.ngx-pagination a, .ngx-pagination button {
+    text-decoration: none !important;
+    border: 1px solid $primary !important;
+    display: inline !important;
+}
+.ngx-pagination .pagination-next a:after, .ngx-pagination .pagination-next.disabled:after {
+    content: none !important
+}
+.ngx-pagination .pagination-previous a:before, .ngx-pagination .pagination-previous.disabled:before {
+    content: none !important 
+}
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

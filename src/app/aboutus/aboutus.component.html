@@ -6,8 +6,8 @@
             <div id="heading-section" class="col-8 col-lg-8 col-xl-6 px-5 py-4">
                 <div class="row">
                     <div>
-                        <h1>About Us</h1>
-                        <p class="text-center">
+                        <h1 i18n>About Us</h1>
+                        <p class="text-center" i18n>
                             Providing our clients with the best possible property solutions by combining our expertise
                             and cutting-edge technology.
                         </p>
@@ -25,16 +25,16 @@
 
             <div class="col">
 
-                <p class="about-heading">
+                <p class="about-heading" i18n>
                     ABOUT US
                 </p>
-                <h3 class="sign-up">
+                <h3 class="sign-up" i18n>
                     Connecting You
                     To Your Perfect Property
 
 
                 </h3>
-                <p class="platform">
+                <p class="platform" i18n>
                     Mumtalikati is a leading real estate platform that Specializes in connecting buyers, sellers, and
                     renters with their ideal properties. Our easy-to-use platform streamlines the entire real estate
                     process, from listing properties to finding the perfect match.
@@ -45,7 +45,7 @@
             <div class="d-none d-lg-block col-lg-1">
 
             </div>
-            <div class="col d-none d-lg-block">
+            <div class="col d-none d-lg-block" i18n>
                 <p> <img [src]="aboutSectionImg" class="img-fluid shadow-2-strong" alt="" /></p>
             </div>
         </div>
@@ -56,20 +56,20 @@
         <div class="row">
             <div class="col d-none d-lg-block">
                 <div class="Card shadow border-0">
-                    <img class="card-img imge " [src]="aboutbuildingImg" height="370px" alt="">
+                    <img class="card-img imge" i18n-alt [src]="aboutbuildingImg" height="370px" alt="">
                 </div>
             </div>
             <div class="col">
                 <div class="card px-2 border-0 radius shadow">
                     <div class="card-body pb-4">
-                        <p class="about-heading">REAL ESTATE SIMPLIFIED</p>
-                        <h2 class="float-left">Discover a better way to BUY, SELL, & RENT.</h2>
+                        <p class="about-heading" i18n>REAL ESTATE SIMPLIFIED</p>
+                        <h2 class="float-left" i18n>Discover a better way to BUY, SELL, & RENT.</h2>
                         <div class="pt-3">
-                            <p>
+                            <p i18n>
                                 Looking for a more efficient and hassle-free way to buy, sell, or rent a property? Look
                                 no further than Mumtalikati!
                             </p>
-                            <p>With our user-friendly platform and comprehensive real estate solutions, you can easily
+                            <p i18n>With our user-friendly platform and comprehensive real estate solutions, you can easily
                                 find the perfect property for your needs, whether you're looking to buy, sell, or rent.
                                 From browsing listings and taking virtual tours to managing your transactions and
                                 payments, our platform streamlines every step of the real estate process.
@@ -87,14 +87,14 @@
     <div class="container about-section px-4 ">
         <div class="row gy-2  gx-5">
             <div class="col-sm-12">
-                <p class="about-heading text-center">
+                <p class="about-heading text-center" i18n>
                     OUR SERVICES
                 </p>
-                <h1 class="sign-up text-center font-weight-bold">
+                <h1 class="sign-up text-center font-weight-bold" i18n>
                     SOLUTIONS TO
                     YOUR PROPERTY PROBLEMS
                 </h1>
-                <p class="platform text-center">
+                <p class="platform text-center" i18n>
                     Mumtalikati REA Portal offers a range of services designed to simplify the real estate process and
                     help our clients achieve their property goals. Some of our key services include:
                 </p>
@@ -107,8 +107,8 @@
                 <div class="card border-0 hfgh">
                     <div class="card-body mar">
                         <div class="text-center martop">
-                            <h5>Property Listings</h5>
-                            <p>Whether you're looking to buy, sell, or rent a property, we make it easy to create and
+                            <h5 i18n>Property Listings</h5>
+                            <p i18n>Whether you're looking to buy, sell, or rent a property, we make it easy to create and
                                 browse listings on our platform.</p>
                         </div>
                     </div>
@@ -118,8 +118,8 @@
                 <div class="card border-0 hfgh">
                     <div class="card-body mar">
                         <div class="text-center martop">
-                            <h5>Property Management</h5>
-                            <p>If you're a property owner, we can help you manage your properties more effectively, from
+                            <h5 i18n>Property Management</h5>
+                            <p i18n>If you're a property owner, we can help you manage your properties more effectively, from
                                 advertising and screening tenants to collecting rent and handling maintenance requests.
                             </p>
                         </div>
@@ -144,14 +144,14 @@
         <div class="row about-sectionlast gx-5">
 
             <div class="col ">
-                <p class="about-headings primary">
+                <p class="about-headings primary" i18n>
                     GET THESE SOLUTIONS NOW WITH MUMTALIKATI APP
                 </p>
 
-                <h3 class="sign-in ">
+                <h3 class="sign-in " i18n>
                     Take Control Of Your Property Needs With Mumtalikati App
                 </h3>
-                <p class="platform sign-in ">
+                <p class="platform sign-in " i18n>
                     With the Mumtalikati app, you have access to a variety of features that help you manage your real
                     estate needs efficiently. From contacts and leads management to property marketing, tenant
                     screening, and rent collection, our app offers a comprehensive solution for all your real estate
@@ -161,10 +161,10 @@
                     vacancy management, property evaluations, financial reporting, evictions, and legal compliance.
 
                 </p>
-                <p class="platform sign-in">Don't miss out on this convenient and powerful tool for buying, selling, and
+                <p class="platform sign-in" i18n>Don't miss out on this convenient and powerful tool for buying, selling, and
                     renting properties.</p>
                 <button mat-flat-button color="primary" class="btn-download" (click)="goTo('aboutus')" onclick="window.scrollTo(0,0)"
-                    (click)="opengoogleplay()">Download Now</button>
+                    (click)="opengoogleplay()" i18n>Download Now</button>
 
 
             </div>

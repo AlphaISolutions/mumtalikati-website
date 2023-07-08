@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -59,7 +59,12 @@ import {NgxSliderModule } from '@angular-slider/ngx-slider';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment.development';
 import * as firebase from 'firebase/app';
-firebase.initializeApp(environment.firebase)
+import { HelloComponent } from './propertydetails/hello.component';
+import { TranslatePipe } from './propertydetails/translate.pipe';
+firebase.initializeApp(environment.firebase);
+import { registerLocaleData } from '@angular/common';
+import  localeEl from '@angular/common/locales/ar';
+registerLocaleData(localeEl);
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,7 +92,8 @@ firebase.initializeApp(environment.firebase)
     ForgotpasswordComponent,
     OtpVerificationComponent,
     SetyouPasswordComponent,
-
+    HelloComponent,
+    TranslatePipe
   ],
   imports: [
     BrowserModule,
@@ -124,10 +130,10 @@ firebase.initializeApp(environment.firebase)
     NgOtpInputModule,
     NgxSliderModule,
     AngularFireModule,
-  
-   
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }, RxFormBuilder],
+providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },{ provide: LOCALE_ID, useValue: localStorage.getItem('locale') ?? 'ar',multi:true}, RxFormBuilder],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+ }

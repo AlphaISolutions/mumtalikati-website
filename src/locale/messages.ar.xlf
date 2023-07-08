@@ -1,0 +1,1515 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="ar" target-language='ar' datatype="plaintext" original="ng2.template" target-language="ar">
+    <body>
+      <trans-unit id="ngb.alert.close" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/alert/alert.ts</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.carousel.slide-number" datatype="html">
+        <source> Slide <x id="INTERPOLATION" equiv-text="*
+	 * If `true`"/> of <x id="INTERPOLATION_1" equiv-text="tching when mou"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/carousel/carousel.ts</context>
+          <context context-type="linenumber">175,180</context>
+        </context-group>
+        <note priority="1" from="description">Currently selected slide number read by screen reader</note>
+      </trans-unit>
+      <trans-unit id="ngb.carousel.previous" datatype="html">
+        <source>Previous</source>
+        <target>السابقة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/carousel/carousel.ts</context>
+          <context context-type="linenumber">206</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.carousel.next" datatype="html">
+        <source>Next</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/carousel/carousel.ts</context>
+          <context context-type="linenumber">224,227</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.datepicker.select-month" datatype="html">
+        <source>Select month</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/datepicker/datepicker-navigation-select.ts</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/datepicker/datepicker-navigation-select.ts</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.datepicker.select-year" datatype="html">
+        <source>Select year</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/datepicker/datepicker-navigation-select.ts</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/datepicker/datepicker-navigation-select.ts</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.datepicker.previous-month" datatype="html">
+        <source>Previous month</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/datepicker/datepicker-navigation.ts</context>
+          <context context-type="linenumber">60,63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/datepicker/datepicker-navigation.ts</context>
+          <context context-type="linenumber">60,63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.datepicker.next-month" datatype="html">
+        <source>Next month</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/datepicker/datepicker-navigation.ts</context>
+          <context context-type="linenumber">60,63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/datepicker/datepicker-navigation.ts</context>
+          <context context-type="linenumber">60,63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.first" datatype="html">
+        <source>««</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/pagination/pagination.ts</context>
+          <context context-type="linenumber">269,270</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.previous" datatype="html">
+        <source>«</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/pagination/pagination.ts</context>
+          <context context-type="linenumber">269,270</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.next" datatype="html">
+        <source>»</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/pagination/pagination.ts</context>
+          <context context-type="linenumber">269,270</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.last" datatype="html">
+        <source>»»</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/pagination/pagination.ts</context>
+          <context context-type="linenumber">269,270</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.first-aria" datatype="html">
+        <source>First</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/pagination/pagination.ts</context>
+          <context context-type="linenumber">269,271</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.previous-aria" datatype="html">
+        <source>Previous</source>
+        <target>سابق</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/pagination/pagination.ts</context>
+          <context context-type="linenumber">269,271</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.next-aria" datatype="html">
+        <source>Next</source>
+       <target>التالي</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/pagination/pagination.ts</context>
+          <context context-type="linenumber">269,271</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.last-aria" datatype="html">
+        <source>Last</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/pagination/pagination.ts</context>
+          <context context-type="linenumber">269,271</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.progressbar.value" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="* The maximal"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/progressbar/progressbar.ts</context>
+          <context context-type="linenumber">30,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.HH" datatype="html">
+        <source>HH</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">225,226</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.hours" datatype="html">
+        <source>Hours</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">247</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.MM" datatype="html">
+        <source>MM</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">272</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.minutes" datatype="html">
+        <source>Minutes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">287,288</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.increment-hours" datatype="html">
+        <source>Increment hours</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">302,305</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.decrement-hours" datatype="html">
+        <source>Decrement hours</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">330,334</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.increment-minutes" datatype="html">
+        <source>Increment minutes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">350,356</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.decrement-minutes" datatype="html">
+        <source>Decrement minutes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">378,382</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.SS" datatype="html">
+        <source>SS</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">406,409</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.seconds" datatype="html">
+        <source>Seconds</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">424,425</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.increment-seconds" datatype="html">
+        <source>Increment seconds</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">429</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.decrement-seconds" datatype="html">
+        <source>Decrement seconds</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">429</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.PM" datatype="html">
+        <source><x id="INTERPOLATION"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">429</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.AM" datatype="html">
+        <source><x id="INTERPOLATION"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/timepicker/timepicker.ts</context>
+          <context context-type="linenumber">429</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.toast.close-aria" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/src/toast/toast.ts</context>
+          <context context-type="linenumber">74,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5736481176444461852" datatype="html">
+        <source>About Us</source>
+                <target>معلومات عنا</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/top-bar/top-bar.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1963754956069545605" datatype="html">
+        <source> Providing our clients with the best possible property solutions by combining our expertise and cutting-edge technology. </source>
+        <target>تزويد عملائنا بأفضل الحلول العقارية الممكنة من خلال الجمع بين خبرتنا والتكنولوجيا المتطورة.
+</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1051982183061013709" datatype="html">
+        <source> ABOUT US </source>
+        <target>معلومات عنا</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2340328366237226222" datatype="html">
+        <source> Connecting You To Your Perfect Property </source>
+        <target>ربطك بممتلكاتك المثالية</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2838127082085384546" datatype="html">
+        <source> Mumtalikati is a leading real estate platform that Specializes in connecting buyers, sellers, and renters with their ideal properties. Our easy-to-use platform streamlines the entire real estate process, from listing properties to finding the perfect match. </source>
+        <target>ممتلكاتي هي منصة عقارية رائدة متخصصة في ربط المشترين والبائعين والمستأجرين بممتلكاتهم المثالية. تعمل منصتنا سهلة الاستخدام على تبسيط العملية العقارية بأكملها ، من سرد العقارات إلى العثور على أفضل تطابق.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">38,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7374975184660371757" datatype="html">
+        <source><x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;img [sr"/><x id="TAG_IMG" ctype="image" equiv-text="&lt;img [src]=&quot;aboutSectionImg&quot; class=&quot;img-fluid shadow-2-strong&quot; alt=&quot;&quot; /&gt;"/><x id="CLOSE_PARAGRAPH" ctype="x-p"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6059016114318889731" datatype="html">
+        <source>REAL ESTATE SIMPLIFIED</source>
+        <target>العقارات مبسطة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">65,66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6469929085836490221" datatype="html">
+        <source>Discover a better way to BUY, SELL, &amp; RENT.</source>
+        <target>اكتشف طريقة أفضل للشراء والبيع والاستئجار.
+</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">66,67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3359566946805524846" datatype="html">
+        <source> Looking for a more efficient and hassle-free way to buy, sell, or rent a property? Look no further than Mumtalikati! </source>
+        <target>هل تبحث عن طريقة أكثر فاعلية وخالية من المتاعب لشراء أو بيع أو استئجار عقار؟ لا تنظر أبعد من منممتاليكاتي
+</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">69,70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2011809773596580401" datatype="html">
+        <source>With our user-friendly platform and comprehensive real estate solutions, you can easily find the perfect property for your needs, whether you&apos;re looking to buy, sell, or rent. From browsing listings and taking virtual tours to managing your transactions and payments, our platform streamlines every step of the real estate process. So why wait? With Mumtalikati, take the next step in real estate!</source>
+        <target>من خلال منصتنا سهلة الاستخدام والحلول العقارية الشاملة ، يمكنك بسهولة العثور على العقار المثالي الذي يلبي احتياجاتك ، سواء كنت تبحث عن شراء أو بيع أو تأجير. من تصفح القوائم وأخذ جولات افتراضية إلى إدارة معاملاتك ومدفوعاتك ، تعمل منصتنا على تبسيط كل خطوة من خطوات عملية العقارات. فلماذا تنتظر؟ مع Mumtalikati ، اتخذ الخطوة التالية في مجال العقارات!
+</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">72,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="57221034519011924" datatype="html">
+        <source> OUR SERVICES </source>
+        <target>خدماتنا</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4830805460191374729" datatype="html">
+        <source>SOLUTIONS TO YOUR PROPERTY PROBLEMS </source>
+        <target>حلول لمشاكل الملكية الخاصة بك
+</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">94,95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6802571257342934642" datatype="html">
+        <source> Mumtalikati REA Portal offers a range of services designed to simplify the real estate process and help our clients achieve their property goals. Some of our key services include: </source>
+         <target>تقدم بوابة ممتلكاتي العقارية مجموعة من الخدمات المصممة لتبسيط العملية العقارية ومساعدة عملائنا على تحقيق أهدافهم العقارية. تشمل بعض خدماتنا الرئيسية ما يلي:
+</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">98,99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9131538432084268186" datatype="html">
+        <source>Property Listings</source>
+         <target>قوائم الملكية
+</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">110,111</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/top-bar/top-bar.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="88443576205283111" datatype="html">
+        <source>Whether you&apos;re looking to buy, sell, or rent a property, we make it easy to create and browse listings on our platform.</source>
+         <target>سواء كنت تبحث عن شراء أو بيع أو استئجار عقار ، فإننا نجعل من السهل إنشاء وتصفح القوائم على منصتنا.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">111,112</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8479588321093211044" datatype="html">
+        <source>Property Management</source>
+         <target>إدارة الممتلكات</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">121,122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8429161839444440983" datatype="html">
+        <source>If you&apos;re a property owner, we can help you manage your properties more effectively, from advertising and screening tenants to collecting rent and handling maintenance requests. </source>
+         <target>إذا كنت مالك عقار ، فيمكننا مساعدتك في إدارة ممتلكاتك بشكل أكثر فعالية ، من الإعلان وفحص المستأجرين إلى تحصيل الإيجار والتعامل مع طلبات الصيانة.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">122,123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6097672968413811428" datatype="html">
+        <source> GET THESE SOLUTIONS NOW WITH MUMTALIKATI APP </source>
+         <target>احصل على هذه الحلول الآن مع تطبيق ممتلكاتي</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">148</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6087859557641636446" datatype="html">
+        <source> Take Control Of Your Property Needs With Mumtalikati App </source>
+         <target>تحكم في احتياجات الممتلكات الخاصة بك مع تطبيق ممتلكاتي</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">152</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6455255006921473697" datatype="html">
+        <source> With the Mumtalikati app, you have access to a variety of features that help you manage your real estate needs efficiently. From contacts and leads management to property marketing, tenant screening, and rent collection, our app offers a comprehensive solution for all your real estate needs. You can easily search for properties, view photos and videos, take virtual tours, and receive real-time notifications for new listings. Additionally, our app offers features for activities management, listing and inventory management, transactions, payments and reminders, reporting, vacancy management, property evaluations, financial reporting, evictions, and legal compliance. </source>
+         <target>مع تطبيق ممتلكاتي ، يمكنك الوصول إلى مجموعة متنوعة من الميزات التي تساعدك على إدارة احتياجاتك العقارية بكفاءة. من جهات الاتصال وإدارة العملاء المحتملين إلى تسويق العقارات وفحص المستأجرين وجمع الإيجارات ، يقدم تطبيقنا حلاً شاملاً لجميع احتياجاتك العقارية. يمكنك البحث بسهولة عن العقارات وعرض الصور ومقاطع الفيديو والقيام بجولات افتراضية وتلقي إشعارات في الوقت الفعلي عن القوائم الجديدة. بالإضافة إلى ذلك ، يقدم تطبيقنا ميزات لإدارة الأنشطة ، وإدارة القوائم والمخزون ، والمعاملات ، والمدفوعات والتذكيرات ، وإعداد التقارير ، وإدارة الشواغر ، وتقييم الممتلكات ، والتقارير المالية ، وعمليات الإخلاء ، والامتثال القانوني.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">155,160</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1383911315294959057" datatype="html">
+        <source>Don&apos;t miss out on this convenient and powerful tool for buying, selling, and renting properties.</source>
+         <target>لا تفوت هذه الأداة المريحة والفعالة لشراء وبيع وتأجير العقارات.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">164,165</context>
+        </context-group>
+      </trans-unit>
+           <trans-unit id="332026513454632763" datatype="html">
+        <source>Download Now</source>
+        <target>التحميل الان</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/aboutus/aboutus.component.html</context>
+          <context context-type="linenumber">167,168</context>
+        </context-group>
+      </trans-unit>
+         <trans-unit id="506922891038313010" datatype="html">
+        <source><x id="START_LINK" ctype="x-a" equiv-text="&lt;a (click)=&quot;backtosearch()&quot; class=&quot;cursor&quot;&gt;"/><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fa fa-angle-left pe-2&quot; aria-hidden=&quot;true&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/>Back To Search<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+         <target><x id="START_LINK" ctype="x-a" equiv-text="&lt;a (click)=&quot;backtosearch()&quot; class=&quot;cursor&quot;&gt;"/><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fa fa-angle-left pe-2&quot; aria-hidden=&quot;true&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/>العودة الى البحث<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/breadcrumb/breadcrumb.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+            <trans-unit id="6679280050497275346" datatype="html">
+        <source><x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;&quot;&gt;"/>Mumtalikati<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+                <target><x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;&quot;&gt;"/>ممتليكاتي<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/breadcrumb/breadcrumb.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/breadcrumbpropertyfulldisplay/breadcrumbpropertyfulldisplay.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/breadcrumbpropertyfulldisplay/breadcrumbpropertyfulldisplay.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+            <trans-unit id="8642925095190568306" datatype="html">
+        <source><x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;#&quot; routerLink=&quot;../propertydetails&quot; *ngIf=&quot;!propertyMasterTypeID&quot;&gt;"/>All<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="START_LINK_1" equiv-text="&lt;a href=&quot;#&quot; routerLink=&quot;../propertydetails&quot; *ngIf=&quot;propertyMasterTypeID&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{
+                    getenum(propertyMasterTypeID) }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+                    <target><x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;#&quot; routerLink=&quot;../propertydetails&quot; *ngIf=&quot;!propertyMasterTypeID&quot;&gt;"/>كل<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="START_LINK_1" equiv-text="&lt;a href=&quot;#&quot; routerLink=&quot;../propertydetails&quot; *ngIf=&quot;propertyMasterTypeID&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{
+                    getenum(propertyMasterTypeID) }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/breadcrumb/breadcrumb.component.html</context>
+          <context context-type="linenumber">12,14</context>
+        </context-group>
+      </trans-unit>
+         <trans-unit id="6966679608161427177" datatype="html">
+        <source><x id="START_LINK" ctype="x-a" equiv-text="&lt;a  (click)=&quot;backtosearch()&quot; class=&quot;cursor&quot;
+                        (click)=&quot;addItem(propertyDetail.listingPurposeID!)&quot;&gt;"/><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fa fa-angle-left pe-2&quot;
+                            aria-hidden=&quot;true&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/>Back to Search<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+                   <target><x id="START_LINK" ctype="x-a" equiv-text="&lt;a  (click)=&quot;backtosearch()&quot; class=&quot;cursor&quot;
+                        (click)=&quot;addItem(propertyDetail.listingPurposeID!)&quot;&gt;"/><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i class=&quot;fa fa-angle-left pe-2&quot;
+                            aria-hidden=&quot;true&quot;&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/>العودة الى البحث<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>          
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/breadcrumbpropertyfulldisplay/breadcrumbpropertyfulldisplay.component.html</context>
+          <context context-type="linenumber">6,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="759687838251957893" datatype="html">
+        <source>Contact Us</source>
+         <target>اتصل بنا</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/top-bar/top-bar.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9146630443335518446" datatype="html">
+        <source> We&apos;re always happy to chat and offer our insights and expertise. Let&apos;s make your real estate goals a reality! </source>
+         <target>يسعدنا دائمًا الدردشة وتقديم رؤيتنا وخبراتنا. لنجعل أهدافك العقارية حقيقة واقعة!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2206595637027127383" datatype="html">
+        <source> Contact Mumtalikati today! </source>
+         <target>اتصل بـ ممتليكاتي اليوم!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4352867062317903273" datatype="html">
+        <source>Ready To Take the Next Step in Real Estate?</source>
+         <target>هل أنت مستعد لاتخاذ الخطوة التالية في مجال العقارات؟</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="819599185030975674" datatype="html">
+        <source> Reach us anytime, anywhere. We&apos;re excited to be a part of your real estate journey </source>
+         <target>تواصل معنا في أي وقت وفي أي مكان. نحن متحمسون لنكون جزءًا من رحلتك العقارية</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2070350043624928094" datatype="html">
+        <source>Email Us</source>
+         <target>ارسل لنا عبر البريد الإلكتروني</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1401982613362938665" datatype="html">
+        <source>Support@mumtalikati.com</source>
+         <target>Support@mumtalikati.com</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6782230648430634688" datatype="html">
+        <source>Call Us</source>
+         <target>اتصل بنا</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">54,55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="707594031564662753" datatype="html">
+        <source>+968 99160109</source>
+         <target>+968 99160109</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">57,58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6373824369913971486" datatype="html">
+        <source> &quot;Got a question, comment, or suggestion? Drop us a message using the form below!&quot; </source>
+         <target>"هل لديك سؤال أو تعليق أو اقتراح؟ أرسل لنا رسالة باستخدام النموذج أدناه!"</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5061006217131663577" datatype="html">
+        <source>Your Partner in Real Estate Success</source>
+         <target>شريكك في النجاح العقاري</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">79,81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6959497441009812685" datatype="html">
+        <source>Full Name</source>
+         <target>الاسم الكامل</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1586968323136897989" datatype="html">
+        <source> Full Name is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+         <target>الإسم الكامل ضروري</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">94,95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4768749765465246664" datatype="html">
+        <source>Email</source>
+         <target>بريد إلكتروني</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6866065602103806507" datatype="html">
+        <source> Email is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+         <target>البريد الإلكتروني هو
+</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">103,104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8194554728555410336" datatype="html">
+        <source>Phone Number</source>
+         <target>رقم التليفون</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5002423109693093665" datatype="html">
+        <source> Phone Number is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+         <target>رقم الهاتف هو</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">112,113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9127604588498960753" datatype="html">
+        <source>Subject</source>
+         <target>موضوع</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4936060849933008531" datatype="html">
+        <source> Subject is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+         <target>الموضوع هو</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">119,120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8066608938393600549" datatype="html">
+        <source>Message</source>
+         <target>رسالة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1754384926889435144" datatype="html">
+        <source> Message is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+         <target>الرسالة هي</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">126,127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="920206993593917266" datatype="html">
+        <source>Official Social Media</source>
+         <target>وسائل التواصل الاجتماعي الرسمية</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">144,145</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5943532692706557943" datatype="html">
+        <source>Follow Us for Real Estate Insights </source>
+         <target>تابعنا للحصول على رؤى عقارية</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/contactus/contactus.component.html</context>
+          <context context-type="linenumber">145,146</context>
+        </context-group>
+      </trans-unit>
+         <trans-unit id="2931481492307129794" datatype="html">
+        <source> Search Properties in Oman </source>
+        <target>عقارات البحث في عمان</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="471816275243265264" datatype="html">
+        <source>Location</source>
+      <target>موقع</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">53,54</context>
+        </context-group>
+      </trans-unit>
+         <trans-unit id="131983569778419589" datatype="html">
+        <source>Wilayat Area City Etc.</source>
+        <target>منطقة الولاية مدينة الخ.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <note priority="1" from="description">Wilayat Area City Etc. placeholder</note>
+      </trans-unit>
+       <trans-unit id="1195280733202193781" datatype="html">
+        <source>FIND</source>
+        <target>يجد</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="381252711088266266" datatype="html">
+        <source> Get bird’s-eye-view of your next home with Floor Plan </source>
+          <target>احصل على نظرة شاملة لمنزلك التالي باستخدام مخطط الطابق</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3504783269873952848" datatype="html">
+        <source>Easily visualise the layout of properties</source>
+          <target>تصور تخطيط الخصائص بسهولة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">84,85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6643443954890173738" datatype="html">
+        <source>View now <x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>keyboard_arrow_right<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/></source>
+        <target>عرض الآن</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">87,88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3609674623436243548" datatype="html">
+        <source>Our Quality Standards Never Disappoint</source>
+          <target>معايير الجودة لدينا لا تخيب أبدًا</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">92,93</context>
+        </context-group>
+      </trans-unit>
+         <trans-unit id="1048898837454068115" datatype="html">
+        <source>Explore All</source>
+        <target>استكشف الكل</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/home/home.component.html</context>
+          <context context-type="linenumber">93,94</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="8573264472238970365" datatype="html">
+        <source>Purpose</source>
+        <target>غاية</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4727374995334643152" datatype="html">
+        <source>Governorate</source>
+        <target>محافظة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+           <trans-unit id="8386976308507652568" datatype="html">
+        <source> All </source>
+        <target> كل </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7254155236369149149" datatype="html">
+        <source>Property category</source>
+        <target>فئة الملكية</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="allOptionText" datatype="html">
+        <source>All</source>
+        <target>كل</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+         <trans-unit id="1221208390441787006" datatype="html">
+        <source>Residential</source>
+        <target>سكني</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+            <trans-unit id="1655799311892631140" datatype="html">
+        <source>Commercial</source>
+         <target>تجاري</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="236976147425867126" datatype="html">
+        <source>Residential/Commercial</source>
+         <target>سكني / تجاري</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+      </trans-unit>
+        <trans-unit id="1616102757855967475" datatype="html">
+        <source>All</source>
+         <target> كل  </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">86,87</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7808756054397155068" datatype="html">
+        <source>Reset</source>
+        <target>إعادة ضبط</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">131,132</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">188,189</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1755227309001205474" datatype="html">
+        <source>Unit category</source>
+        <target>فئة الوحدة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">140</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8613547135995703781" datatype="html">
+        <source>Price (OMR)</source>
+        <target>السعر (ريال عماني)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">154</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5436004468493444470" datatype="html">
+        <source>Price Range</source>
+        <target>نطاق السعر</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">161,162</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1394257098790257991" datatype="html">
+        <source>Min:</source>
+        <target>الحد الأدنى:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">167,168</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4642771299783711633" datatype="html">
+        <source>Max:</source>
+        <target>الأعلى:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">175,176</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="397098723873502323" datatype="html">
+        <source>Done</source>
+        <target>منتهي</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">193,194</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3188095999658219944" datatype="html">
+        <source>Properties for <x id="INTERPOLATION" equiv-text="{{getlistpurpose(listid)}}"/> in Oman</source>
+           <target>العقارات لـ <x id="INTERPOLATION" equiv-text="{{getlistpurpose(listid)}}"/> في عُمان</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">203,204</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4240519273052373287" datatype="html">
+        <source>No Property Listed</source>
+        <target>لا توجد عقارات مُدرجة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertydetails/propertydetails.component.html</context>
+          <context context-type="linenumber">221,222</context>
+        </context-group>
+      </trans-unit>
+         <trans-unit id="7102924947139516633" datatype="html">
+        <source> For <x id="INTERPOLATION" equiv-text="{{getlist(propertyDetail.listingPurposeID)}}"/> </source>
+        <target> ل <x id="INTERPOLATION" equiv-text="{{getlist(propertyDetail.listingPurposeID)}}"/> </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8797802932948510811" datatype="html">
+        <source>Building Type</source>
+        <target>نوع البناية</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8776107865958828906" datatype="html">
+        <source>Building ID</source>
+        <target>معرف المبنى</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7777557232589201203" datatype="html">
+        <source>Building Name</source>
+        <target>اسم المبنى</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5338977034088280140" datatype="html">
+        <source>Plot Number</source>
+        <target>عدد مؤامرة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8856230384093022338" datatype="html">
+        <source>Residential Units</source>
+        <target>وحدات سكنية</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2648178942959652981" datatype="html">
+        <source>Build in year</source>
+        <target>بناء في العام</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4314656374402859755" datatype="html">
+        <source>No of Floor(s)</source>
+        <target>عدد الطوابق</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8650499415827640724" datatype="html">
+        <source>Type</source>
+        <target>يكتب</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6735689437744830320" datatype="html">
+        <source>Floor #</source>
+        <target>أرضية #</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">162</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5611592591303869712" datatype="html">
+        <source>Status</source>
+        <target>حالة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">167</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7171817287500347261" datatype="html">
+        <source>Unit ID</source>
+        <target>معرف الوحدة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">128</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6838559377527923778" datatype="html">
+        <source>Caption</source>
+        <target>التسمية التوضيحية</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">136</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5666887932232578520" datatype="html">
+        <source>Unit Category</source>
+        <target>فئة الوحدة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="315833164505495706" datatype="html">
+        <source>Built in year</source>
+        <target>بنيت في العام</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">147</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="297432868464092866" datatype="html">
+        <source>Landlord</source>
+        <target>المالك</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">191</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6398433642385327932" datatype="html">
+        <source>Call</source>
+        <target>يتصل</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">200</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3434601363846707278" datatype="html">
+        <source> OMR <x id="INTERPOLATION" equiv-text="{{propertyDetail.rentPrice}}"/>/Month </source>
+        <target> ريال عماني  <x id="INTERPOLATION" equiv-text="{{propertyDetail.rentPrice}}"/>/شهر</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">235,237</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7777907070439671821" datatype="html">
+        <source> OMR <x id="INTERPOLATION" equiv-text="{{propertyDetail.sellPrice}}"/>/Sale Price </source>
+        <target>ريال عماني <x id="INTERPOLATION" equiv-text="{{propertyDetail.sellPrice}}"/>/سعر البيع </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">239,241</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1516899764216778697" datatype="html">
+        <source><x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p class=&quot;icon pe-2&quot;&gt;"/><x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;pe-2&quot; [src]=&quot;areaimg&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{propertyDetail.sqft}}"/>SQM <x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/></source>
+        <target><x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p class=&quot;icon pe-2&quot;&gt;"/><x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;pe-2&quot; [src]=&quot;areaimg&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{propertyDetail.sqft}}"/>متر مربع <x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">250,251</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5845634719294372939" datatype="html">
+        <source><x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;pe-2&quot; [src]=&quot;areaimg&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{propertyDetail.sqft}}"/>SQM </source>
+        <target><x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;pe-2&quot; [src]=&quot;areaimg&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{propertyDetail.sqft}}"/>متر مربع </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">254,255</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4254726179429190075" datatype="html">
+        <source><x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;pe-2&quot; [src]=&quot;bedroomimg&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{propertyDetail.bedRoom}}"/> Bedrooms </source>
+        <target><x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;pe-2&quot; [src]=&quot;bedroomimg&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{propertyDetail.bedRoom}}"/> غرف نوم </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">256,258</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1360972770537023555" datatype="html">
+        <source><x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;pe-2&quot;
+                                            [src]=&quot;washroomimg&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{propertyDetail.bathRoom}}"/> Bathrooms </source>
+                                            <target></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">259,262</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5999178123723210093" datatype="html">
+        <source><x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;pe-2&quot; [src]=&quot;kitchen&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{propertyDetail.kitchen}}"/> Kitchen </source>
+        <target><x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;pe-2&quot; [src]=&quot;kitchen&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{propertyDetail.kitchen}}"/>مطبخ </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">263,265</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2205575598211019394" datatype="html">
+        <source><x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;pe-2&quot; [src]=&quot;hall&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{propertyDetail.hall}}"/> Hall </source>
+        <target><x id="TAG_IMG" ctype="image" equiv-text="&lt;img class=&quot;pe-2&quot; [src]=&quot;hall&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{propertyDetail.hall}}"/> قاعة </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">266,267</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3901305539018947675" datatype="html">
+        <source> Property Details </source>
+        <target>تفاصيل اوضح</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">273,275</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7708270344948043036" datatype="html">
+        <source> <x id="INTERPOLATION" equiv-text="{{ propertyDetail.isExpanded ? &apos;Read Less&apos; : &apos;Read More&apos; }}"/> </source>
+       <target><x id="INTERPOLATION" equiv-text="{{ propertyDetail.isExpanded ? &apos;أقرأ أقل&apos; : &apos;اقرأ أكثر&apos; }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">283,285</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7165997532946998319" datatype="html">
+        <source> Features </source>
+        <target>سمات</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">287,289</context>
+        </context-group>
+      </trans-unit>
+           <trans-unit id="9081389459800982992" datatype="html">
+        <source> Contact Us </source>
+         <target> اتصل بنا </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">313,315</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7848484651736009437" datatype="html">
+        <source> Please quote Building ID <x id="INTERPOLATION" equiv-text="{{propertyDetail.buildingNumber}}"/> when calling to landlord. </source>
+        <target>يرجى ذكر رقم تعريف المبنى<x id="INTERPOLATION" equiv-text="{{propertyDetail.buildingNumber}}"/>عند الاتصال بالمالك.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">330,333</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1206572719539595360" datatype="html">
+        <source> Do you want more options? Finding the right property for you is easier with notifications </source>
+        <target>هل تريد المزيد من الخيارات؟ العثور على العقار المناسب لك أسهل مع الإخطارات</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">337,339</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8291627548477441442" datatype="html">
+        <source>I want to be notified</source>
+        <target>أريد أن يتم إخطاري</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">345,346</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7744825765310326192" datatype="html">
+        <source>Maybe Later</source>
+        <target>ربما في وقت لاحق</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/propertyfulldisplaylist/propertyfulldisplaylist.component.html</context>
+          <context context-type="linenumber">353</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3114632346060726724" datatype="html">
+        <source>Muscat, Oman</source>
+        <target>مسقط، عمان</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1826215573205981970" datatype="html">
+        <source>Company</source>
+          <target>شركة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2821179408673282599" datatype="html">
+        <source>Home</source>
+         <target>الصفحة الرئيسية</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/top-bar/top-bar.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+            <trans-unit id="2501489806101473286" datatype="html">
+        <source>About us</source>
+      <target>معلومات عنا</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="8525213662266893834" datatype="html">
+        <source>Contact us</source>
+          <target>اتصل بنا</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4299409473255060262" datatype="html">
+        <source>Support 24/7</source>
+         <target>دعم 24/7</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3894347693662504381" datatype="html">
+        <source>Useful Link</source>
+         <target>رابط مفيد</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7350440387144891725" datatype="html">
+        <source>Help Center</source>
+         <target>مركز المساعدة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8499287316214874879" datatype="html">
+        <source>Knowledgebase</source>
+         <target>قاعدة المعرفة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1052055297234006268" datatype="html">
+        <source>Our Agent</source>
+         <target>وكيلنا</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2294807677110060523" datatype="html">
+        <source>Sellers</source>
+         <target>الباعة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="520029084822933994" datatype="html">
+        <source>Buyers</source>
+         <target>المشترون</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8429388176493549189" datatype="html">
+        <source>Quick Link</source>
+         <target>رابط سريع</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7751010942038334793" datatype="html">
+        <source>Blog</source>
+         <target>مدونة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7694552554517611019" datatype="html">
+        <source>Career</source>
+         <target>حياة مهنية</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8444511711680196553" datatype="html">
+        <source>FAQ&apos;S</source>
+         <target>التعليمات</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="62172931618398486" datatype="html">
+        <source>Landlords</source>
+         <target>الملاك</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8321710675443660032" datatype="html">
+        <source>Compliance</source>
+        <target>امتثال</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1348774649041038169" datatype="html">
+        <source>Navigation</source>
+         <target>ملاحة</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">112</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="841934696444961534" datatype="html">
+        <source>News</source>
+        <target>أخبار</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7100508900545127127" datatype="html">
+        <source>Testimonials</source>
+         <target>الشهادات - التوصيات</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="443631725806488672" datatype="html">
+        <source>Portofolio</source>
+         <target>بورتوفوليو</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2863431896244142849" datatype="html">
+        <source>Research</source>
+         <target>بحث</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5657627059606899727" datatype="html">
+        <source>Consultancy</source>
+         <target>الاستشارات</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1144407473317535723" datatype="html">
+        <source>Subscribe</source>
+         <target>يشترك</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">151</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="3967269098753656610" datatype="html">
+        <source>Email address</source>
+        <target state="translated">عنوان البريد الإلكتروني</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">155</context>
+        </context-group>
+        <note priority="1" from="description">Email address placeholder</note>
+      </trans-unit>
+      <trans-unit id="7546968991686310956" datatype="html">
+        <source>Subscribe Now</source>
+         <target>إشترك الآن</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">156,157</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8145735733423257868" datatype="html">
+        <source>©2023 mumtalikati.com All Rights Reserved.</source>
+         <target>© 2023 mumtalikati.com جميع الحقوق محفوظة.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/footer/footer.component.html</context>
+          <context context-type="linenumber">164</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="9046824764043338128" datatype="html">
+        <source><x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;b&gt;{{getM"/><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="{{getMasterTypeId"/><x id="INTERPOLATION" equiv-text="operty.propertyMasterTypeID)}}"/> Plot<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/><x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shortdisplay/shortdisplay.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4992280987828959597" datatype="html">
+        <source><x id="START_HEADING_LEVEL6" ctype="x-h6" equiv-text="nline&quot;&gt;"/><x id="INTERPOLATION" equiv-text="pertyMasterSubType!)}}"/><x id="CLOSE_HEADING_LEVEL6" ctype="x-h6"/></source>
+            <target><x id="START_HEADING_LEVEL6" ctype="x-h6" equiv-text="nline&quot;&gt;"/><x id="INTERPOLATION" equiv-text="pertyMasterSubType!)}}"/> عنوان المستوى 6<x id="CLOSE_HEADING_LEVEL6" ctype="x-h6"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shortdisplay/shortdisplay.component.html</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8984458529719879823" datatype="html">
+        <source> OMR <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;font-price&quot;&gt;"/><x id="INTERPOLATION" equiv-text="e}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="/Month"/>/Month </source>
+         <target> ريال عماني <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;font-price&quot;&gt;"/><x id="INTERPOLATION" equiv-text="e}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="/شهر"/>/شهر </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shortdisplay/shortdisplay.component.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8399268571172429814" datatype="html">
+        <source> OMR <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;font-price&quot;&gt;"/><x id="INTERPOLATION" equiv-text="e}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="/Sale Price"/>/Sale Price </source>
+          <target> ريال عماني <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;font-price&quot;&gt;"/><x id="INTERPOLATION" equiv-text="e}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="/سعر البيع"/>/سعر البيع </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shortdisplay/shortdisplay.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+    <trans-unit id="672553674718153144" datatype="html">
+        <source><x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;img clas"/><x id="TAG_IMG" ctype="image" equiv-text="rc]=&quot;areaimg&quot;&gt;"/><x id="INTERPOLATION" equiv-text="qft}}"/> SQM<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/></source>
+           <target><x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;img clas"/><x id="TAG_IMG" ctype="image" equiv-text="rc]=&quot;areaimg&quot;&gt;"/><x id="INTERPOLATION" equiv-text="qft}}"/> متر مربع<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shortdisplay/shortdisplay.component.html</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3916324337311453638" datatype="html">
+        <source><x id="TAG_IMG" ctype="image" equiv-text="pe-2&quot; [src]=&quot;areaimg&quot;&gt;"/><x id="INTERPOLATION" equiv-text="qft}}"/> SQM</source>
+                <target><x id="TAG_IMG" ctype="image" equiv-text="pe-2&quot; [src]=&quot;areaimg&quot;&gt;"/><x id="INTERPOLATION" equiv-text="qft}}"/> متر مربع</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shortdisplay/shortdisplay.component.html</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2064015867941271391" datatype="html">
+        <source>Type: <x id="INTERPOLATION" equiv-text="{{property.propertyMasterSubTypeName}}"/> </source>
+         <target>يكتب: <x id="INTERPOLATION" equiv-text="{{property.propertyMasterSubTypeName}}"/> </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/unitcategorylist/unitcategorylist.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="2279093062246509189" datatype="html">
+        <source>Building ID:<x id="INTERPOLATION" equiv-text="{{property.buildingNumber}}"/></source>
+        <target>معرف المبنى:<x id="INTERPOLATION" equiv-text="{{property.buildingNumber}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/unitcategorylist/unitcategorylist.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="8605257578881609321" datatype="html">
+        <source>Unit ID:<x id="INTERPOLATION" equiv-text="{{property.propertyUnitID}}"/></source>
+         <target>معرف الوحدة:<x id="INTERPOLATION" equiv-text="{{property.propertyUnitID}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/unitcategorylist/unitcategorylist.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+        <trans-unit id="2014029864506471484" datatype="html">
+        <source>Caption: <x id="INTERPOLATION" equiv-text="{{property.caption}}"/></source>
+         <target>التسمية التوضيحية:<x id="INTERPOLATION" equiv-text="{{property.caption}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/unitcategorylist/unitcategorylist.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+        <trans-unit id="2896314940323402865" datatype="html">
+        <source>Status: <x id="INTERPOLATION" equiv-text="{{getstutus(property.statuss!)}}"/></source>
+         <target>حالة: <x id="INTERPOLATION" equiv-text="{{getstutus(property.statuss!)}}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/unitcategorylist/unitcategorylist.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
