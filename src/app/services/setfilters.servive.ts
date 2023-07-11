@@ -6,6 +6,7 @@ import { Governorate } from '../models/governorate.model';
 import { PropertyMasterType } from '../models/property-master-type.model';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
 import { State } from '../models/state.model';
+import { Status } from '../models/status.model';
 
 @Injectable({
     providedIn: 'root'
@@ -15,13 +16,14 @@ export class SetFiltersServive {
     constructor(private setupService: SetupService) {
 
     }
-    startSession(purposedata: any, propertymasterdata: any, propertysubTypedata: any, UnitCategorydata: any, governoratedata: any) {
+    startSession(purposedata: any, propertymasterdata: any, propertysubTypedata: any, UnitCategorydata: any, governoratedata: any,Statusdata:any) {
 
         localStorage.setItem('listingpupose', JSON.stringify(purposedata));
         localStorage.setItem('propertymasterType', JSON.stringify(propertymasterdata));
         localStorage.setItem('propertysubType', JSON.stringify(propertysubTypedata));
         localStorage.setItem('propertyUnitCategoryType', JSON.stringify(UnitCategorydata));
         localStorage.setItem('governorate', JSON.stringify(governoratedata));
+        localStorage.setItem('getStatus', JSON.stringify(Statusdata));
 
     }
     stopSession() {
@@ -30,6 +32,7 @@ export class SetFiltersServive {
         localStorage.removeItem('propertysubType');
         localStorage.removeItem('propertyUnitCategoryType');
         localStorage.removeItem('governorate');
+        localStorage.removeItem('getStatus');
     }
 
     getListingPurpose(): ListingPurpose[] {
@@ -128,5 +131,19 @@ export class SetFiltersServive {
     }
     setsharedmodel(data: any) {
         localStorage.setItem('state', JSON.stringify(data));
+    }
+    getstatus(): Status[] {
+        let tempData = JSON.parse(localStorage.getItem('getStatus')!);
+        if (!tempData) {
+            this.setupService.getStatus().then((data) => {
+                tempData = data
+                this.setstatus(data)
+                return tempData;
+            })
+        }
+        return tempData;
+    }
+    setstatus(data: any) {
+        localStorage.setItem('getStatus', JSON.stringify(data));
     }
 }

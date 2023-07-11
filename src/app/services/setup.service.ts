@@ -8,6 +8,7 @@ import { PropertyMasterSubType } from "../models/propertyMasterSubType .model";
 import { PropertySubType } from "../models/propertySubType.model";
 import { PropertyUnitCategory } from "../models/propertyUnitCategory.model";
 import { Faqs } from "../models/faq.model";
+import { Status } from "../models/status.model";
 
 @Injectable({
     providedIn: 'root'
@@ -51,5 +52,11 @@ import { Faqs } from "../models/faq.model";
           .get<Faqs[]>(
             `@mumtalikati-api/FAQS/ReadCSV`
           )).then(res => res as Faqs[]).catch(err => { return Promise.reject(err) });
+      }
+      async  getStatus(): Promise<Status[]> {
+        return await firstValueFrom(this.http
+          .get<Status[]>(
+            `@mumtalikati-api/Setup/GetStatus`
+          )).then(res => res as Status[]).catch(err => { return Promise.reject(err) });
       }
   }

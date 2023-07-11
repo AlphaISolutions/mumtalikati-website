@@ -428,11 +428,11 @@ hr {
     border: 1px solid $primary !important;
     display: inline !important;
 }
-.ngx-pagination .pagination-next a:after, .ngx-pagination .pagination-next.disabled:after {
-    content: none !important
-}
-.ngx-pagination .pagination-previous a:before, .ngx-pagination .pagination-previous.disabled:before {
-    content: none !important 
-}
+// .ngx-pagination .pagination-next a:after, .ngx-pagination .pagination-next.disabled:after {
+//     content: !important
+// }
+// .ngx-pagination .pagination-previous a:before, .ngx-pagination .pagination-previous.disabled:before {
+//     content:  !important 
+// }
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

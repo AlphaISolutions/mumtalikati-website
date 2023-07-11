@@ -1,15 +1,14 @@
 <div class="row p-0">
     <div class="col-lg-4 float-start">
         <ul class="breadcrumb">
-            <li i18n><a (click)="backtosearch()" class="cursor"><i class="fa fa-angle-left pe-2"
-                        aria-hidden="true"></i>Back To
-                    Search</a></li>
+            <li><a (click)="backtosearch()" class="cursor"><i class="fa fa-angle-left pe-2"
+                        aria-hidden="true"></i>{{"BackToSearch"|transloco}}</a></li>
         </ul>
     </div>
     <div class="col-lg-8 col-sm-12" *ngIf="indiviualsUni[0]">
         <ul class="breadcrumb">
-            <li i18n><a routerLink="">Mumtalikati</a></li>
-            <li i18n> <a href="#" routerLink="../propertydetails" *ngIf="!propertyMasterTypeID">All</a>
+            <li><a routerLink="">{{"Mumtalikati"|transloco}}</a></li>
+            <li> <a href="#" routerLink="../propertydetails" *ngIf="!propertyMasterTypeID">{{"All"|transloco}}</a>
                 <a href="#" routerLink="../propertydetails" *ngIf="propertyMasterTypeID">{{
                     getenum(propertyMasterTypeID) }}</a>
             </li>

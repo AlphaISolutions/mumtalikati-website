@@ -29,7 +29,7 @@ import { LanguageService } from '../services/language.service';
   styleUrls: ['./propertydetails.component.scss']
 })
 export class PropertydetailsComponent implements OnInit {
-  name = 'Angular ' + VERSION.major;
+
   loading: boolean = false;
   propertyDetail: RentalUnitDetail[] = [];
   listingpupose: ListingPurpose[] = [];
@@ -237,7 +237,7 @@ export class PropertydetailsComponent implements OnInit {
   }
 
   getsubType(subTypeId: number) {
-    return propertySubTypeEnum(subTypeId);
+    return this.filterservice.getPropertytMasterSubTypeid(subTypeId);
   }
 
   governorateId() {
@@ -466,7 +466,7 @@ export class PropertydetailsComponent implements OnInit {
     this.modalService.dismissAll()
   }
   getsubTyp(subTypeId: number) {
-    return propertySubTypeEnum(subTypeId)
+    return this.filterservice.getPropertytMasterSubTypeid(subTypeId);
   }
   reset() {
     this.minValue = null!;
@@ -524,7 +524,6 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getGovernorateId(params: any) {
-    debugger
     this.governoratcountryid = this.filterservice.getGovernorateDesc(params['governorate'])
     if (this.governoratcountryid) {
       this.governorateid = this.governoratcountryid;

@@ -18,26 +18,26 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item pe-2" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
                         <a class="nav-link" [style]="logred" routerLink="" (click)="collapsed = !collapsed"
-                            i18n>Home</a>
+                            >{{"Home"|transloco}}</a>
                     </li>
                     <li class="nav-item pe-2" [routerLinkActive]="['active']">
                         <a class="nav-link changecolor" [style]="activeroute" [routerLink]="'../propertydetails'"
-                            (click)="collapsed = !collapsed" i18n>Property Listings</a>
+                            (click)="collapsed = !collapsed" >{{"PropertyListings"|transloco}}</a>
                     </li>
                     <li class="nav-item pe-2" [style]="logred" [routerLinkActive]="['active']">
                         <a class="nav-link" [style]="logred" [routerLink]="'../aboutus'"
-                            (click)="collapsed = !collapsed" i18n>About Us</a>
+                            (click)="collapsed = !collapsed" >{{"About-Us"|transloco}}</a>
                     </li>
 
 
                     <li class="nav-item" [routerLinkActive]="['active']">
                         <a class="nav-link" [style]="logred" [routerLink]="'../contactus'"
-                            (click)="collapsed = !collapsed" i18n>Contact Us</a>
+                            (click)="collapsed = !collapsed" >{{"Contact-Us"|transloco}}</a>
                     </li>
 
                     <li class="nav-item nav-right" *ngIf="addPropperty">
                         <button class="nav-link nav-btn-link mx-3 my-1 px-2" mat-raised-button color="primary"
-                            (click)="openDialog()">Login</button>
+                            (click)="openDialog()">{{"Login"|transloco}}</button>
 
                     </li>
                     <li class="nav-item nav-right ps-4 ">

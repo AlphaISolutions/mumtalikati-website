@@ -59,11 +59,10 @@ import {NgxSliderModule } from '@angular-slider/ngx-slider';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment.development';
 import * as firebase from 'firebase/app';
-import { HelloComponent } from './propertydetails/hello.component';
-import { TranslatePipe } from './propertydetails/translate.pipe';
 firebase.initializeApp(environment.firebase);
 import { registerLocaleData } from '@angular/common';
 import  localeEl from '@angular/common/locales/ar';
+import { TranslocoRootModule } from './transloco-root.module';
 registerLocaleData(localeEl);
 @NgModule({
   declarations: [
@@ -92,8 +91,7 @@ registerLocaleData(localeEl);
     ForgotpasswordComponent,
     OtpVerificationComponent,
     SetyouPasswordComponent,
-    HelloComponent,
-    TranslatePipe
+
   ],
   imports: [
     BrowserModule,
@@ -130,8 +128,9 @@ registerLocaleData(localeEl);
     NgOtpInputModule,
     NgxSliderModule,
     AngularFireModule,
+    TranslocoRootModule,
   ],
-providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },{ provide: LOCALE_ID, useValue: localStorage.getItem('locale') ?? 'ar',multi:true}, RxFormBuilder],
+providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }, RxFormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule {
