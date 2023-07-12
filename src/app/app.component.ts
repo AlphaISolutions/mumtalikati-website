@@ -9,6 +9,7 @@ import { PropertyUnitCategory } from './models/propertyUnitCategory.model';
 import { SetupService } from './services/setup.service';
 import { Router,NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { Status } from './models/status.model';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ export class AppComponent {
   propertysubType: PropertyMasterSubType[] = []
   propertyUnitCategoryType: PropertyUnitCategory[] = [];
   governorate: Governorate[] = [];
+  getStatus:Status[]=[]
   constructor(private setservice: SetupService, private router: Router, private metaService: Meta,private titleService: Title,private activatedRoute: ActivatedRoute) { }
   showfooter: boolean = false;
   currentRoute!:string
@@ -34,7 +36,8 @@ export class AppComponent {
     this.getPropertySubType();
     this.getPropertyUnitCategoryType();
     this.getgovernorates();
-    this.getFilterdata()
+    this.getFilterdata();
+    this.getstatus();
 
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)
     ).subscribe(()=>{
@@ -103,6 +106,18 @@ export class AppComponent {
       .then((data) => {
         if (data) {
           this.governorate = data
+        }
+      })
+      .catch((error) => {
+        this.loading = false;
+        console.error(error);
+      });
+  }
+  async getstatus() {
+    this.setservice.getStatus()
+      .then((data) => {
+        if (data) {
+          this.getStatus = data
         }
       })
       .catch((error) => {

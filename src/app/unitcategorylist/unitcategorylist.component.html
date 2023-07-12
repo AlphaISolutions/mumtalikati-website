@@ -7,18 +7,18 @@
         </div>
         <div class="col-md-7 text-cards">
             <div>
-                <p class="card-text" i18n>Type: {{property.propertyMasterSubTypeName}}
+                <p class="card-text">{{"Type"|transloco}}: {{property.propertyMasterSubTypeName}}
                 </p>
-                <p class="card-text" i18n>Building ID:{{property.buildingNumber}}</p>
-                <p class="card-text" i18n>Unit ID:{{property.propertyUnitID}}</p>
+                <p class="card-text">{{"BuildingID"|transloco}}:{{property.buildingNumber}}</p>
+                <p class="card-text">{{"UnitID"|transloco}}:{{property.propertyUnitID}}</p>
                 <div *ngIf="property.caption == 0 || property.caption == null else showcaption">
                     <!-- not show caption -->
                 </div>
                 <ng-template #showcaption>
-                    <p class="card-text" i18n>Caption: {{property.caption}}</p>
+                    <p class="card-text">{{"Caption"|transloco}}: {{property.caption}}</p>
                 </ng-template>
                 <p class="card-text pe-1"><img class="pe-2 imgcolor" [src]=" location">{{property.addressStr}}</p>
-                <p class="card-text" i18n>Status: {{getstutus(property.statuss!)}}</p>
+                <p class="card-text">{{"Status"|transloco}}: {{getstutus(property.statuss!)}}</p>
             </div>
         </div>
     </div>

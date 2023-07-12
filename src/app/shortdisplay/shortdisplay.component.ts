@@ -22,24 +22,24 @@ export class ShortdisplayComponent implements OnInit {
   location = assetUrl("icons/location.svg");
   propertyfilter = new PropertyFilter();
   @Input() property: OwnerPropertyFilter[] = []
-  @Input() sharedmodel= new State;
+  @Input() sharedmodel = new State;
   unitCategoryId!: any
   liststring!: any;
   propertyMasterSubTypeid !: number;
-  data:any
+  data: any
   constructor(private router: Router, private filterservice: FilterService) { }
-  async ngOnInit() {  
-   
+  async ngOnInit() {
+
   }
   getsubType(subTypeId: number) {
-   return this.filterservice.getPropertytMasterSubTypeid(subTypeId)
+    return this.filterservice.getPropertytMasterSubTypeid(subTypeId)
     // return propertySubTypeEnum(subTypeId);
   }
   getMasterTypeId(propertyMasterTypeId: number) {
     return propertyMasterTypeEnum(propertyMasterTypeId);
   }
-  getunitcatid(id:number){
-return this.filterservice.getPropertytUnitCategoryid(id)
+  getunitcatid(id: number) {
+    return this.filterservice.getPropertytUnitCategoryid(id)
   }
   onclick(unitCategoryID: number, landLordID: number, propertyMasterID: number, propertyMasterSubType: number, listingPurposeID: number) {
     this.unitCategoryId = this.filterservice.getPropertytUnitCategoryid(unitCategoryID)

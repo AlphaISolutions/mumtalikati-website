@@ -1,8 +1,8 @@
-import { Status } from "./enums";
+import { StatusCodeEnum } from "./enums";
 
 export class BaseEntity {
     iD!: number;
-    status!: Status;
+    status!: StatusCodeEnum;
     createdTime!: string | null;
     modifyTime!: string | null;
 }

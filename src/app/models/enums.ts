@@ -1,4 +1,4 @@
-export enum Status {
+export enum StatusCodeEnum {
     Active = 1,
     Inactive = 2,
     RentedOut = 3,

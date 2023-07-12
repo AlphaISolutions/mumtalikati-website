@@ -6,12 +6,7 @@ import { LoginComponent } from 'src/app/sign-up/login/login.component';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import {
-  TRANSLOCO_LOADER,
-  Translation,
-  TranslocoLoader,
-  TRANSLOCO_CONFIG,
-  translocoConfig,
-  TranslocoModule
+  TranslocoService
 } from '@ngneat/transloco';
 import { from, map, switchMap } from 'rxjs';
 import { LanguageService } from 'src/app/services/language.service';
@@ -49,7 +44,7 @@ export class TopBarComponent implements OnInit {
   selectedLanguage: string = 'en';
   public selectedLocale: string = this.localeId;
 
-  constructor(@Inject(LOCALE_ID) private localeId: string, public dialog: MatDialog, private router: Router, private http: HttpClient, private languageService: LanguageService,private setFiltersServive:SetFiltersServive) { }
+  constructor(@Inject(LOCALE_ID) private localeId: string, public dialog: MatDialog, private router: Router, private http: HttpClient, private service: TranslocoService, private setFiltersServive: SetFiltersServive) { }
   public locales: any = [
     { name: "English", code: "en-US" },
     { name: "Arabic", code: "ar" },
@@ -120,7 +115,6 @@ export class TopBarComponent implements OnInit {
   //   });
   // }
   // getTranslation(lang: string) {
-  //   debugger;
   //   const defaultLang = 'en';
   //   const requestLang = lang || defaultLang;
   //   const requestUrl = `src/locale/messages.${requestLang}.xlf`;
@@ -130,10 +124,18 @@ export class TopBarComponent implements OnInit {
   //   });
   // }
   changeLanguage(event) {
-    localStorage.setItem('locale', event.value);
-    this.setFiltersServive.stopSession()
+    if(this.language== "ar"){
+      localStorage.setItem('locale', event.value);
+      this.service.setActiveLang('ar')
+      this.setFiltersServive.stopSession()
+      window.open('/', '_self');
+    }else{
+      localStorage.setItem('locale', event.value);
+      this.service.setActiveLang('en')
+      this.setFiltersServive.stopSession()
+      window.open('/', '_self');
+    }
+   
 
-    window.open('/', '_self');
-  
   }
 }

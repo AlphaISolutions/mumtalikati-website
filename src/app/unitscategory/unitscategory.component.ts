@@ -7,6 +7,7 @@ import { MumtalikatiService } from '../services/mumtalikati.service';
 import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
 import { SetFiltersServive } from '../services/setfilters.servive';
+import { time } from '@rxweb/reactive-form-validators';
 @Component({
   selector: 'app-unitscategory',
   templateUrl: './unitscategory.component.html',
@@ -47,9 +48,9 @@ export class UnitscategoryComponent implements OnInit {
   btnColor = { 'background-color': '#9e2a2b' };
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   sharedmodel = new State;
-  statedata:any
+  statedata: any
   constructor(private mumtalikatiservic: MumtalikatiService, private router: Router,
-    private route: ActivatedRoute, private filterservice: FilterService,private localstorage: SetFiltersServive) { this.getState(); }
+    private route: ActivatedRoute, private filterservice: FilterService, private localstorage: SetFiltersServive) { this.getState(); }
   async ngOnInit() {
     this.InItQueryparams();
     this.statedatalist()
@@ -64,7 +65,7 @@ export class UnitscategoryComponent implements OnInit {
     this.mumtalikatiservic.getPropertyMasterIndiviualsUnit(propertyMasterTypeID, listingPurposesID, UnitCategoryID, status, pageNumber, rowsNumbers)
       .then((data) => {
         if (data) {
-     
+
           this.indiviualsUni = data;
         }
         this.loading = false;
@@ -114,15 +115,15 @@ export class UnitscategoryComponent implements OnInit {
       this.minValue = this.router.getCurrentNavigation()?.extras.state!["minValue"];
       this.maxValue = this.router.getCurrentNavigation()?.extras.state!["maxValue"]
     }
-    else{
+    else {
       this.sharedmodel = undefined
     }
 
   }
   statedatalist() {
-    if(this.sharedmodel == undefined){
-      this.sharedmodel=this.localstorage.getsharedmodel()!
-    }else{
+    if (this.sharedmodel == undefined) {
+      this.sharedmodel = this.localstorage.getsharedmodel()!
+    } else {
       let data = this.sharedmodel
       data.listingPurposesID = this.listingPurposeID;
       data.gOVERNORATEID = this.governorateid;
@@ -154,7 +155,14 @@ export class UnitscategoryComponent implements OnInit {
       this.unitcategorystring = params['unitCategory']
     }
     else {
-      this.unitcategorystring = 'All'
+      this.unitcategorystring = this.getlang(localStorage.getItem('locale'))
     }
   }
+  getlang(language: string) {
+    var lang = {
+        "en-US": "All",
+        "ar": "الكل",
+    }
+    return lang[language] || "Unknown";
+}
 }

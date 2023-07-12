@@ -21,7 +21,7 @@ export class UnitcategorylistComponent implements OnInit {
   ngOnInit(): void {
   }
   getstutus(stutuss: number) {
-    return getstatusType(stutuss);
+    return this.filterservice.getStatusbyID(stutuss);
   }
 
   onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landLordID: number, propertySubTypeId: number) {
@@ -60,3 +60,5 @@ export class UnitcategorylistComponent implements OnInit {
 
   }
 }
+
+

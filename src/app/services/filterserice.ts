@@ -86,6 +86,13 @@ export class FilterService {
         // const deselist = this.setupFilterServive.getUnitCategory().find(x => x.unitCategory == id)
         // return deselist?.desc   
     }
-
+    getStatusbyID(id: number) {
+        const statuslist=this.setupFilterServive.getstatus();
+        if(statuslist){
+            const deselist = statuslist.find(x => x.statusCode == id)
+            return deselist?.desc;
+        }
+        return null;
+    }
 
 }

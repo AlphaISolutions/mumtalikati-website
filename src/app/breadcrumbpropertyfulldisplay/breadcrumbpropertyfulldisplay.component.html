@@ -3,14 +3,14 @@
 
         <div class="col-md-4 float-start ">
             <ul class="breadcrumb">
-                <li class="backtosearch" i18n><a  (click)="backtosearch()" class="cursor"
+                <li class="backtosearch"><a  (click)="backtosearch()" class="cursor"
                         (click)="addItem(propertyDetail.listingPurposeID!)"><i class="fa fa-angle-left pe-2"
-                            aria-hidden="true"></i>Back to Search</a></li>
+                            aria-hidden="true"></i>{{"BackToSearch"|transloco}}</a></li>
             </ul>
         </div>
         <div class="col-md-8" *ngIf="propertyDetail">
             <ul class="breadcrumb " *ngIf="propertyMasterSubType ==15 else building">
-                <li i18n><a routerLink="" >Mumtalikati</a></li>
+                <li><a routerLink="" >{{"Mumtalikati"|transloco}}</a></li>
                 <li *ngIf="propertyDetail">
                     <a href="#"
                         routerLink="../propertydetails">{{getenum(propertyDetail.propertyMasterTypeID!)}}</a>
@@ -20,7 +20,7 @@
             </ul>
             <ng-template #building>
                 <ul class="breadcrumb ">
-                    <li i18n><a routerLink="">Mumtalikati</a></li>
+                    <li><a routerLink="">{{"Mumtalikati"|transloco}}</a></li>
                     <li *ngIf="propertyDetail">
                         <a href="#"
                             routerLink="../propertydetails">{{getenum(propertyDetail.propertyMasterTypeID!)}}</a>

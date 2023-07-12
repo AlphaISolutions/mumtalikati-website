@@ -95,7 +95,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
     // return getPropertyUnitCategoryEnum(unitcatID)
   }
   getstatus(statuss: number) {
-    return getstatusType(statuss)
+    return this.filterService.getStatusbyID(statuss);
   }
   toggleReadMore(property: any) {
     property.isExpanded = !property.isExpanded;

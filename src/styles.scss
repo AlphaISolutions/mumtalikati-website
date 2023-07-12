@@ -417,22 +417,39 @@ hr {
 .splide__track--nav>.splide__list>.splide__slide.is-active {
     border: none;
 }
-.no-label.mat-form-field-infix{
-    width: 12px !important; 
+
+.no-label.mat-form-field-infix {
+    width: 12px !important;
 }
+
 .mat-form-field-appearance-outline .mat-form-field-outline-thick {
-   color:none !important ; 
+    color: none !important;
 }
-.ngx-pagination a, .ngx-pagination button {
+
+.ngx-pagination a,
+.ngx-pagination button {
     text-decoration: none !important;
     border: 1px solid $primary !important;
     display: inline !important;
 }
-.ngx-pagination .pagination-next a:after, .ngx-pagination .pagination-next.disabled:after {
+
+.ngx-pagination .pagination-next a:after,
+.ngx-pagination .pagination-next.disabled:after {
     content: none !important
 }
-.ngx-pagination .pagination-previous a:before, .ngx-pagination .pagination-previous.disabled:before {
-    content: none !important 
+
+.ngx-pagination .pagination-previous a:before,
+.ngx-pagination .pagination-previous.disabled:before {
+    content: none !important
 }
+
+.lang.mat-form-field-appearance-outline .mat-form-field-infix {
+    width: 70px !important;
+}
+
+.lang.mat-form-field-appearance-outline .mat-form-field-flex {
+    margin-top: -0.9em !important;
+}
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

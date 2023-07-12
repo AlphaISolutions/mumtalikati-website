@@ -7,9 +7,9 @@
                 <div class="row">
                     <div>
                         <!-- <markdown  [data]="markdown"></markdown> -->
-                        <h1 i18n>Contact Us</h1>
-                        <p class="text-center" i18n>
-                            We're always happy to chat and offer our insights and expertise. Let's make your real estate goals a reality!
+                        <h1>{{"ContactUs"|transloco}}</h1>
+                        <p class="text-center">
+                           {{"coussectionp"|transloco}}
                         </p>
                     </div>
                 </div>
@@ -24,13 +24,13 @@
     <div class="container">
         <div class="row section gx-5">
             <div class="col">
-                <p class=" small-colored-heading" i18n>
-                    Contact Mumtalikati today!
+                <p class=" small-colored-heading">
+                    {{"coussection2p"|transloco}}
                 </p>
                 <div>
-                    <h3 i18n>Ready To Take the Next Step in Real Estate?</h3>
-                    <p i18n>
-                        Reach us anytime, anywhere. We're excited to be a part of your real estate journey
+                    <h3>{{"coussection2h"|transloco}}</h3>
+                    <p>
+                       {{"coussection2p2"|transloco}}
                     </p>
                     <!-- <markdown  [data]="markdownselect"></markdown> -->
                 </div>
@@ -43,18 +43,18 @@
                 <hr>
                 <div class="row gx-5 pt-4">
                     <div class="col-6">
-                        <h5 i18n>Email Us</h5>
+                        <h5>{{"EmailUs"|transloco}}</h5>
                         <div class="hr-color"></div>
                         <div class="pt-2">
-                            <p i18n>Support@mumtalikati.com</p>
+                            <p>Support@mumtalikati.com</p>
                         </div>
                        
                     </div>
                     <div class="col-6">
-                        <h5 i18n>Call Us</h5>
+                        <h5>{{"CallUs"|transloco}}</h5>
                       <div class="hr-color"></div>
                         <div class="pt-2">
-                            <p i18n>+968 99160109</p>
+                            <p>+968 99160109</p>
                         </div>
                        
                     </div>
@@ -73,10 +73,10 @@
     <div id="heading-section" class="pt-4">
         <div class="row justify-content-center">
             <div>
-                <p class="text-center pcenter" i18n>
-                    "Got a question, comment, or suggestion? Drop us a message using the form below!"
+                <p class="text-center pcenter">
+                    "{{"coussection3p"|transloco}}"
                 </p>
-                <h1 class="pcenter" i18n>Your Partner in Real Estate Success</h1>
+                <h1 class="pcenter">{{"coussection3h"|transloco}}</h1>
 
             </div>
         </div>
@@ -88,47 +88,47 @@
                 <div class="row gx-2">
                     <div class="col">
                         <mat-form-field appearance="outline">
-                            <mat-label i18n>Full Name</mat-label>
-                            <input matInput i18n placeholder="Full Name" formControlName="name" required>
-                            <mat-error i18n>
-                                Full Name is <strong>required</strong>
+                            <mat-label>{{"FullName"|transloco}}</mat-label>
+                            <input matInput  placeholder="{{'FullName'|transloco}}" formControlName="name" required>
+                            <mat-error>
+                                {{"mat-error1"|transloco}} <strong>{{"required"|transloco}}</strong>
                             </mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col">
                         <mat-form-field appearance="outline">
-                            <mat-label i18n>Email</mat-label>
-                            <input matInput placeholder="Enter email" formControlName="email" required>
-                            <mat-error i18n>
-                                Email is <strong>required</strong>
+                            <mat-label>{{"Email"|transloco}}</mat-label>
+                            <input matInput placeholder="{{'Enteremail'|transloco}}" formControlName="email" required>
+                            <mat-error>
+                                {{'mat-error2'|transloco}} <strong>{{"required"|transloco}}</strong>
                             </mat-error>
                         </mat-form-field>
                     </div>
                 </div>
                 <mat-form-field appearance="outline">
-                    <mat-label i18n>Phone Number</mat-label>
+                    <mat-label>{{"PhoneNumber"|transloco}}</mat-label>
                     <input matInput  placeholder="986 123 4567" formControlName="phonenumber" required>
-                    <mat-error i18n>
-                        Phone Number is <strong>required</strong>
+                    <mat-error>
+                        {{"mat-error3"|transloco}} <strong>{{"required"|transloco}}</strong>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label i18n>Subject</mat-label>
-                    <input matInput placeholder="Subject" formControlName="subject" required>
-                    <mat-error i18n>
-                        Subject is <strong>required</strong>
+                    <mat-label>{{"Subject"|transloco}}</mat-label>
+                    <input matInput placeholder="{{'Subject'|transloco}}" formControlName="subject" required>
+                    <mat-error>
+                        {{'mat-error4'|transloco}} <strong>{{"required"|transloco}}</strong>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label i18n>Message</mat-label>
-                    <input matInput placeholder="message" formControlName="body" required>
-                    <mat-error i18n>
-                        Message is <strong>required</strong>
+                    <mat-label>{{'Message'|transloco}}</mat-label>
+                    <input matInput placeholder="{{'Message'|transloco}}" formControlName="body" required>
+                    <mat-error>
+                        {{'mat-error5'|transloco}} <strong>{{"required"|transloco}}</strong>
                     </mat-error>
                 </mat-form-field>
                 <div class="button-wrapper">
                     <button mat-flat-button class="block" color="primary" onclick="window.scrollTo(0,0)" [disabled]="contactusformValid"><span 
-                            class="spinner-border spinner-border-sm mr-1" *ngIf="loading"></span>{{" submit"|
+                            class="spinner-border spinner-border-sm mr-1" *ngIf="loading"></span>{{'submit'|transloco|
                         titlecase
                         }}</button>
                 </div>
@@ -141,8 +141,8 @@
     <div class="row  gx-5 justify-content-center">
         <div class="col-sm-8 col-lg-7 ">
             <div class="">
-                <p class="primary align-center" i18n>Official Social Media</p>
-                <h2 class="align-center" i18n>Follow Us for Real Estate Insights
+                <p class="primary align-center"> {{'OfficialSocialMedia'|transloco}}</p>
+                <h2 class="align-center">{{'FollowUsforRealEstateInsights'|transloco}}
                 </h2>
                 <div   class=" d-flex gap-3 py-3 icons" aria-current="true">
                     <a href="https://www.facebook.com/Mumtalikati">
