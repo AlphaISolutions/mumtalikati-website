@@ -59,7 +59,6 @@ export class ShortdisplayComponent implements OnInit {
     }
   }
   navigateunitscategory(propertyMasterID: number) {
-    debugger
     this.router.navigate(
       ['Unitscategory'],
       {

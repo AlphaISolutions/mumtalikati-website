@@ -115,7 +115,6 @@ export class TopBarComponent implements OnInit {
   //   });
   // }
   // getTranslation(lang: string) {
-  //   debugger;
   //   const defaultLang = 'en';
   //   const requestLang = lang || defaultLang;
   //   const requestUrl = `src/locale/messages.${requestLang}.xlf`;
