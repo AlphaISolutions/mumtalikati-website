@@ -34,6 +34,7 @@ export class BreadcrumbComponent implements OnInit {
     return this.filterservice.getPropertytUnitCategoryid(id)
   }
   backtosearch() {
+    debugger
     if (this.sharedmodel == undefined) {
       this.sharedmodel = this.localstorage.getsharedmodel()!
       this.subid = this.filterservice.getPropertytMasterSubTypeid(this.sharedmodel.propertyMasterSubTypeID!);

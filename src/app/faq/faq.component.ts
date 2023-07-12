@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Faqs } from '../models/faq.model';
 import { SetupService } from '../services/setup.service';
+import { TranslocoService } from '@ngneat/transloco';
+
 
 @Component({
   selector: 'app-faq',
@@ -10,7 +12,7 @@ import { SetupService } from '../services/setup.service';
 export class FaqComponent implements OnInit {
   faqList: Faqs[]=[];
   loading:boolean=false;
-  constructor(private setupservice:SetupService) { }
+  constructor(private setupservice:SetupService,private servicetranslate:TranslocoService) { }
 
   ngOnInit(): void {
     this.getfaqs()
