@@ -19,7 +19,6 @@ export class InterceptorService implements HttpInterceptor {
             requestUrl = requestUrl.replace('@mumtalikati-api', environment.userBaseUrl);
         }
         else if (requestUrl.indexOf('@assets-url') !== -1) {
-
             requestUrl = requestUrl.replace('@assets-url', environment.assetsBaseUrl);
           } 
         if (!requestUrl.includes(environment.assetsBaseUrl)) {
@@ -28,8 +27,6 @@ export class InterceptorService implements HttpInterceptor {
                     headers: req.headers.set('Accept-Language', localStorage.getItem('locale') || 'ar').set('Authorization', `Bearer ${token}`),
                     url: requestUrl
                   });
-               
-           
         } else {
             req = req.clone({
                 url: requestUrl

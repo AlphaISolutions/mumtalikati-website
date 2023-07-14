@@ -6,12 +6,8 @@ import { BehaviorSubject, Observable } from "rxjs";
 })
 export class behaviourSubjectService {
     public PropertyData$ = new BehaviorSubject<any>(null);
-
     public PropertyData: Observable<any>;
-
-
     constructor() {
         this.PropertyData = this.PropertyData$.asObservable();
-
     }
 }

@@ -48,9 +48,10 @@ export class SigninComponent implements OnInit {
     data.userName = data.userName.replace('+', '');
     this.userService.postUserLogin(data).then(res => {
       if (res !== null) {
+        debugger
         const user = res as unknown as User;
-        const userTypes = user.userTypes.map(userType => userType.desc);
-        if (userTypes.includes('Admin')) {
+        const userTypes = user.userTypes.map(userType => userType.id);
+        if (userTypes.includes(6)) {
           this.toastr.success("Admin Login sucessfully");
           this.router.navigateByUrl('/admin/dashboard');
           this.session.startSession(user.token,user.name,)

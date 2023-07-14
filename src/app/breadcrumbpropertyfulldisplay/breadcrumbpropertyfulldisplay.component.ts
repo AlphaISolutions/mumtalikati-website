@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { getPropertyUnitCategoryEnum, listingPurposeTypeEnum, propertyMasterTypeEnum } from '../models/enums';
+import { getGovernorateEnumID, getPropertySubTypeEnumID, getPropertyUnitCategoryEnum, listingPurposeTypeEnum, listingPurposeTypeEnumid, propertyMasterTypeEnum, propertyMasterTypeEnumid } from '../models/enums';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
@@ -43,14 +43,14 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
   }
   backtosearch() {
     if (this.unitcatID == 12 || this.propertyMasterSubType == 15) {
-      this.subid = this.filterservice.getPropertytMasterSubTypeid(this.sharedmodel.propertyMasterSubTypeID!);
+      this.subid = getPropertySubTypeEnumID(this.sharedmodel.propertyMasterSubTypeID!);
       this.router.navigate(['propertydetails'], {
         queryParams: {
-          'purpose': this.filterservice.getPurposeid(this.sharedmodel.listingPurposesID!),
-          'governorate': this.filterservice.getGovernorateid(this.sharedmodel.gOVERNORATEID!),
-          'propertyMasterType': this.filterservice.getPropertytMasterTypeid(this.sharedmodel.propertyMasterTypeID!),
+          'purpose': listingPurposeTypeEnumid(this.sharedmodel.listingPurposesID!),
+          'governorate': getGovernorateEnumID(this.sharedmodel.gOVERNORATEID!),
+          'propertyMasterType': propertyMasterTypeEnumid(this.sharedmodel.propertyMasterTypeID!),
           'propertyMasterSubType': this.subid,
-          'unitCategory': this.filterservice.getPropertytUnitCategoryid(this.sharedmodel.propertyCategory!),
+          'unitCategory': getPropertyUnitCategoryEnum(this.sharedmodel.propertyCategory!),
           'minValue': this.sharedmodel.minPrice,
           'maxValue': this.sharedmodel.maxPrice
         }
@@ -60,8 +60,8 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
       this.router.navigate(['Unitscategory'], {
         queryParams: {
           'propertyMasterID': this.pmid,
-          'purpose': this.filterservice.getPurposeid(this.listpurID),
-          'unitCategory': this.getunit(this.unitcatID)
+          'purpose': listingPurposeTypeEnumid(this.listpurID),
+          'unitCategory': getPropertyUnitCategoryEnum(this.unitcatID)
         },
         state: {
           'purpose': this.sharedmodel.listingPurposesID,

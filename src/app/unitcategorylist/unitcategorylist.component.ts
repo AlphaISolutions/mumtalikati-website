@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { getstatusType } from '../models/enums';
+import { getPropertySubTypeEnumID, getPropertyUnitCategoryEnum, getstatusType } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { FilterService } from '../services/filterserice';
@@ -25,8 +25,8 @@ export class UnitcategorylistComponent implements OnInit {
   }
 
   onclick(propertyMasterID: number, propertyUnitID: number, unitCategoryID: number, landLordID: number, propertySubTypeId: number) {
-    let unitCategory = this.filterservice.getPropertytUnitCategoryid(unitCategoryID)
-    let propertySubType = this.filterservice.getPropertytMasterSubTypeid(propertySubTypeId)
+    let unitCategory = getPropertyUnitCategoryEnum(unitCategoryID)
+    let propertySubType = getPropertySubTypeEnumID(propertySubTypeId)
     if (this.sharedmodel == undefined) {
       this.sharedmodel = this.localstorage.getsharedmodel()!
       this.router.navigate(['propertyfulldisplay'],

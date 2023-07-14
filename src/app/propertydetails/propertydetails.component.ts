@@ -7,7 +7,7 @@ import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { SetupService } from '../services/setup.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { listingPurposeTypeEnum, propertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
+import { getGovernorateEnum, getGovernorateEnumID, getPropertySubTypeEnum, getPropertySubTypeEnumID, getPropertyUnitCategoryEnum, getPropertyUnitCategoryEnumstring, listingPurposeTypeEnum, listingPurposeTypeEnumSting, listingPurposeTypeEnumid, propertyMasterTypeEnum, propertyMasterTypeEnumid, propertyMasterTypeEnumstring, propertySubTypeEnum } from '../models/enums';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { FormGroup } from '@angular/forms';
@@ -106,7 +106,10 @@ export class PropertydetailsComponent implements OnInit {
       scrollable: true,
     };
     this.statedatalist();
-  this.langCode=this.languageService.getlang()
+ 
+  }
+  ngAfterViewInit(){
+    this.langCode=this.languageService.getlang()
   }
   async initiaalizefilters() {
     this.listingpupose = await this.setupFilterServive.getListingPurpose();
@@ -262,7 +265,7 @@ export class PropertydetailsComponent implements OnInit {
       data.listingPurposesID = this.listid;
       data.rowsNumbers = this.perpagenumber;
       data.pageNumber = this.page;
-      this.listdesc = this.filterservice.getPurposeid(this.listid)
+      this.listdesc = listingPurposeTypeEnumid(this.listid)
       this.liststring = this.listdesc
       this.getpurposeMetatag()
       this.queryParams()
@@ -281,7 +284,7 @@ export class PropertydetailsComponent implements OnInit {
       this.governorateid = event.value;
       let data = this.propertyFilterform.value as PropertyFilter;
       data.gOVERNORATEID = event.value;
-      this.governoratname = this.filterservice.getGovernorateid(event.value)
+      this.governoratname = getGovernorateEnumID(event.value)
       this.governoratestring = this.governoratname
       this.queryParams()
       this.propertyFilter(data)
@@ -431,7 +434,7 @@ export class PropertydetailsComponent implements OnInit {
   onUnitcategory(unitcategory: number) {
     this.unitcategoryid = unitcategory
     let data = this.propertyFilterform.value as PropertyFilter;
-    this.unitcategorydesc = this.filterservice.getPropertytUnitCategoryid(this.unitcategoryid!)
+    this.unitcategorydesc = getPropertyUnitCategoryEnum(this.unitcategoryid!)
     this.unitcategorystring = this.unitcategorydesc
     this.getUnitMT(this.unitcategoryid);
     this.queryParams()
@@ -455,8 +458,8 @@ export class PropertydetailsComponent implements OnInit {
     data.pageNumber = this.page;
     data.propertyMasterTypeID = this.mastertypeid;
     data.propertyMasterSubTypeID = this.subTypeId;
-    this.propertyMasterTypedesc = this.filterservice.getPropertytMasterTypeid(this.mastertypeid!)
-    this.propertySubTypedesc = this.filterservice.getPropertytMasterSubTypeid(this.subTypeId!)
+    this.propertyMasterTypedesc = propertyMasterTypeEnumid(this.mastertypeid!)
+    this.propertySubTypedesc = getPropertySubTypeEnumID(this.subTypeId!)
     this.propertyFilter(data);
     this.postPropertyFilter_Count(data);
     this.getPropertyMasterMT(this.mastertypeid);
@@ -513,30 +516,29 @@ export class PropertydetailsComponent implements OnInit {
     this.getPropertyUnitCategory(this.mastertypeid, this.listid);
   }
   getPropertyListPurposeId(params: any) {
-    this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
+    this.listpurID = listingPurposeTypeEnumSting(params['purpose']) ?? "Rent"
     if (this.listpurID) {
       this.listid = this.listpurID;
-      this.liststring = params['purpose']
+      this.liststring = params['purpose'] ?? "Rent"
     } else if (this.listid == 1) {
-      this.liststring = this.filterservice.getPurposeid(1);
+      this.liststring = 'Rent';
     } else {
-      this.liststring = this.filterservice.getPurposeid(2);
+      this.liststring = 'Buy';
     }
   }
   getGovernorateId(params: any) {
-    this.governoratcountryid = this.filterservice.getGovernorateDesc(params['governorate'])
+    this.governoratcountryid = getGovernorateEnum(params['governorate'])
     if (this.governoratcountryid) {
       this.governorateid = this.governoratcountryid;
       this.governoratestring = params['governorate'];
     } else if (this.governorateid) {
       this.governoratestring = this.filterservice.getGovernorateid(this.governorateid)
     }else{
-    
       this.governoratestring=this.getlang(localStorage.getItem('locale') || 'ar')
     }
   }
   getunitcategoryId(params: any) {
-    this.unitcategoryId = this.filterservice.getPropertytUnitCategorydesc(params['unitCategory'])
+    this.unitcategoryId = getPropertyUnitCategoryEnumstring(params['unitCategory'])
     if (this.unitcategoryId) {
       this.unitcategoryid = this.unitcategoryId;
       this.unitcategorystring = params['unitCategory'];
@@ -547,17 +549,16 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getpropertyMasterTypeID(params: any) {
-    this.propertyMasterTypeID = this.filterservice.getPropertytMasterTypedesc(params['propertyMasterType'])
+    this.propertyMasterTypeID = propertyMasterTypeEnumstring(params['propertyMasterType'])
     if (this.propertyMasterTypeID) {
       this.mastertypeid = this.propertyMasterTypeID;
       this.propertyMasterTypedesc = params['propertyMasterType']
     } else {
-   
       this.propertyMasterTypedesc = this.getlang(localStorage.getItem('locale') || 'ar')
     }
   }
   getPropertyMasterSubTypeID(params: any) {
-    this.propertyMasterSubTypeID = this.filterservice.getPropertytMasterSubTypedesc(params['propertyMasterSubType'])
+    this.propertyMasterSubTypeID = getPropertySubTypeEnum(params['propertyMasterSubType'])
     if (this.propertyMasterSubTypeID) {
       this.subTypeId = this.propertyMasterSubTypeID;
       this.propertySubTypedesc = params['propertyMasterSubType']

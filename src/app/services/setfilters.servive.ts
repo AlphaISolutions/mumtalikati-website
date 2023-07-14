@@ -16,8 +16,7 @@ export class SetFiltersServive {
     constructor(private setupService: SetupService) {
 
     }
-    startSession(purposedata: any, propertymasterdata: any, propertysubTypedata: any, UnitCategorydata: any, governoratedata: any,Statusdata:any) {
-
+    startSession(purposedata: any, propertymasterdata: any, propertysubTypedata: any, UnitCategorydata: any, governoratedata: any, Statusdata: any) {
         localStorage.setItem('listingpupose', JSON.stringify(purposedata));
         localStorage.setItem('propertymasterType', JSON.stringify(propertymasterdata));
         localStorage.setItem('propertysubType', JSON.stringify(propertysubTypedata));
@@ -36,7 +35,6 @@ export class SetFiltersServive {
     }
 
     getListingPurpose(): ListingPurpose[] {
-
         let tempData = JSON.parse(localStorage.getItem('listingpupose')!);
         if (!tempData) {
             this.setupService.getlistingpurposeset().then((data) => {
@@ -70,7 +68,6 @@ export class SetFiltersServive {
     }
 
     getPropertySubType(): PropertyMasterSubType[] {
-
         let tempData = JSON.parse(localStorage.getItem('propertysubType')!);
         if (!tempData) {
             this.setupService.getPropertySubTypes().then((data) => {
@@ -89,7 +86,6 @@ export class SetFiltersServive {
     }
 
     getUnitCategory(): PropertyUnitCategory[] {
-
         let tempDatass = JSON.parse(localStorage.getItem('propertyUnitCategoryType')!);
         if (!tempDatass) {
             this.setupService.getPropertyUnitCategoryTypes().then((data) => {

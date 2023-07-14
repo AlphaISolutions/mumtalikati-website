@@ -8,6 +8,7 @@ import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
 import { SetFiltersServive } from '../services/setfilters.servive';
 import { Meta, Title } from '@angular/platform-browser';
+import { getPropertySubTypeEnum, getPropertyUnitCategoryEnumstring } from '../models/enums';
 @Component({
   selector: 'app-propertyfulldisplay',
   templateUrl: './propertyfulldisplay.component.html',
@@ -53,7 +54,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   }
   async ngOnInit() {
     this.inIt();
-    this. getMeteTag();
+    this.getMeteTag();
     this.statedatalist()
   }
   async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {
@@ -100,9 +101,9 @@ export class PropertyfulldisplayComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMaster'];
       this.propertyUnitid = +params['propertyUnit'];
-      this.unitCategory = this.filterservice.getPropertytUnitCategorydesc(this.unitcategorydesc = params['unitCategory'])
+      this.unitCategory = getPropertyUnitCategoryEnumstring(this.unitcategorydesc = params['unitCategory'])
       this.unitcatID = this.unitCategory;
-      this.PropertySubTypeID = this.filterservice.getPropertytMasterSubTypedesc(this.propertysubdesc = params["PropertySubType"])
+      this.PropertySubTypeID =getPropertySubTypeEnum(this.propertysubdesc = params["PropertySubType"])
       this.landlordid = +params['landlord'];
     });
     this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
@@ -138,12 +139,24 @@ export class PropertyfulldisplayComponent implements OnInit {
     if (this.listingPurposeID == 1) {
       var title = "Find Your Ideal Rental Property in Oman with Mumtalikati "
       this.titleService.setTitle(title);
-      this.metaService.addTag({id:"Rent", descrption: "Looking for a rental property in Oman? Mumtalikati has you covered. Explore our extensive listings and find your ideal home. Begin your search now." })
-    }else{
+      this.metaService.addTag({ id: "Rent", descrption: "Looking for a rental property in Oman? Mumtalikati has you covered. Explore our extensive listings and find your ideal home. Begin your search now." })
+    } else {
       var title = "Buy Your Dream Property in Oman with Mumtalikati"
       this.titleService.setTitle(title);
-      this.metaService.addTag({id:"Buy", descrption: "Looking for a house to buy? Mumtalikati offers a diverse range of properties for sale in Oman. Browse through our listings and find a property that suits best." })
+      this.metaService.addTag({ id: "Buy", descrption: "Looking for a house to buy? Mumtalikati offers a diverse range of properties for sale in Oman. Browse through our listings and find a property that suits best." })
     }
   }
+  getUnitCategory(language: string,params:any) {
+    var lang = {
+      "en-US": {
+         "id":this.filterservice.getPropertytUnitCategorydesc(this.unitcategorydesc = params['unitCategory'])
+      },
+      "ar": {
+        dese:this.filterservice.getPropertytUnitCategorydesc(this.unitcategorydesc = params['unitCategory'])
+      },
+    }
+    return lang[language] || "Unknown";
+  }
+
 }
 

@@ -15,7 +15,6 @@ import { maxValueModel } from '../models/maxValue.model';
   providedIn: 'root'
 })
 export class MumtalikatiService {
-
   constructor(private http: HttpClient) { }
   async getPropertyDetailIndex(propertyMasterTypeID: number, propertyMasterSubTypeID: number, listingPurposesID: number, pageNumber: number, rowsNumbers: number): Promise<RentalUnitDetail[]> {
     let queryParams = new HttpParams();
@@ -63,7 +62,7 @@ export class MumtalikatiService {
         `@mumtalikati-api/OwnerPropertyDetail/GetPropertyMasterIndiviualsUnitTotalCount`, { params: queryParams }
       )).then(res => res as Number).catch(err => { return Promise.reject(err) });
   }
-  async getPropertyUnitDetails( landLordID: number, UnitCategoryID: number, PropertyMasterID: number,  propertyUnitid: number): Promise<OwnerRentDetail> {
+  async getPropertyUnitDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number): Promise<OwnerRentDetail> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("LandLordID", landLordID);
     queryParams = queryParams.append("UnitCategoryID", UnitCategoryID);
@@ -75,42 +74,42 @@ export class MumtalikatiService {
       )).then(res => res as OwnerRentDetail).catch(err => { return Promise.reject(err) });
   }
 
-  async getUserImage( userID:number): Promise<ProfileImage> {
+  async getUserImage(userID: number): Promise<ProfileImage> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("userID", userID);
     return await firstValueFrom(this.http
       .get<ProfileImage>(
-        `@mumtalikati-api/Users/GetUserImage`,{ params: queryParams }
+        `@mumtalikati-api/Users/GetUserImage`, { params: queryParams }
       )).then(res => res as ProfileImage).catch(err => { return Promise.reject(err) });
   }
-  async getPropertyFeature( id: number): Promise<PropertyFeature[]> {
+  async getPropertyFeature(id: number): Promise<PropertyFeature[]> {
     return await firstValueFrom(this.http
       .get<PropertyFeature[]>(
-        `@mumtalikati-api/PropertyFeature/`+id
+        `@mumtalikati-api/PropertyFeature/` + id
       )).then(res => res as PropertyFeature[]).catch(err => { return Promise.reject(err) });
   }
 
-  async postSendEmail(sendEmail: SendEmail) :Promise<SendEmail> {
-    return await firstValueFrom(  this.http.post('@mumtalikati-api/ContactUsEmailAPI/SendEmail',sendEmail ))
-      .then(res => res as SendEmail )
+  async postSendEmail(sendEmail: SendEmail): Promise<SendEmail> {
+    return await firstValueFrom(this.http.post('@mumtalikati-api/ContactUsEmailAPI/SendEmail', sendEmail))
+      .then(res => res as SendEmail)
       .catch(err => { return Promise.reject(err.json().error || 'error'); });
-}
- async postPropertyFilter(propertyFilte: PropertyFilter ):Promise<OwnerPropertyFilter[]>{
-  return await firstValueFrom(this.http
-    .post<OwnerPropertyFilter[]>(`@mumtalikati-api/PropertyFilter/GetPropertyFilter`,propertyFilte))
-    .then(res => res as OwnerPropertyFilter[])
-    .catch(err =>{return Promise.reject(err.json().error || 'error');});
- }
- async postPropertyFilter_Count(propertyFilte: PropertyFilter ):Promise<number>{
-  return await firstValueFrom(this.http
-    .post<number>(`@mumtalikati-api/PropertyFilter/GetPropertyFilter_Count`,propertyFilte))
-    .then(res => res as number)
-    .catch(err =>{return Promise.reject(err.json().error || 'error');});
- }
- async getMaxUnitPrice():Promise<maxValueModel>{
-  return await firstValueFrom(this.http
-    .get<maxValueModel>(`@mumtalikati-api/PropertyFilter/GetMaxUnitPrice`))
-    .then(res => res as maxValueModel)
-    .catch(err =>{return Promise.reject(err.json().error || 'error');});
- }
+  }
+  async postPropertyFilter(propertyFilte: PropertyFilter): Promise<OwnerPropertyFilter[]> {
+    return await firstValueFrom(this.http
+      .post<OwnerPropertyFilter[]>(`@mumtalikati-api/PropertyFilter/GetPropertyFilter`, propertyFilte))
+      .then(res => res as OwnerPropertyFilter[])
+      .catch(err => { return Promise.reject(err.json().error || 'error'); });
+  }
+  async postPropertyFilter_Count(propertyFilte: PropertyFilter): Promise<number> {
+    return await firstValueFrom(this.http
+      .post<number>(`@mumtalikati-api/PropertyFilter/GetPropertyFilter_Count`, propertyFilte))
+      .then(res => res as number)
+      .catch(err => { return Promise.reject(err.json().error || 'error'); });
+  }
+  async getMaxUnitPrice(): Promise<maxValueModel> {
+    return await firstValueFrom(this.http
+      .get<maxValueModel>(`@mumtalikati-api/PropertyFilter/GetMaxUnitPrice`))
+      .then(res => res as maxValueModel)
+      .catch(err => { return Promise.reject(err.json().error || 'error'); });
+  }
 }

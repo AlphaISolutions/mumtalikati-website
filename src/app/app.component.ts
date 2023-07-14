@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { filter, forkJoin, map } from 'rxjs';
+import { Subscription, filter, forkJoin, map } from 'rxjs';
 import { Governorate } from './models/governorate.model';
 import { ListingPurpose } from './models/listing-purpose.model';
 import { PropertyMasterType } from './models/property-master-type.model';
@@ -10,6 +10,7 @@ import { SetupService } from './services/setup.service';
 import { Router,NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { Status } from './models/status.model';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,13 @@ export class AppComponent {
   propertyUnitCategoryType: PropertyUnitCategory[] = [];
   governorate: Governorate[] = [];
   getStatus:Status[]=[]
-  constructor(private setservice: SetupService, private router: Router, private metaService: Meta,private titleService: Title,private activatedRoute: ActivatedRoute) { }
+  private langChangeSubscription: Subscription;
+  direction: string = this.service.getActiveLang() === 'ar' ? 'ltr' : 'rtl';
+  constructor(private setservice: SetupService, private router: Router, private metaService: Meta,private titleService: Title,private activatedRoute: ActivatedRoute,private service: TranslocoService,) {
+    this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
+      this.direction = this.service.getActiveLang() === 'ar' ? 'rtl' : 'ltr';
+    });
+   }
   showfooter: boolean = false;
   currentRoute!:string
   async ngOnInit() {

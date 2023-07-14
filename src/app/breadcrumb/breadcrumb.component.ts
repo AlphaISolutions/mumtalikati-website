@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { propertyMasterTypeEnum } from '../models/enums';
+import { getGovernorateEnumID, getPropertySubTypeEnumID, getPropertyUnitCategoryEnum, listingPurposeTypeEnumid, propertyMasterTypeEnum, propertyMasterTypeEnumid } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { Router } from '@angular/router';
 import { SetupService } from '../services/setup.service';
@@ -36,27 +36,27 @@ export class BreadcrumbComponent implements OnInit {
   backtosearch() {
     if (this.sharedmodel == undefined) {
       this.sharedmodel = this.localstorage.getsharedmodel()!
-      this.subid = this.filterservice.getPropertytMasterSubTypeid(this.sharedmodel.propertyMasterSubTypeID!);
+      this.subid = getPropertySubTypeEnumID(this.sharedmodel.propertyMasterSubTypeID!);
       this.router.navigate(['propertydetails'], {
         queryParams: {
-          'purpose': this.filterservice.getPurposeid(this.sharedmodel.listingPurposesID!),
-          'governorate': this.filterservice.getGovernorateid(this.sharedmodel.gOVERNORATEID!),
-          'propertyMasterType': this.filterservice.getPropertytMasterTypeid(this.sharedmodel.propertyMasterTypeID!),
+          'purpose': listingPurposeTypeEnumid(this.sharedmodel.listingPurposesID!),
+          'governorate':getGovernorateEnumID(this.sharedmodel.gOVERNORATEID!),
+          'propertyMasterType': propertyMasterTypeEnumid(this.sharedmodel.propertyMasterTypeID!),
           'propertyMasterSubType': this.subid,
-          'unitCategory': this.filterservice.getPropertytUnitCategoryid(this.sharedmodel.propertyCategory!),
+          'unitCategory': getPropertyUnitCategoryEnum(this.sharedmodel.propertyCategory!),
           'minValue': this.sharedmodel.minPrice,
           'maxValue': this.sharedmodel.maxPrice
         }
       });
     } else {
-      this.subid = this.filterservice.getPropertytMasterSubTypeid(this.sharedmodel.propertyMasterSubTypeID!);
+      this.subid = getPropertySubTypeEnumID(this.sharedmodel.propertyMasterSubTypeID!);
       this.router.navigate(['propertydetails'], {
         queryParams: {
-          'purpose': this.filterservice.getPurposeid(this.sharedmodel.listingPurposesID!),
-          'governorate': this.filterservice.getGovernorateid(this.sharedmodel.gOVERNORATEID!),
-          'propertyMasterType': this.filterservice.getPropertytMasterTypeid(this.sharedmodel.propertyMasterTypeID!),
+          'purpose': listingPurposeTypeEnumid(this.sharedmodel.listingPurposesID!),
+          'governorate': getGovernorateEnumID(this.sharedmodel.gOVERNORATEID!),
+          'propertyMasterType': propertyMasterTypeEnumid(this.sharedmodel.propertyMasterTypeID!),
           'propertyMasterSubType': this.subid,
-          'unitCategory': this.filterservice.getPropertytUnitCategoryid(this.sharedmodel.propertyCategory!),
+          'unitCategory': getPropertyUnitCategoryEnum(this.sharedmodel.propertyCategory!),
           'minValue': this.sharedmodel.minPrice,
           'maxValue': this.sharedmodel.maxPrice
         }
