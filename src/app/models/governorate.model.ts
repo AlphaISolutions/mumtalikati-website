@@ -6,5 +6,5 @@ export class Governorate extends BaseEntity {
     code!: string;
     countryID!: number | null;
     country!: string |null;
-    id!:number | null;
+    // id!:number;
 }

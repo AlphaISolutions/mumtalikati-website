@@ -7,8 +7,8 @@
                                                 class="img-fluid shadow-2-strong go-to-signin " alt="" />
                                                
                                         <p class="mt-4" >{{"MuscatOman"|transloco}} </p>
-                                        <p> <img [src]="phoneimg" alt=""> +968 99160109</p>
-                                        <p><img [src]="emailimag" alt=""> Support@mumtalikati.com</p>
+                                        <p [dir]="direction"> <img [src]="phoneimg" alt="">+968 99160109</p>
+                                        <p [dir]="direction"><img [src]="emailimag" alt=""> Support@mumtalikati.com</p>
                                      
                                 </div>
                                 <div class="col-6 col-lg-2 offset-lg-1 mb-3 ">
@@ -147,14 +147,19 @@
                                         </div>
                                 </div>
                                 <div class="col"></div>
-                                <div class="col-md-4 mt-2">
+                                <div class="col-md-4 p-0">
                                         <h5>{{"Subscribe"|transloco}}</h5>
                                         <form>
-                                                <div class="align-items-start inline">
-                                                        <input type="text" class="form-control me-2 bg-dark input-box "
+                                                <div class="row gx-2">
+                                                        <div class="col-md-8">
+                                                                <input type="text" class="form-control me-2 bg-dark input-box"
                                                                 placeholder="{{'Emailaddress'|transloco}}"/>
-                                                        <button class="btn-primary p-2 text-nowrap" >{{"SubscribeNow"|transloco}}</button>
+                                                        </div>
+                                                        <div class="col">
+                                                                <button class="btn-primary p-2 text-nowrap" >{{"SubscribeNow"|transloco}}</button>
+                                                        </div>
                                                 </div>
+                                              
                                         </form>
                                 </div>
                         </div>

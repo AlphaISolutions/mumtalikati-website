@@ -12,6 +12,9 @@
                                     [enablePlaceholder]="true" [enableSearch]="true" [preferredCountries]="['om']"
                                     name="phone" [ngClass]="{'is-invalid': submitted && fval.userName.errors }" required>
                                 </ngx-mat-intl-tel-input>
+                                <mat-error>
+                                    Phone number <strong>required</strong>
+                                </mat-error>
                             </mat-form-field>
                         </div>
                         <div *ngIf="submitted && fval.userName.errors" class="invalid-feedback">

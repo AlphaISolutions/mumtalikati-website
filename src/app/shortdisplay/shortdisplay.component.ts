@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { Input } from '@angular/core';
-import { propertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
+import { getPropertyUnitCategoryEnum, listingPurposeTypeEnumid, propertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
 import { Router } from '@angular/router';
 import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
@@ -42,8 +42,8 @@ export class ShortdisplayComponent implements OnInit {
     return this.filterservice.getPropertytUnitCategoryid(id)
   }
   onclick(unitCategoryID: number, landLordID: number, propertyMasterID: number, propertyMasterSubType: number, listingPurposeID: number) {
-    this.unitCategoryId = this.filterservice.getPropertytUnitCategoryid(unitCategoryID)
-    this.liststring = this.filterservice.getPurposeid(listingPurposeID)
+    this.unitCategoryId =getPropertyUnitCategoryEnum(unitCategoryID)
+    this.liststring = listingPurposeTypeEnumid(listingPurposeID)
     this.propertyMasterSubTypeid = propertyMasterSubType
     if (propertyMasterSubType == 15) {
       this.navigatefulldisplay(landLordID, propertyMasterID, propertyMasterSubType)

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class SessionService {
     constructor() { }
-    startSession(token: string,name:string) {
+    startSession(token: string, name: string) {
         localStorage.setItem('token', token);
         localStorage.setItem('name', name);
         // localStorage.setItem('userId', userId);
@@ -28,6 +28,6 @@ export class SessionService {
     //     return localStorage.getItem('userRole');
     // }
     getUsername() {
-            return localStorage.getItem('name');
-        }
+        return localStorage.getItem('name');
+    }
 }

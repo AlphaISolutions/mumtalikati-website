@@ -28,6 +28,8 @@ export class HomeComponent implements OnInit {
   toggle: any;
   isActive: boolean = false;
   page: boolean = false;
+  rightrow: boolean = false;
+  leftrow: boolean = false;
   elementStyles: any = {
     'color': this.isActive ? 'green' : 'red'
   }
@@ -35,6 +37,7 @@ export class HomeComponent implements OnInit {
     return this.isActive ? 'active' : 'inactive';
   }
   async ngOnInit() {
+    this.button();
     let governorate = this.setFilterService.getGovernorate()
     if (governorate) {
       this.governorate = governorate
@@ -64,7 +67,7 @@ export class HomeComponent implements OnInit {
     this.propertyFilter(data)
   }
   AfterViewInit() {
-  
+
   }
   async getgovernorates() {
     this.loading = true;
@@ -99,6 +102,13 @@ export class HomeComponent implements OnInit {
   }
   onclick(listingPurposeType: number) {
     this.listingPurposeType = listingPurposeType;
+  }
+  button() {
+    if (localStorage.getItem('locale') == 'ar') {
+      this.rightrow = true;
+    }else{
+      this.leftrow=true;
+    }
   }
   find() {
     this.router.navigate(['propertydetails'],

@@ -78,12 +78,19 @@ export function listingPurposeTypeEnum(listingPurposeTypeId: number): string {
     return purpose[listingPurposeTypeId] || "Unknown";
 }
 export function listingPurposeTypeEnumSting(listingPurposeTypeId: string) {
-
     var purpose = {
         "Rent": 1,
         "Buy": 2,
     }
-    return purpose[listingPurposeTypeId] || "Unknown";
+    return purpose[listingPurposeTypeId] || 1;
+
+}
+export function listingPurposeTypeEnumid(listingPurposeTypeId: number): string {
+    var purpose = {
+        1: "Rent",
+        2: "Buy",
+    }
+    return purpose[listingPurposeTypeId] || "Rent";
 
 }
 export function propertyMasterTypeEnum(propertyMasterTypeID: number) {
@@ -98,6 +105,66 @@ export function propertyMasterTypeEnum(propertyMasterTypeID: number) {
             return '';
     }
 
+}
+export function propertyMasterTypeEnumid(listingPurposeTypeId: number): string {
+    var purpose = {
+        1: "Residential",
+        2: "Commercial",
+        3: "ResidentalCommercial",
+    }
+    return purpose[listingPurposeTypeId] || null;
+
+}
+export function propertyMasterTypeEnumstring(listingPurposeTypeId: number) {
+    var purpose = {
+        "Residential": 1,
+        "Commercial": 2,
+        "ResidentalCommercial": 3,
+    }
+    return purpose[listingPurposeTypeId] || null;
+
+}
+export function getPropertySubTypeEnum(subType: number) {
+    var propertysubType = {
+        'Building': 1,
+        'TownHouse': 2,
+        'LowerPortion': 3,
+        'UpperPortion': 4,
+        'PentHouse': 5,
+        'Villa': 6,
+        'Room': 7,
+        'Flat': 8,
+        'MixUse': 9,
+        'WareHouse': 10,
+        'Shop': 11,
+        'BusinessCenter': 12,
+        'Factory': 13,
+        'Hall': 14,
+        'Plot': 15,
+        'Project': 16
+    }
+    return propertysubType[subType] || null;
+}
+export function getPropertySubTypeEnumID(subTypeID: number): string {
+    var unitCategory = {
+        1: 'Building',
+        2: 'TownHouse',
+        3: 'LowerPortion',
+        4: 'UpperPortion',
+        5: 'PentHouse',
+        6: 'Villa',
+        7: 'Room',
+        8: 'Flat',
+        9: 'MixUse',
+        10: 'WareHouse',
+        11: 'Shop',
+        12: 'BusinessCenter',
+        13: 'Factory',
+        14: 'Hall',
+        15: 'Plot',
+        16: 'Project'
+    }
+    return unitCategory[subTypeID] || null;
 }
 export function getstatusType(stutuss: number) {
     switch (stutuss) {
@@ -139,7 +206,7 @@ export function getstatusType(stutuss: number) {
     }
 
 }
-export function getPropertyUnitCategoryEnum(unitcatID: number) {
+export function getPropertyUnitCategoryEnum(unitcatID: number): string {
     var unitCategory = {
         1: '1BHK',
         2: '2BHK',
@@ -155,6 +222,23 @@ export function getPropertyUnitCategoryEnum(unitcatID: number) {
         12: 'WholeBuilding'
     }
     return unitCategory[unitcatID] || "Unknown";
+}
+export function getPropertyUnitCategoryEnumstring(unitcatID: number) {
+    var unitCategory = {
+        '1BHK': 1,
+        '2BHK': 2,
+        '3BHK': 3,
+        '4BHK': 4,
+        '5BHK': 5,
+        'Shop': 6,
+        'Office': 7,
+        'WareHouse': 8,
+        'Factory': 9,
+        'Hall': 10,
+        'BusinessCenter': 11,
+        'WholeBuilding': 12
+    }
+    return unitCategory[unitcatID] || null;
 }
 export function propertySubTypeEnum(subTypeId: any) {
     switch (subTypeId) {
@@ -194,4 +278,75 @@ export function propertySubTypeEnum(subTypeId: any) {
             return '';
     }
 
+}
+export function getPropertyUnitEnum(unitcatID: string) {
+    var unitCategory = {
+        'غرفة نوم واحدة': '1BHK',
+        'اثنين من غرف نوم': '2BHK',
+        'ثلاثة غرف نوم': '3BHK',
+        'أربعة غرف نوم': '4BHK',
+        'خمسة غرف نوم': '5BHK',
+        'محل': 'Shop',
+        'مكتب': 'Office',
+        'مستودع': 'WareHouse',
+        'مصنع': 'Factory',
+        'قاعة': 'Hall',
+        'بيزنس سنتر': 'BusinessCenter',
+        'المبنى كله': 'WholeBuilding',
+        '1BHK': 'غرفة نوم واحدة',
+        '2BHK': 'اثنين من غرف نوم',
+        '3BHK': 'ثلاثة غرف نوم',
+        '4BHK': 'أربعة غرف نوم',
+        '5BHK': 'خمسة غرف نوم',
+        'Shop': 'محل',
+        'Office': 'مكتب',
+        'WareHouse': 'مستودع',
+        'Factory': 'مصنع',
+        'Hall': 'قاعة',
+        'BusinessCenter': 'بيزنس سنتر',
+        'WholeBuilding': 'المبنى كله'
+    }
+    return unitCategory[unitcatID] || "Unknown";
+}
+export function listingPurposelang(listingPurposeTypeId: string) {
+    var purpose = {
+        "Rent": "إيجار",
+        "Buy": "يشتري",
+        "يشتري": "Buy",
+        "إيجار": "Rent"
+    }
+    return purpose[listingPurposeTypeId] || "Unknown";
+
+}
+export function getGovernorateEnumID(governorateID: number): string {
+    var governorate = {
+        1: 'Ad Dakhiliyah',
+        2: 'Ad Dhahirah',
+        3: 'Al Batinah North',
+        4: 'Al Batinah South',
+        5: 'Al Buraymi',
+        6: 'Al Wusta',
+        7: 'Ash Sharqiyah North',
+        8: 'Ash Sharqiyah South',
+        9: 'Dhofar',
+        10: 'Muscat',
+        11: 'Musandam',
+    }
+    return governorate[governorateID] || null;
+}
+export function getGovernorateEnum(governorateID: number) {
+    var governorate = {
+        'Ad Dakhiliyah': 1,
+        'Ad Dhahirah': 2,
+        'Al Batinah North': 3,
+        'Al Batinah South': 4,
+        'Al Buraymi': 5,
+        'Al Wusta': 6,
+        'Ash Sharqiyah North': 7,
+        'Ash Sharqiyah South': 8,
+        'Dhofar': 9,
+        'Muscat': 10,
+        'Musandam': 11,
+    }
+    return governorate[governorateID] || null;
 }

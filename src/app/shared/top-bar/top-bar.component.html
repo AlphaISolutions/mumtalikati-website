@@ -1,57 +1,58 @@
-<div class="nav-bg" [style]="childStyle">
-    <nav class="container-lg  navbar navbar-expand-md navbar-dark bg-dark">
-        <div class="container-lg">
-            <span class="navbar-brand" id="logo"> <a routerLink="" class="no-inline-padding">
-                    <img [src]="logo" class="img-fluid shadow-2-strong " [style.log]="data" alt="" />
-                    <!-- <img [src]="logored" *ngIf="shownnow" class="img-fluid shadow-2-strong " [style]="logos" alt="" /> -->
-                </a></span>
-            <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed"
-                aria-label="Toggle navigation" [style]="btncolor" (click)="collapsed = !collapsed">
-                <span [style]="togglericon" class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="navbar-collapse" [class.collapse]="collapsed" [attr.aria-expanded]="!collapsed"
-                id="navbarContent">
-                <ul class="navbar-nav ms-auto">
-
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item pe-2" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-                        <a class="nav-link" [style]="logred" routerLink="" (click)="collapsed = !collapsed"
-                            >{{"Home"|transloco}}</a>
-                    </li>
-                    <li class="nav-item pe-2" [routerLinkActive]="['active']">
-                        <a class="nav-link changecolor" [style]="activeroute" [routerLink]="'../propertydetails'"
-                            (click)="collapsed = !collapsed" >{{"PropertyListings"|transloco}}</a>
-                    </li>
-                    <li class="nav-item pe-2" [style]="logred" [routerLinkActive]="['active']">
-                        <a class="nav-link" [style]="logred" [routerLink]="'../aboutus'"
-                            (click)="collapsed = !collapsed" >{{"About-Us"|transloco}}</a>
-                    </li>
-
-
-                    <li class="nav-item" [routerLinkActive]="['active']">
-                        <a class="nav-link" [style]="logred" [routerLink]="'../contactus'"
-                            (click)="collapsed = !collapsed" >{{"Contact-Us"|transloco}}</a>
-                    </li>
-
-                    <li class="nav-item nav-right" *ngIf="addPropperty">
-                        <button class="nav-link nav-btn-link mx-3 my-1 px-2" mat-raised-button color="primary"
-                            (click)="openDialog()">{{"Login"|transloco}}</button>
-
-                    </li>
-                    <li class="nav-item nav-right ps-4 ">
-                        <mat-form-field appearance="outline" class="lang no-label">
-                        <mat-select (selectionChange)="changeLanguage($event)" [(ngModel)]="language">
-                            <mat-option value="ar">العربية</mat-option>
-                            <mat-option value="en-US">English</mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                        <!-- <button (click)="changeLanguage(true)">Change to English</button> -->
-                    </li>
-                </ul>
+<div [dir]="direction">
+    <div class="nav-bg" [style]="childStyle">
+        <nav class="container-lg  navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container-lg">
+                <span class="navbar-brand" id="logo"> <a routerLink="" class="no-inline-padding">
+                        <img [src]="logo" class="img-fluid shadow-2-strong " [style.log]="data" alt="" />
+                        <!-- <img [src]="logored" *ngIf="shownnow" class="img-fluid shadow-2-strong " [style]="logos" alt="" /> -->
+                    </a></span>
+                <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed"
+                    aria-label="Toggle navigation" [style]="btncolor" (click)="collapsed = !collapsed">
+                    <span [style]="togglericon" class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="navbar-collapse" [class.collapse]="collapsed" [attr.aria-expanded]="!collapsed"
+                    id="navbarContent">
+                    <ul class="navbar-nav ms-auto">
+    
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item pe-2" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                            <a class="nav-link" [style]="logred" routerLink="" (click)="collapsed = !collapsed"
+                                >{{"Home"|transloco}}</a>
+                        </li>
+                        <li class="nav-item pe-2" [routerLinkActive]="['active']">
+                            <a class="nav-link changecolor" [style]="activeroute" [routerLink]="'../propertydetails'"
+                                (click)="collapsed = !collapsed" >{{"PropertyListings"|transloco}}</a>
+                        </li>
+                        <li class="nav-item pe-2" [style]="logred" [routerLinkActive]="['active']">
+                            <a class="nav-link" [style]="logred" [routerLink]="'../aboutus'"
+                                (click)="collapsed = !collapsed" >{{"About-Us"|transloco}}</a>
+                        </li>
+    
+    
+                        <li class="nav-item lag" [routerLinkActive]="['active']">
+                            <a class="nav-link" [style]="logred" [routerLink]="'../contactus'"
+                                (click)="collapsed = !collapsed" >{{"Contact-Us"|transloco}}</a>
+                        </li>
+    
+                        <li class="nav-item nav-right " *ngIf="addPropperty">
+                            <button class="nav-link nav-btn-link mx-3 my-1 px-2" mat-raised-button color="primary"
+                                (click)="openDialog()">{{"Login"|transloco}}</button>
+    
+                        </li>
+                        <li class="nav-item nav-right ps-4 lag">
+                            <mat-form-field appearance="outline" class="lang no-label">
+                            <mat-select (selectionChange)="changeLanguage($event)" [(ngModel)]="language">
+                                <mat-option value="ar">العربية</mat-option>
+                                <mat-option value="en-US">English</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                        </li>
+                    </ul>
+                </div>
+    
             </div>
-
-        </div>
-    </nav>
+        </nav>
+    </div>
 </div>

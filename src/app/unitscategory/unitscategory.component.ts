@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { assetUrl } from 'src/single-spa/asset-url';
-import { getstatusType, propertyMasterTypeEnum } from '../models/enums';
+import { getPropertySubTypeEnum, getPropertyUnitCategoryEnumstring, getPropertyUnitEnum, getstatusType, listingPurposeTypeEnumSting, listingPurposelang, propertyMasterTypeEnum } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
 import { SetFiltersServive } from '../services/setfilters.servive';
 import { time } from '@rxweb/reactive-form-validators';
+import { environment } from '../../environments/environment.development'
+import { TranslocoService } from '@ngneat/transloco';
 @Component({
   selector: 'app-unitscategory',
   templateUrl: './unitscategory.component.html',
@@ -49,9 +51,12 @@ export class UnitscategoryComponent implements OnInit {
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   sharedmodel = new State;
   statedata: any
+  enData: any = "https://d2og5lryw1ajtt.cloudfront.net/language/";
+  arData: any = "https://d2og5lryw1ajtt.cloudfront.net/language/ar.json";
   constructor(private mumtalikatiservic: MumtalikatiService, private router: Router,
-    private route: ActivatedRoute, private filterservice: FilterService, private localstorage: SetFiltersServive) { this.getState(); }
+    private route: ActivatedRoute, private filterservice: FilterService, private localstorage: SetFiltersServive,private translocoService: TranslocoService) { this.getState(); }
   async ngOnInit() {
+
     this.InItQueryparams();
     this.statedatalist()
     this.config = {
@@ -139,30 +144,39 @@ export class UnitscategoryComponent implements OnInit {
   }
   getlistPurpose(params: any) {
     this.propertyMasterID = +params['propertyMasterID'];
-    this.listpurID = this.filterservice.getPurposedesc(params['purpose'])
+    this.listpurID =listingPurposeTypeEnumSting(params['purpose'])
     if (this.listpurID) {
       this.listingPurposeID = this.listpurID
       this.liststring = params['purpose']
     } else {
-      const purposestring = this.filterservice.getPurposeid(1);
-      this.liststring != purposestring;
+      this.liststring = params['purpose'];
     }
   }
   getUnitCategory(params: any) {
-    this.unitcategoryId = this.filterservice.getPropertytUnitCategorydesc(params['unitCategory'])
+    this.unitcategoryId = getPropertyUnitCategoryEnumstring(params['unitCategory'])
     if (this.unitcategoryId) {
       this.unitCategoryID = this.unitcategoryId;
       this.unitcategorystring = params['unitCategory']
     }
     else {
-      this.unitcategorystring = this.getlang(localStorage.getItem('locale'))
+      this.unitcategorystring = params['unitCategory']
+      // this.unitcategorystring = this.getlang(localStorage.getItem('locale'))
     }
   }
   getlang(language: string) {
     var lang = {
-        "en-US": "All",
-        "ar": "الكل",
+      "en-US": "All",
+      "ar": "الكل",
     }
     return lang[language] || "Unknown";
-}
+  }
+  getpurpose(params: any) {
+    var lang = {
+      "Rent": "إيجار",
+      "Buy": "يشتري",
+      "يشتري": "Buy",
+      "إيجار": "Rent"
+    }
+    return lang[params] || "Unknown";
+  }
 }

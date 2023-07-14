@@ -81,7 +81,7 @@
                 <p class="pt-2 text-color">{{"hsp"|transloco}}</p>
             </div>
             <div class="pt-2 ps-4 pb-5">
-                <button mat-stroked-button color="accent" class="mat-border" onclick="window.scrollTo(0,0)" [routerLink]="'propertydetails'">{{"Viewnow"|transloco}} <mat-icon>keyboard_arrow_right</mat-icon></button>
+                <button mat-stroked-button color="accent" class="mat-border" onclick="window.scrollTo(0,0)" [routerLink]="'propertydetails'"><mat-icon *ngIf="rightrow">keyboard_arrow_right</mat-icon>{{"Viewnow"|transloco}} <mat-icon *ngIf="leftrow">keyboard_arrow_right</mat-icon></button>
             </div>
            
         </div>

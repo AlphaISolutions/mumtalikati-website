@@ -1,16 +1,15 @@
 import { Component, Inject, Input, LOCALE_ID, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { InterceptorService } from 'src/app/services/interceptor.service';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router, RouterStateSnapshot } from '@angular/router';
 import { LoginComponent } from 'src/app/sign-up/login/login.component';
 import { assetUrl } from 'src/single-spa/asset-url';
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {
   TranslocoService
 } from '@ngneat/transloco';
-import { from, map, switchMap } from 'rxjs';
-import { LanguageService } from 'src/app/services/language.service';
+import { Subscription, filter } from 'rxjs';
 import { SetFiltersServive } from 'src/app/services/setfilters.servive';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
@@ -34,17 +33,20 @@ export class TopBarComponent implements OnInit {
   @Input() btncolor: any;
   @Input() togglericon: any;
   liststring: string = 'Rent';
-  governoratestring = 'All';
-  propertyMasterTypestring = 'All';
-  propertyMasterSubTypeIDstring = 'All';
-  unitcategorystring = 'All';
-  minValue = 0;
-  maxValue = 10000;
   coler: any;
   selectedLanguage: string = 'en';
+  url: string;
+  path: string;
   public selectedLocale: string = this.localeId;
-
-  constructor(@Inject(LOCALE_ID) private localeId: string, public dialog: MatDialog, private router: Router, private http: HttpClient, private service: TranslocoService, private setFiltersServive: SetFiltersServive) { }
+  private langChangeSubscription: Subscription;
+  direction: string = this.service.getActiveLang() === 'ar' ? 'ltr' : 'rtl';
+  currentRoute: any;
+  constructor(@Inject(LOCALE_ID) private localeId: string, public dialog: MatDialog, private router: Router, private http: HttpClient, private service: TranslocoService, private setFiltersServive: SetFiltersServive, private route: ActivatedRoute, private location: Location) {
+    this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
+      this.direction = this.service.getActiveLang() === 'ar' ? 'rtl' : 'ltr';
+    });
+    this.path = this.route.component.name
+  }
   public locales: any = [
     { name: "English", code: "en-US" },
     { name: "Arabic", code: "ar" },
@@ -88,54 +90,34 @@ export class TopBarComponent implements OnInit {
       ['propertydetails/', this.liststring]
     )
   }
-  getlanguage() {
-
-    // const headers = new HttpHeaders().set('Accept-Language', 'en'); 
-
-  }
-  // changePath(code: string) {
-  //   this.router.navigateByUrl(`/${code}/`);
-  // }
-
-  // changeLanguage(isEnglish: boolean): void {
-  //   const language = isEnglish ? 'ar' : 'ar';
-  //   this.http.get('angular.json').subscribe((angularJson: any) => {
-  //     angularJson.projects['mumtalikati-website'].architect.build.options.localize[0].i18n.locales[language] =
-  //       `src/locale/messages.${language}.xlf`;
-  //     this.http
-  //       .put('angular.json', angularJson)
-  //       .subscribe(() => {
-  //         console.log(`Language changed to ${language}`);
-  //       });
-  //   });
-  // }
-  // readAngularJsonFile(): void {
-  //   this.http.get('angular.json').subscribe((data: any) => {
-  //     console.log(data);
-  //   });
-  // }
-  // getTranslation(lang: string) {
-  //   const defaultLang = 'en';
-  //   const requestLang = lang || defaultLang;
-  //   const requestUrl = `src/locale/messages.${requestLang}.xlf`;
-
-  //   return this.http.get<Translation>(requestUrl, {
-  //     headers: new HttpHeaders().set('Accept-Language', requestLang)
-  //   });
-  // }
   changeLanguage(event) {
-    if(this.language== "ar"){
+    if (this.language == "ar") {
       localStorage.setItem('locale', event.value);
       this.service.setActiveLang('ar')
       this.setFiltersServive.stopSession()
-      window.open('/', '_self');
-    }else{
+      this.direction = event.value === 'ar' ? 'rtl' : 'ltr';
+      // this.getpath()
+      window.location.reload();
+    } else {
       localStorage.setItem('locale', event.value);
       this.service.setActiveLang('en')
       this.setFiltersServive.stopSession()
-      window.open('/', '_self');
+      this.direction = event.value === 'ar' ? 'rtl' : 'ltr';
+      window.location.reload();
+      // this.getpath()
     }
-   
 
+
+  }
+  ngOnDestroy() {
+    this.langChangeSubscription.unsubscribe();
+  }
+  getpath() {
+    if (this.path == "AboutusComponent" || this.path == "ContactusComponent") {
+
+    } else {
+      window.open('/', '_self');
+      // window.location.reload();
+    }
   }
 }
