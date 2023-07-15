@@ -9,6 +9,8 @@ import { ProfileImage } from '../models/profileImage.model';
 import Splide from '@splidejs/splide';
 import { State } from '../models/state.model';
 import { FilterService } from '../services/filterserice';
+import { Subscription } from 'rxjs';
+import { TranslocoService } from '@ngneat/transloco';
 @Component({
   selector: 'app-propertyfulldisplaylist',
   templateUrl: './propertyfulldisplaylist.component.html',
@@ -40,11 +42,19 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   @Input() propertysubdesc!: string;
   @Input() propertyMasterSubType!: number;
   @Input() unitsid!: number
-  @Input() sharedmodel = new State
+  @Input() sharedmodel = new State;
+ 
   closeResult = '';
-  constructor(private modalService: NgbModal, private clipboard: Clipboard, private filterService:FilterService) { }
+  private langChangeSubscription: Subscription;
+  direction: string = this.service.getActiveLang() === 'ar' ? 'rtl' : 'rtl';
+  constructor(private modalService: NgbModal, private clipboard: Clipboard, private filterService:FilterService,private service: TranslocoService) {
+    this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
+      this.direction = this.service.getActiveLang() === 'ar' ? 'rtl' : 'rtl';
+    });
+   }
   mainSlider: Splide;
   thumbnailSlider: Splide;
+  
   ngOnInit() {
   
   }
@@ -142,6 +152,6 @@ export class PropertyfulldisplaylistComponent implements OnInit {
       window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
     }
   }
- 
+
 
 }

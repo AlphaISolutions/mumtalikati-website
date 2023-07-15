@@ -7,6 +7,8 @@ import { SendEmail } from '../models/sendemail.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { ToastrService } from 'ngx-toastr';
 import { AssetsService } from '../services/assetsServiceservice';
+import { Subscription } from 'rxjs';
+import { TranslocoService } from '@ngneat/transloco';
 @Component({
   selector: 'app-contactus',
   templateUrl: './contactus.component.html',
@@ -26,7 +28,12 @@ export class ContactusComponent implements OnInit {
   loading: boolean=false;
   markdownselect:string;
   markdown:string;
-  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private toastr: ToastrService, private assetsService: AssetsService) {
+  direction: string = this.service.getActiveLang() === 'ar' ? 'ltr' : 'rtl';
+  private langChangeSubscription: Subscription;
+  constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private toastr: ToastrService, private assetsService: AssetsService,private service: TranslocoService) {
+    this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
+      this.direction = this.service.getActiveLang() === 'ar' ? 'ltr' : 'rtl';
+    });
   }
 
   async ngOnInit() {

@@ -19,9 +19,11 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
   @Input() propertyMasterSubType!: number;
   @Input() sharedmodel = new State
   subid: any;
+  faicons:string;
   constructor(private router: Router, private filterservice: FilterService) { }
 
   ngOnInit(): void {
+    this.button();
   }
   addItem(newItem: number) {
     this.listpurID = newItem;
@@ -76,5 +78,12 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
       });
     }
 
+  }
+  button() {
+    if (localStorage.getItem('locale') == 'ar') {
+      this.faicons ='fa-angle-right';
+    }else{
+      this.faicons ='fa-angle-left';
+    }
   }
 }

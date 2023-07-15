@@ -33,10 +33,10 @@
             </div>
             <div class="col">
                 <mat-form-field appearance="outline" (click)="open(content)">
-                    <mat-label>{{"Propertycategory"|transloco}}</mat-label>
-                    <input matInput *ngIf="!mastertypeid" value="{{'All' | transloco}}" >
+                    <mat-label class="disabled-color">{{"Propertycategory"|transloco}}</mat-label>
+                    <input matInput *ngIf="!mastertypeid" value="{{'All' | transloco}}" [disabled]="true" class="disabled-color-input">
                     <input matInput *ngIf="getsubTyp(subTypeId) ==='' " value="{{getpropertyMasterType(mastertypeid)}}">
-                    <input *ngIf="getsubTyp(subTypeId) !=='' " matInput
+                    <input *ngIf="getsubTyp(subTypeId)" matInput
                         value="{{getpropertyMasterType(mastertypeid)}} - {{getsubTyp(subTypeId)}}">
                 </mat-form-field>
                 <ng-template #content let-modal>
