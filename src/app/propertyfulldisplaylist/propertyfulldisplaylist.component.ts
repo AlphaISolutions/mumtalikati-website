@@ -43,22 +43,22 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   @Input() propertyMasterSubType!: number;
   @Input() unitsid!: number
   @Input() sharedmodel = new State;
- 
+  classsting: string;
   closeResult = '';
   private langChangeSubscription: Subscription;
   direction: string = this.service.getActiveLang() === 'ar' ? 'rtl' : 'rtl';
-  constructor(private modalService: NgbModal, private clipboard: Clipboard, private filterService:FilterService,private service: TranslocoService) {
+  constructor(private modalService: NgbModal, private clipboard: Clipboard, private filterService: FilterService, private service: TranslocoService) {
     this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
       this.direction = this.service.getActiveLang() === 'ar' ? 'rtl' : 'rtl';
     });
-   }
+  }
   mainSlider: Splide;
   thumbnailSlider: Splide;
-  
+
   ngOnInit() {
-  
+    this.featureclass();
   }
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     if (this.propertyDetail && this.propertyDetail.imageString.length > 0) {
       this.mainSlider = new Splide('#main-slider', {
         type: 'loop',
@@ -68,7 +68,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
         cover: true,
         autoplay: true,
         width: '100%',
-       
+
       });
       this.mainSlider.mount();
       this.thumbnailSlider = new Splide('#thumbnail-slider', {
@@ -93,11 +93,11 @@ export class PropertyfulldisplaylistComponent implements OnInit {
       });
       this.thumbnailSlider.mount();
       this.mainSlider.sync(this.thumbnailSlider);
-    } 
+    }
   }
 
   getlist(listid: any) {
-   return this.filterService.getPurposeid(listid)
+    return this.filterService.getPurposeid(listid)
     // return listingPurposeTypeEnum(listid)
   }
   getpropertyunitCategoryid(unitcatID: number) {
@@ -147,11 +147,17 @@ export class PropertyfulldisplaylistComponent implements OnInit {
     let message = `https://www.mumtalikati.com/propertyfulldisplay?unitCategory=${this.unitcategorydesc}&PropertySubTyp=${this.propertysubdesc}&propertyMaster=${this.pmid}&propertyUnit=${this.propertyUnitid}&landlord=${this.landlordid}`;
     if (isMobile) {
       window.location.href = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-    } 
-     else {
+    }
+    else {
       window.open(`https://wa.me/?phone=${phoneNumber}&text=${encodeURIComponent(message)}`);
     }
   }
-
+  featureclass() {
+    if (localStorage.getItem('locale') == 'ar') {
+      this.classsting = 'justify-content:right'
+    } else {
+      this.classsting = 'justify-content:left'
+    }
+  }
 
 }

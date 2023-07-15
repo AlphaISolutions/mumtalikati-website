@@ -28,11 +28,11 @@ export class ContactusComponent implements OnInit {
   loading: boolean=false;
   markdownselect:string;
   markdown:string;
-  direction: string = this.service.getActiveLang() === 'ar' ? 'ltr' : 'rtl';
+  direction: string;
   private langChangeSubscription: Subscription;
   constructor(private rxFormBuilder: RxFormBuilder, private mumtalikatiservic: MumtalikatiService, private toastr: ToastrService, private assetsService: AssetsService,private service: TranslocoService) {
-    this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
-      this.direction = this.service.getActiveLang() === 'ar' ? 'ltr' : 'rtl';
+  this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
+      this.direction = this.service.getActiveLang() === 'ar' ? 'ltr' : 'ltr';
     });
   }
 

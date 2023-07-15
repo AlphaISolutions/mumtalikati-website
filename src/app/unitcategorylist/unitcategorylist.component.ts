@@ -20,6 +20,9 @@ export class UnitcategorylistComponent implements OnInit {
   constructor(private router: Router, private filterservice: FilterService, private localstorage: SetFiltersServive) { }
   ngOnInit(): void {
   }
+  getpropertySubType(id:number) {
+    return this.filterservice.getPropertytMasterSubTypeid(id);
+  }
   getstutus(stutuss: number) {
     return this.filterservice.getStatusbyID(stutuss);
   }
