@@ -19,9 +19,11 @@ export class BreadcrumbComponent implements OnInit {
   @Input() propertyMasterTypeID!: number;
   @Input() sharedmodel = new State
   subid: any;
-  governorateName!: any
+  governorateName!: any;
+  faicons:string;
   constructor(private router: Router, private filterservice: FilterService, private localstorage: SetFiltersServive) { }
   ngOnInit(): void {
+    this.button();
   }
   getenum(propertyMasterTypeID: number) {
     // return propertyMasterTypeEnum(propertyMasterTypeID)
@@ -63,5 +65,12 @@ export class BreadcrumbComponent implements OnInit {
       });
     }
 
+  }
+  button() {
+    if (localStorage.getItem('locale') == 'ar') {
+      this.faicons ='fa-angle-right';
+    }else{
+      this.faicons ='fa-angle-left';
+    }
   }
 }
