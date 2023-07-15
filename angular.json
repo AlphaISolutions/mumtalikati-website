@@ -4,16 +4,6 @@
   "newProjectRoot": "projects",
   "projects": {
     "mumtalikati-website": {
-      "i18n": {
-        "sourceLocale": "en-US",
-        "locales": {
-          "ar":{
-            "translation":"src/locale/messages.ar.xlf",
-            "baseHref": ""
-          } 
-
-        }
-      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -27,9 +17,7 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "localize": [
-              "ar"
-            ],
+            
             "outputPath": "dist/mumtalikati-website",
             "index": "src/index.html",
             "main": "src/main.single-spa.ts",

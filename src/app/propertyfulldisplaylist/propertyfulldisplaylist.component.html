@@ -286,8 +286,8 @@
                             {{"Features"|transloco}} 
                         </h5>
                         <div class="">
-                            <div class="row gx-2 justify-content-md-center btn-row " *ngIf="propertyFeature">
-                                <div class="col pt-2" *ngFor="let features of propertyFeature">
+                            <div class="row gx-2  btn-row " *ngIf="propertyFeature">
+                                <div class="col-auto pt-2" *ngFor="let features of propertyFeature">
                                     <button mat-raised-button class="" [disabled]="true" 
                                         id="view-cmp-btn">{{features.feature.desc}}</button>
                                 </div>
