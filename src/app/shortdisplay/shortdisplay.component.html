@@ -3,8 +3,7 @@
         (click)="onclick( property.unitCategoryID!, property.landLordID!, property.propertyMasterID!,property.propertyMasterSubType!, property.listingPurposeID)">
         <img [src]="property.imageString || defaultimage" class=" imagecss main" alt="Card Image">
         <div class="card-body cd p-0  pt-2">
-            <div
-                *ngIf="property.propertyMasterSubType== 15 else propertyMasterName">
+            <div *ngIf="property.propertyMasterSubType=== PropertySubTypeEnum.Plot else propertyMasterName">
                 <p><b>{{getMasterTypeId(property.propertyMasterTypeID)}} {{"Plot"|transloco}}</b></p>
             </div>
             <ng-template #propertyMasterName>
@@ -12,17 +11,17 @@
             </ng-template>
 
             <div>
-                <div
-                    *ngIf="( property.unitCategoryID== 12) || ( property.propertyMasterSubType== 15 ) else unitname">
+                <div *ngIf="( property.unitCategoryID=== PropertyUnitCategoryEnum.WholeBuilding) || ( property.propertyMasterSubType=== PropertySubTypeEnum.Plot  ) else unitname">
                     <h6 class="inline">{{getsubType(property.propertyMasterSubType!)}}</h6>
                 </div>
                 <ng-template #unitname>
-                    <h6 class="inline">{{getunitcatid(property.unitCategoryID)}} | {{getsubType(property.propertyMasterSubType!)}}
+                    <h6 class="inline">{{getunitcatid(property.unitCategoryID)}} |
+                        {{getsubType(property.propertyMasterSubType!)}}
                     </h6>
                 </ng-template>
 
                 <div class="mt-2">
-                    <h6 *ngIf="property.listingPurposeID ==1; else nolistpurposeid">
+                    <h6 *ngIf="property.listingPurposeID ===ListingPurposeTypeEnum.Rent; else nolistpurposeid">
                         {{"OMR"|transloco}} <span class="font-price">{{property.rentPrice}}</span>/{{"Month"|transloco}}
                     </h6>
                     <ng-template #nolistpurposeid>
@@ -31,12 +30,11 @@
                         </h6>
                     </ng-template>
                 </div>
-                <div *ngIf="property.unitCategoryID== 12 else unitcatid">
+                <div *ngIf="property.unitCategoryID== PropertyUnitCategoryEnum.WholeBuilding else unitcatid">
                     <!-- unitCategoryID== 12 show empty data -->
                 </div>
                 <ng-template #unitcatid>
-                    <div
-                        *ngIf="(property.propertyMasterSubType== 15) || (property.unitCategoryID==6)  else plot">
+                    <div *ngIf="(property.propertyMasterSubType=== PropertySubTypeEnum.Plot) || (property.unitCategoryID===PropertyUnitCategoryEnum.Shop)  else plot">
                         <p><img class="pe-2" [src]="areaimg">{{property.sqft}} {{"SQM"|transloco}}</p>
                     </div>
                     <ng-template #plot>
@@ -44,7 +42,7 @@
                             <p class=""><img class="pe-2" [src]="bedroomimg">{{property.bedRoom}} </p>
                             <p class=""><img class="pe-2" [src]="washroomimg">{{property.bathRoom}}
                             </p>
-                            <p ><img class="pe-2" [src]="areaimg">{{property.sqft}} {{"SQM"|transloco}}</p>
+                            <p><img class="pe-2" [src]="areaimg">{{property.sqft}} {{"SQM"|transloco}}</p>
                         </div>
                     </ng-template>
                 </ng-template>

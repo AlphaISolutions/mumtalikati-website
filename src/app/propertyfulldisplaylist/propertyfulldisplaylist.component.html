@@ -12,7 +12,7 @@
                 </h4>
             </div>
             <div>
-                <div *ngIf="propertyDetail.propertyMasterSubType ==15; else wholebuilding ">
+                <div *ngIf="propertyDetail.propertyMasterSubType === PropertySubTypeEnum.Plot; else wholebuilding ">
                     <table class="table">
                         <tbody>
                             <tr>
@@ -22,7 +22,7 @@
                             </tr>
                             <tr>
                                 <th class="header card-text">{{"PlotNumber"|transloco}}</th>
-                                <td class="propertyb card-text">{{propertyDetail.plotNumber}}</td>
+                                <td class="propertyb ">{{propertyDetail.plotNumber}}</td>
 
                             </tr>
                             <ng-template #noOfFloor *ngIf="propertyDetail.numberofFloors">
@@ -40,7 +40,7 @@
                     </table>
                 </div>
                 <ng-template #wholebuilding>
-                    <div *ngIf="propertyDetail.unitCategoryID == 12; else building">
+                    <div *ngIf="propertyDetail.unitCategoryID ===PropertyUnitCategoryEnum.WholeBuilding; else building">
                         <table class="table">
                             <tbody>
                                 <tr>
@@ -128,16 +128,15 @@
                                 <td class="propertyb">{{propertyDetail.builtYear}}</td>
 
                             </tr>
-                            <tr *ngIf="propertyDetail.floorNumber else floorno ">
+                            <tr *ngIf="propertyDetail.floorNumber==0; else floorno ">
 
                             </tr>
-                            <ng-template #floorno>
-                                <tr *ngIf="propertyDetail.floorNumber==0 else notshowfloor">
-                                    <!-- <th class="header">Floor #</th>
-                                <td class="propertyb">{{propertyDetail.floorNumber}}</td> -->
+                            <!-- <ng-template #floorno>
+                                <tr *ngIf="propertyDetail.floorNumber==0 ;else notshowfloor">
+                            
                                 </tr>
-                            </ng-template>
-                            <ng-template #notshowfloor>
+                            </ng-template> -->
+                            <ng-template #floorno>
                                 <tr>
                                     <th class="header">{{"Floor#"|transloco}}</th>
                                     <td class="propertyb">{{propertyDetail.floorNumber}}</td>
@@ -208,7 +207,7 @@
                 </div>
                 <div class="card-body p-0 pt-2">
                     <mat-card-content>
-                        <h5 *ngIf="propertyDetail.listingPurposeID ==1 else nolistpurposeid">
+                        <h5 *ngIf="propertyDetail.listingPurposeID ===ListingPurposeTypeEnum.Rent else nolistpurposeid">
                             {{"OMR"|transloco}} {{propertyDetail.rentPrice}}/{{"Month"|transloco}}
                         </h5>
                         <ng-template #nolistpurposeid>
@@ -216,30 +215,33 @@
                                 {{"OMR"|transloco}} {{propertyDetail.sellPrice}}/{{"Sale Price"|transloco}}
                             </h5>
                         </ng-template>
-                        <div *ngIf="propertyDetail.unitCategoryID== 12 else unitcatid">
+                        <div *ngIf="propertyDetail.unitCategoryID===PropertyUnitCategoryEnum.WholeBuilding else unitcatid">
                             <!-- unitCategoryID== 12 show empty data -->
                         </div>
                         <ng-template #unitcatid>
                             <div class="dis-flex" clas="pe-4">
-                                <div *ngIf="(propertyMasterSubType ==15 ) ||( propertyDetail.unitCategoryID==6)  else plotsqft"
-                                    >
-                                    <p class="icon pe-2"><img class="pe-2" [src]="areaimg">{{propertyDetail.sqft}}{{"SQM"|transloco}}
+                                <div
+                                    *ngIf="(propertyMasterSubType ===PropertySubTypeEnum.Plot ) ||( propertyDetail.unitCategoryID===PropertyUnitCategoryEnum.Shop)  else plotsqft">
+                                    <p class="icon pe-2"><img class="pe-2"
+                                            [src]="areaimg">{{propertyDetail.sqft}}{{"SQM"|transloco}}
                                     </p>
                                 </div>
                                 <ng-template #plotsqft>
-                                    <p class="icon pe-2"><img class="pe-2" [src]="areaimg">{{propertyDetail.sqft}}{{"SQM"|transloco}}
+                                    <p class="icon pe-2"><img class="pe-2"
+                                            [src]="areaimg">{{propertyDetail.sqft}}{{"SQM"|transloco}}
                                     </p>
                                     <p class="icon pe-2"><img class="pe-2" [src]="bedroomimg">{{propertyDetail.bedRoom}}
                                         {{"Bedrooms"|transloco}}
                                     </p>
                                     <p class="icon pe-2"><img class="pe-2"
                                             [src]="washroomimg">{{propertyDetail.bathRoom}}
-                                            {{"Bathrooms"|transloco}}
+                                        {{"Bathrooms"|transloco}}
                                     </p>
                                     <p class="icon pe-2"><img class="pe-2" [src]="kitchen">{{propertyDetail.kitchen}}
                                         {{"Kitchen"|transloco}}
                                     </p>
-                                    <p class="icon pe-2"><img class="pe-2" [src]="hall">{{propertyDetail.hall}}  {{"Hall"|transloco}}
+                                    <p class="icon pe-2"><img class="pe-2" [src]="hall">{{propertyDetail.hall}}
+                                        {{"Hall"|transloco}}
                                     </p>
                                 </ng-template>
 
@@ -255,16 +257,17 @@
                             </div>
                             <a class="readmore" *ngIf="propertyDetail.propertyMasterDescription.length > 100"
                                 (click)="toggleReadMore(propertyDetail)">
-                                {{ propertyDetail.isExpanded ? "{{'ReadLess'|transloco}}" : "{{'Read More'|transloco}}" }}
+                                {{ propertyDetail.isExpanded ? "{{'ReadLess'|transloco}}" : "{{'Read More'|transloco}}"
+                                }}
                             </a>
                         </div>
                         <h5 *ngIf="!propertyFeature.length==0">
-                            {{"Features"|transloco}} 
+                            {{"Features"|transloco}}
                         </h5>
                         <div class="">
                             <div class="row gx-2  btn-row " *ngIf="propertyFeature">
                                 <div class="col-auto pt-2" *ngFor="let features of propertyFeature">
-                                    <button mat-raised-button class="" [disabled]="true" 
+                                    <button mat-raised-button class="" [disabled]="true"
                                         id="view-cmp-btn">{{features.feature.desc}}</button>
                                 </div>
                             </div>
@@ -302,22 +305,24 @@
         <hr>
         <div *ngIf="propertyDetail">
             <p class="align-item">
-                {{"PleasequoteBuildingID" |transloco}} {{propertyDetail.buildingNumber}} {{"whencallingtolandlord."|transloco}}
-                
+                {{"PleasequoteBuildingID" |transloco}} {{propertyDetail.buildingNumber}}
+                {{"whencallingtolandlord."|transloco}}
+
             </p>
         </div>
         <hr>
         <div>
             <p class="align-item">
-              {{"notifications"|transloco}}
+                {{"notifications"|transloco}}
             </p>
         </div>
     </div>
     <div class="modal-footer">
         <div class="row gx-2 gy-2">
             <div class="col">
-                <button mat-raised-button color="primary" class="w-100" (click)="closepop()">{{"Iwanttobenotified"|transloco}}
-                    </button>
+                <button mat-raised-button color="primary" class="w-100"
+                    (click)="closepop()">{{"Iwanttobenotified"|transloco}}
+                </button>
                 <!-- <button mat-raised-button color="primary" class="border-done" (click)="closepop()">I want to be
                     notified</button> -->
 

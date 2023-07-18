@@ -20,16 +20,12 @@ import { State } from '../models/state.model';
 import { Meta, Title } from '@angular/platform-browser';
 import { maxValueModel } from '../models/maxValue.model';
 import { LanguageService } from '../services/language.service';
-
-
-
 @Component({
   selector: 'app-propertydetails',
   templateUrl: './propertydetails.component.html',
   styleUrls: ['./propertydetails.component.scss']
 })
 export class PropertydetailsComponent implements OnInit {
-
   loading: boolean = false;
   propertyDetail: RentalUnitDetail[] = [];
   listingpupose: ListingPurpose[] = [];
@@ -85,7 +81,7 @@ export class PropertydetailsComponent implements OnInit {
   maxPricedata!: maxValueModel;
   ceilvalue: number;
   options: Options | null = null;
-  langCode:string;
+  langCode: string;
   constructor(private route: ActivatedRoute,
     private rxFormBuilder: RxFormBuilder,
     private mumtalikatiservic: MumtalikatiService,
@@ -106,10 +102,10 @@ export class PropertydetailsComponent implements OnInit {
       scrollable: true,
     };
     this.statedatalist();
- 
+
   }
-  ngAfterViewInit(){
-    this.langCode=this.languageService.getlang()
+  ngAfterViewInit() {
+    this.langCode = this.languageService.getlang()
   }
   async initiaalizefilters() {
     this.listingpupose = await this.setupFilterServive.getListingPurpose();
@@ -478,8 +474,12 @@ export class PropertydetailsComponent implements OnInit {
   resetpropertyCategory() {
     this.mastertypeid = null;
     this.subTypeId = null;
+    this.queryParams();
     this.selectedTab = 0;
-    this.statedatalist()
+    this.statedatalist();
+    this.propertyFilterInIt();
+    this.propertyFilterCountInIt();
+    this.getPropertySubType
     this.modalService.dismissAll()
   }
   queryParams() {
@@ -516,10 +516,10 @@ export class PropertydetailsComponent implements OnInit {
     this.getPropertyUnitCategory(this.mastertypeid, this.listid);
   }
   getPropertyListPurposeId(params: any) {
-    this.listpurID = listingPurposeTypeEnumSting(params['purpose']) ?? "Rent"
+    this.listpurID = listingPurposeTypeEnumSting(params['purpose'])
     if (this.listpurID) {
       this.listid = this.listpurID;
-      this.liststring = params['purpose'] ?? "Rent"
+      this.liststring = params['purpose']
     } else if (this.listid == 1) {
       this.liststring = 'Rent';
     } else {
@@ -533,8 +533,8 @@ export class PropertydetailsComponent implements OnInit {
       this.governoratestring = params['governorate'];
     } else if (this.governorateid) {
       this.governoratestring = this.filterservice.getGovernorateid(this.governorateid)
-    }else{
-      this.governoratestring=this.getlang(localStorage.getItem('locale') || 'ar')
+    } else {
+      this.governoratestring = this.getlang(localStorage.getItem('locale') || 'ar')
     }
   }
   getunitcategoryId(params: any) {
@@ -544,8 +544,7 @@ export class PropertydetailsComponent implements OnInit {
       this.unitcategorystring = params['unitCategory'];
     }
     else {
-     
-      this.unitcategorystring =this.getlang(localStorage.getItem('locale') || 'ar')
+      this.unitcategorystring = this.getlang(localStorage.getItem('locale') || 'ar')
     }
   }
   getpropertyMasterTypeID(params: any) {
@@ -861,9 +860,9 @@ export class PropertydetailsComponent implements OnInit {
 
   getlang(language: string) {
     var lang = {
-        "en-US": "All",
-        "ar": "الكل",
+      "en-US": "All",
+      "ar": "الكل",
     }
     return lang[language] || "Unknown";
-}
+  }
 }
