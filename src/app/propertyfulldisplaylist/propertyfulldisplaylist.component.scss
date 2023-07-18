@@ -285,3 +285,8 @@ icon {
     width: 100%;
     border-radius: 20px;
   }
+  .card-text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }

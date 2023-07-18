@@ -12,16 +12,82 @@
                 </h4>
             </div>
             <div>
-                <div *ngIf="propertyDetail.unitCategoryID == 12 else wholebuilding">
+                <div *ngIf="propertyDetail.propertyMasterSubType ==15; else wholebuilding ">
                     <table class="table">
                         <tbody>
                             <tr>
-                                <th class="header">{{"BuildingType" |transloco}}</th>
-                                <td class="propertyb">{{propertyDetail.propertyUnitDescription}}</td>
+                                <th class="header">{{"Type"|transloco}}</th>
+                                <td class="propertyb">{{propertyDetail.propertySubTypeName}}</td>
 
                             </tr>
+                            <tr>
+                                <th class="header card-text">{{"PlotNumber"|transloco}}</th>
+                                <td class="propertyb card-text">{{propertyDetail.plotNumber}}</td>
 
+                            </tr>
+                            <ng-template #noOfFloor *ngIf="propertyDetail.numberofFloors">
+                                <tr>
+                                    <th class="header">{{"NoofFloor"|transloco}}</th>
+                                    <td class="propertyb">{{propertyDetail.numberofFloors}}</td>
+                                </tr>
+                            </ng-template>
+                            <tr>
+                                <th class="header">{{"Status"|transloco}}</th>
+                                <td class="propertyb">{{getstatus(propertyDetail.unitStatus)}}</td>
 
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <ng-template #wholebuilding>
+                    <div *ngIf="propertyDetail.unitCategoryID == 12; else building">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th class="header">{{"BuildingType" |transloco}}</th>
+                                    <td class="propertyb">{{propertyDetail.propertyUnitDescription}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="header">{{"BuildingID" |transloco}}</th>
+                                    <td class="propertyb">{{propertyDetail.buildingNumber}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="header">{{"BuildingName" |transloco}}</th>
+                                    <td class="propertyb">{{propertyDetail.buildingName}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="header">{{"PlotNumber"|transloco}}</th>
+                                    <td class="propertyb">{{propertyDetail.plotNumber}}</td>
+                                </tr>
+                                <ng-container *ngIf="propertyDetail.residentialUnits  else residential">
+                                    <!-- no show residentialUnits -->
+                                </ng-container>
+                                <ng-template #residential>
+                                    <tr>
+                                        <th class="header">{{"ResidentialUnits"|transloco}}</th>
+                                        <td class="propertyb">{{propertyDetail.residentialUnits}}</td>
+                                    </tr>
+                                </ng-template>
+                                <tr>
+                                    <th class="header">{{"Buildinyear"|transloco}}</th>
+                                    <td class="propertyb">{{propertyDetail.builtYear}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="header">{{"NoofFloor"|transloco}}</th>
+                                    <td class="propertyb">{{propertyDetail.numberofFloors}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </ng-template>
+                <ng-template #building>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th class="header">{{"Type"|transloco}}</th>
+                                <td class="propertyb">{{propertyDetail.propertySubTypeName}}</td>
+
+                            </tr>
                             <tr>
                                 <th class="header">{{"BuildingID" |transloco}}</th>
                                 <td class="propertyb">{{propertyDetail.buildingNumber}}</td>
@@ -29,7 +95,7 @@
                             </tr>
                             <tr>
                                 <th class="header">{{"BuildingName" |transloco}}</th>
-                                <td class="propertyb">{{propertyDetail.buildingName}}</td>
+                                <td class="propertyb">{{propertyDetail.propertyMasterName}}</td>
 
                             </tr>
                             <tr>
@@ -37,144 +103,54 @@
                                 <td class="propertyb">{{propertyDetail.plotNumber}}</td>
 
                             </tr>
-                            <ng-container *ngIf="propertyDetail.residentialUnits  else residential">
+                            <tr>
+                                <th class="header">{{"UnitID"|transloco}}</th>
+                                <td class="propertyb">{{propertyDetail.propertyUnitID}}</td>
 
+                            </tr>
+                            <ng-container
+                                *ngIf="propertyDetail.caption || propertyDetail.caption=='0'; else showCaption">
                             </ng-container>
-                            <ng-template #residential>
+                            <ng-template #showCaption>
                                 <tr>
-                                    <th class="header">{{"ResidentialUnits"|transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.residentialUnits}}</td>
-
+                                    <th class="header">{{"Caption"|transloco}}</th>
+                                    <td class="propertyb">{{propertyDetail.caption}}</td>
                                 </tr>
                             </ng-template>
 
-
                             <tr>
-                                <th class="header">{{"Buildinyear"|transloco}}</th>
+                                <th class="header">{{"Unitcategory"|transloco}}</th>
+                                <td class="propertyb">{{getpropertyunitCategoryid(unitcatID)}}</td>
+
+                            </tr>
+                            <tr>
+                                <th class="header">{{"Builtinyear"|transloco}}</th>
                                 <td class="propertyb">{{propertyDetail.builtYear}}</td>
 
                             </tr>
+                            <tr *ngIf="propertyDetail.floorNumber else floorno ">
+
+                            </tr>
+                            <ng-template #floorno>
+                                <tr *ngIf="propertyDetail.floorNumber==0 else notshowfloor">
+                                    <!-- <th class="header">Floor #</th>
+                                <td class="propertyb">{{propertyDetail.floorNumber}}</td> -->
+                                </tr>
+                            </ng-template>
+                            <ng-template #notshowfloor>
+                                <tr>
+                                    <th class="header">{{"Floor#"|transloco}}</th>
+                                    <td class="propertyb">{{propertyDetail.floorNumber}}</td>
+                                </tr>
+                            </ng-template>
                             <tr>
-                                <th class="header">{{"NoofFloor"|transloco}}</th>
-                                <td class="propertyb">{{propertyDetail.numberofFloors}}</td>
+                                <th class="header">{{"Status"|transloco}}</th>
+                                <td class="propertyb">{{getstatus(propertyDetail.unitStatus)}}</td>
+
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <ng-template #wholebuilding>
-                    <div *ngIf="propertyMasterSubType ==15 else building">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <th class="header">{{"Type"|transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.propertySubTypeName}}</td>
-
-                                </tr>
-                                <tr>
-                                    <th class="header">{{"PlotNumber"|transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.plotNumber}}</td>
-
-                                </tr>
-                                <ng-container
-                                    *ngIf="(PropertySubTypeID == 1) ||( PropertySubTypeID == 9); else noOfFloor">
-                                    <tr *ngIf="propertyDetail.unitCategoryID == 12 else nofloor">
-                                        <th class="header">{{"NoofFloor"|transloco}}</th>
-                                        <td class="propertyb">{{propertyDetail.numberofFloors}}</td>
-                                    </tr>
-                                    <ng-template #nofloor>
-                                        <tr>
-                                            <th class="header">{{"Floor#"|transloco}}</th>
-                                            <td class="propertyb">{{propertyDetail.floorNumber}}</td>
-                                        </tr>
-                                    </ng-template>
-                                </ng-container>
-                                <ng-template #noOfFloor *ngIf="propertyDetail.numberofFloors">
-                                    <tr>
-                                        <th class="header">{{"NoofFloor"|transloco}}</th>
-                                        <td class="propertyb">{{propertyDetail.numberofFloors}}</td>
-                                    </tr>
-                                </ng-template>
-                                <tr>
-                                    <th class="header">{{"Status"|transloco}}</th>
-                                    <td class="propertyb">{{getstatus(propertyDetail.unitStatus)}}</td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <ng-template #building>
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <th class="header">{{"Type"|transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.propertySubTypeName}}</td>
-
-                                </tr>
-                                <tr>
-                                    <th class="header">{{"BuildingID" |transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.buildingNumber}}</td>
-
-                                </tr>
-                                <tr>
-                                    <th class="header">{{"BuildingName" |transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.propertyMasterName}}</td>
-
-                                </tr>
-                                <tr>
-                                    <th class="header">{{"PlotNumber"|transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.plotNumber}}</td>
-
-                                </tr>
-                                <tr>
-                                    <th class="header">{{"UnitID"|transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.propertyUnitID}}</td>
-
-                                </tr>
-                                <ng-container
-                                    *ngIf="propertyDetail.caption || propertyDetail.caption=='0'; else showCaption">
-                                </ng-container>
-                                <ng-template #showCaption>
-                                    <tr>
-                                        <th class="header">{{"Caption"|transloco}}</th>
-                                        <td class="propertyb">{{propertyDetail.caption}}</td>
-                                    </tr>
-                                </ng-template>
-
-                                <tr>
-                                    <th class="header">{{"Unitcategory"|transloco}}</th>
-                                    <td class="propertyb">{{getpropertyunitCategoryid(unitcatID)}}</td>
-
-                                </tr>
-                                <tr>
-                                    <th class="header">{{"Builtinyear"|transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.builtYear}}</td>
-
-                                </tr>
-                                <tr *ngIf="propertyDetail.floorNumber else floorno ">
-
-                                </tr>
-                                <ng-template #floorno>
-                                    <tr *ngIf="propertyDetail.floorNumber==0 else notshowfloor">
-                                        <!-- <th class="header">Floor #</th>
-                                    <td class="propertyb">{{propertyDetail.floorNumber}}</td> -->
-                                    </tr>
-                                </ng-template>
-                                <ng-template #notshowfloor>
-                                    <tr>
-                                        <th class="header">{{"Floor#"|transloco}}</th>
-                                        <td class="propertyb">{{propertyDetail.floorNumber}}</td>
-                                    </tr>
-                                </ng-template>
-                                <tr>
-                                    <th class="header">{{"Status"|transloco}}</th>
-                                    <td class="propertyb">{{getstatus(propertyDetail.unitStatus)}}</td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </ng-template>
                 </ng-template>
-
 
             </div>
             <div id="main">
@@ -279,7 +255,7 @@
                             </div>
                             <a class="readmore" *ngIf="propertyDetail.propertyMasterDescription.length > 100"
                                 (click)="toggleReadMore(propertyDetail)">
-                                {{ propertyDetail.isExpanded ? 'Read Less' : 'Read More' }}
+                                {{ propertyDetail.isExpanded ? "{{'ReadLess'|transloco}}" : "{{'Read More'|transloco}}" }}
                             </a>
                         </div>
                         <h5 *ngIf="!propertyFeature.length==0">
