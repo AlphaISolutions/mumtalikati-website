@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RentalUnitDetail } from '../models/rental-unit-detail.model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { Input } from '@angular/core';
-import { getPropertyUnitCategoryEnum, listingPurposeTypeEnumid, propertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
+import { ListingPurposeTypeEnum, PropertySubTypeEnum, PropertyUnitCategoryEnum, getPropertyUnitCategoryEnum, listingPurposeTypeEnumid, propertyMasterTypeEnum, propertySubTypeEnum } from '../models/enums';
 import { Router } from '@angular/router';
 import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
@@ -26,7 +26,10 @@ export class ShortdisplayComponent implements OnInit {
   unitCategoryId!: any
   liststring!: any;
   propertyMasterSubTypeid !: number;
-  data: any
+  data: any;
+  PropertySubTypeEnum=PropertySubTypeEnum;
+  PropertyUnitCategoryEnum=PropertyUnitCategoryEnum;
+  ListingPurposeTypeEnum=ListingPurposeTypeEnum;
   constructor(private router: Router, private filterservice: FilterService) { }
   async ngOnInit() {
 

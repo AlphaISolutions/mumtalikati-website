@@ -7,13 +7,15 @@ import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.mo
 import { MumtalikatiService } from '../services/mumtalikati.service';
 import { SetFiltersServive } from '../services/setfilters.servive';
 import { SetupService } from '../services/setup.service';
+import { getGovernorateEnumID, listingPurposeTypeEnumid } from '../models/enums';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private setservice: SetupService, private router: Router, private setFilterService: SetFiltersServive, private mumtalikatiservic: MumtalikatiService) { }
+  constructor(private setservice: SetupService, private router: Router, private setFilterService: SetFiltersServive, private mumtalikatiservic: MumtalikatiService) {
+   }
   loading: boolean = false;
   governorate: Governorate[] = [];
   listingpupose: ListingPurpose[] = [];
@@ -113,7 +115,7 @@ export class HomeComponent implements OnInit {
   find() {
     this.router.navigate(['propertydetails'],
       {
-        state: { 'purpose': this.listingPurposeType, 'governorate': this.governorateid }
+        queryParams: { 'purpose':listingPurposeTypeEnumid(this.listingPurposeType) , 'governorate': getGovernorateEnumID(this.governorateid) }
       });
   }
   getcolor(listid: number) {

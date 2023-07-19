@@ -33,11 +33,11 @@
             </div>
             <div class="col">
                 <mat-form-field appearance="outline" (click)="open(content)">
-                    <mat-label class="disabled-color">{{"Propertycategory"|transloco}}</mat-label>
-                    <input matInput *ngIf="!mastertypeid" value="{{'All' | transloco}}" [disabled]="true" class="disabled-color-input">
-                    <input matInput *ngIf="getsubTyp(subTypeId) ==='' " value="{{getpropertyMasterType(mastertypeid)}}">
+                    <mat-label class="disabled-color">{{ "Propertycategory" | transloco }}</mat-label>
+                    <input matInput *ngIf="!mastertypeid" value="{{'All' | transloco}}"  readonly>
+                    <input matInput *ngIf="!subTypeId" value="{{getpropertyMasterType(mastertypeid)}} - {{getlang(lang)}}"  readonly>
                     <input *ngIf="getsubTyp(subTypeId)" matInput
-                        value="{{getpropertyMasterType(mastertypeid)}} - {{getsubTyp(subTypeId)}}">
+                        value="{{getpropertyMasterType(mastertypeid)}} - {{getsubTyp(subTypeId)}}"  readonly>
                 </mat-form-field>
                 <ng-template #content let-modal>
                     <div class="modal-header pe-4 ps-4">
@@ -54,7 +54,6 @@
                                                     <button type="button" class="tab-btn" value="null"
                                                         [ngClass]="{'btn-btn-danger':subTypeId==null && mastertypeid === 1}"
                                                         (click)="onsubtypeid(-1)">{{"All"|transloco}}</button>
-
                                                 </div>
                                                 <div class="col-6  pt-2 mat-pbtn"
                                                     *ngFor="let doc of filterFunction(1 ,listid)">
@@ -62,7 +61,6 @@
                                                         [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
                                                         [(value)]="doc.propertySubType.subType"
                                                         (click)="onsubtypeid(doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -82,10 +80,8 @@
                                                     <button type="button" class="tab-btn" value="null"
                                                         [ngClass]="{'btn-btn-danger':subTypeId==null}"
                                                         (click)="onsubtypeid(-1)">{{"All"|transloco}}</button>
-
                                                 </div>
                                                 <div class="col-6  pt-2 " *ngFor="let doc of filterFunction(2 ,listid)">
-
                                                     <button type="button" class="tab-btn"
                                                         [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
                                                         [value]="doc.propertySubType.subType"

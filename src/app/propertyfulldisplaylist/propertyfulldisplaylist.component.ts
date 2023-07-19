@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { assetUrl } from 'src/single-spa/asset-url';
-import { getPropertyUnitCategoryEnum, getstatusType, listingPurposeTypeEnum } from '../models/enums';
+import { ListingPurposeTypeEnum, PropertySubTypeEnum, PropertyUnitCategoryEnum, getPropertyUnitCategoryEnum, getstatusType, listingPurposeTypeEnum } from '../models/enums';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { PropertyFeature } from '../models/propertyfeature';
 import { Clipboard } from '@angular/cdk/clipboard';
@@ -44,6 +44,9 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   @Input() unitsid!: number
   @Input() sharedmodel = new State;
   classsting: string;
+  PropertySubTypeEnum=PropertySubTypeEnum;
+  PropertyUnitCategoryEnum=PropertyUnitCategoryEnum;
+  ListingPurposeTypeEnum=ListingPurposeTypeEnum;
   closeResult = '';
   private langChangeSubscription: Subscription;
   direction: string = this.service.getActiveLang() === 'ar' ? 'rtl' : 'rtl';

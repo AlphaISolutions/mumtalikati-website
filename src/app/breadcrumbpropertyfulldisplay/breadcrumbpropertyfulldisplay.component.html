@@ -1,6 +1,5 @@
 <div *ngIf="propertyDetail">
     <div class="row p-0 pt-4">
-
         <div class="col-md-4 float-start ">
             <ul class="breadcrumb">
                 <li class="backtosearch"><a  (click)="backtosearch()" class="cursor"
@@ -8,8 +7,8 @@
                             aria-hidden="true"></i>{{"BackToSearch"|transloco}}</a></li>
             </ul>
         </div>
-        <div class="col-md-8" *ngIf="propertyDetail">
-            <ul class="breadcrumb " *ngIf="propertyMasterSubType ==15 else building">
+        <div class="col-md-8">
+            <ul class="breadcrumb " *ngIf="propertyDetail.propertyMasterSubType ===PropertySubTypeEnum.Plot; else buildings">
                 <li><a routerLink="" >{{"Mumtalikati"|transloco}}</a></li>
                 <li *ngIf="propertyDetail">
                     <a href="#"
@@ -18,7 +17,7 @@
                 <li *ngIf="propertyDetail"><a href="#">{{propertyDetail.propertySubTypeName}}</a></li>
                 
             </ul>
-            <ng-template #building>
+            <ng-template #buildings>
                 <ul class="breadcrumb ">
                     <li><a routerLink="">{{"Mumtalikati"|transloco}}</a></li>
                     <li *ngIf="propertyDetail">

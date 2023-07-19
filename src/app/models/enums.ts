@@ -90,7 +90,7 @@ export function listingPurposeTypeEnumid(listingPurposeTypeId: number): string {
         1: "Rent",
         2: "Buy",
     }
-    return purpose[listingPurposeTypeId] || "Rent";
+    return purpose[listingPurposeTypeId] || "unknown";
 
 }
 export function propertyMasterTypeEnum(propertyMasterTypeID: number) {

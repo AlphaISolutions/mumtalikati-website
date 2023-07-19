@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { getGovernorateEnumID, getPropertySubTypeEnumID, getPropertyUnitCategoryEnum, listingPurposeTypeEnum, listingPurposeTypeEnumid, propertyMasterTypeEnum, propertyMasterTypeEnumid } from '../models/enums';
+import { PropertySubTypeEnum, getGovernorateEnumID, getPropertySubTypeEnumID, getPropertyUnitCategoryEnum, listingPurposeTypeEnum, listingPurposeTypeEnumid, propertyMasterTypeEnum, propertyMasterTypeEnumid } from '../models/enums';
 import { OwnerRentDetail } from '../models/ownerRentDetailmodel';
 import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
@@ -20,6 +20,7 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
   @Input() sharedmodel = new State
   subid: any;
   faicons:string;
+  PropertySubTypeEnum=PropertySubTypeEnum;
   constructor(private router: Router, private filterservice: FilterService) { }
 
   ngOnInit(): void {
