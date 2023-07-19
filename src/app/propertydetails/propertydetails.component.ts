@@ -43,7 +43,7 @@ export class PropertydetailsComponent implements OnInit {
   configs: any
   propertyMasterTypeId: number = 1;
   mastertypeid: number | null = null;
-  subTypeId!: number | null;
+  subTypeId: number | null=null;
   perpagenumber = 8;
   color = { 'color': 'black!important' };
   logocolor: boolean = false;
@@ -82,6 +82,7 @@ export class PropertydetailsComponent implements OnInit {
   ceilvalue: number;
   options: Options | null = null;
   langCode: string;
+  lang:string=localStorage.getItem('locale') || 'ar'
   constructor(private route: ActivatedRoute,
     private rxFormBuilder: RxFormBuilder,
     private mumtalikatiservic: MumtalikatiService,
@@ -443,7 +444,7 @@ export class PropertydetailsComponent implements OnInit {
     if (subTypeid == -1) {
       this.mastertypeid = this.selectedTab + 1;
       this.subTypeId = null;
-      this.mastertypeid = null
+      // this.mastertypeid = null
     } else {
       this.mastertypeid = this.selectedTab + 1;
       this.subTypeId = subTypeid;

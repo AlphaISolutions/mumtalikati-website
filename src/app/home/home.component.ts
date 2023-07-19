@@ -14,7 +14,8 @@ import { getGovernorateEnumID, listingPurposeTypeEnumid } from '../models/enums'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private setservice: SetupService, private router: Router, private setFilterService: SetFiltersServive, private mumtalikatiservic: MumtalikatiService) { }
+  constructor(private setservice: SetupService, private router: Router, private setFilterService: SetFiltersServive, private mumtalikatiservic: MumtalikatiService) {
+   }
   loading: boolean = false;
   governorate: Governorate[] = [];
   listingpupose: ListingPurpose[] = [];
