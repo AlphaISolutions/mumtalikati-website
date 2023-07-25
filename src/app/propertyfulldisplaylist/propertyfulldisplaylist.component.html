@@ -257,7 +257,7 @@
                             </div>
                             <a class="readmore" *ngIf="propertyDetail.propertyMasterDescription.length > 100"
                                 (click)="toggleReadMore(propertyDetail)">
-                                {{ propertyDetail.isExpanded ? "{{'ReadLess'|transloco}}" : "{{'Read More'|transloco}}"
+                                {{ propertyDetail.isExpanded ? readless(ReadLess) : readmore(ReadLess)
                                 }}
                             </a>
                         </div>
