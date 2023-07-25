@@ -44,6 +44,8 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   @Input() unitsid!: number
   @Input() sharedmodel = new State;
   classsting: string;
+  ReadLess:string=localStorage.getItem('locale') || 'ar'
+  ReadMore:string=localStorage.getItem('locale');
   PropertySubTypeEnum=PropertySubTypeEnum;
   PropertyUnitCategoryEnum=PropertyUnitCategoryEnum;
   ListingPurposeTypeEnum=ListingPurposeTypeEnum;
@@ -60,6 +62,8 @@ export class PropertyfulldisplaylistComponent implements OnInit {
 
   ngOnInit() {
     this.featureclass();
+    this.readless(this.ReadLess);
+    this.readmore(this.ReadLess)
   }
   ngAfterViewInit() {
     if (this.propertyDetail && this.propertyDetail.imageString.length > 0) {
@@ -163,4 +167,19 @@ export class PropertyfulldisplaylistComponent implements OnInit {
     }
   }
 
+  readless(language: string) {
+    debugger
+    var lang = {
+      "en-US": "Read Less",
+      "ar": "أقرأ أقل",
+    }
+    return lang[language] || "Unknown";
+  }
+  readmore(language: string) {
+    var lang = {
+      "en-US": "Read Move",
+      "ar": "اقرأ أكثر",
+    }
+    return lang[language] || "Unknown";
+  }
 }
