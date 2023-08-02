@@ -196,10 +196,10 @@
                         </div>
                     </div>
                 </div>
-                <div id="thumbnail-slider" class="thumbnail-slider splide">
+                <div id="thumbnail-slider" class="thumbnail-slider splide w-100" >
                     <div class="splide__track">
-                        <div class="splide__list">
-                            <div class="splide__slide thumbnail" *ngFor="let image of propertyDetail.imageString">
+                        <div class="splide__list" *ngIf="propertyDetail.imageString.length>1">
+                            <div class="splide__slide thumbnail" *ngFor="let image of propertyDetail.imageString" >
                                 <img [src]="image" alt="Thumbnail">
                             </div>
                         </div>

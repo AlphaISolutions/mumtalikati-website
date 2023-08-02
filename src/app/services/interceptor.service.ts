@@ -11,7 +11,7 @@ import { environment } from "src/environments/environment";
 import { LanguageService } from "./language.service";
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
-    constructor(private sessionService: SessionService,private languageService: LanguageService) { }
+    constructor(private sessionService: SessionService, private languageService: LanguageService) { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let requestUrl = req.url;
         const token = this.sessionService.getToken();
@@ -20,13 +20,21 @@ export class InterceptorService implements HttpInterceptor {
         }
         else if (requestUrl.indexOf('@assets-url') !== -1) {
             requestUrl = requestUrl.replace('@assets-url', environment.assetsBaseUrl);
-          } 
+        }
         if (!requestUrl.includes(environment.assetsBaseUrl)) {
-                  req = req.clone({
-                    // headers: req.headers.set('Authorization', `Bearer ${token}`)
-                    headers: req.headers.set('Accept-Language', localStorage.getItem('locale') || 'ar').set('Authorization', `Bearer ${token}`),
+            if (requestUrl === 'http://ip-api.com/json') {
+                req = req.clone({
+                    headers: req.headers.set('Accept-Language', 'ar').set('Authorization', `Bearer ${token}`),
                     url: requestUrl
-                  });
+                });
+                
+            } else {
+                req = req.clone({
+                    headers: req.headers.set('Accept-Language', localStorage.getItem('locale')).set('Authorization', `Bearer ${token}`),
+                    url: requestUrl
+                });
+            }
+
         } else {
             req = req.clone({
                 url: requestUrl

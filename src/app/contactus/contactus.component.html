@@ -63,7 +63,10 @@
             <div class="d-none d-lg-block col-lg-1">
             </div>
             <div class="col d-none d-lg-block">
-                <p> <img [src]="aboutSectionImg" i18n-alt class="img-fluid shadow-2-strong" alt="" /></p>
+                
+                      <div id="map"></div>
+                   
+                <!-- <p> <img [src]="aboutSectionImg"  class="img-fluid shadow-2-strong" alt="" /></p> -->
             </div>
         </div>
     </div>
@@ -84,7 +87,7 @@
 
     <div class="card  shadow-2 border-none card-message ">
         <div class="card-body px-4">
-            <form *ngIf="contactusform" [formGroup]="contactusform" (ngSubmit)="onSubmit()" novalidate>
+            <form *ngIf="contactusform" [formGroup]="contactusform" (ngSubmit)="onSubmit()" novalidate #regForm="ngForm">
                 <div class="row gx-2">
                     <div class="col">
                         <mat-form-field appearance="outline">

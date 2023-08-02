@@ -91,6 +91,7 @@
     font-weight: 400;
     // font-size: 22px;
     // line-height: 156%;
+    text-align: justify !important;
   }
   .example-accordion-item-header:hover {
     cursor: pointer;
@@ -107,3 +108,4 @@
   #just-line-break {
     white-space: pre-line;
   }
+  

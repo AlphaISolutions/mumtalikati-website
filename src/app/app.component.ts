@@ -7,10 +7,15 @@ import { PropertyMasterType } from './models/property-master-type.model';
 import { PropertyMasterSubType } from './models/propertyMasterSubType .model';
 import { PropertyUnitCategory } from './models/propertyUnitCategory.model';
 import { SetupService } from './services/setup.service';
-import { Router,NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { Status } from './models/status.model';
 import { TranslocoService } from '@ngneat/transloco';
+import { GeolocationService } from './services/geolocation.service';
+import { IpService } from './services/ipaddres.service';
+import { HttpClient } from '@angular/common/http';
+import { RegionModel } from './models/region.model';
+
 
 @Component({
   selector: 'app-root',
@@ -27,17 +32,25 @@ export class AppComponent {
   propertysubType: PropertyMasterSubType[] = []
   propertyUnitCategoryType: PropertyUnitCategory[] = [];
   governorate: Governorate[] = [];
-  getStatus:Status[]=[]
+  getStatus: Status[] = []
   private langChangeSubscription: Subscription;
+  currentCountry: any;
+  locationJs: any;
+  public ipAddress: string;
+  publicIpAddress: string = 'Loading...';
+ 
   direction: string = this.service.getActiveLang() === 'ar' ? 'ltr' : 'rtl';
-  constructor(private setservice: SetupService, private router: Router, private metaService: Meta,private titleService: Title,private activatedRoute: ActivatedRoute,private service: TranslocoService,) {
+  constructor(private setservice: SetupService, private router: Router, private metaService: Meta, private titleService: Title, private activatedRoute: ActivatedRoute, private service: TranslocoService, private geolocationService: GeolocationService,
+    private ipService: IpService, private http: HttpClient) {
+   
     this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
       this.direction = this.service.getActiveLang() === 'ar' ? 'rtl' : 'ltr';
     });
-   }
+  }
   showfooter: boolean = false;
-  currentRoute!:string
+  currentRoute!: string
   async ngOnInit() {
+    // this.getIpAddress();
     this.getlistingPurpose();
     this.getPropertyMasterType();
     this.getPropertySubType();
@@ -47,20 +60,20 @@ export class AppComponent {
     this.getstatus();
 
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)
-    ).subscribe(()=>{
-    var rt=this.getChild(this.activatedRoute)
-    rt.data.subscribe(data=>{
-      if(data.title == undefined){
-      }else{
-        this.titleService.setTitle(data.title)
+    ).subscribe(() => {
+      var rt = this.getChild(this.activatedRoute)
+      rt.data.subscribe(data => {
+        if (data.title == undefined) {
+        } else {
+          this.titleService.setTitle(data.title)
           if (data.descrption) {
             this.metaService.updateTag({ name: 'description', content: data.descrption })
-          } else { 
+          } else {
             this.metaService.removeTag("name='description'")
           }
-      }
-      
-    })
+        }
+
+      })
     })
   }
 
@@ -140,7 +153,7 @@ export class AppComponent {
       propertyPropertySubType: this.setservice.getPropertySubTypes(),
       propertyUnitCategoryTypes: this.setservice.getPropertyUnitCategoryTypes(),
       propertyGovernorates: this.setservice.getGovernorate(),
-    
+
     }).pipe(
       map(response => {
         return response;
@@ -163,6 +176,31 @@ export class AppComponent {
     } else {
       return activatedRoute;
     }
- 
+
   }
+  getIpAddress() {
+    window.RTCPeerConnection = window.RTCPeerConnection
+    const pc = new RTCPeerConnection({ iceServers: [] });
+    pc.createDataChannel('');
+
+    pc.onicecandidate = (e) => {
+      if (!e.candidate) {
+        this.ipAddress = pc.localDescription.sdp.match(/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/)[0];
+        console.log(this.ipAddress)
+      }
+    };
+
+    pc.createOffer().then((sdp) => {
+      pc.setLocalDescription(sdp);
+    });
+  }
+ 
 }
+
+
+
+
+
+
+
+
