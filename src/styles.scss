@@ -463,6 +463,9 @@ hr {
 .country-selector {
     background-image: none !important;
 }
+.splide__list {
+    direction:ltr !important; 
+}
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

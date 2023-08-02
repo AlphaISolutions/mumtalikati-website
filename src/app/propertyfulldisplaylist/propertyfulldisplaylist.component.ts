@@ -73,33 +73,36 @@ export class PropertyfulldisplaylistComponent implements OnInit {
         pagination: true,
         arrows: false,
         cover: true,
-        autoplay: true,
+        autoplay: false,
         width: '100%',
 
       });
       this.mainSlider.mount();
-      this.thumbnailSlider = new Splide('#thumbnail-slider', {
-        rewind: true,
-        fixedWidth: 100,
-        fixedHeight: 58,
-        isNavigation: true,
-        gap: 10,
-        focus: 'center',
-        pagination: false,
-        cover: true,
-        dragMinThreshold: {
-          mouse: 4,
-          touch: 10,
-        },
-        breakpoints: {
-          640: {
-            fixedWidth: 100,
-            fixedHeight: 55,
+      if(this.propertyDetail && this.propertyDetail.imageString.length > 1){
+        this.thumbnailSlider = new Splide('#thumbnail-slider', {
+          rewind: true,
+          fixedWidth: 100,
+          fixedHeight: 58,
+          isNavigation: true,
+          gap: 10,
+          focus: 'center',
+          pagination: false,
+          cover: true,
+          dragMinThreshold: {
+            mouse: 4,
+            touch: 10,
           },
-        },
-      });
-      this.thumbnailSlider.mount();
-      this.mainSlider.sync(this.thumbnailSlider);
+          breakpoints: {
+            640: {
+              fixedWidth: 100,
+              fixedHeight: 55,
+            },
+          },
+        });
+        this.thumbnailSlider.mount();
+        this.mainSlider.sync(this.thumbnailSlider);
+      }
+      
     }
   }
 
@@ -168,7 +171,6 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   }
 
   readless(language: string) {
-    debugger
     var lang = {
       "en-US": "Read Less",
       "ar": "أقرأ أقل",

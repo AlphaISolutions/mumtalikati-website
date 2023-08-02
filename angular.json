@@ -33,6 +33,7 @@
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/@splidejs/splide/dist/css/splide.min.css",
               "node_modules/@splidejs/splide/dist/css/themes/splide-default.min.css",
+              "./node_modules/leaflet/dist/leaflet.css",
               "src/styles.scss",
               "src/theme.scss"
             ],
@@ -90,6 +91,7 @@
             },
             "development": {
               "browserTarget": "mumtalikati-website:build:development"
+              
             },
             "ar": {
               "browserTarget": "mumtalikati-website:build:ar"
@@ -101,6 +103,7 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "mumtalikati-website:build"
+           
           }
         },
         "test": {

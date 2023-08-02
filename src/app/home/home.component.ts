@@ -68,10 +68,8 @@ export class HomeComponent implements OnInit {
     data.rowsNumbers = this.rowsNumber;
     this.propertyFilter(data)
   }
-  AfterViewInit() {
-
-  }
-  async getgovernorates() {
+ 
+   getgovernorates() {
     this.loading = true;
     this.setservice.getGovernorate()
       .then((data) => {

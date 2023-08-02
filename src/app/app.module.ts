@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShortdisplayComponent } from './shortdisplay/shortdisplay.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
 import { PropertydetailsComponent } from './propertydetails/propertydetails.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -52,17 +52,19 @@ import { SetYouPasswordComponent } from './sign-up/set-you-password/set-you-pass
 import { ForgotpasswordComponent } from './sign-up/lost-password/forgotpassword/forgotpassword.component';
 import { OtpVerificationComponent } from './sign-up/otp-verification/otp-verification.component';
 import { SetyouPasswordComponent } from './sign-up/setyou-password/setyou-password.component';
-import {MatSliderModule} from '@angular/material/slider'; 
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {NgxSliderModule } from '@angular-slider/ngx-slider';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment.development';
 import * as firebase from 'firebase/app';
 firebase.initializeApp(environment.firebase);
 import { registerLocaleData } from '@angular/common';
-import  localeEl from '@angular/common/locales/ar';
+import localeEl from '@angular/common/locales/ar';
 import { TranslocoRootModule } from './transloco-root.module';
+import { RegionModel } from './models/region.model';
+import { GeolocationService } from './services/geolocation.service';
 registerLocaleData(localeEl);
 @NgModule({
   declarations: [
@@ -129,10 +131,24 @@ registerLocaleData(localeEl);
     NgxSliderModule,
     AngularFireModule,
     TranslocoRootModule,
+
   ],
-providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }, RxFormBuilder],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }, RxFormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  
- }
+  getcountrycode: string;
+  constructor(private ip: GeolocationService) {
+    this.ip.getCurrentCountry().then((response: RegionModel) => {
+      this.getcountrycode = response.countryCode;
+      if (localStorage.getItem('locale') === null) {
+        if (this.getcountrycode.toLowerCase.toString() === "OM") {
+          localStorage.setItem('locale', 'ar');
+        } else {
+          localStorage.setItem('locale', 'en-US');
+        }
+      }
+    });
+  }
+}
+

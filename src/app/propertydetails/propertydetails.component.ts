@@ -82,7 +82,7 @@ export class PropertydetailsComponent implements OnInit {
   ceilvalue: number;
   options: Options | null = null;
   langCode: string;
-  lang:string=localStorage.getItem('locale') || 'ar'
+  lang:string=localStorage.getItem('locale') ?? 'ar'
   constructor(private route: ActivatedRoute,
     private rxFormBuilder: RxFormBuilder,
     private mumtalikatiservic: MumtalikatiService,
@@ -142,7 +142,7 @@ export class PropertydetailsComponent implements OnInit {
       );
     }
   }
-  async getlistingPurpose() {
+   getlistingPurpose() {
     this.setservice.getlistingpurposeset()
       .then((data) => {
         if (data) {
@@ -154,7 +154,7 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
-  async getPropertyMasterType() {
+   getPropertyMasterType() {
     this.setservice.getPropertyMasterTypes()
       .then((data) => {
         if (data) {
@@ -166,7 +166,7 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
-  async getPropertySubType() {
+   getPropertySubType() {
     this.setservice.getPropertySubTypes()
       .then((data) => {
         if (data) {
@@ -177,7 +177,7 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
-  async getPropertyUnitCategoryType() {
+   getPropertyUnitCategoryType() {
     this.setservice.getPropertyUnitCategoryTypes()
       .then((data) => {
         if (data) {
@@ -189,7 +189,7 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
-  async postPropertyFilter_Count(data: PropertyFilter) {
+   postPropertyFilter_Count(data: PropertyFilter) {
     // this.loading = true;
     this.mumtalikatiservic.postPropertyFilter_Count(data)
       .then((data) => {
@@ -214,7 +214,7 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
-  async getgovernorates() {
+   getgovernorates() {
     // this.loading = true;
     this.setservice.getGovernorate()
       .then((data) => {
@@ -535,7 +535,7 @@ export class PropertydetailsComponent implements OnInit {
     } else if (this.governorateid) {
       this.governoratestring = this.filterservice.getGovernorateid(this.governorateid)
     } else {
-      this.governoratestring = this.getlang(localStorage.getItem('locale') || 'ar')
+      this.governoratestring = this.getlang(localStorage.getItem('locale') ?? 'ar')
     }
   }
   getunitcategoryId(params: any) {
@@ -545,7 +545,7 @@ export class PropertydetailsComponent implements OnInit {
       this.unitcategorystring = params['unitCategory'];
     }
     else {
-      this.unitcategorystring = this.getlang(localStorage.getItem('locale') || 'ar')
+      this.unitcategorystring = this.getlang(localStorage.getItem('locale') ?? 'ar')
     }
   }
   getpropertyMasterTypeID(params: any) {
@@ -554,7 +554,7 @@ export class PropertydetailsComponent implements OnInit {
       this.mastertypeid = this.propertyMasterTypeID;
       this.propertyMasterTypedesc = params['propertyMasterType']
     } else {
-      this.propertyMasterTypedesc = this.getlang(localStorage.getItem('locale') || 'ar')
+      this.propertyMasterTypedesc = this.getlang(localStorage.getItem('locale') ?? 'ar')
     }
   }
   getPropertyMasterSubTypeID(params: any) {

@@ -10,13 +10,14 @@ import {
 import { Subscription, filter } from 'rxjs';
 import { SetFiltersServive } from 'src/app/services/setfilters.servive';
 import { Location } from '@angular/common';
+import { GeolocationService } from 'src/app/services/geolocation.service';
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent implements OnInit {
-  language = localStorage.getItem('locale') || 'ar';
+  language = localStorage.getItem('locale');
   logo: any
   checked: boolean;
   shownnow: boolean = true;
@@ -41,6 +42,7 @@ export class TopBarComponent implements OnInit {
   private langChangeSubscription: Subscription;
   direction: string = this.service.getActiveLang() === 'ar' ? 'ltr' : 'rtl';
   currentRoute: any;
+
   constructor(@Inject(LOCALE_ID) private localeId: string, public dialog: MatDialog, private router: Router, private http: HttpClient, private service: TranslocoService, private setFiltersServive: SetFiltersServive, private route: ActivatedRoute, private location: Location) {
     this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
       this.direction = this.service.getActiveLang() === 'ar' ? 'rtl' : 'ltr';
@@ -52,6 +54,7 @@ export class TopBarComponent implements OnInit {
     { name: "Arabic", code: "ar" },
   ]
   ngOnInit() {
+ 
     if (this.activeroute == true) {
 
     } else {
