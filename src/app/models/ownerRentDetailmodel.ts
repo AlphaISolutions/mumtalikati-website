@@ -36,4 +36,6 @@ export class OwnerRentDetail {
     occupied!: number | null;
     totalUnit!: number | null;
     caption!:string |null;
+    lat:string |null;
+    long:string |null;
 }
