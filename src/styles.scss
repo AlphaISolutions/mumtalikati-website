@@ -479,6 +479,9 @@ hr {
     padding-top: 1px !important;
     padding-bottom: 5px !important;
 }
+.leaflet-touch .leaflet-control-attribution, .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+    display: none !important;
+}
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

@@ -106,6 +106,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
       
     }
     if(this.propertyDetail && this.propertyDetail.lat && this.propertyDetail.long){
+      let self = this; 
       let mymap = L.map('map').setView([Number(this.propertyDetail.lat), Number(this.propertyDetail.long)], 13)
       const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
@@ -120,6 +121,11 @@ export class PropertyfulldisplaylistComponent implements OnInit {
       var marker = L.marker(
         [Number(this.propertyDetail.lat), Number(this.propertyDetail.long)], { icon: markerIcon }
       ).addTo(mymap);
+      marker.on('click', function () {
+        // Use the stored 'self' reference to access this.propertyDetail
+        const googleMapsUrl = `https://www.google.com/maps?q=${Number(self.propertyDetail.lat)},${Number(self.propertyDetail.long)}`;
+        window.open(googleMapsUrl, '_blank');
+      });
     }
    
   }

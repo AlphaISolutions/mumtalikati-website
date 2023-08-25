@@ -63,7 +63,7 @@ export class PropertyfulldisplayComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.propertyDetail = data[0];
-          console.log(data[0])
+    
         }
         this.loading = false;
       })

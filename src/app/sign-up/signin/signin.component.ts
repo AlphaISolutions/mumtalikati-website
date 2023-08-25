@@ -48,7 +48,6 @@ export class SigninComponent implements OnInit {
     data.userName = data.userName.replace('+', '');
     this.userService.postUserLogin(data).then(res => {
       if (res !== null) {
-        debugger
         const user = res as unknown as User;
         const userTypes = user.userTypes.map(userType => userType.id);
         if (userTypes.includes(6)) {
