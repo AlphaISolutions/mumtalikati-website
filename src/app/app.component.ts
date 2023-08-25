@@ -186,7 +186,7 @@ export class AppComponent {
     pc.onicecandidate = (e) => {
       if (!e.candidate) {
         this.ipAddress = pc.localDescription.sdp.match(/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/)[0];
-        console.log(this.ipAddress)
+      
       }
     };
 
