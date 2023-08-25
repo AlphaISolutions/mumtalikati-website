@@ -11,6 +11,7 @@ import { State } from '../models/state.model';
 import { FilterService } from '../services/filterserice';
 import { Subscription } from 'rxjs';
 import { TranslocoService } from '@ngneat/transloco';
+import * as L from 'leaflet';
 @Component({
   selector: 'app-propertyfulldisplaylist',
   templateUrl: './propertyfulldisplaylist.component.html',
@@ -104,6 +105,23 @@ export class PropertyfulldisplaylistComponent implements OnInit {
       }
       
     }
+    if(this.propertyDetail && this.propertyDetail.lat && this.propertyDetail.long){
+      let mymap = L.map('map').setView([Number(this.propertyDetail.lat), Number(this.propertyDetail.long)], 13)
+      const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        minZoom: 10,
+        attribution: 'Mumtalikati'
+      });
+      tiles.addTo(mymap);
+      const markerIcon = L.icon({
+        iconUrl: this.location,
+        iconSize: [32, 32],
+      });
+      var marker = L.marker(
+        [Number(this.propertyDetail.lat), Number(this.propertyDetail.long)], { icon: markerIcon }
+      ).addTo(mymap);
+    }
+   
   }
 
   getlist(listid: any) {
