@@ -96,6 +96,10 @@ registerLocaleData(localeEl);
 
   ],
   imports: [
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-full-width'
+    }),
+    MarkdownModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     MatInputModule,
@@ -115,15 +119,11 @@ registerLocaleData(localeEl);
     MatMenuModule,
     ReactiveFormsModule,
     FormsModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-top-full-width'
-    }),
     MatListModule,
     MatGridListModule,
     MatSidenavModule,
     MatSliderModule,
     MatSlideToggleModule,
-    MarkdownModule.forRoot(),
     MatDialogModule,
     CdkAccordionModule,
     NgxMatIntlTelInputComponent,

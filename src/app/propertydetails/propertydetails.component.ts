@@ -1,4 +1,4 @@
-import { Component, OnInit, VERSION } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListingPurpose } from '../models/listing-purpose.model';
 import { PropertyMasterType } from '../models/property-master-type.model';
@@ -11,13 +11,13 @@ import { getGovernorateEnum, getGovernorateEnumID, getPropertySubTypeEnum, getPr
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
 import { FormGroup } from '@angular/forms';
-import { RxFormBuilder, error } from '@rxweb/reactive-form-validators';
+import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { Governorate } from '../models/governorate.model';
 import { SetFiltersServive } from '../services/setfilters.servive';
 import { Options } from "@angular-slider/ngx-slider";
 import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
-import { Meta, Title } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { maxValueModel } from '../models/maxValue.model';
 import { LanguageService } from '../services/language.service';
 @Component({
@@ -43,7 +43,7 @@ export class PropertydetailsComponent implements OnInit {
   configs: any
   propertyMasterTypeId: number = 1;
   mastertypeid: number | null = null;
-  subTypeId: number | null=null;
+  subTypeId: number | null = null;
   perpagenumber = 8;
   color = { 'color': 'black!important' };
   logocolor: boolean = false;
@@ -82,7 +82,8 @@ export class PropertydetailsComponent implements OnInit {
   ceilvalue: number;
   options: Options | null = null;
   langCode: string;
-  lang:string=localStorage.getItem('locale') ?? 'ar'
+  lang: string = localStorage.getItem('locale') ?? 'ar'
+
   constructor(private route: ActivatedRoute,
     private rxFormBuilder: RxFormBuilder,
     private mumtalikatiservic: MumtalikatiService,
@@ -93,8 +94,10 @@ export class PropertydetailsComponent implements OnInit {
     private filterservice: FilterService,
     private languageService: LanguageService,
     private metaService: Meta) { this.getstate() }
+
   async ngOnInit() {
     this.getceil();
+    this.statedatalist();
     this.configs = {
       backdrop: true,
       ignoreBackdropClick: true,
@@ -102,12 +105,12 @@ export class PropertydetailsComponent implements OnInit {
       centered: true,
       scrollable: true,
     };
-    this.statedatalist();
-
   }
+
   ngAfterViewInit() {
     this.langCode = this.languageService.getlang()
   }
+
   async initiaalizefilters() {
     this.listingpupose = await this.setupFilterServive.getListingPurpose();
     if (!this.listingpupose) {
@@ -142,7 +145,7 @@ export class PropertydetailsComponent implements OnInit {
       );
     }
   }
-   getlistingPurpose() {
+  getlistingPurpose() {
     this.setservice.getlistingpurposeset()
       .then((data) => {
         if (data) {
@@ -154,7 +157,7 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
-   getPropertyMasterType() {
+  getPropertyMasterType() {
     this.setservice.getPropertyMasterTypes()
       .then((data) => {
         if (data) {
@@ -166,7 +169,7 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
-   getPropertySubType() {
+  getPropertySubType() {
     this.setservice.getPropertySubTypes()
       .then((data) => {
         if (data) {
@@ -177,7 +180,7 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
-   getPropertyUnitCategoryType() {
+  getPropertyUnitCategoryType() {
     this.setservice.getPropertyUnitCategoryTypes()
       .then((data) => {
         if (data) {
@@ -189,7 +192,7 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
-   postPropertyFilter_Count(data: PropertyFilter) {
+  postPropertyFilter_Count(data: PropertyFilter) {
     // this.loading = true;
     this.mumtalikatiservic.postPropertyFilter_Count(data)
       .then((data) => {
@@ -214,7 +217,7 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
-   getgovernorates() {
+  getgovernorates() {
     // this.loading = true;
     this.setservice.getGovernorate()
       .then((data) => {
@@ -273,6 +276,7 @@ export class PropertydetailsComponent implements OnInit {
 
     }
   }
+  
   onChangeGovernorate(event: any) {
     if (event.value == 0) {
       event.value = null;

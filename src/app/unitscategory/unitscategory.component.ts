@@ -1,62 +1,64 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { assetUrl } from 'src/single-spa/asset-url';
-import { getPropertySubTypeEnum, getPropertyUnitCategoryEnumstring, getPropertyUnitEnum, getstatusType, listingPurposeTypeEnumSting, listingPurposelang, propertyMasterTypeEnum } from '../models/enums';
+import { getPropertyUnitCategoryEnumstring, getstatusType, listingPurposeTypeEnumSting, propertyMasterTypeEnum } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { MumtalikatiService } from '../services/mumtalikati.service';
-import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
 import { SetFiltersServive } from '../services/setfilters.servive';
-import { time } from '@rxweb/reactive-form-validators';
-import { environment } from '../../environments/environment.development'
-import { TranslocoService } from '@ngneat/transloco';
+
 @Component({
   selector: 'app-unitscategory',
   templateUrl: './unitscategory.component.html',
   styleUrls: ['./unitscategory.component.scss']
 })
 export class UnitscategoryComponent implements OnInit {
+  indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = [];
+  IndiviualsUnitTotalCount: any;
+  propertyMasterTypeID: number
   loading: boolean = false;
   propertyMasterID!: number;
   listingPurposeID!: number;
-  unitCategoryID!: number;
-  landLordID!: number;
+  unitCategoryID: number;
+  landLordID: number;
   config: any;
   page = 1;
   perpagenumber: number = 9
   passenger: any;
   itemsPerPage = 9;
-  color = { 'color': 'black!important' };
   logocolor = false;
   status: number = 1
-  propertyMasterTypeID!: number
   subTypeId!: number | null;
-  unitsid!: number;
-  indiviualsUni: OwnerPropertyMasterIndiviualUnits[] = []
-  IndiviualsUnitTotalCount: any;
-  location = assetUrl("icons/location.svg");
-  notfound = assetUrl('img/notfoundproperty.svg');
-  parentStyle = { 'background-color': 'black' };
+  unitsid: number;
   step: any;
-  governorateid!: number;
-  maxValue!: number;
-  minValue!: number;
+  governorateid: number;
+  maxValue: number;
+  minValue: number;
   listid: any
   unitid: any
   listpurID: any;
-  liststring!: string;
+  liststring: string;
   unitcategoryId: any;
-  unitcategorystring!: string
-  btnColor = { 'background-color': '#9e2a2b' };
-  activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
+  unitcategorystring: string
   sharedmodel = new State;
   statedata: any
+  color = { 'color': 'black!important' };
+  location = assetUrl("icons/location.svg");
+  notfound = assetUrl('img/notfoundproperty.svg');
+  parentStyle = { 'background-color': 'black' };
+  btnColor = { 'background-color': '#9e2a2b' };
+  activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   enData: any = "https://d2og5lryw1ajtt.cloudfront.net/language/";
   arData: any = "https://d2og5lryw1ajtt.cloudfront.net/language/ar.json";
-  constructor(private mumtalikatiservic: MumtalikatiService, private router: Router,
-    private route: ActivatedRoute, private filterservice: FilterService, private localstorage: SetFiltersServive,private translocoService: TranslocoService) { this.getState(); }
-  async ngOnInit() {
 
+  constructor(
+    private mumtalikatiservic: MumtalikatiService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private localstorage: SetFiltersServive,
+  ) { this.getState(); }
+
+  async ngOnInit() {
     this.InItQueryparams();
     this.statedatalist()
     this.config = {
@@ -65,7 +67,17 @@ export class UnitscategoryComponent implements OnInit {
       totalItems: this.IndiviualsUnitTotalCount
     };
   }
-  async propertyMasterIndiviualsUni(propertyMasterTypeID: number, listingPurposesID: number, UnitCategoryID: number, status: number, pageNumber: number, rowsNumbers: number) {
+
+  InItQueryparams() {
+    this.route.queryParams.subscribe(params => {
+      this.getlistPurpose(params)
+      this.getUnitCategory(params)
+    });
+    this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
+    this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
+  }
+
+  propertyMasterIndiviualsUni(propertyMasterTypeID: number, listingPurposesID: number, UnitCategoryID: number, status: number, pageNumber: number, rowsNumbers: number) {
     this.loading = true;
     this.mumtalikatiservic.getPropertyMasterIndiviualsUnit(propertyMasterTypeID, listingPurposesID, UnitCategoryID, status, pageNumber, rowsNumbers)
       .then((data) => {
@@ -80,7 +92,8 @@ export class UnitscategoryComponent implements OnInit {
         console.error(error);
       });
   }
-  async propertyMasterIndiviualsUniCount(propertyMasterTypeID: number, listingPurposesID: number, UnitCategoryID: number, status: number) {
+
+  propertyMasterIndiviualsUniCount(propertyMasterTypeID: number, listingPurposesID: number, UnitCategoryID: number, status: number) {
     this.mumtalikatiservic.getPropertyMasterIndiviualsUnitTotalCount(propertyMasterTypeID, listingPurposesID, UnitCategoryID, status)
       .then((data) => {
         if (data) {
@@ -102,14 +115,7 @@ export class UnitscategoryComponent implements OnInit {
   getenum(propertyMasterTypeID: number) {
     return propertyMasterTypeEnum(propertyMasterTypeID)
   }
-  InItQueryparams() {
-    this.route.queryParams.subscribe(params => {
-      this.getlistPurpose(params)
-      this.getUnitCategory(params)
-    });
-    this.propertyMasterIndiviualsUni(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status, this.page, this.perpagenumber);
-    this.propertyMasterIndiviualsUniCount(this.propertyMasterID, this.listingPurposeID, this.unitCategoryID, this.status);
-  }
+
   getState() {
     if (this.router.getCurrentNavigation()?.extras.state != undefined) {
       this.listingPurposeID = this.router.getCurrentNavigation()?.extras.state!["purpose"];
@@ -125,6 +131,7 @@ export class UnitscategoryComponent implements OnInit {
     }
 
   }
+  
   statedatalist() {
     if (this.sharedmodel == undefined) {
       this.sharedmodel = this.localstorage.getsharedmodel()!
@@ -144,7 +151,7 @@ export class UnitscategoryComponent implements OnInit {
   }
   getlistPurpose(params: any) {
     this.propertyMasterID = +params['propertyMasterID'];
-    this.listpurID =listingPurposeTypeEnumSting(params['purpose'])
+    this.listpurID = listingPurposeTypeEnumSting(params['purpose'])
     if (this.listpurID) {
       this.listingPurposeID = this.listpurID
       this.liststring = params['purpose']

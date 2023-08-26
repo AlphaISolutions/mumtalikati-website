@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { Subscription, filter, forkJoin, map } from 'rxjs';
 import { Governorate } from './models/governorate.model';
@@ -14,7 +14,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { GeolocationService } from './services/geolocation.service';
 import { IpService } from './services/ipaddres.service';
 import { HttpClient } from '@angular/common/http';
-import { RegionModel } from './models/region.model';
+
 
 
 @Component({
@@ -77,7 +77,7 @@ export class AppComponent {
     })
   }
 
-  async getlistingPurpose() {
+   getlistingPurpose() {
     this.setservice.getlistingpurposeset()
       .then((data) => {
         if (data) {
@@ -88,7 +88,7 @@ export class AppComponent {
         console.error(error);
       });
   }
-  async getPropertyMasterType() {
+   getPropertyMasterType() {
     this.setservice.getPropertyMasterTypes()
       .then((data) => {
         if (data) {
@@ -99,7 +99,7 @@ export class AppComponent {
         console.error(error);
       });
   }
-  async getPropertySubType() {
+   getPropertySubType() {
     this.setservice.getPropertySubTypes()
       .then((data) => {
         if (data) {
@@ -110,7 +110,7 @@ export class AppComponent {
         console.error(error);
       });
   }
-  async getPropertyUnitCategoryType() {
+   getPropertyUnitCategoryType() {
     this.setservice.getPropertyUnitCategoryTypes()
       .then((data) => {
         if (data) {
@@ -121,7 +121,7 @@ export class AppComponent {
         console.error(error);
       });
   }
-  async getgovernorates() {
+   getgovernorates() {
     this.setservice.getGovernorate()
       .then((data) => {
         if (data) {
@@ -133,7 +133,7 @@ export class AppComponent {
         console.error(error);
       });
   }
-  async getstatus() {
+   getstatus() {
     this.setservice.getStatus()
       .then((data) => {
         if (data) {
@@ -178,22 +178,22 @@ export class AppComponent {
     }
 
   }
-  getIpAddress() {
-    window.RTCPeerConnection = window.RTCPeerConnection
-    const pc = new RTCPeerConnection({ iceServers: [] });
-    pc.createDataChannel('');
+  // getIpAddress() {
+  //   window.RTCPeerConnection = window.RTCPeerConnection
+  //   const pc = new RTCPeerConnection({ iceServers: [] });
+  //   pc.createDataChannel('');
 
-    pc.onicecandidate = (e) => {
-      if (!e.candidate) {
-        this.ipAddress = pc.localDescription.sdp.match(/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/)[0];
+  //   pc.onicecandidate = (e) => {
+  //     if (!e.candidate) {
+  //       this.ipAddress = pc.localDescription.sdp.match(/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/)[0];
       
-      }
-    };
+  //     }
+  //   };
 
-    pc.createOffer().then((sdp) => {
-      pc.setLocalDescription(sdp);
-    });
-  }
+  //   pc.createOffer().then((sdp) => {
+  //     pc.setLocalDescription(sdp);
+  //   });
+  // }
  
 }
 
