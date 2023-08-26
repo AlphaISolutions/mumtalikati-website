@@ -334,6 +334,29 @@ export function getGovernorateEnumID(governorateID: number): string {
     }
     return governorate[governorateID] || null;
 }
+export function getwilayaEnumID(wilayaID: number): string {
+    var governorate = {
+        1: 'Nizwa',
+        2: 'Samail',
+        3: 'Bahla',
+        4: 'Adam',
+        5: 'Al-Hamra',
+        6: 'Manah',
+        7: 'Izki',
+        8: 'Bid Bid',
+        9: 'Ibri',
+        10: 'Yanqul',
+        11: 'Dhank',
+        12: '',
+        13: 'Dhank',
+        14: 'Dhank',
+        15: 'Dhank',
+        16: 'Dhank',
+        17: 'Dhank',
+
+    }
+    return governorate[wilayaID] || null;
+}
 export function getGovernorateEnum(governorateID: number) {
     var governorate = {
         'Ad Dakhiliyah': 1,

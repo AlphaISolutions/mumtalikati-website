@@ -4,7 +4,6 @@ import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMaster
 import { Router } from '@angular/router';
 import { SetupService } from '../services/setup.service';
 import { Governorate } from '../models/governorate.model';
-import { AnyFunction } from '@splidejs/splide';
 import { FilterService } from '../services/filterserice';
 import { State } from '../models/state.model';
 import { SetFiltersServive } from '../services/setfilters.servive';
@@ -36,6 +35,7 @@ export class BreadcrumbComponent implements OnInit {
     return this.filterservice.getPropertytUnitCategoryid(id)
   }
   backtosearch() {
+    debugger
     if (this.sharedmodel == undefined) {
       this.sharedmodel = this.localstorage.getsharedmodel()!
       this.subid = getPropertySubTypeEnumID(this.sharedmodel.propertyMasterSubTypeID!);
@@ -46,6 +46,7 @@ export class BreadcrumbComponent implements OnInit {
           'propertyMasterType': propertyMasterTypeEnumid(this.sharedmodel.propertyMasterTypeID!),
           'propertyMasterSubType': this.subid,
           'unitCategory': getPropertyUnitCategoryEnum(this.sharedmodel.propertyCategory!),
+          'wilaya': localStorage.getItem('wilayaid'),
           'minValue': this.sharedmodel.minPrice,
           'maxValue': this.sharedmodel.maxPrice
         }
@@ -59,6 +60,7 @@ export class BreadcrumbComponent implements OnInit {
           'propertyMasterType': propertyMasterTypeEnumid(this.sharedmodel.propertyMasterTypeID!),
           'propertyMasterSubType': this.subid,
           'unitCategory': getPropertyUnitCategoryEnum(this.sharedmodel.propertyCategory!),
+          'wilaya': localStorage.getItem('wilayaid'),
           'minValue': this.sharedmodel.minPrice,
           'maxValue': this.sharedmodel.maxPrice
         }

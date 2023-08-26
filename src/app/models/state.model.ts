@@ -8,5 +8,6 @@ export class State {
     propertyCategory!: number | null;
     pageNumber!: number | null;
     rowsNumbers!: number | null;
+    wilaya:number|null;
   
 }

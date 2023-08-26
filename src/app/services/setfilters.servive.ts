@@ -7,6 +7,7 @@ import { PropertyMasterType } from '../models/property-master-type.model';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
 import { State } from '../models/state.model';
 import { Status } from '../models/status.model';
+import { WilayatModel } from '../models/wilaya';
 
 @Injectable({
     providedIn: 'root'
@@ -16,12 +17,13 @@ export class SetFiltersServive {
     constructor(private setupService: SetupService) {
 
     }
-    startSession(purposedata: any, propertymasterdata: any, propertysubTypedata: any, UnitCategorydata: any, governoratedata: any, Statusdata: any) {
+    startSession(purposedata: any, propertymasterdata: any, propertysubTypedata: any, UnitCategorydata: any, governoratedata: any, Statusdata: any,wilayadata) {
         localStorage.setItem('listingpupose', JSON.stringify(purposedata));
         localStorage.setItem('propertymasterType', JSON.stringify(propertymasterdata));
         localStorage.setItem('propertysubType', JSON.stringify(propertysubTypedata));
         localStorage.setItem('propertyUnitCategoryType', JSON.stringify(UnitCategorydata));
         localStorage.setItem('governorate', JSON.stringify(governoratedata));
+        localStorage.setItem('wilaya', JSON.stringify(wilayadata));
         localStorage.setItem('getStatus', JSON.stringify(Statusdata));
 
     }
@@ -116,6 +118,20 @@ export class SetFiltersServive {
     }
     setGovernorate(data: any) {
         localStorage.setItem('governorate', JSON.stringify(data));
+    }
+    getwilaya(): WilayatModel[] {
+        let tempData = JSON.parse(localStorage.getItem('wilaya')!);
+        if (!tempData) {
+            this.setupService.getWilaya().then((data) => {
+                tempData = data
+                this.setwilaya(data)
+                return tempData;
+            })
+        }
+        return tempData;
+    }
+    setwilaya(data: any) {
+        localStorage.setItem('wilaya', JSON.stringify(data));
     }
     getsharedmodel(): State {
         let model = JSON.parse(localStorage.getItem('state')!);

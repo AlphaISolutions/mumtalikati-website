@@ -27,9 +27,9 @@ export class ShortdisplayComponent implements OnInit {
   liststring!: any;
   propertyMasterSubTypeid !: number;
   data: any;
-  PropertySubTypeEnum=PropertySubTypeEnum;
-  PropertyUnitCategoryEnum=PropertyUnitCategoryEnum;
-  ListingPurposeTypeEnum=ListingPurposeTypeEnum;
+  PropertySubTypeEnum = PropertySubTypeEnum;
+  PropertyUnitCategoryEnum = PropertyUnitCategoryEnum;
+  ListingPurposeTypeEnum = ListingPurposeTypeEnum;
   constructor(private router: Router, private filterservice: FilterService) { }
   async ngOnInit() {
 
@@ -45,9 +45,15 @@ export class ShortdisplayComponent implements OnInit {
     return this.filterservice.getPropertytUnitCategoryid(id)
   }
   onclick(unitCategoryID: number, landLordID: number, propertyMasterID: number, propertyMasterSubType: number, listingPurposeID: number) {
-    this.unitCategoryId =getPropertyUnitCategoryEnum(unitCategoryID)
+    debugger
+    this.unitCategoryId = getPropertyUnitCategoryEnum(unitCategoryID)
     this.liststring = listingPurposeTypeEnumid(listingPurposeID)
     this.propertyMasterSubTypeid = propertyMasterSubType
+    if (this.sharedmodel && typeof this.sharedmodel.wilaya !== 'undefined') {
+      localStorage.setItem("wilayaid", this.sharedmodel.wilaya.toString());
+  } else {
+      localStorage.setItem("wilayaid", "0");
+  }
     if (propertyMasterSubType == 15) {
       this.navigatefulldisplay(landLordID, propertyMasterID, propertyMasterSubType)
     }
