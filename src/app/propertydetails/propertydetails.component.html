@@ -33,7 +33,7 @@
             </div>
             <div class="col">
                 <mat-form-field appearance="outline">
-                    <mat-label>wilaya</mat-label>
+                    <mat-label>{{'Wilayat'|transloco}}</mat-label>
                     <mat-select [value]="wilayaid || 0" (selectionChange)="onChangewilaya($event)">
                         <mat-option [value]="0" (click)="wilayanullid()">
                             {{"All"|transloco}}
