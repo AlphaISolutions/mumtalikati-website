@@ -20,6 +20,7 @@ import { State } from '../models/state.model';
 import { Meta } from '@angular/platform-browser';
 import { maxValueModel } from '../models/maxValue.model';
 import { LanguageService } from '../services/language.service';
+import { WilayatModel } from '../models/wilaya';
 @Component({
   selector: 'app-propertydetails',
   templateUrl: './propertydetails.component.html',
@@ -52,11 +53,13 @@ export class PropertydetailsComponent implements OnInit {
   coler = { ' background-color': 'red' }
   hovercolor = { ' background-color': 'red' }
   governorateid: number | null = null;
+  wilayaid: number=0;
   btnColor = { 'background-color': '#9e2a2b' };
   togglericon = { 'color': '#fffff !important' }
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
   id: number | null = null;
   governorate: Governorate[] = [];
+  wilaya: WilayatModel[] = [];
   minValue: number = 0;
   maxValue!: number;
   listdesc: any;
@@ -123,8 +126,13 @@ export class PropertydetailsComponent implements OnInit {
       );
     }
     this.governorate = await this.setupFilterServive.getGovernorate();
+   
     if (!this.governorate) {
       this.getgovernorates();
+    }
+    this.wilaya = await this.setupFilterServive.getwilaya();
+    if (!this.wilaya) {
+      this.getWilayat();
     }
     this.propertyUnitCategoryType = await this.setupFilterServive.getUnitCategory();
     if (!this.propertyUnitCategoryType) {
@@ -230,6 +238,18 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
+  getWilayat() {
+    this.setservice.getWilaya()
+      .then((data) => {
+        if (data) {
+          this.wilaya = data
+          this.setupFilterServive.setwilaya(data);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   async pageChange(page: any) {
     this.loading = true;
@@ -245,6 +265,10 @@ export class PropertydetailsComponent implements OnInit {
 
   governorateId() {
     this.governorateid = null;
+    this.statedatalist()
+  }
+  wilayanullid() {
+    this.wilayaid= null;
     this.statedatalist()
   }
   getlistpurpose(listid: number) {
@@ -277,6 +301,7 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   
+
   onChangeGovernorate(event: any) {
     if (event.value == 0) {
       event.value = null;
@@ -286,6 +311,23 @@ export class PropertydetailsComponent implements OnInit {
       let data = this.propertyFilterform.value as PropertyFilter;
       data.gOVERNORATEID = event.value;
       this.governoratname = getGovernorateEnumID(event.value)
+      this.governoratestring = this.governoratname
+      this.queryParams()
+      this.propertyFilter(data)
+      this.postPropertyFilter_Count(data)
+      this.statedatalist()
+    }
+  }
+  onChangewilaya(event: any) {
+    debugger
+    if (event.value == 0) {
+      event.value = null;
+    }
+    if (event && this.wilayaid != event.value) {
+      this.wilayaid = event.value;
+      let data = this.propertyFilterform.value as PropertyFilter;
+      data.wilayatID = event.value;
+      // this.governoratname = getGovernorateEnumID(event.value)
       this.governoratestring = this.governoratname
       this.queryParams()
       this.propertyFilter(data)
@@ -497,6 +539,7 @@ export class PropertydetailsComponent implements OnInit {
           'propertyMasterType': this.propertyMasterTypedesc,
           'propertyMasterSubType': this.propertySubTypedesc,
           'unitCategory': this.unitcategorystring,
+          'wilaya': this.wilayaid,
           'minValue': this.minValue,
           'maxValue': this.maxValue
         }
@@ -506,6 +549,7 @@ export class PropertydetailsComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.getPropertyListPurposeId(params)
       this.getGovernorateId(params);
+      this.getwilayaId(params);
       this.getpropertyMasterTypeID(params)
       this.getPropertyMasterSubTypeID(params);
       this.getunitcategoryId(params);
@@ -541,6 +585,9 @@ export class PropertydetailsComponent implements OnInit {
     } else {
       this.governoratestring = this.getlang(localStorage.getItem('locale') ?? 'ar')
     }
+  }
+  getwilayaId(params: any) {
+    this.wilayaid = +params['wilaya'] 
   }
   getunitcategoryId(params: any) {
     this.unitcategoryId = getPropertyUnitCategoryEnumstring(params['unitCategory'])
@@ -632,6 +679,7 @@ export class PropertydetailsComponent implements OnInit {
     data.maxPrice = this.maxValue;
     data.pageNumber = this.page;
     data.rowsNumbers = this.perpagenumber;
+    data.wilaya=this.wilayaid;
   }
   getpurposeMetatag() {
     if (this.listid == 1) {

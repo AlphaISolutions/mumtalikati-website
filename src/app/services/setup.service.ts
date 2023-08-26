@@ -9,6 +9,7 @@ import { PropertySubType } from "../models/propertySubType.model";
 import { PropertyUnitCategory } from "../models/propertyUnitCategory.model";
 import { Faqs } from "../models/faq.model";
 import { Status } from "../models/status.model";
+import { WilayatModel } from "../models/wilaya";
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,12 @@ export class SetupService {
       .get<Governorate[]>(
         `@mumtalikati-api/Setup/GetGovernorate`
       )).then(res => res as Governorate[]).catch(err => { return Promise.reject(err) });
+  }
+  async getWilaya(): Promise<WilayatModel[]> {
+    return await firstValueFrom(this.http
+      .get<WilayatModel[]>(
+        `@mumtalikati-api/Setup/GetWilayat`
+      )).then(res => res as WilayatModel[]).catch(err => { return Promise.reject(err) });
   }
   async getFaq(): Promise<Faqs[]> {
     return await firstValueFrom(this.http

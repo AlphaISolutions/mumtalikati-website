@@ -6,8 +6,8 @@
 </div>
 <ng-template #showList>
     <div class="container p-4">
-        <div class="row gx-2 border-bottom" *ngIf="listingpupose">
-            <div class="col">
+        <div class="row gx-2 border-bottom" >
+            <div class="col" *ngIf="listingpupose">
                 <mat-form-field appearance="outline" *ngIf="listingpupose[0]">
                     <mat-label>{{"Purpose"|transloco}}</mat-label>
                     <mat-select [value]="listid" (selectionChange)="onChangeListPurpose($event)">
@@ -27,6 +27,19 @@
                         </mat-option>
                         <mat-option *ngFor="let doc of governorate" [value]="doc.id">
                             {{doc.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>wilaya</mat-label>
+                    <mat-select [value]="wilayaid || 0" (selectionChange)="onChangewilaya($event)">
+                        <mat-option [value]="0" (click)="wilayanullid()">
+                            {{"All"|transloco}}
+                        </mat-option>
+                        <mat-option *ngFor="let wila of wilaya" [value]="wila.id">
+                            {{wila.name}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

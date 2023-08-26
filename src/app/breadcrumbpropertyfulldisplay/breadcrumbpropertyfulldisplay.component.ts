@@ -55,7 +55,8 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
           'propertyMasterSubType': this.subid,
           'unitCategory': getPropertyUnitCategoryEnum(this.sharedmodel.propertyCategory!),
           'minValue': this.sharedmodel.minPrice,
-          'maxValue': this.sharedmodel.maxPrice
+          'maxValue': this.sharedmodel.maxPrice,
+          'wilaya': localStorage.getItem('wilayaid'),
         }
 
       });
@@ -64,7 +65,8 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
         queryParams: {
           'propertyMasterID': this.pmid,
           'purpose': listingPurposeTypeEnumid(this.listpurID),
-          'unitCategory': getPropertyUnitCategoryEnum(this.unitcatID)
+          'unitCategory': getPropertyUnitCategoryEnum(this.unitcatID),
+          'wilaya': localStorage.getItem('wilayaid'),
         },
         state: {
           'purpose': this.sharedmodel.listingPurposesID,
@@ -73,8 +75,8 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
           'propertyMasterSubType': this.sharedmodel.propertyMasterSubTypeID,
           'unitCategory': this.sharedmodel.propertyCategory,
           'minValue': this.sharedmodel.minPrice,
-          'maxValue': this.sharedmodel.maxPrice
-
+          'maxValue': this.sharedmodel.maxPrice,
+         
         }
       });
     }
