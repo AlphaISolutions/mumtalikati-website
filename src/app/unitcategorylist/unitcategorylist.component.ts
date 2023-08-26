@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { getPropertySubTypeEnumID, getPropertyUnitCategoryEnum, getstatusType } from '../models/enums';
+import { getPropertySubTypeEnumID, getPropertyUnitCategoryEnum } from '../models/enums';
 import { OwnerPropertyMasterIndiviualUnits } from '../models/ownerPropertyMasterIndiviualUnits.model';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { FilterService } from '../services/filterserice';

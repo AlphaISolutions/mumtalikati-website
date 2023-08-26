@@ -15,55 +15,77 @@ import { getPropertySubTypeEnum, getPropertyUnitCategoryEnumstring } from '../mo
   styleUrls: ['./propertyfulldisplay.component.scss']
 })
 export class PropertyfulldisplayComponent implements OnInit {
-  pmid!: number;
+  propertyFeature: PropertyFeature[] = [];
+  propertyDetail: OwnerRentDetail;
+  sharedmodel = new State;
+  imageUser!: ProfileImage;
+  propertyMasterSubType: number;
+  propertyMasterTypeID: number;
+  unitcategorydesc: string;
+  propertysubdesc: string;
+  listingPurposeID: number;
   propertyUnitid!: number;
+  loading: boolean = false;
+  governorateid: number;
+  PropertySubTypeID: any;
+  perpagenumber: number;
+  pmid!: number;
   unitcatID!: number;
   landlordid!: number;
-  loading: boolean = false;
-  propertyDetail: OwnerRentDetail;
-  parentStyle = { 'background-color': 'black' };
-  color = { 'color': 'black!important' };
   logocolor = false;
-  propertyFeature: PropertyFeature[] = []
-  statuss!: number;
-  imageUser!: ProfileImage;
-  page!: number;
-  perpagenumber!: number;
-  listpurID!: any;
-  PropertySubTypeID!: any;
-  propertyMasterTypeID!: number;
+  statuss: number;
+  page: number;
+  listpurID: any;
+  unitCategory: any
+  subTypeId: number;
+  unitsid: number;
+  minValue: number;
+  maxValue: number
   btnColor = { 'background-color': '#9e2a2b' }
-  closeResult = '';
   maxheight = { 'maxheight': '80vh !important' }
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
-  imgindex: number = 0;
-  unitCategory!: any
-  unitcategorydesc!: string;
-  propertysubdesc!: string;
-  listingPurposeID!: number;
-  governorateid!: number;
-  subTypeId!: number;
-  unitsid!: number;
-  minValue!: number;
-  maxValue!: number
-  propertyMasterSubType!: number;
-  sharedmodel = new State;
-  constructor(private route: ActivatedRoute, private mumtalikatiservic: MumtalikatiService, private filterservice: FilterService, private router: Router, private SetFiltersServive: SetFiltersServive, private metaService: Meta,
-    private titleService: Title) {
+  parentStyle = { 'background-color': 'black' };
+  color = { 'color': 'black!important' };
+
+  constructor(
+    private route: ActivatedRoute,
+    private mumtalikatiservic: MumtalikatiService,
+    private filterservice: FilterService,
+    private router: Router,
+    private SetFiltersServive: SetFiltersServive,
+    private metaService: Meta,
+    private titleService: Title
+  ) {
     this.getState()
   }
+
   async ngOnInit() {
     this.inIt();
     this.getMeteTag();
     this.statedatalist()
   }
-  async getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {
+
+  inIt() {
+    this.route.queryParams.subscribe(params => {
+      this.pmid = +params['propertyMaster'];
+      this.propertyUnitid = +params['propertyUnit'];
+      this.unitCategory = getPropertyUnitCategoryEnumstring(this.unitcategorydesc = params['unitCategory'])
+      this.unitcatID = this.unitCategory;
+      this.PropertySubTypeID = getPropertySubTypeEnum(this.propertysubdesc = params["PropertySubType"])
+      this.landlordid = +params['landlord'];
+    });
+    this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
+    this.getPropertyFeatures(this.pmid);
+    this.getImageUser(this.landlordid);
+  }
+
+  getPropertyDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number) {
     this.loading = true;
     this.mumtalikatiservic.getPropertyUnitDetails(landLordID, UnitCategoryID, PropertyMasterID, propertyUnitid)
       .then((data) => {
         if (data) {
           this.propertyDetail = data[0];
-    
+
         }
         this.loading = false;
       })
@@ -73,7 +95,7 @@ export class PropertyfulldisplayComponent implements OnInit {
       });
   }
 
-  async getImageUser(landLordID: number) {
+  getImageUser(landLordID: number) {
     this.mumtalikatiservic.getUserImage(landLordID)
       .then((data) => {
         if (data) {
@@ -85,7 +107,8 @@ export class PropertyfulldisplayComponent implements OnInit {
         console.error(error);
       });
   }
-  async getPropertyFeatures(id: number) {
+
+  getPropertyFeatures(id: number) {
     this.mumtalikatiservic.getPropertyFeature(id)
       .then((data) => {
         if (data) {
@@ -98,19 +121,9 @@ export class PropertyfulldisplayComponent implements OnInit {
         console.error(error);
       });
   }
-  inIt() {
-    this.route.queryParams.subscribe(params => {
-      this.pmid = +params['propertyMaster'];
-      this.propertyUnitid = +params['propertyUnit'];
-      this.unitCategory = getPropertyUnitCategoryEnumstring(this.unitcategorydesc = params['unitCategory'])
-      this.unitcatID = this.unitCategory;
-      this.PropertySubTypeID =getPropertySubTypeEnum(this.propertysubdesc = params["PropertySubType"])
-      this.landlordid = +params['landlord'];
-    });
-    this.getPropertyDetails(this.landlordid, this.unitcatID, this.pmid, this.propertyUnitid);
-    this.getPropertyFeatures(this.pmid);
-    this.getImageUser(this.landlordid);
-  }
+
+
+
   getState() {
     if (this.router.getCurrentNavigation()?.extras.state != undefined) {
       this.listingPurposeID = this.router.getCurrentNavigation()?.extras.state!["purpose"];
@@ -123,6 +136,7 @@ export class PropertyfulldisplayComponent implements OnInit {
       this.propertyMasterSubType = this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubtype"]
     }
   }
+
   statedatalist() {
     let data = this.sharedmodel
     data.listingPurposesID = this.listingPurposeID;
@@ -136,6 +150,7 @@ export class PropertyfulldisplayComponent implements OnInit {
     data.rowsNumbers = this.perpagenumber;
     this.SetFiltersServive.setsharedmodel(data);
   }
+
   getMeteTag() {
     if (this.listingPurposeID == 1) {
       var title = "Find Your Ideal Rental Property in Oman with Mumtalikati "
@@ -147,13 +162,14 @@ export class PropertyfulldisplayComponent implements OnInit {
       this.metaService.addTag({ id: "Buy", descrption: "Looking for a house to buy? Mumtalikati offers a diverse range of properties for sale in Oman. Browse through our listings and find a property that suits best." })
     }
   }
-  getUnitCategory(language: string,params:any) {
+
+  getUnitCategory(language: string, params: any) {
     var lang = {
       "en-US": {
-         "id":this.filterservice.getPropertytUnitCategorydesc(this.unitcategorydesc = params['unitCategory'])
+        "id": this.filterservice.getPropertytUnitCategorydesc(this.unitcategorydesc = params['unitCategory'])
       },
       "ar": {
-        dese:this.filterservice.getPropertytUnitCategorydesc(this.unitcategorydesc = params['unitCategory'])
+        dese: this.filterservice.getPropertytUnitCategorydesc(this.unitcategorydesc = params['unitCategory'])
       },
     }
     return lang[language] || "Unknown";

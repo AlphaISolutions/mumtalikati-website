@@ -31,6 +31,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   favoriteicon = assetUrl("icons/favoriteicon.png");
   bydefault = assetUrl('img/bydefault.png');
   defaultperfile = assetUrl('img/landlord-bydefault.png');
+  checkedIcon =  assetUrl('icons/Copied.svg');
   loading: boolean = true
   @Input() unitcatID!: number;
   @Input() statuss!: number;
@@ -174,7 +175,9 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   }
   copyHeroName(el: HTMLDivElement) {
     this.clipboard.copy(el.innerText);
+    this.copyIcon = this.checkedIcon;
   }
+  
   redirectToWhatsApp(contact: number) {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     let phoneNumber = contact;
