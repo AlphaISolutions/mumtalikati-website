@@ -14,6 +14,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { GeolocationService } from './services/geolocation.service';
 import { IpService } from './services/ipaddres.service';
 import { HttpClient } from '@angular/common/http';
+import { RegionModel } from './models/region.model';
 
 
 
@@ -26,6 +27,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'mumtalikati-website';
+  getcountrycode: string;
   loading: boolean = false;
   listingpupose: ListingPurpose[] = [];
   propertymasterType: PropertyMasterType[] = []
@@ -40,7 +42,7 @@ export class AppComponent {
   publicIpAddress: string = 'Loading...';
  
   direction: string = this.service.getActiveLang() === 'ar' ? 'ltr' : 'rtl';
-  constructor(private setservice: SetupService, private router: Router, private metaService: Meta, private titleService: Title, private activatedRoute: ActivatedRoute, private service: TranslocoService, private geolocationService: GeolocationService,
+  constructor(private ip: GeolocationService,private setservice: SetupService, private router: Router, private metaService: Meta, private titleService: Title, private activatedRoute: ActivatedRoute, private service: TranslocoService, private geolocationService: GeolocationService,
     private ipService: IpService, private http: HttpClient) {
    
     this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
@@ -50,6 +52,7 @@ export class AppComponent {
   showfooter: boolean = false;
   currentRoute!: string
   async ngOnInit() {
+    this.check()
     // this.getIpAddress();
     this.getlistingPurpose();
     this.getPropertyMasterType();
@@ -75,6 +78,21 @@ export class AppComponent {
 
       })
     })
+  }
+  check(){
+    this.ip.getCurrentCountry().then((response: RegionModel) => {
+      this.getcountrycode = response.countryCode;
+      if (localStorage.getItem('locale') === null) {
+        if (this.getcountrycode.toLowerCase.toString() === "OM") {
+          localStorage.setItem('locale', 'ar');   
+        } else {
+          localStorage.setItem('locale', 'en-US');
+        }
+      }
+      else if(this.getcountrycode.toLowerCase.toString() === "OM"){
+        localStorage.setItem('locale', 'ar'); 
+      }
+    });
   }
 
    getlistingPurpose() {

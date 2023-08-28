@@ -24,7 +24,7 @@ export class InterceptorService implements HttpInterceptor {
         if (!requestUrl.includes(environment.assetsBaseUrl)) {
             if (requestUrl === 'http://ip-api.com/json') {
                 req = req.clone({
-                    headers: req.headers.set('Accept-Language', 'ar').set('Authorization', `Bearer ${token}`),
+                    headers: req.headers.set('Accept-Language', localStorage.getItem('locale')).set('Authorization', `Bearer ${token}`),
                     url: requestUrl
                 });
                 
