@@ -78,7 +78,8 @@ export class ShortdisplayComponent implements OnInit {
           'propertyMasterSubType': this.sharedmodel.propertyMasterSubTypeID,
           'unitCategory': this.sharedmodel.propertyCategory,
           'minValue': this.sharedmodel.minPrice,
-          'maxValue': this.sharedmodel.maxPrice
+          'maxValue': this.sharedmodel.maxPrice,
+          'area':this.sharedmodel.areaId
         }
       });
   }
@@ -95,7 +96,8 @@ export class ShortdisplayComponent implements OnInit {
           'unitCategory': this.sharedmodel.propertyCategory,
           'minValue': this.sharedmodel.minPrice,
           'maxValue': this.sharedmodel.maxPrice,
-          'propertyMasterSubtype': propertyMasterSubType
+          'propertyMasterSubtype': propertyMasterSubType,
+          'area':this.sharedmodel.areaId
         }
       });
   }

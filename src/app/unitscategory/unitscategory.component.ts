@@ -41,7 +41,8 @@ export class UnitscategoryComponent implements OnInit {
   unitcategoryId: any;
   unitcategorystring: string
   sharedmodel = new State;
-  statedata: any
+  statedata: any;
+  areaid:number;
   color = { 'color': 'black!important' };
   location = assetUrl("icons/location.svg");
   notfound = assetUrl('img/notfoundproperty.svg');
@@ -124,7 +125,8 @@ export class UnitscategoryComponent implements OnInit {
       this.subTypeId = this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubType"];
       this.unitsid = this.router.getCurrentNavigation()?.extras.state!["unitCategory"]
       this.minValue = this.router.getCurrentNavigation()?.extras.state!["minValue"];
-      this.maxValue = this.router.getCurrentNavigation()?.extras.state!["maxValue"]
+      this.maxValue = this.router.getCurrentNavigation()?.extras.state!["maxValue"];
+      this.areaid = this.router.getCurrentNavigation()?.extras.state!["area"]
     }
     else {
       this.sharedmodel = undefined
@@ -133,6 +135,7 @@ export class UnitscategoryComponent implements OnInit {
   }
   
   statedatalist() {
+    
     if (this.sharedmodel == undefined) {
       this.sharedmodel = this.localstorage.getsharedmodel()!
     } else {
@@ -146,6 +149,7 @@ export class UnitscategoryComponent implements OnInit {
       data.maxPrice = this.maxValue;
       data.pageNumber = this.page;
       data.rowsNumbers = this.perpagenumber;
+      data.areaId=this.areaid;
     }
 
   }
