@@ -49,11 +49,10 @@ export class ContactusComponent implements OnInit {
   }
 
   ngOnInit() {
-  
-    // navigator.geolocation.watchPosition((position) => {
-    //   let lat = position.coords;
+    navigator.geolocation.watchPosition((position) => {
+      let lat = position.coords;
 
-      let mymap = L.map('map').setView([51.505, -0.09], 13)
+      let mymap = L.map('map').setView([lat.latitude, lat.longitude], 13)
       const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
         minZoom: 10,
@@ -65,17 +64,19 @@ export class ContactusComponent implements OnInit {
         iconSize: [32, 32],
       });
       var marker = L.marker(
-        [51.505, -0.09], { icon: markerIcon }
+        [lat.latitude, lat.longitude], { icon: markerIcon }
       ).addTo(mymap);
+      marker.on('click', function () {
+        // Use the stored 'self' reference to access this.propertyDetail
+        const googleMapsUrl = `https://www.google.com/maps?q=${Number(lat.latitude)},${Number(lat.longitude)}`;
+        window.open(googleMapsUrl, '_blank');
+      });
       // var popup = L.popup()
       //   .setLatLng([lat.latitude, lat.longitude])
       //   .setContent("Hi")
       //   .openOn(mymap);
-      // const defaultIcon = new L.icon({
-      //   iconUrl: require('../node_modules/leaflet/dist/images/marker-icon.png'); 
-
-      // });
-    // })
+   
+    })
     this.contactusform = this.rxFormBuilder.formGroup(this.sendEmail);
     this.contactusform = this.formBuilder.group({
       name: ['', Validators.required],
