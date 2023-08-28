@@ -9,5 +9,6 @@ export class State {
     pageNumber!: number | null;
     rowsNumbers!: number | null;
     wilaya:number|null;
+    areaId:number|null;
   
 }

@@ -41,6 +41,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   unitsid: number;
   minValue: number;
   maxValue: number
+  areaid:number;
   btnColor = { 'background-color': '#9e2a2b' }
   maxheight = { 'maxheight': '80vh !important' }
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
@@ -133,7 +134,9 @@ export class PropertyfulldisplayComponent implements OnInit {
       this.unitsid = this.router.getCurrentNavigation()?.extras.state!["unitCategory"]
       this.minValue = this.router.getCurrentNavigation()?.extras.state!["minValue"];
       this.maxValue = this.router.getCurrentNavigation()?.extras.state!["maxValue"]
-      this.propertyMasterSubType = this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubtype"]
+      this.propertyMasterSubType = this.router.getCurrentNavigation()?.extras.state!["propertyMasterSubtype"];
+      this.maxValue = this.router.getCurrentNavigation()?.extras.state!["maxValue"];
+      this.areaid = this.router.getCurrentNavigation()?.extras.state!["area"]
     }
   }
 
@@ -148,6 +151,7 @@ export class PropertyfulldisplayComponent implements OnInit {
     data.maxPrice = this.maxValue;
     data.pageNumber = this.page;
     data.rowsNumbers = this.perpagenumber;
+    data.areaId=this.areaid
     this.SetFiltersServive.setsharedmodel(data);
   }
 

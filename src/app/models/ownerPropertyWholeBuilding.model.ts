@@ -1,10 +1,10 @@
-export class OwnerPropertyWholeBuilding {
-    addressStr!: string | null;
-    propertyMasterID!: number | null;
-    buildingNumber!: string | null;
-    propertyMasterSubTypeName!: string | null;
-    propertyUnitName!: string | null;
-    plotNumber!: string | null;
+    export class OwnerPropertyWholeBuilding {
+        addressStr!: string | null;
+        propertyMasterID!: number | null;
+        buildingNumber!: string | null;
+        propertyMasterSubTypeName!: string | null;
+        propertyUnitName!: string | null;
+        plotNumber!: string | null;
     propertyMasterName!: string | null;
     propertyCategoryUnit!: number | null;
     propertySubTypeId!: number | null;

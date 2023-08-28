@@ -57,6 +57,7 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
           'minValue': this.sharedmodel.minPrice,
           'maxValue': this.sharedmodel.maxPrice,
           'wilaya': localStorage.getItem('wilayaid'),
+          'area':this.sharedmodel.areaId,
         }
 
       });
@@ -67,6 +68,7 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
           'purpose': listingPurposeTypeEnumid(this.listpurID),
           'unitCategory': getPropertyUnitCategoryEnum(this.unitcatID),
           'wilaya': localStorage.getItem('wilayaid'),
+          'area':this.sharedmodel.areaId,
         },
         state: {
           'purpose': this.sharedmodel.listingPurposesID,

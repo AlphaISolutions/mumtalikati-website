@@ -15,6 +15,7 @@ import { GeolocationService } from './services/geolocation.service';
 import { IpService } from './services/ipaddres.service';
 import { HttpClient } from '@angular/common/http';
 import { RegionModel } from './models/region.model';
+import { error } from '@rxweb/reactive-form-validators';
 
 
 
@@ -81,17 +82,22 @@ export class AppComponent {
   }
   check(){
     this.ip.getCurrentCountry().then((response: RegionModel) => {
-      this.getcountrycode = response.countryCode;
-      if (localStorage.getItem('locale') === null) {
-        if (this.getcountrycode.toLowerCase.toString() === "OM") {
-          localStorage.setItem('locale', 'ar');   
-        } else {
-          localStorage.setItem('locale', 'en-US');
+      if(response){
+        this.getcountrycode = response.countryCode;
+        if (localStorage.getItem('locale') === null) {
+          if (this.getcountrycode.toLowerCase.toString() === "OM") {
+            localStorage.setItem('locale', 'ar');   
+          } else {
+            localStorage.setItem('locale', 'en-US');
+          }
+        }
+        else if(this.getcountrycode.toLowerCase.toString() === "OM"){
+          localStorage.setItem('locale', 'ar'); 
         }
       }
-      else if(this.getcountrycode.toLowerCase.toString() === "OM"){
-        localStorage.setItem('locale', 'ar'); 
-      }
+     
+    }) .catch((error) => {
+      console.error(error);
     });
   }
 

@@ -35,6 +35,7 @@ export class BreadcrumbComponent implements OnInit {
     return this.filterservice.getPropertytUnitCategoryid(id)
   }
   backtosearch() {
+    
     if (this.sharedmodel == undefined) {
       this.sharedmodel = this.localstorage.getsharedmodel()!
       this.subid = getPropertySubTypeEnumID(this.sharedmodel.propertyMasterSubTypeID!);
@@ -47,7 +48,8 @@ export class BreadcrumbComponent implements OnInit {
           'unitCategory': getPropertyUnitCategoryEnum(this.sharedmodel.propertyCategory!),
           'wilaya': localStorage.getItem('wilayaid'),
           'minValue': this.sharedmodel.minPrice,
-          'maxValue': this.sharedmodel.maxPrice
+          'maxValue': this.sharedmodel.maxPrice,
+          'area':this.sharedmodel.areaId
         }
       });
     } else {
@@ -61,7 +63,8 @@ export class BreadcrumbComponent implements OnInit {
           'unitCategory': getPropertyUnitCategoryEnum(this.sharedmodel.propertyCategory!),
           'wilaya': localStorage.getItem('wilayaid'),
           'minValue': this.sharedmodel.minPrice,
-          'maxValue': this.sharedmodel.maxPrice
+          'maxValue': this.sharedmodel.maxPrice,
+          'area':this.sharedmodel.areaId
         }
       });
     }

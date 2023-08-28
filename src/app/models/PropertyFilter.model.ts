@@ -9,7 +9,8 @@ export class PropertyFilter {
     propertyMasterTypeID!: number | null;
     @prop()
     gOVERNORATEID!:number |  null;
-    wilayatID!: null;
+    wilayatID!: number|null;
+    areaID:number|null
     @prop(
 
     )

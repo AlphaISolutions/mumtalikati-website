@@ -10,7 +10,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { getGovernorateEnum, getGovernorateEnumID, getPropertySubTypeEnum, getPropertySubTypeEnumID, getPropertyUnitCategoryEnum, getPropertyUnitCategoryEnumstring, listingPurposeTypeEnum, listingPurposeTypeEnumSting, listingPurposeTypeEnumid, propertyMasterTypeEnum, propertyMasterTypeEnumid, propertyMasterTypeEnumstring, propertySubTypeEnum } from '../models/enums';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
 import { OwnerPropertyFilter, PropertyFilter } from '../models/PropertyFilter.model';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { Governorate } from '../models/governorate.model';
 import { SetFiltersServive } from '../services/setfilters.servive';
@@ -21,6 +21,9 @@ import { Meta } from '@angular/platform-browser';
 import { maxValueModel } from '../models/maxValue.model';
 import { LanguageService } from '../services/language.service';
 import { WilayatModel } from '../models/wilaya';
+import { AreaService } from '../services/areaServices';
+import { Area } from '../models/area';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-propertydetails',
   templateUrl: './propertydetails.component.html',
@@ -51,6 +54,8 @@ export class PropertydetailsComponent implements OnInit {
   filterCount: any;
   governorateid: number | null = null;
   wilayaid: number = 0;
+  areaId: number | null = null;
+  public areadisable: boolean = true
   id: number | null = null;
   governorate: Governorate[] = [];
   wilaya: WilayatModel[] = [];
@@ -78,6 +83,7 @@ export class PropertydetailsComponent implements OnInit {
   ceilvalue: number;
   options: Options | null = null;
   langCode: string;
+  arealist: Area[] = [];
   allselection: string = 'All'
   color = { 'color': 'black!important' };
   coler = { ' background-color': 'red' }
@@ -86,7 +92,7 @@ export class PropertydetailsComponent implements OnInit {
   btnColor = { 'background-color': '#9e2a2b' };
   togglericon = { 'color': '#fffff !important' }
   activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
-
+  areaFormControl = new FormControl();
   constructor(private route: ActivatedRoute,
     private rxFormBuilder: RxFormBuilder,
     private mumtalikatiservic: MumtalikatiService,
@@ -96,6 +102,7 @@ export class PropertydetailsComponent implements OnInit {
     private setupFilterServive: SetFiltersServive,
     private filterservice: FilterService,
     private languageService: LanguageService,
+    private areaservice: AreaService,
     private metaService: Meta) { this.getstate() }
 
   async ngOnInit() {
@@ -211,6 +218,20 @@ export class PropertydetailsComponent implements OnInit {
         console.error(error);
       });
   }
+  getArea(id: number) {
+    this.loading = true;
+    this.areaservice.getArea(id)
+      .then((data) => {
+        if (data) {
+          this.arealist = data
+        }
+        this.loading = false;
+      })
+      .catch((error) => {
+        this.loading = false;
+        console.error(error);
+      });
+  }
   propertyFilter(data: any) {
     this.loading = true;
     this.mumtalikatiservic.postPropertyFilter(data)
@@ -269,6 +290,8 @@ export class PropertydetailsComponent implements OnInit {
   }
   wilayanullid() {
     this.wilayaid = null;
+    this.areadisable = true;
+    this.areadisable = true;
     this.statedatalist()
   }
   getlistpurpose(listid: number) {
@@ -327,7 +350,31 @@ export class PropertydetailsComponent implements OnInit {
       let data = this.propertyFilterform.value as PropertyFilter;
       data.wilayatID = event.value;
       // this.governoratname = getGovernorateEnumID(event.value)
-      this.governoratestring = this.governoratname
+      this.queryParams()
+      this.propertyFilter(data)
+      this.postPropertyFilter_Count(data)
+      this.statedatalist()
+      if (this.wilayaid == null) {
+        this.areadisable = true;
+        this.areadisable = true;
+      } else {
+        this.areadisable = false;
+        this.areadisable = false;
+        this.getArea(this.wilayaid)
+      }
+    }
+  }
+  onChangeArea(event: any) {
+    if (event.value == 0) {
+      event.value = null;
+    }
+    if (event && this.areaId != event.value) {
+      this.areaId = event.value;
+      let data = this.propertyFilterform.value as PropertyFilter;
+      data.areaID = event.value;
+
+      this.getArea(this.wilayaid)
+      // this.governoratname = getGovernorateEnumID(event.value)
       this.queryParams()
       this.propertyFilter(data)
       this.postPropertyFilter_Count(data)
@@ -529,6 +576,7 @@ export class PropertydetailsComponent implements OnInit {
     this.modalService.dismissAll()
   }
   queryParams() {
+
     this.router.navigate(
       ['propertydetails'],
       {
@@ -539,6 +587,7 @@ export class PropertydetailsComponent implements OnInit {
           'propertyMasterSubType': this.propertySubTypedesc,
           'unitCategory': this.unitcategorystring,
           'wilaya': this.wilayaid,
+          'area': this.areaId,
           'minValue': this.minValue,
           'maxValue': this.maxValue
         }
@@ -549,6 +598,7 @@ export class PropertydetailsComponent implements OnInit {
       this.getPropertyListPurposeId(params)
       this.getGovernorateId(params);
       this.getwilayaId(params);
+      this.getareaId(params)
       this.getpropertyMasterTypeID(params)
       this.getPropertyMasterSubTypeID(params);
       this.getunitcategoryId(params);
@@ -562,6 +612,10 @@ export class PropertydetailsComponent implements OnInit {
     this.propertyFilterCountInIt();
     this.initiaalizefilters();
     this.getPropertyUnitCategory(this.mastertypeid, this.listid);
+    if (this.wilayaid == 0 || this.wilayaid == null) {
+    } else {
+      this.getArea(this.wilayaid)
+    }
   }
   getPropertyListPurposeId(params: any) {
     this.listpurID = listingPurposeTypeEnumSting(params['purpose'])
@@ -587,12 +641,18 @@ export class PropertydetailsComponent implements OnInit {
   }
   getwilayaId(params: any) {
     if (Number.isNaN(+params['wilaya'])) {
-
       this.wilayaid = 0
     } else {
       this.wilayaid = +params['wilaya'] ?? 0
     }
+  }
+  getareaId(params: any) {
 
+    if (Number.isNaN(+params['area'])) {
+      this.areaId = 0
+    } else {
+      this.areaId = +params['area']
+    }
   }
   getunitcategoryId(params: any) {
     this.unitcategoryId = getPropertyUnitCategoryEnumstring(params['unitCategory'])
@@ -647,6 +707,14 @@ export class PropertydetailsComponent implements OnInit {
     data.propertyMasterTypeID = this.mastertypeid;
     data.propertyMasterSubTypeID = this.subTypeId;
     data.propertyCategory = this.unitcategoryid;
+    // data.areaID=this.wilayaid
+    if (this.wilayaid == 0) {
+      data.wilayatID = null
+    } else {
+      data.wilayatID = this.wilayaid
+      // data.areaID=this.wilayaid
+    }
+
     data.maxPrice = this.maxValue;
     data.minPrice = this.minValue;
     this.propertyFilter(data);
@@ -660,6 +728,12 @@ export class PropertydetailsComponent implements OnInit {
     countPayload.propertyCategory = this.unitcategoryid;
     countPayload.propertyMasterSubTypeID = this.subTypeId;
     countPayload.propertyMasterTypeID = this.mastertypeid;
+    if (this.wilayaid == 0) {
+      countPayload.wilayatID = null
+    } else {
+      countPayload.wilayatID = this.wilayaid;
+      // countPayload.areaID=this.wilayaid
+    }
     this.postPropertyFilter_Count(countPayload);
   }
 
@@ -685,6 +759,8 @@ export class PropertydetailsComponent implements OnInit {
     data.pageNumber = this.page;
     data.rowsNumbers = this.perpagenumber;
     data.wilaya = this.wilayaid;
+    data.areaId = this.areaId
+
   }
   getpurposeMetatag() {
     if (this.listid == 1) {
