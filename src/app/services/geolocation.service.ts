@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class GeolocationService {
   constructor(private http: HttpClient) { }
   async getCurrentCountry() {
+    debugger
     return this.http.get('http://ip-api.com/json').toPromise();;
   }
 }

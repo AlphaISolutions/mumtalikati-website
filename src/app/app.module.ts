@@ -138,17 +138,8 @@ registerLocaleData(localeEl);
 })
 export class AppModule {
   getcountrycode: string;
-  constructor(private ip: GeolocationService) {
-    this.ip.getCurrentCountry().then((response: RegionModel) => {
-      this.getcountrycode = response.countryCode;
-      if (localStorage.getItem('locale') === null) {
-        if (this.getcountrycode.toLowerCase.toString() === "OM") {
-          localStorage.setItem('locale', 'ar');
-        } else {
-          localStorage.setItem('locale', 'en-US');
-        }
-      }
-    });
+  constructor() {
+    
   }
 }
 
