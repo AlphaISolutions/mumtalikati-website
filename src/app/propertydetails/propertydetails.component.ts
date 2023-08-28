@@ -46,17 +46,11 @@ export class PropertydetailsComponent implements OnInit {
   mastertypeid: number | null = null;
   subTypeId: number | null = null;
   perpagenumber = 8;
-  color = { 'color': 'black!important' };
   logocolor: boolean = false;
   propertyFilterform!: FormGroup;
   filterCount: any;
-  coler = { ' background-color': 'red' }
-  hovercolor = { ' background-color': 'red' }
   governorateid: number | null = null;
-  wilayaid: number=0;
-  btnColor = { 'background-color': '#9e2a2b' };
-  togglericon = { 'color': '#fffff !important' }
-  activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
+  wilayaid: number = 0;
   id: number | null = null;
   governorate: Governorate[] = [];
   wilaya: WilayatModel[] = [];
@@ -71,7 +65,6 @@ export class PropertydetailsComponent implements OnInit {
   unitcategoryId: any;
   propertyMasterTypeID: any;
   propertyMasterSubTypeID: any;
-  allselection: string = 'All'
   governoratestring: string | null = null;
   liststring!: string;
   unitcategorystring!: string;
@@ -85,7 +78,14 @@ export class PropertydetailsComponent implements OnInit {
   ceilvalue: number;
   options: Options | null = null;
   langCode: string;
+  allselection: string = 'All'
+  color = { 'color': 'black!important' };
+  coler = { ' background-color': 'red' }
+  hovercolor = { ' background-color': 'red' }
   lang: string = localStorage.getItem('locale') ?? 'ar'
+  btnColor = { 'background-color': '#9e2a2b' };
+  togglericon = { 'color': '#fffff !important' }
+  activeroutes = { 'color': '#9e2a2b !important', 'font-weight': '500' };
 
   constructor(private route: ActivatedRoute,
     private rxFormBuilder: RxFormBuilder,
@@ -126,7 +126,7 @@ export class PropertydetailsComponent implements OnInit {
       );
     }
     this.governorate = await this.setupFilterServive.getGovernorate();
-   
+
     if (!this.governorate) {
       this.getgovernorates();
     }
@@ -268,7 +268,7 @@ export class PropertydetailsComponent implements OnInit {
     this.statedatalist()
   }
   wilayanullid() {
-    this.wilayaid= null;
+    this.wilayaid = null;
     this.statedatalist()
   }
   getlistpurpose(listid: number) {
@@ -300,7 +300,7 @@ export class PropertydetailsComponent implements OnInit {
 
     }
   }
-  
+
 
   onChangeGovernorate(event: any) {
     if (event.value == 0) {
@@ -319,7 +319,6 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   onChangewilaya(event: any) {
-    debugger
     if (event.value == 0) {
       event.value = null;
     }
@@ -587,7 +586,13 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getwilayaId(params: any) {
-    this.wilayaid = +params['wilaya'] 
+    if (Number.isNaN(+params['wilaya'])) {
+
+      this.wilayaid = 0
+    } else {
+      this.wilayaid = +params['wilaya'] ?? 0
+    }
+
   }
   getunitcategoryId(params: any) {
     this.unitcategoryId = getPropertyUnitCategoryEnumstring(params['unitCategory'])
@@ -679,7 +684,7 @@ export class PropertydetailsComponent implements OnInit {
     data.maxPrice = this.maxValue;
     data.pageNumber = this.page;
     data.rowsNumbers = this.perpagenumber;
-    data.wilaya=this.wilayaid;
+    data.wilaya = this.wilayaid;
   }
   getpurposeMetatag() {
     if (this.listid == 1) {

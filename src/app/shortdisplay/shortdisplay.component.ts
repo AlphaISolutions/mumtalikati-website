@@ -45,7 +45,6 @@ export class ShortdisplayComponent implements OnInit {
     return this.filterservice.getPropertytUnitCategoryid(id)
   }
   onclick(unitCategoryID: number, landLordID: number, propertyMasterID: number, propertyMasterSubType: number, listingPurposeID: number) {
-    debugger
     this.unitCategoryId = getPropertyUnitCategoryEnum(unitCategoryID)
     this.liststring = listingPurposeTypeEnumid(listingPurposeID)
     this.propertyMasterSubTypeid = propertyMasterSubType
