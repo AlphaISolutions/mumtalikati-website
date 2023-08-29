@@ -168,7 +168,6 @@ export class PropertydetailsComponent implements OnInit {
         }
       })
       .catch((error) => {
-
         console.error(error);
       });
   }
@@ -177,7 +176,6 @@ export class PropertydetailsComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.propertymasterType = data
-
         }
       })
       .catch((error) => {
@@ -562,7 +560,7 @@ export class PropertydetailsComponent implements OnInit {
   }
   reset() {
     this.minValue = null!;
-    this.maxValue = this.maxValue;
+    this.maxValue = this.ceilvalue;
   }
   resetpropertyCategory() {
     this.mastertypeid = null;
