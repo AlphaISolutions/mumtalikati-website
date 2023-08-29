@@ -27,7 +27,6 @@ export class TranslocoHttpLoader implements TranslocoLoader {
       useValue: translocoConfig({
         availableLangs: ['ar', 'en'],
         defaultLang:localStorage.getItem('locale') == 'ar'  ? 'ar':'en' ,
-        // Remove this option if your application doesn't support changing language in runtime.
         reRenderOnLangChange: true,
         prodMode: environment.production,
       })

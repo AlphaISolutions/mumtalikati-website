@@ -53,7 +53,7 @@ export class AppComponent {
   showfooter: boolean = false;
   currentRoute!: string
   async ngOnInit() {
-    this.check()
+    this.getcurrentCountry()
     // this.getIpAddress();
     this.getlistingPurpose();
     this.getPropertyMasterType();
@@ -80,25 +80,18 @@ export class AppComponent {
       })
     })
   }
-  check(){
-    this.ip.getCurrentCountry().then((response: RegionModel) => {
-      if(response){
-        this.getcountrycode = response.countryCode;
-        if (localStorage.getItem('locale') === null) {
-          if (this.getcountrycode.toLowerCase.toString() === "OM") {
-            localStorage.setItem('locale', 'ar');   
-          } else {
-            localStorage.setItem('locale', 'en-US');
-          }
-        }
-        else if(this.getcountrycode.toLowerCase.toString() === "OM"){
-          localStorage.setItem('locale', 'ar'); 
-        }
+
+ async getcurrentCountry(){
+    try {
+      const response: RegionModel = await this.ip.getCurrentCountry();
+      if (response) {
+        const countryCode = response.countryCode.toLowerCase();
+        const locale = (localStorage.getItem('locale') === 'en-US') ? 'en-US' : (countryCode === 'om') ? 'ar' : 'ar';
+        localStorage.setItem('locale', locale);
       }
-     
-    }) .catch((error) => {
+    } catch (error) {
       console.error(error);
-    });
+    }
   }
 
    getlistingPurpose() {
