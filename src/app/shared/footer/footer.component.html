@@ -1,15 +1,15 @@
-<div class="bg-dark white" >
+<div class="bg-dark white">
         <div class="container px-sm-2 px-md-0">
                 <footer class="footer-section pb-2 white">
                         <div class="row">
                                 <div class="col-lg-3">
                                         <img id="logo" [src]="logo" routerLink="." onclick="window.scrollTo(0,0)"
                                                 class="img-fluid shadow-2-strong go-to-signin " alt="" />
-                                               
-                                        <p class="mt-4" >{{"MuscatOman"|transloco}} </p>
+
+                                        <p class="mt-4">{{"MuscatOman"|transloco}} </p>
                                         <p [dir]="direction"> <img [src]="phoneimg" alt="">+968 99160109</p>
                                         <p [dir]="direction"><img [src]="emailimag" alt=""> Support@mumtalikati.com</p>
-                                     
+
                                 </div>
                                 <div class="col-6 col-lg-2 mb-3 ">
                                         <div class="">
@@ -28,13 +28,13 @@
                                                         <li class="nav-item mb-2" [routerLinkActive]="['active']"><a
                                                                         routerLink="aboutus"
                                                                         onclick="window.scrollTo(0,0)"
-                                                                        class=" p-0 text-muted changecolors" >{{"About-Us"|transloco}}
-                                                                        </a>
+                                                                        class=" p-0 text-muted changecolors">{{"About-Us"|transloco}}
+                                                                </a>
                                                         <li class="nav-item mb-2" [routerLinkActive]="['active']"><a
                                                                         routerLink="contactus"
                                                                         onclick="window.scrollTo(0,0)"
                                                                         class=" p-0 text-muted changecolors">{{"Contact-Us"|transloco}}
-                                                                        </a>
+                                                                </a>
                                                         </li>
                                                         <li class="nav-item mb-2"><a routerLink="."
                                                                         onclick="window.scrollTo(0,0)"
@@ -63,10 +63,12 @@
                                                 <ul class="nav flex-column ">
                                                         <li class="nav-item mb-2"><a routerLink="contactus"
                                                                         onclick="window.scrollTo(0,0)"
-                                                                        class="p-0 text-muted" >{{"HelpCenter"|transloco}}</a></li>
+                                                                        class="p-0 text-muted">{{"HelpCenter"|transloco}}</a>
+                                                        </li>
                                                         <li class="nav-item mb-2"><a routerLink="."
                                                                         onclick="window.scrollTo(0,0)"
-                                                                        class="p-0 text-muted" >{{"Knowledgebase"|transloco}}</a></li>
+                                                                        class="p-0 text-muted">{{"Knowledgebase"|transloco}}</a>
+                                                        </li>
                                                         <li class="nav-item mb-2"><a routerLink="."
                                                                         onclick="window.scrollTo(0,0)"
                                                                         class=" p-0 text-muted">{{"OurAgent"|transloco}}</a>
@@ -88,12 +90,14 @@
                                                 <ul class="nav flex-column navbar-navs">
                                                         <li class="nav-item mb-2"><a routerLink=""
                                                                         onclick="window.scrollTo(0,0)"
-                                                                        class="p-0 text-muted">{{"Blog"|transloco}}</a></li>
+                                                                        class="p-0 text-muted">{{"Blog"|transloco}}</a>
+                                                        </li>
                                                         <li class="nav-item mb-2"><a routerLink="."
                                                                         onclick="window.scrollTo(0,0)"
-                                                                        class="p-0 text-muted">{{"Career"|transloco}}</a></li>
-                                                        <li class="nav-item mb-2" [routerLinkActive]="['active']" ><a routerLink="faq"
-                                                                        onclick="window.scrollTo(0,0)"
+                                                                        class="p-0 text-muted">{{"Career"|transloco}}</a>
+                                                        </li>
+                                                        <li class="nav-item mb-2" [routerLinkActive]="['active']"><a
+                                                                        routerLink="faq" onclick="window.scrollTo(0,0)"
                                                                         class=" p-0 text-muted changecolors">{{"FAQS"|transloco}}</a>
                                                         <li class="nav-item mb-2"><a routerLink="."
                                                                         onclick="window.scrollTo(0,0)"
@@ -113,10 +117,12 @@
                                                 <ul class="nav flex-column ">
                                                         <li class="nav-item mb-2"><a routerLink="."
                                                                         onclick="window.scrollTo(0,0)"
-                                                                        class="p-0 text-muted">{{"News"|transloco}}</a></li>
+                                                                        class="p-0 text-muted">{{"News"|transloco}}</a>
+                                                        </li>
                                                         <li class="nav-item mb-2"><a routerLink="."
                                                                         onclick="window.scrollTo(0,0)"
-                                                                        class="p-0 text-muted">{{"Testimonials"|transloco}}</a></li>
+                                                                        class="p-0 text-muted">{{"Testimonials"|transloco}}</a>
+                                                        </li>
                                                         <li class="nav-item mb-2"><a routerLink="propertydetails"
                                                                         onclick="window.scrollTo(0,0)"
                                                                         class=" p-0 text-muted">{{"Portofolio"|transloco}}</a>
@@ -133,33 +139,33 @@
                                 </div>
                         </div>
                         <div class="row">
-                                <div class="col-lg-4 ">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div>
-                                                <img [src]="googleplay" class="img-fluid shadow-2-strong btn p-0 app-play" (click)="openappstore()"
-                                                width="210px" alt="">
+                                                <img [src]="googleplay"
+                                                        class="img-fluid shadow-2-strong btn p-0 app-play"
+                                                        (click)="openappstore()" width="210px" alt="">
                                         </div>
                                         <div class="pt-2">
-                                                
-                                                        <img [src]="appstore" class="img-fluid shadow-2-strong btn p-0 app-play" (click)="opengoogleplay()" 
-                                                        width="210px" alt=""> 
-                                                
-                                               
+                                                <img [src]="appstore" class="img-fluid shadow-2-strong btn p-0 app-play"
+                                                        (click)="opengoogleplay()" width="210px" alt="">
                                         </div>
                                 </div>
-                                <div class="col-lg-4"></div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 col-md-6 d-none d-lg-block"></div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
                                         <h5 class="center-text">{{"Subscribe"|transloco}}</h5>
                                         <form>
                                                 <div class="row">
-                                                        <div class="col-md-10">
-                                                                <input type="text" class="form-control me-2 bg-dark input-box"
-                                                                placeholder="{{'Emailaddress'|transloco}}"/>
+                                                        <div class="col-8">
+                                                                <input type="text"
+                                                                        class="form-control me-2 bg-dark input-box"
+                                                                        placeholder="{{'Emailaddress'|transloco}}" />
                                                         </div>
-                                                        <div class="col-md-2">
-                                                                <button class="btn-primary p-2 text-nowrap" >{{"SubscribeNow"|transloco}}</button>
+                                                        <div class="col-4">
+                                                                <button
+                                                                        class="btn-primary p-2 text-nowrap">{{"SubscribeNow"|transloco}}</button>
                                                         </div>
                                                 </div>
-                                               
+
                                         </form>
                                 </div>
                         </div>

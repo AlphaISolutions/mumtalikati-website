@@ -182,3 +182,13 @@
   .btn-download:hover{
     background-color: #ba393b ;
   }
+  @media (max-width: 575px) {
+    .marcard {
+      padding-top: 20px;
+    }
+ }
+ @media (max-width: 1320px) {
+ .imge {
+      height: 392px;
+  }
+}
