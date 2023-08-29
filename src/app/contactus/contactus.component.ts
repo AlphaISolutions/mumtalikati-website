@@ -32,7 +32,7 @@ export class ContactusComponent implements OnInit {
   markdownselect: string;
   markdown: string;
   direction: string;
-  private map: L.Map;
+  // private map: L.Map;
   private centroid: L.LatLngExpression = [31.419607715744778, 74.25920125097036]; //
   private langChangeSubscription: Subscription;
   constructor(
@@ -49,34 +49,45 @@ export class ContactusComponent implements OnInit {
   }
 
   ngOnInit() {
+    const mymap = L.map('map');
+    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      minZoom: 10,
+      attribution: 'Mumtalikati'
+    });
+    tiles.addTo(mymap);
+  
+    const markerIcon = L.icon({
+      iconUrl: this.location,
+      iconSize: [32, 32],
+    });
+  
     navigator.geolocation.watchPosition((position) => {
-      let lat = position.coords;
-
-      let mymap = L.map('map').setView([lat.latitude, lat.longitude], 13)
-      const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        minZoom: 10,
-        attribution: 'Mumtalikati'
+      const lat = position.coords;
+      mymap.setView([lat.latitude, lat.longitude], 13);
+  
+      // Clear existing markers
+      mymap.eachLayer(layer => {
+        if (layer instanceof L.Marker) {
+          mymap.removeLayer(layer);
+        }
       });
-      tiles.addTo(mymap);
-      const markerIcon = L.icon({
-        iconUrl: this.location,
-        iconSize: [32, 32],
-      });
-      var marker = L.marker(
+  
+      const marker = L.marker(
         [lat.latitude, lat.longitude], { icon: markerIcon }
       ).addTo(mymap);
+  
       marker.on('click', function () {
-        // Use the stored 'self' reference to access this.propertyDetail
         const googleMapsUrl = `https://www.google.com/maps?q=${Number(lat.latitude)},${Number(lat.longitude)}`;
         window.open(googleMapsUrl, '_blank');
       });
+  
       // var popup = L.popup()
       //   .setLatLng([lat.latitude, lat.longitude])
       //   .setContent("Hi")
       //   .openOn(mymap);
-   
-    })
+  
+    });
     this.contactusform = this.rxFormBuilder.formGroup(this.sendEmail);
     this.contactusform = this.formBuilder.group({
       name: ['', Validators.required],
