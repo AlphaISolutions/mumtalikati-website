@@ -167,9 +167,11 @@
 }
 .text-color{
   color: $white-color;
+  text-align: justify !important;
 }
 .mat-border{
   border-color:$white-color ;
+  display: flex;
 }
 .mat-border:hover{
   padding-right: 10px !important;

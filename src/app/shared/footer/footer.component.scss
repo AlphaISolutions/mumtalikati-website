@@ -23,6 +23,7 @@ a:hover {
 #logo {
     display: inline-block;
     margin-top: 1px;
+    display: flex;
 }
 
 #logo img {
@@ -39,6 +40,7 @@ img.footer-logo {
 .img-fluid {
     max-width: 50%;
     height: auto;
+    display: flex;
 }
 .inline{
     display: flex;
@@ -58,6 +60,9 @@ img.footer-logo {
     background-color: none;
     
 }
+.nav{
+    padding-right: 0px !important;
+}
 .center-text{
     text-align:justify;
 }
@@ -75,4 +80,7 @@ img.footer-logo {
     .app-play {
       width: 40%;
     }
+  }
+  .text-align{
+    text-align: justify !important;
   }

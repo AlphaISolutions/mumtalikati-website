@@ -44,7 +44,8 @@ export class PropertydetailsComponent implements OnInit {
   unitcategoryid: number | null = null;
   selectedTab: number = 0;
   closeResult = '';
-  configs: any
+  configs: any;
+  popupbutton: boolean = true;
   propertyMasterTypeId: number = 1;
   mastertypeid: number | null = null;
   subTypeId: number | null = null;
@@ -531,6 +532,7 @@ export class PropertydetailsComponent implements OnInit {
     this.statedatalist()
   }
   onsubtypeid(subTypeid: number) {
+    this.popupbutton = false
     if (subTypeid == -1) {
       this.mastertypeid = this.selectedTab + 1;
       this.subTypeId = null;
@@ -563,6 +565,7 @@ export class PropertydetailsComponent implements OnInit {
     this.maxValue = this.ceilvalue;
   }
   resetpropertyCategory() {
+    debugger
     this.mastertypeid = null;
     this.subTypeId = null;
     this.queryParams();
@@ -663,6 +666,7 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getpropertyMasterTypeID(params: any) {
+    debugger
     this.propertyMasterTypeID = propertyMasterTypeEnumstring(params['propertyMasterType'])
     if (this.propertyMasterTypeID) {
       this.mastertypeid = this.propertyMasterTypeID;

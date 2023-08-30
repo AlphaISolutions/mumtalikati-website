@@ -7,8 +7,9 @@
                         <!-- <img [src]="logored" *ngIf="shownnow" class="img-fluid shadow-2-strong " [style]="logos" alt="" /> -->
                     </a></span>
                 <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed"
-                    aria-label="Toggle navigation" [style]="btncolor" (click)="collapsed = !collapsed">
-                    <span [style]="togglericon" class="navbar-toggler-icon"></span>
+                    aria-label="Toggle navigation Close" [style]="btncolor" (click)="collapsed = !collapsed" >
+                    <!-- <span [style]="togglericon" class="navbar-toggler-icon"></span> -->
+                    <span  [class]="collapsed ? 'navbar-toggler-icon' : 'btn-close'"></span>
                 </button>
     
                 <div class="navbar-collapse" [class.collapse]="collapsed" [attr.aria-expanded]="!collapsed"

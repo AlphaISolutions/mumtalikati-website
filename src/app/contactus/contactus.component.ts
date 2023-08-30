@@ -16,17 +16,14 @@ import * as L from 'leaflet';
   styleUrls: ['./contactus.component.scss']
 })
 export class ContactusComponent implements OnInit {
-
   aboutSectionImg = assetUrl("img/contact-building.jpg");
-  // @ViewChild('map') mapElement: any;
-  // map!: google.maps.Map ;
   @ViewChild('regForm') myRegForm;
   contactusform!: FormGroup;
   facebook = assetUrl("icons/fb.png");
   ins = assetUrl("icons/ins.png");
   linkin = assetUrl("icons/linkin.png");
   contactus = assetUrl("doc/contact-us.md");
-  location = assetUrl("icons/location.svg");
+  location = assetUrl("icons/googlemarker.png");
   sendEmail = new SendEmail();
   loading: boolean = false;
   markdownselect: string;
@@ -49,6 +46,18 @@ export class ContactusComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.contactusform = this.rxFormBuilder.formGroup(this.sendEmail);
+    this.contactusform = this.formBuilder.group({
+      name: ['', Validators.required],
+      phonenumber: ['', Validators.required],
+      email: ['', Validators.required],
+      subject: ['', Validators.required],
+      body: ['', Validators.required],
+    });
+    // this.contactusform = this.rxFormBuilder.formGroup(this.sendEmail);
+
+  }
+  ngAfterViewInit(){
     const mymap = L.map('map');
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
@@ -88,22 +97,6 @@ export class ContactusComponent implements OnInit {
       //   .openOn(mymap);
   
     });
-    this.contactusform = this.rxFormBuilder.formGroup(this.sendEmail);
-    this.contactusform = this.formBuilder.group({
-      name: ['', Validators.required],
-      phonenumber: ['', Validators.required],
-      email: ['', Validators.required],
-      subject: ['', Validators.required],
-      body: ['', Validators.required],
-    });
-    // this.contactusform = this.rxFormBuilder.formGroup(this.sendEmail);
-    // const mapProperties = {
-    //   center: new google.maps.LatLng(35.2271, -80.8431),
-    //   zoom: 15,
-    //   mapTypeId: google.maps.MapTypeId.ROADMAP
-    // };
-    // this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
-
   }
   get contactusformValid() {
     if (this.contactusform.valid) {

@@ -88,7 +88,7 @@
                                                         [ngClass]="{'btn-btn-danger':subTypeId==null && mastertypeid === 1}"
                                                         (click)="onsubtypeid(-1)">{{"All"|transloco}}</button>
                                                 </div>
-                                                <div class="col-6  pt-2 mat-pbtn"
+                                                <div class="col-6  pt-2 mat-pbtn" 
                                                     *ngFor="let doc of filterFunction(1 ,listid)">
                                                     <button type="button" class="tab-btn"
                                                         [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
@@ -150,10 +150,10 @@
                     </div>
                     <div class="modal-footer">
                         <div class="row">
-                            <div class="col-8">
-                            </div>
-                            <div class="col-4">
-                                <button type="reset" class="border-btn hover-color" (click)="resetpropertyCategory()"
+                            <!-- <div class="col-8">
+                            </div> -->
+                            <div class="col">
+                                <button type="reset" class="border-btn hover-color" (click)="resetpropertyCategory()" [disabled]="popupbutton"
                                     >{{"Reset"|transloco}}</button>
                             </div>
                         </div>
