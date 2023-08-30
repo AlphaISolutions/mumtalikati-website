@@ -8,8 +8,8 @@
     <div class="col-lg-8 col-sm-12" *ngIf="indiviualsUni[0]">
         <ul class="breadcrumb">
             <li><a routerLink="">{{"Mumtalikati"|transloco}}</a></li>
-            <li> <a href="#" routerLink="../propertydetails" *ngIf="!propertyMasterTypeID">{{"All"|transloco}}</a>
-                <a href="#" routerLink="../propertydetails" *ngIf="propertyMasterTypeID">{{
+            <li> <a href="#" (click)="backtosearch()" *ngIf="!propertyMasterTypeID">{{"All"|transloco}}</a>
+                <a href="#" (click)="backtosearch()" *ngIf="propertyMasterTypeID">{{
                     getenum(propertyMasterTypeID) }}</a>
             </li>
             <li><a (click)="backtosearch()" class="cursor"> {{getsubtypeID(indiviualsUni[0].propertySubTypeId)}}</a>

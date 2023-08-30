@@ -103,6 +103,14 @@ body {
     border-radius: 3px;
 }
 
+.btn-close {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    color: #FFFF !important;
+    background: transparent url('https://d2og5lryw1ajtt.cloudfront.net/icons/close.svg') !important;
+ 
+}
 
 .modal-content {
     border-radius: 11px 11px !important;
@@ -154,7 +162,7 @@ h5 {
 .small-colored-heading {
     font-size: $title;
     color: $primary-color;
-    text-align: left !important;
+
 }
 
 .secondary-font {
@@ -467,10 +475,13 @@ hr {
 .country-selector {
     background-image: none !important;
 }
+
 .splide__list {
-    direction:ltr !important; 
+    direction: ltr !important;
 }
-.ngx-pagination a, .ngx-pagination button {
+
+.ngx-pagination a,
+.ngx-pagination button {
     color: #7A7A7A !important;
     /* padding: 0.188rem 0.95rem; */
     /* text-align: center; */
@@ -479,8 +490,17 @@ hr {
     padding-top: 1px !important;
     padding-bottom: 5px !important;
 }
-.leaflet-touch .leaflet-control-attribution, .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
     display: none !important;
+}
+
+.leaflet-pane .leaflet-marker-pane img {
+    width: 24px !important;
+    height: 24px !important;
+    background: transparent !important
 }
 
 /* Importing Bootstrap SCSS file. */

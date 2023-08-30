@@ -2,18 +2,18 @@
         <div class="container px-sm-2 px-md-0">
                 <footer class="footer-section pb-2 white">
                         <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-lg-3" >
                                         <img id="logo" [src]="logo" routerLink="." onclick="window.scrollTo(0,0)"
                                                 class="img-fluid shadow-2-strong go-to-signin " alt="" />
 
-                                        <p class="mt-4">{{"MuscatOman"|transloco}} </p>
-                                        <p [dir]="direction"> <img [src]="phoneimg" alt="">+968 99160109</p>
-                                        <p [dir]="direction"><img [src]="emailimag" alt=""> Support@mumtalikati.com</p>
+                                        <p class="mt-4 text-align">{{"MuscatOman"|transloco}} </p>
+                                        <p class="text-align"> <img [src]="phoneimg" alt="" class="pe-1 ps-1"><span [dir]="direction">+968 99160109</span></p>
+                                        <p class=" text-align"><img [src]="emailimag" alt=""> Support@mumtalikati.com</p>
 
                                 </div>
                                 <div class="col-6 col-lg-2 mb-3 ">
-                                        <div class="">
-                                                <h5> {{"Company"|transloco}}</h5>
+                                        <div class="text-align">
+                                                <h5 class=""> {{"Company"|transloco}}</h5>
                                                 <ul class="nav flex-column navbar-navs">
                                                         <li class="nav-item mb-2" [routerLinkActive]="['active']"
                                                                 [routerLinkActiveOptions]="{exact:true}"><a
@@ -58,7 +58,7 @@
                                         </div> -->
                                 </div>
                                 <div class="col-6 col-lg-2  mb-3">
-                                        <div class="">
+                                        <div class="text-align">
                                                 <h5>{{"UsefulLink"|transloco}}</h5>
                                                 <ul class="nav flex-column ">
                                                         <li class="nav-item mb-2"><a routerLink="contactus"
@@ -85,7 +85,7 @@
 
                                 </div>
                                 <div class="col-6 col-lg-2 mb-3">
-                                        <div class="">
+                                        <div class="text-align">
                                                 <h5>{{"QuickLink"|transloco}}</h5>
                                                 <ul class="nav flex-column navbar-navs">
                                                         <li class="nav-item mb-2"><a routerLink=""
@@ -112,7 +112,7 @@
 
                                 </div>
                                 <div class=" col-6 col-lg-2  mb-3">
-                                        <div class="">
+                                        <div class="text-align">
                                                 <h5>{{"Navigation"|transloco}}</h5>
                                                 <ul class="nav flex-column ">
                                                         <li class="nav-item mb-2"><a routerLink="."

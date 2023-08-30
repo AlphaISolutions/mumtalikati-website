@@ -39,7 +39,6 @@ export class HomeComponent implements OnInit {
     return this.isActive ? 'active' : 'inactive';
   }
   async ngOnInit() {
-    this.button();
     let governorate = this.setFilterService.getGovernorate()
     if (governorate) {
       this.governorate = governorate
@@ -53,11 +52,10 @@ export class HomeComponent implements OnInit {
     } else {
       this.getlistingPurpose();
     }
-    this.getgovernorates();
-    this.getlistingPurpose();
+    // this.getgovernorates();
+    // this.getlistingPurpose();
 
     if (this.toggle) {
-
       this.color = { 'background-color': 'white!important', 'color': 'black!important' }
     } else {
       this.color = { 'background-color': 'transparent!important' }
@@ -67,10 +65,11 @@ export class HomeComponent implements OnInit {
     data.pageNumber = this.pageNumber;
     data.rowsNumbers = this.rowsNumber;
     this.propertyFilter(data)
+    this.button();
   }
  
-   getgovernorates() {
-    this.loading = true;
+  getgovernorates() {
+    // this.loading = true;
     this.setservice.getGovernorate()
       .then((data) => {
         if (data) {
@@ -86,7 +85,7 @@ export class HomeComponent implements OnInit {
   onclicks(id: number) {
     this.governorateid = id
   }
-  async getlistingPurpose() {
+   getlistingPurpose() {
     this.loading = true;
     this.setservice.getlistingpurposeset()
       .then((data) => {

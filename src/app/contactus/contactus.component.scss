@@ -87,7 +87,6 @@
 .small-colored-heading {
   font-size: $title;
   color: $primary-color;
-  text-align: left !important;
 }
 .icons{
   justify-content: center;
@@ -112,6 +111,9 @@
   height:60vh ;
   width: 80vh;
   margin: auto;
+}
+.text-align{
+  text-align: justify;
 }
 // .map-container {
 //   position: absolute;

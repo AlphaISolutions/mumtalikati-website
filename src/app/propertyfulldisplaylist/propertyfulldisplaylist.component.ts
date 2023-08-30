@@ -32,6 +32,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   bydefault = assetUrl('img/bydefault.png');
   defaultperfile = assetUrl('img/landlord-bydefault.png');
   checkedIcon =  assetUrl('icons/Copied.svg');
+  googlemarker = assetUrl("icons/googlemarker.png");
   loading: boolean = true
   @Input() unitcatID!: number;
   @Input() statuss!: number;
@@ -116,7 +117,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
       });
       tiles.addTo(mymap);
       const markerIcon = L.icon({
-        iconUrl: this.location,
+        iconUrl: this.googlemarker,
         iconSize: [32, 32],
       });
       var marker = L.marker(

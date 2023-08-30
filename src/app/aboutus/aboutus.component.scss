@@ -46,6 +46,7 @@
 
 .sign-in {
     color: #FFFFFF;
+    text-align: justify;
 }
 
 #ndsectionimg {
@@ -126,11 +127,11 @@
     color: black;
     background-color: $white-color;
     font-size: 16px;
-    text-align: left;
+    text-align: justify;
   }
   .about-heading {
     color: #9E2A2B;
-    text-align: left;
+    text-align: justify;
     font-size: 16px;
     font-weight: 500;
   }
@@ -138,18 +139,20 @@
     font-weight: bold !important;
   }
   .sign-up{
-    font-weight: 500; font-size: 28px; text-align: left;
+    font-weight: 500; font-size: 28px; text-align: justify;
 
   }
-  .platform{
-    // font-size: 14px; 
-     text-align: left
+  .abouts{
+    text-align: justify;
   }
+.text-align{
+  text-align: justify;
+}
   .about-sectionlast {
     padding-block: 4rem;
     color: black;
     font-size: 16px;
-    text-align: left;
+    text-align:justify;
   }
   .imge{
     object-fit: cover;
@@ -175,12 +178,13 @@
   }
   .about-headings {
     color: #FFFFFF;
-    text-align: left;
+    text-align: justify;
     font-size: 16px;
    
   }
   .btn-download:hover{
     background-color: #ba393b ;
+display: flex;
   }
   @media (max-width: 575px) {
     .marcard {
