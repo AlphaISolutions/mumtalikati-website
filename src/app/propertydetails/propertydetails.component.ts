@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListingPurpose } from '../models/listing-purpose.model';
 import { PropertyMasterType } from '../models/property-master-type.model';
@@ -104,6 +104,7 @@ export class PropertydetailsComponent implements OnInit {
     private filterservice: FilterService,
     private languageService: LanguageService,
     private areaservice: AreaService,
+     private cd: ChangeDetectorRef,
     private metaService: Meta) { this.getstate() }
 
   async ngOnInit() {
@@ -119,6 +120,7 @@ export class PropertydetailsComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.cd.detectChanges();
     this.langCode = this.languageService.getlang()
   }
 
@@ -565,7 +567,6 @@ export class PropertydetailsComponent implements OnInit {
     this.maxValue = this.ceilvalue;
   }
   resetpropertyCategory() {
-    debugger
     this.mastertypeid = null;
     this.subTypeId = null;
     this.queryParams();
@@ -666,7 +667,6 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getpropertyMasterTypeID(params: any) {
-    debugger
     this.propertyMasterTypeID = propertyMasterTypeEnumstring(params['propertyMasterType'])
     if (this.propertyMasterTypeID) {
       this.mastertypeid = this.propertyMasterTypeID;

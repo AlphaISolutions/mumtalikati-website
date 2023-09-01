@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { ListingPurposeTypeEnum, PropertySubTypeEnum, PropertyUnitCategoryEnum, getPropertyUnitCategoryEnum, getstatusType, listingPurposeTypeEnum } from '../models/enums';
@@ -55,7 +55,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   closeResult = '';
   private langChangeSubscription: Subscription;
   direction: string = this.service.getActiveLang() === 'ar' ? 'rtl' : 'rtl';
-  constructor(private modalService: NgbModal, private clipboard: Clipboard, private filterService: FilterService, private service: TranslocoService) {
+  constructor(private modalService: NgbModal, private clipboard: Clipboard, private filterService: FilterService, private service: TranslocoService, private cd: ChangeDetectorRef) {
     this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
       this.direction = this.service.getActiveLang() === 'ar' ? 'rtl' : 'rtl';
     });
@@ -69,6 +69,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
     this.readmore(this.ReadLess)
   }
   ngAfterViewInit() {
+    this.cd.detectChanges();
     if (this.propertyDetail && this.propertyDetail.imageString.length > 0) {
       this.mainSlider = new Splide('#main-slider', {
         type: 'loop',

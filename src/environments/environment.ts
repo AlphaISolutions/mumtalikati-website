@@ -11,5 +11,5 @@ export const environment = {
         appId: 'G-SGWT1DLVYQ'
       },
     userBaseUrl:"https://api.mumtalikati.com/api",
-    assetsBaseUrl : "http://d38tibxba17kdz.cloudfront.net"
+    assetsBaseUrl : "https://d2og5lryw1ajtt.cloudfront.net"
 };

@@ -53,7 +53,7 @@ export class AppComponent {
   showfooter: boolean = false;
   currentRoute!: string
   async ngOnInit() {
-    this.getcurrentCountry()
+    // this.getcurrentCountry()
     // this.getIpAddress();
     this.getlistingPurpose();
     this.getPropertyMasterType();
@@ -81,33 +81,33 @@ export class AppComponent {
     })
   }
 
- async getcurrentCountry(){
-    try {
-      const response: RegionModel = await this.ip.getCurrentCountry();
-      if (response) {
-        const countryCode = response.countryCode.toLowerCase();
-        if (localStorage.getItem('locale') === null) {
-          if (countryCode === 'om') {
-            localStorage.setItem('locale', 'ar');
-          } else {
-            localStorage.setItem('locale', 'en-US');
-          }
-        // const countryCode = response.countryCode.toLowerCase();
-        // const locale = (localStorage.getItem('locale') === 'en-US') ? 'en-US' : (countryCode === 'om') ? 'ar' : 'ar';
-        // localStorage.setItem('locale', locale);
-      }
-      else if(countryCode === 'om'){
-        localStorage.setItem('locale', 'ar');
-      }else if(localStorage.getItem('locale') ==='en-US'){
-        localStorage.setItem('locale', 'en-US');
-      }else{
-        localStorage.setItem('locale', 'ar');
-      }
-    }
-    } catch (error) {
-      console.error(error);
-    }
-  }
+//  async getcurrentCountry(){
+//     try {
+//       const response: RegionModel = await this.ip.getCurrentCountry();
+//       if (response) {
+//         const countryCode = response.countryCode.toLowerCase();
+//         if (localStorage.getItem('locale') === null) {
+//           if (countryCode === 'om') {
+//             localStorage.setItem('locale', 'ar');
+//           } else {
+//             localStorage.setItem('locale', 'en-US');
+//           }
+//         // const countryCode = response.countryCode.toLowerCase();
+//         // const locale = (localStorage.getItem('locale') === 'en-US') ? 'en-US' : (countryCode === 'om') ? 'ar' : 'ar';
+//         // localStorage.setItem('locale', locale);
+//       }
+//       else if(countryCode === 'om'){
+//         localStorage.setItem('locale', 'ar');
+//       }else if(localStorage.getItem('locale') ==='en-US'){
+//         localStorage.setItem('locale', 'en-US');
+//       }else{
+//         localStorage.setItem('locale', 'ar');
+//       }
+//     }
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   }
 
    getlistingPurpose() {
     this.setservice.getlistingpurposeset()

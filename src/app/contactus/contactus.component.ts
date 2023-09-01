@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { } from 'googlemaps';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -38,7 +38,8 @@ export class ContactusComponent implements OnInit {
     private toastr: ToastrService,
     private assetsService: AssetsService,
     private service: TranslocoService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private cd: ChangeDetectorRef,
   ) {
     this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
       this.direction = this.service.getActiveLang() === 'ar' ? 'ltr' : 'ltr';
@@ -58,6 +59,7 @@ export class ContactusComponent implements OnInit {
 
   }
   ngAfterViewInit(){
+    this.cd.detectChanges();
     const mymap = L.map('map');
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,

@@ -22,22 +22,13 @@ export class InterceptorService implements HttpInterceptor {
             requestUrl = requestUrl.replace('@assets-url', environment.assetsBaseUrl);
         }
         if (!requestUrl.includes(environment.assetsBaseUrl)) {
-            let locale=localStorage.getItem('locale')
-            if (requestUrl === 'http://ip-api.com/json') {
-                req = req.clone({
-                    headers: req.headers.set('Accept-Language', locale).set('Authorization', `Bearer ${token}`),
-                    url: requestUrl
-                });
-                
-            } else {
-               let locale=localStorage.getItem('locale')
-                req = req.clone({
-                    headers: req.headers.set('Accept-Language', locale).set('Authorization', `Bearer ${token}`),
-                    url: requestUrl
-                });
-            }
-
-        } else {
+            let locale = localStorage.getItem('locale') ?? 'ar'
+            req = req.clone({
+                headers: req.headers.set('Accept-Language', locale).set('Authorization', `Bearer ${token}`),
+                url: requestUrl
+            });
+        }
+        else {
             req = req.clone({
                 url: requestUrl
             });

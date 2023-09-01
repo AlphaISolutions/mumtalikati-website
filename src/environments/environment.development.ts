@@ -2,7 +2,7 @@ export const environment = {
   baseUrl: 'http://localhost:4200',
     production: false,
     userBaseUrl:"https://dev-api.mumtalikati.com/api",
-    assetsBaseUrl : "http://d38tibxba17kdz.cloudfront.net",
+    assetsBaseUrl : "https://d2og5lryw1ajtt.cloudfront.net",
     firebase: {
         apiKey: 'AIzaSyArxo-zvISSixq163xy3qWobyOzfWqmcuc',
         authDomain: 'mumtalikati-e8dbd.firebaseapp.com',
