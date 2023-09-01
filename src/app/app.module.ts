@@ -62,9 +62,10 @@ import * as firebase from 'firebase/app';
 firebase.initializeApp(environment.firebase);
 import { registerLocaleData } from '@angular/common';
 import localeEl from '@angular/common/locales/ar';
-import { TranslocoRootModule } from './transloco-root.module';
+import { TranslocoHttpLoader, TranslocoRootModule } from './transloco-root.module';
 import { RegionModel } from './models/region.model';
 import { GeolocationService } from './services/geolocation.service';
+import { TRANSLOCO_LOADER, TranslocoModule } from '@ngneat/transloco';
 registerLocaleData(localeEl);
 @NgModule({
   declarations: [
@@ -131,9 +132,10 @@ registerLocaleData(localeEl);
     NgxSliderModule,
     AngularFireModule,
     TranslocoRootModule,
+    TranslocoModule
 
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }, RxFormBuilder],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },{ provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader }, RxFormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule {
