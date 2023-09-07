@@ -225,7 +225,7 @@ h5 {
 //   }
 .mat-form-field-appearance-outline .mat-form-field-outline {
     background-color: $input-field-bg !important;
-    border-radius: 10px !important;
+    border-radius: 10px  !important;
     font-size: medium;
     color: $primary-color;
 }
@@ -307,6 +307,7 @@ h5 {
     background-color: $primary-color;
     border-radius: 10px;
     border: none;
+    width:-webkit-fill-available;
 }
 
 .ngx-pagination .p-controls {
@@ -502,6 +503,11 @@ hr {
     height: 24px !important;
     background: transparent !important
 }
+// .mat-form-field-appearance-outline .mat-form-field-outline{
+//     color: red !important;
+//   }
+
+
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

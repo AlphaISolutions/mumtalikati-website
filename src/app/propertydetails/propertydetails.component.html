@@ -44,10 +44,10 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div class="col-md-2">
-                <mat-form-field appearance="outline" >
+            <div class="col-md-2" *ngIf="arealist">
+                <mat-form-field appearance="outline">
                     <mat-label>{{'Area'|transloco}}</mat-label>
-                    <mat-select [value]="areaId" (selectionChange)="onChangeArea($event)" [formControl]="areaFormControl"  [disabled]="areadisable">
+                    <mat-select [value]="areaId" (selectionChange)="onChangeArea($event)"   [disabled]="areadisable">
                         <mat-option *ngFor="let area of arealist" [value]="area.id">
                             {{area.name}}
                         </mat-option>

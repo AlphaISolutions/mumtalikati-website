@@ -125,7 +125,6 @@ export class PropertyfulldisplaylistComponent implements OnInit {
         [Number(this.propertyDetail.lat), Number(this.propertyDetail.long)], { icon: markerIcon }
       ).addTo(mymap);
       marker.on('click', function () {
-        // Use the stored 'self' reference to access this.propertyDetail
         const googleMapsUrl = `https://www.google.com/maps?q=${Number(self.propertyDetail.lat)},${Number(self.propertyDetail.long)}`;
         window.open(googleMapsUrl, '_blank');
       });

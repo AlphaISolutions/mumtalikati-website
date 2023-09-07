@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +10,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShortdisplayComponent } from './shortdisplay/shortdisplay.component';
-import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
 import { PropertydetailsComponent } from './propertydetails/propertydetails.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -29,7 +32,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
-import { ToastrModule } from "ngx-toastr";
+import { ToastrModule } from 'ngx-toastr';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -56,17 +59,26 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
-import { AngularFireModule } from '@angular/fire/compat';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { environment } from 'src/environments/environment.development';
-import * as firebase from 'firebase/app';
-firebase.initializeApp(environment.firebase);
+// import * as firebase from 'firebase/app';
+// firebase.initializeApp(environment.firebase);
 import { registerLocaleData } from '@angular/common';
 import localeEl from '@angular/common/locales/ar';
-import { TranslocoHttpLoader, TranslocoRootModule } from './transloco-root.module';
-import { RegionModel } from './models/region.model';
-import { GeolocationService } from './services/geolocation.service';
+import {
+  TranslocoHttpLoader,
+  TranslocoRootModule,
+} from './transloco-root.module';
+// import { RegionModel } from './models/region.model';
+// import { GeolocationService } from './services/geolocation.service';
 import { TRANSLOCO_LOADER, TranslocoModule } from '@ngneat/transloco';
+import {
+  getRemoteConfig,
+  provideRemoteConfig,
+} from '@angular/fire/remote-config';
 registerLocaleData(localeEl);
+// import {  ReCaptchaV3Provider } from '@firebase/app-check';
+import {HomeFilterComponent} from '../app/home-filter/home-filter.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,11 +106,11 @@ registerLocaleData(localeEl);
     ForgotpasswordComponent,
     OtpVerificationComponent,
     SetyouPasswordComponent,
-
+    HomeFilterComponent,
   ],
   imports: [
     ToastrModule.forRoot({
-      positionClass: 'toast-top-full-width'
+      positionClass: 'toast-top-full-width',
     }),
     MarkdownModule.forRoot(),
     BrowserModule,
@@ -130,18 +142,17 @@ registerLocaleData(localeEl);
     NgxMatIntlTelInputComponent,
     NgOtpInputModule,
     NgxSliderModule,
-    AngularFireModule,
     TranslocoRootModule,
-    TranslocoModule
-
+    TranslocoModule,
+    // AngularFireModule.initializeApp(environment.firebase)
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideRemoteConfig(() => getRemoteConfig()),
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },{ provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader }, RxFormBuilder],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },
+    RxFormBuilder,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-  getcountrycode: string;
-  constructor() {
-    
-  }
-}
-
+export class AppModule {}

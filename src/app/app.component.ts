@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Subscription, filter, forkJoin, map } from 'rxjs';
 import { Governorate } from './models/governorate.model';
 import { ListingPurpose } from './models/listing-purpose.model';
@@ -16,9 +16,9 @@ import { IpService } from './services/ipaddres.service';
 import { HttpClient } from '@angular/common/http';
 import { RegionModel } from './models/region.model';
 import { error } from '@rxweb/reactive-form-validators';
-
-
-
+import * as firebase from 'firebase/app'
+import { environment } from 'src/environments/environment';
+import { RemoteConfig } from '@angular/fire/remote-config';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -40,12 +40,10 @@ export class AppComponent {
   currentCountry: any;
   locationJs: any;
   public ipAddress: string;
-  publicIpAddress: string = 'Loading...';
- 
+  private remoteConfig: RemoteConfig = inject(RemoteConfig);
   direction: string = this.service.getActiveLang() === 'ar' ? 'ltr' : 'rtl';
   constructor(private ip: GeolocationService,private setservice: SetupService, private router: Router, private metaService: Meta, private titleService: Title, private activatedRoute: ActivatedRoute, private service: TranslocoService, private geolocationService: GeolocationService,
     private ipService: IpService, private http: HttpClient) {
-   
     this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
       this.direction = this.service.getActiveLang() === 'ar' ? 'rtl' : 'ltr';
     });
@@ -80,7 +78,9 @@ export class AppComponent {
       })
     })
   }
-
+ngAfterViewInit(){
+  firebase.initializeApp(environment.firebase)
+}
 //  async getcurrentCountry(){
 //     try {
 //       const response: RegionModel = await this.ip.getCurrentCountry();

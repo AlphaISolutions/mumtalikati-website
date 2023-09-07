@@ -1,17 +1,14 @@
 <!-- <app-top-bar></app-top-bar> -->
 
-<div class="loading" *ngIf="loading ; else showList">
-    <mat-spinner [diameter]="50"></mat-spinner>
+<div class="loading" *ngIf="loading; else showList">
+  <mat-spinner [diameter]="50"></mat-spinner>
 </div>
 <ng-template #showList>
-    <div [dir]="direction">
-        <div class="router">
-            <router-outlet></router-outlet>
-        </div>
-            
-            <app-footer></app-footer>
+  <div [dir]="direction">
+    <div class="router">
+      <router-outlet></router-outlet>
     </div>
- 
- 
 
+    <app-footer></app-footer>
+  </div>
 </ng-template>
