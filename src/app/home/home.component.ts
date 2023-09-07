@@ -39,13 +39,7 @@ export class HomeComponent implements OnInit {
     return this.isActive ? 'active' : 'inactive';
   }
   async ngOnInit() {
-    let governorate = this.setFilterService.getGovernorate()
-    if (governorate) {
-      this.governorate = governorate
-    }
-    else {
-      this.getgovernorates();
-    }
+ 
     let listpurpose = this.setFilterService.getListingPurpose()
     if (listpurpose) {
       this.listingpupose = listpurpose;
@@ -68,20 +62,7 @@ export class HomeComponent implements OnInit {
     this.button();
   }
  
-  getgovernorates() {
-    // this.loading = true;
-    this.setservice.getGovernorate()
-      .then((data) => {
-        if (data) {
-          this.governorate = data
-        }
-        this.loading = false;
-      })
-      .catch((error) => {
-        this.loading = false;
-        console.error(error);
-      });
-  }
+
   onclicks(id: number) {
     this.governorateid = id
   }

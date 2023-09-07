@@ -44,10 +44,9 @@
                         </li>
                         <li class="nav-item nav-right ps-4 lag">
                             <mat-form-field appearance="outline" class="lang no-label">
-                            <mat-select (selectionChange)="changeLanguage($event)" [(ngModel)]="language">
-                                <mat-option value="ar">العربية</mat-option>
-                                <mat-option value="en-US">English</mat-option>
-                              </mat-select>
+                                <mat-select [value]="language" (selectionChange)="changeLanguage($event)">
+                                    <mat-option *ngFor="let lang of locales" [value]="lang.code">{{lang.name}}</mat-option>
+                                </mat-select>
                             </mat-form-field>
                         </li>
                     </ul>

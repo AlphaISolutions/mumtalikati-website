@@ -49,7 +49,6 @@ export class SetFiltersServive {
     }
 
     setListingPurpose(data: any) {
-
         localStorage.setItem('listingpupose', JSON.stringify(data));
     }
 

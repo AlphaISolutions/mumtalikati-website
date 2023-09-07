@@ -48,11 +48,11 @@ export class ShortdisplayComponent implements OnInit {
     this.unitCategoryId = getPropertyUnitCategoryEnum(unitCategoryID)
     this.liststring = listingPurposeTypeEnumid(listingPurposeID)
     this.propertyMasterSubTypeid = propertyMasterSubType
-    if (this.sharedmodel && typeof this.sharedmodel.wilaya !== 'undefined') {
+    if (this.sharedmodel && this.sharedmodel.wilaya !== undefined && this.sharedmodel.wilaya !== null) {
       localStorage.setItem("wilayaid", this.sharedmodel.wilaya.toString());
-  } else {
+    } else {
       localStorage.setItem("wilayaid", "0");
-  }
+    }
     if (propertyMasterSubType == 15) {
       this.navigatefulldisplay(landLordID, propertyMasterID, propertyMasterSubType)
     }

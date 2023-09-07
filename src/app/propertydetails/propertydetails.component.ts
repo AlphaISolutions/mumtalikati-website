@@ -649,7 +649,7 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getareaId(params: any) {
-
+    debugger
     if (Number.isNaN(+params['area'])) {
       this.areaId = 0
     } else {
@@ -744,6 +744,7 @@ export class PropertydetailsComponent implements OnInit {
       let listingpupose = this.router.getCurrentNavigation()?.extras.state!["purpose"];
       (listingpupose != null || listingpupose != undefined) ? (this.listid = listingpupose) : this.listid = 1;
       this.governorateid = this.router.getCurrentNavigation()?.extras.state!["governorate"];
+      this.areadisable = this.router.getCurrentNavigation()?.extras.state!["areadisable"];
     }
     else {
       this.listid = 1

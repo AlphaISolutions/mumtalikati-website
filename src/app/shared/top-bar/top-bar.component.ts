@@ -17,7 +17,7 @@ import { GeolocationService } from 'src/app/services/geolocation.service';
   styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent implements OnInit {
-  language = localStorage.getItem('locale');
+  language = localStorage.getItem('locale') || 'ar';
   logo: any
   checked: boolean;
   shownnow: boolean = true;
@@ -42,17 +42,17 @@ export class TopBarComponent implements OnInit {
   private langChangeSubscription: Subscription;
   direction: string = this.service.getActiveLang() === 'ar' ? 'ltr' : 'rtl';
   currentRoute: any;
-
+  locales=[
+    { name: "English", code: "en-US" },
+    { name:"عربي", code: "ar" },
+  ]
   constructor(@Inject(LOCALE_ID) private localeId: string, public dialog: MatDialog, private router: Router, private http: HttpClient, private service: TranslocoService, private setFiltersServive: SetFiltersServive, private route: ActivatedRoute, private location: Location) {
     this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
       this.direction = this.service.getActiveLang() === 'ar' ? 'rtl' : 'ltr';
     });
     this.path = this.route.component.name
   }
-  public locales: any = [
-    { name: "English", code: "en-US" },
-    { name: "Arabic", code: "ar" },
-  ]
+  
   ngOnInit() {
  
     if (this.activeroute == true) {
@@ -79,12 +79,9 @@ export class TopBarComponent implements OnInit {
     this.collapsed = false;
   }
   openDialog(): void {
-
     this.dialog.open(LoginComponent, {
-
     });
     this.dialog.afterAllClosed.subscribe(() => {
-
     })
 
   }
@@ -95,15 +92,17 @@ export class TopBarComponent implements OnInit {
   }
   changeLanguage(event) {
     if (this.language == "ar") {
-      localStorage.setItem('locale', event.value);
-      this.service.setActiveLang('ar')
+      localStorage.setItem('locale', 'en-US');
+      localStorage.setItem('lang', 'en');
+      this.service.setActiveLang('en')
       this.setFiltersServive.stopSession()
       this.direction = event.value === 'ar' ? 'rtl' : 'ltr';
       // this.getpath()
       window.location.reload();
     } else {
       localStorage.setItem('locale', event.value);
-      this.service.setActiveLang('en')
+      localStorage.setItem('lang', 'ar');
+      this.service.setActiveLang('ar')
       this.setFiltersServive.stopSession()
       this.direction = event.value === 'ar' ? 'rtl' : 'ltr';
       window.location.reload();

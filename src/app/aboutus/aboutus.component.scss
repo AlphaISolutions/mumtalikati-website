@@ -118,7 +118,18 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
+    // background-size: cover;
+    // height: 100vh;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-start; /* Align content to the top */
+    // align-items: center;
   }
+//   .container {
+//     flex-grow: 1; /* Allow the container to grow and occupy available space */
+//     display: flex; /* Set the container itself to be a flex container */
+//     align-items: center; /* Center content vertically within the container */
+// }
   #heading-section {
     color: white;
   }

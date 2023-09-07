@@ -1,76 +1,14 @@
 <div class="loading" *ngIf="loading ; else showList">
     <mat-spinner [diameter]="50"></mat-spinner>
 </div>
-
 <ng-template #showList>
     <div id="image" class="container-fluid">
-        <div class="container  ">
+        <div class="container">
             <app-top-bar></app-top-bar>
-            <div class="centered-element py-5">
-                <div class="row">
-                    <div class="col-2 .d-sm-none .d-md-none .d-lg-block"></div>
-                    <div class="col-sm-12 col-xl-4 col-xxl-4  ">
-                        <h2 class="h1-color">{{"h1"|transloco}}</h2>
-                        <!-- <p class="h1-color">Are You On The Hunt For A Sales Or Letting Agent In Your Local Area?</p> -->
-                        <div class="row gx-3 pt-4">
-                            <div class="col-auto" *ngFor="let listbtn of listingpupose">
-                                <button mat-flat-button class="list-btn" [value]="listingPurposeType"
-                                    [ngClass]="{'btn-btn-danger':listbtn.listingPurposeType==listingPurposeType, 'transparent':listbtn.listingPurposeType!=listingPurposeType}"
-                                    (click)="onclick(listbtn.listingPurposeType)">{{listbtn.desc }}</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3  .d-sm-none .d-md-none .d-lg-block"></div>
-                    <div class="col-2 .d-sm-none .d-md-none .d-lg-block"></div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-2 d-sm-none d-md-none .d-lg-none d-xl-block"></div>
-                    <div class=" col-sm-12 col-md-12 col-xl-8">
-                        <div class="row gx-2 pt-3">
-                            <div class=" col-sm-12 col-md-3 col-lg-4 pt-2">
-                                <div class="card border-0">
-                                    <div class="card-body mb-1">
-                                        <h5 class="card-title">{{"h5"|transloco}}</h5>
-                                        <div class="dropdown home" *ngIf="governorate[0]">
-                                            <mat-form-field appearance="outline">
-                                                <mat-select [value]="governorateid || 1">
-                                                    <mat-option [value]="1" (click)="allcheck()">{{"All"|transloco}}</mat-option>
-                                                    <mat-option *ngFor="let doc of governorate" [value]="doc.id!"
-                                                        (click)="onclicks(doc.id!)">
-                                                        {{doc.name}}
-                                                    </mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-sm-12 col-md-9 col-lg-8 pt-2 b-left">
-                                <div class="card border-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{"Location"|transloco}}</h5>
-                                        <div class="row gx-3">
-                                            <div class="col-md-10">
-                                                <mat-form-field appearance="outline">
-                                                    <input matInput type="text" [disabled]="true"
-                                                        placeholder="{{'hplaceholder'|transloco}}"/>
-                                                </mat-form-field>
-                                            </div>
-                                            <div class="col-md-2 pt-1">
-                                                <button mat-flat-button color="primary" type="button"
-                                                    class=" px-2 find-btn" height="100px" width="156px"
-                                                    (click)="find()">{{"FIND"|transloco}}</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-2 .d-sm-none .d-md-none .d-lg-block"></div>
-                </div>
+            <div  class="centered-element text-center py-5" style=" margin-top: 80px;">
+                <h2 class="h1-color">{{"h1"|transloco}}</h2>
+             <app-home-filter></app-home-filter>
             </div>
-
         </div>
     </div>
     <div class="container section">
