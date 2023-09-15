@@ -7,7 +7,7 @@
 <ng-template #showList>
     <div class="container p-4">
         <div class="row gx-2 border-bottom" >
-            <div class="col-md-1" *ngIf="listingpupose">
+           <div class="col-md-1" *ngIf="listingpupose">
                 <mat-form-field appearance="outline" *ngIf="listingpupose[0]">
                     <mat-label>{{"Purpose"|transloco}}</mat-label>
                     <mat-select [value]="listid" (selectionChange)="onChangeListPurpose($event)">
@@ -17,7 +17,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-            </div>
+            </div> 
             <div class="col-md-2">
                 <mat-form-field appearance="outline">
                     <mat-label>{{'h5'|transloco}}</mat-label>
@@ -150,8 +150,6 @@
                     </div>
                     <div class="modal-footer">
                         <div class="row">
-                            <!-- <div class="col-8">
-                            </div> -->
                             <div class="col">
                                 <button type="reset" class="border-btn hover-color" (click)="resetpropertyCategory()" [disabled]="popupbutton"
                                     >{{"Reset"|transloco}}</button>

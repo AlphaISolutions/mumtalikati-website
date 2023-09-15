@@ -23,7 +23,6 @@ import { LanguageService } from '../services/language.service';
 import { WilayatModel } from '../models/wilaya';
 import { AreaService } from '../services/areaServices';
 import { Area } from '../models/area';
-import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-propertydetails',
   templateUrl: './propertydetails.component.html',
@@ -649,7 +648,6 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getareaId(params: any) {
-    debugger
     if (Number.isNaN(+params['area'])) {
       this.areaId = 0
     } else {
