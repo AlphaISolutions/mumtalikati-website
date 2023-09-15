@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SetupService } from '../services/setup.service';
 import { SetFiltersServive } from '../services/setfilters.servive';
@@ -67,13 +67,14 @@ export class HomeFilterComponent implements OnInit {
     private modalService: NgbModal,
     private filterservice: FilterService,
     private mumtalikatiservic: MumtalikatiService,
-  ) {}
+    private cd: ChangeDetectorRef,
+  ) { }
 
   async ngOnInit() {
     this.getceil();
     this.initiaalizefilters();
   }
-
+ 
   getgovernorates() {
     this.setservice
       .getGovernorate()
@@ -161,15 +162,14 @@ export class HomeFilterComponent implements OnInit {
         area: this.areaId,
         minValue: this.minValue,
         maxValue: this.maxValue
-
       },
-      state:{
-        areadisable:this.areadisable
+      state: {
+        areadisable: this.areadisable
       }
     });
   }
   initiaalizegovernorate() {
-    let governorate = this.setFilterService.getGovernorate();
+    const governorate = this.setFilterService.getGovernorate();
     if (governorate) {
       this.governorate = governorate;
     } else {
@@ -177,7 +177,7 @@ export class HomeFilterComponent implements OnInit {
     }
   }
   initiaalizepurpose() {
-    let purpose = this.setFilterService.getListingPurpose();
+    const purpose = this.setFilterService.getListingPurpose();
     if (purpose) {
       this.listingpupose = purpose;
     } else {
@@ -185,7 +185,7 @@ export class HomeFilterComponent implements OnInit {
     }
   }
   initiaalizeWilayat() {
-    let wilayat = this.setFilterService.getwilaya();
+    const wilayat = this.setFilterService.getwilaya();
     if (wilayat) {
       this.wilaya = wilayat;
     } else {
@@ -193,7 +193,7 @@ export class HomeFilterComponent implements OnInit {
     }
   }
   initiaalizeUnitProperty() {
-    let unitProperty = this.setFilterService.getUnitCategory();
+    const unitProperty = this.setFilterService.getUnitCategory();
     if (unitProperty) {
       this.propertyUnitCategoryType = unitProperty;
     } else {
@@ -201,7 +201,7 @@ export class HomeFilterComponent implements OnInit {
     }
   }
   initiaalizePropertySubType() {
-    let propertySubType = this.setFilterService.getPropertySubType();
+    const propertySubType = this.setFilterService.getPropertySubType();
     if (propertySubType) {
       this.propertysubType = propertySubType;
     } else {
@@ -461,7 +461,7 @@ export class HomeFilterComponent implements OnInit {
     this.wilayaid = null;
     this.areadisable = true;
     this.areadisable = true;
-  
+
   }
   onChangeArea(event: any) {
     if (event.value == 0) {
@@ -470,7 +470,7 @@ export class HomeFilterComponent implements OnInit {
     if (event && this.areaId != event.value) {
       this.areaId = event.value;
       this.getArea(this.wilayaid)
-  
+
     }
   }
   resetpropertyCategory() {
@@ -487,9 +487,6 @@ export class HomeFilterComponent implements OnInit {
   onUnitcategory(unitcategory: number) {
     this.unitcategoryid = unitcategory
     this.unitcategorydesc = getPropertyUnitCategoryEnum(this.unitcategoryid!)
-    // this.getUnitMT(this.unitcategoryid);
-  
-
   }
   reset() {
     this.minValue = null!;
@@ -499,7 +496,8 @@ export class HomeFilterComponent implements OnInit {
     // let data = this.propertyFilterform.value as PropertyFilter;
     // data.maxPrice = this.maxValue;
     // data.minPrice = this.minValue
-   
+
     this.modalService.dismissAll();
   }
+
 }

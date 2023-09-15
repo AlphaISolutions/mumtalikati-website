@@ -1,154 +1,173 @@
-
-<div class="pt-4" >
+<div class="pt-4">
     <div class="row mt-2">
         <div class="col-2 d-sm-none d-md-none .d-lg-none d-xl-block"></div>
         <div class="d-none d-sm-none d-md-block col-md-12 col-xl-8" id="centered-content">
             <div class="gx-2 pe-4 ps-4 pt-3 row">
-                    <div class="col-md-3">
-                        <div class="dropdown home" *ngIf="listingpupose[0]">
-                            <mat-form-field appearance="outline">
-                                <mat-label>{{"Purpose"|transloco}}</mat-label>
-                                <mat-select [value]="listid" (selectionChange)="onChangeListPurpose($event)">
-                                    <mat-option *ngFor="let doc of listingpupose" [value]="doc.listingPurposeType"
-                                        (click)="onclicks(doc.listingPurposeType)">
-                                        {{doc.desc}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="dropdown home" *ngIf="governorate">
+                <div class="col-md-3">
+                    <div class="dropdown home" *ngIf="listingpupose[0]">
                         <mat-form-field appearance="outline">
-                            <mat-label>{{'h5'|transloco}}</mat-label>
-                            <mat-select [value]="governorateid || 0" (selectionChange)="onChangeGovernorate($event)">
-                                <mat-option [value]="0" (click)="governorateId()">
-                                    {{'All'|transloco}}
-                                </mat-option>
-                                <mat-option *ngFor="let doc of governorate" [value]="doc.id">
-                                    {{doc.name}}
+                            <mat-label>{{ "Purpose" | transloco }}</mat-label>
+                            <mat-select [value]="listid" (selectionChange)="onChangeListPurpose($event)">
+                                <mat-option *ngFor="let doc of listingpupose" [value]="doc.listingPurposeType"
+                                    (click)="onclicks(doc.listingPurposeType)">
+                                    {{ doc.desc }}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="dropdown home" *ngIf="wilaya">
-                            <mat-form-field appearance="outline">
-                                <mat-label>{{'Wilayat'|transloco}}</mat-label>
-                                <mat-select [value]="wilayaid || 0" (selectionChange)="onChangewilaya($event)">
-                                    <mat-option [value]="0" (click)="wilayanullid()">
-                                        {{'All'|transloco}}
-                                    </mat-option>
-                                    <mat-option *ngFor="let wila of wilaya" [value]="wila.id">
-                                        {{wila.name}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dropdown home" *ngIf="governorate">
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{ "h5" | transloco }}</mat-label>
+                            <mat-select [value]="governorateid || 0" (selectionChange)="onChangeGovernorate($event)">
+                                <mat-option [value]="0" (click)="governorateId()">
+                                    {{ "All" | transloco }}
+                                </mat-option>
+                                <mat-option *ngFor="let doc of governorate" [value]="doc.id">
+                                    {{ doc.name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
                     </div>
-                    <div class="col-md-3">
-                        <div class="dropdown home" *ngIf="arealist">
-                            <mat-form-field appearance="outline" >
-                                <mat-label>{{'Area'|transloco}}</mat-label>
-                                <mat-select [value]="areaId" (selectionChange)="onChangeArea($event)" [formControl]="areaFormControl"  [disabled]="areadisable">
-                                    <mat-option *ngFor="let area of arealist" [value]="area.id">
-                                        {{area.name}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dropdown home" *ngIf="wilaya">
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{ "Wilayat" | transloco }}</mat-label>
+                            <mat-select [value]="wilayaid || 0" (selectionChange)="onChangewilaya($event)">
+                                <mat-option [value]="0" (click)="wilayanullid()">
+                                    {{ "All" | transloco }}
+                                </mat-option>
+                                <mat-option *ngFor="let wila of wilaya" [value]="wila.id">
+                                    {{ wila.name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
                     </div>
-               
+                </div>
+                <div class="col-md-3">
+                    <div class="dropdown home" *ngIf="arealist">
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{ "Area" | transloco }}</mat-label>
+                            <mat-select [value]="areaId" (selectionChange)="onChangeArea($event)"
+                                [formControl]="areaFormControl" [disabled]="areadisable">
+                                <mat-option *ngFor="let area of arealist" [value]="area.id">
+                                    {{ area.name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
             </div>
             <div class="gx-2 pe-4 ps-4 row">
                 <div class="col-md-3">
                     <div class="dropdown home custom-form-field">
                         <mat-form-field appearance="outline" (click)="open(content)">
-                            <mat-label class="disabled-color">{{ "Propertycategory" | transloco }}</mat-label>
+                            <mat-label class="disabled-color">{{
+                                "Propertycategory" | transloco
+                                }}</mat-label>
                             <ng-container *ngIf="!mastertypeid; else elseBlock">
-                                <input matInput value="{{ 'All' | transloco }}" readonly>
-                              </ng-container>
-                              <ng-template #elseBlock>
-                                    <input matInput value="{{ getpropertyMasterType(mastertypeid) }} - {{ getlang(lang) }}" readonly *ngIf="!subTypeId; else notdata">
-                              </ng-template> 
-                              <ng-template #notdata>
-                                <input *ngIf="getsubTyp(subTypeId)" matInput
-                                value="{{getpropertyMasterType(mastertypeid)}} - {{getsubTyp(subTypeId)}}"  readonly>
-                              </ng-template>
-                             
-                            <!-- <input matInput *ngIf="!mastertypeid" value="{{'All' | transloco}}"  readonly>
-                            <input matInput *ngIf="!subTypeId" value="{{getpropertyMasterType(mastertypeid)}} - {{getlang(lang)}}"  readonly> -->
-                           
+                                <input matInput value="{{ 'All' | transloco }}" readonly />
+                            </ng-container>
+                            <ng-template #elseBlock>
+                                <input matInput value="{{ getpropertyMasterType(mastertypeid) }} - {{
+                    getlang(lang)
+                  }}" readonly *ngIf="!subTypeId; else notdata" />
+                            </ng-template>
+                            <ng-template #notdata>
+                                <input *ngIf="getsubTyp(subTypeId)" matInput value="{{ getpropertyMasterType(mastertypeid) }} - {{
+                    getsubTyp(subTypeId)
+                  }}" readonly />
+                            </ng-template>
                         </mat-form-field>
                         <ng-template #content let-modal>
                             <div class="modal-header pe-4 ps-4">
                                 <mat-tab-group [(selectedIndex)]="selectedTab">
-                                    <mat-tab label="{{'Residential'|transloco}}">
+                                    <mat-tab label="{{ 'Residential' | transloco }}">
                                         <ng-template matTabContent>
-                                            <div class="mat-loading" *ngIf="loading ; else showList">
+                                            <div class="mat-loading" *ngIf="loading; else showList">
                                                 <mat-spinner [diameter]="50"></mat-spinner>
                                             </div>
                                             <ng-template #showList>
                                                 <div class="container mt-2">
                                                     <div class="row gx-4">
-                                                        <div class="col-6  pt-2 ">
+                                                        <div class="col-6 pt-2">
                                                             <button type="button" class="tab-btn" value="null"
-                                                                [ngClass]="{'btn-btn-danger':subTypeId==null && mastertypeid === 1}"
-                                                                (click)="onsubtypeid(-1)">{{"All"|transloco}}</button>
+                                                                [ngClass]="{
+                                  'btn-btn-danger':
+                                    subTypeId == null && mastertypeid === 1
+                                }" (click)="onsubtypeid(-1)">
+                                                                {{ "All" | transloco }}
+                                                            </button>
                                                         </div>
-                                                        <div class="col-6  pt-2 mat-pbtn" 
-                                                            *ngFor="let doc of filterFunction(1 ,listid)">
-                                                            <button type="button" class="tab-btn"
-                                                                [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
-                                                                [(value)]="doc.propertySubType.subType"
-                                                                (click)="onsubtypeid(doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </ng-template>
-                                        </ng-template>
-        
-                                    </mat-tab>
-                                    <mat-tab label="{{'Commercial'|transloco}}">
-                                        <ng-template matTabContent>
-                                            <div class="mat-loading" *ngIf="loading ; else showList">
-                                                <mat-spinner [diameter]="50"></mat-spinner>
-                                            </div>
-                                            <ng-template #showList>
-                                                <div class="container mt-2">
-                                                    <div class="row gx-4">
-                                                        <div class="col-6  pt-2 ">
-                                                            <button type="button" class="tab-btn" value="null"
-                                                                [ngClass]="{'btn-btn-danger':subTypeId==null}"
-                                                                (click)="onsubtypeid(-1)">{{"All"|transloco}}</button>
-                                                        </div>
-                                                        <div class="col-6  pt-2 " *ngFor="let doc of filterFunction(2 ,listid)">
-                                                            <button type="button" class="tab-btn"
-                                                                [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
-                                                                [value]="doc.propertySubType.subType"
-                                                                (click)="onsubtypeid(doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
-        
+                                                        <div class="col-6 pt-2 mat-pbtn"
+                                                            *ngFor="let doc of filterFunction(1, listid)">
+                                                            <button type="button" class="tab-btn" [ngClass]="{
+                                  'btn-btn-danger':
+                                    subTypeId == doc.propertySubType.subType
+                                }" [(value)]="doc.propertySubType.subType" (click)="
+                                  onsubtypeid(doc.propertySubType.subType)
+                                ">
+                                                                {{ doc.propertySubType.desc }}
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </ng-template>
                                         </ng-template>
                                     </mat-tab>
-                                    <mat-tab label="{{'Residential'|transloco}}/{{'Commercial'|transloco}}">
+                                    <mat-tab label="{{ 'Commercial' | transloco }}">
                                         <ng-template matTabContent>
-                                            <div class="mat-loading" *ngIf="loading ; else showList">
+                                            <div class="mat-loading" *ngIf="loading; else showList">
                                                 <mat-spinner [diameter]="50"></mat-spinner>
                                             </div>
                                             <ng-template #showList>
                                                 <div class="container mt-2">
                                                     <div class="row gx-4">
-                                                        <div class="col-6  pt-2 " *ngFor="let doc of filterFunction(3)">
-                                                            <button type="button" class="tab-btn"
-                                                                [ngClass]="{'btn-btn-danger':subTypeId==doc.propertySubType.subType}"
-                                                                [value]="doc.propertySubType.subType"
-                                                                (click)="onsubtypeid(doc.propertySubType.subType)">{{doc.propertySubType.desc}}</button>
-        
+                                                        <div class="col-6 pt-2">
+                                                            <button type="button" class="tab-btn" value="null"
+                                                                [ngClass]="{
+                                  'btn-btn-danger': subTypeId == null
+                                }" (click)="onsubtypeid(-1)">
+                                                                {{ "All" | transloco }}
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-6 pt-2"
+                                                            *ngFor="let doc of filterFunction(2, listid)">
+                                                            <button type="button" class="tab-btn" [ngClass]="{
+                                  'btn-btn-danger':
+                                    subTypeId == doc.propertySubType.subType
+                                }" [value]="doc.propertySubType.subType" (click)="
+                                  onsubtypeid(doc.propertySubType.subType)
+                                ">
+                                                                {{ doc.propertySubType.desc }}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </ng-template>
+                                    </mat-tab>
+                                    <mat-tab label="{{ 'Residential' | transloco }}/{{
+                      'Commercial' | transloco
+                    }}">
+                                        <ng-template matTabContent>
+                                            <div class="mat-loading" *ngIf="loading; else showList">
+                                                <mat-spinner [diameter]="50"></mat-spinner>
+                                            </div>
+                                            <ng-template #showList>
+                                                <div class="container mt-2">
+                                                    <div class="row gx-4">
+                                                        <div class="col-6 pt-2" *ngFor="let doc of filterFunction(3)">
+                                                            <button type="button" class="tab-btn" [ngClass]="{
+                                  'btn-btn-danger':
+                                    subTypeId == doc.propertySubType.subType
+                                }" [value]="doc.propertySubType.subType" (click)="
+                                  onsubtypeid(doc.propertySubType.subType)
+                                ">
+                                                                {{ doc.propertySubType.desc }}
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -159,14 +178,13 @@
                             </div>
                             <div class="modal-footer">
                                 <div class="row">
-                                    <!-- <div class="col-8">
-                                    </div> -->
                                     <div class="col">
-                                        <button type="reset" class="border-btn hover-color" (click)="resetpropertyCategory()" [disabled]="popupbutton"
-                                            >{{"Reset"|transloco}}</button>
+                                        <button type="reset" class="border-btn hover-color"
+                                            (click)="resetpropertyCategory()" [disabled]="popupbutton">
+                                            {{ "Reset" | transloco }}
+                                        </button>
                                     </div>
                                 </div>
-        
                             </div>
                         </ng-template>
                     </div>
@@ -175,7 +193,8 @@
                     <mat-form-field appearance="outline" *ngIf="propertyUnitCategoryType">
                         <mat-label>{{"Unitcategory"|transloco}}</mat-label>
                         <mat-select [value]="unitcategoryid || 0">
-                            <mat-option [value]="0" (click)="allCheck()">{{"All"|transloco}}</mat-option>
+                            <mat-option [value]="0"  
+                                (click)="allCheck()">{{"All"|transloco}}</mat-option>
                             <mat-option *ngFor="let doc of getPropertyUnitCategory(mastertypeid,listid)"
                                 [value]="doc.unitCategory" (click)="onUnitcategory(doc.unitCategory)">
                                 {{doc.desc}}
@@ -187,32 +206,32 @@
                     <div class="row">
                         <div class="col-12">
                             <mat-form-field appearance="outline" (click)="openprice(price)">
-                                <mat-label>{{"Price"|transloco}} ({{"OMR"|transloco}})</mat-label>
-                                <input matInput value="{{minValue}}-{{maxValue}}">
+                                <mat-label>{{ "Price" | transloco }} ({{
+                                    "OMR" | transloco
+                                    }})</mat-label>
+                                <input matInput value="{{ minValue }}-{{ maxValue }}" />
                             </mat-form-field>
                             <ng-template #price let-modal>
                                 <div class="modal-header pb-0">
                                     <div class="row gx-2">
                                         <div class="container">
-                                            <h6 class="primary">{{"PriceRange"|transloco}}</h6>
+                                            <h6 class="primary">{{ "PriceRange" | transloco }}</h6>
                                             <ngx-slider [(value)]="minValue" [(highValue)]="maxValue"
                                                 [options]="options"></ngx-slider>
                                         </div>
-    
+
                                         <div class="col-6 mt-4">
-                                            <p class="textalign mb-0">{{"Min"|transloco}}:</p>
+                                            <p class="textalign mb-0">{{ "Min" | transloco }}:</p>
                                             <mat-form-field appearance="outline">
                                                 <input matInput placeholder="0" type="number" [(value)]="minValue"
-                                                    [(ngModel)]="minValue">
-                                                <!-- <div matSuffix> <span class="suffix">|</span> OMR</div> -->
+                                                    [(ngModel)]="minValue" />
                                             </mat-form-field>
                                         </div>
                                         <div class="col-6 mt-4">
-                                            <p class="textalign mb-0">{{"Max"|transloco}}:</p>
+                                            <p class="textalign mb-0">{{ "Max" | transloco }}:</p>
                                             <mat-form-field appearance="outline">
                                                 <input matInput placeholder="any" type="number" [(value)]="maxValue"
-                                                    [(ngModel)]="maxValue">
-                                                <!-- <div matSuffix>| OMR</div> -->
+                                                    [(ngModel)]="maxValue" />
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -221,14 +240,16 @@
                                     <div class="row gx-2">
                                         <div class="col">
                                             <button type="button" mat-stroked-button color="primary"
-                                                class=" px-5 border-r btn-width" (click)="reset()">{{"Reset"|transloco}}</button>
-    
+                                                class="px-5 border-r btn-width" (click)="reset()">
+                                                {{ "Reset" | transloco }}
+                                            </button>
                                         </div>
                                         <div class="col">
                                             <button type="button" color="primary" class="border-done"
-                                                (click)="onpopupclose()">{{"Done"|transloco}}</button>
+                                                (click)="onpopupclose()">
+                                                {{ "Done" | transloco }}
+                                            </button>
                                         </div>
-    
                                     </div>
                                 </div>
                             </ng-template>
@@ -236,13 +257,12 @@
                     </div>
                 </div>
                 <div class="col-md-3 pt-1">
-                    <button mat-flat-button color="primary" type="button"
-                    class=" px-2 find-btn"
-                    (click)="find()">{{"FIND"|transloco}}</button>
+                    <button mat-flat-button color="primary" type="button" class="px-2 find-btn" (click)="find()">
+                        {{ "FIND" | transloco }}
+                    </button>
                 </div>
-        </div>
+            </div>
         </div>
         <div class="col-2 .d-sm-none .d-md-none .d-lg-block"></div>
     </div>
- 
 </div>

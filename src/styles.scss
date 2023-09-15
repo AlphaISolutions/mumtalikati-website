@@ -375,7 +375,9 @@ hr {
 .ngx-slider .ngx-slider-pointer:after {
     background-color: #FFFFFF !important;
 }
-
+.ngx-slider .ngx-slider-pointer:focus-visible {
+    border:none !important;
+}
 .carousel-indicators {
     bottom: none !important;
     left: 36% !important;

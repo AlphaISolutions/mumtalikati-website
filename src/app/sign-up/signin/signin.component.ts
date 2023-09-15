@@ -39,6 +39,7 @@ export class SigninComponent implements OnInit {
     }
   }
   onFormSubmit() {
+    debugger
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;
