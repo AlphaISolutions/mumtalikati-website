@@ -73,7 +73,7 @@
                    
                 </mat-form-field>
                 <ng-template #content let-modal>
-                    <div class="modal-header pe-4 ps-4">
+                    <div class="modal-header pe-4 ps-4 " [ngStyle]="{'direction': (lang === 'ar') ? 'rtl' : 'ltr'}">
                         <mat-tab-group [(selectedIndex)]="selectedTab">
                             <mat-tab label="{{'Residential'|transloco}}">
                                 <ng-template matTabContent>
@@ -81,7 +81,7 @@
                                         <mat-spinner [diameter]="50"></mat-spinner>
                                     </div>
                                     <ng-template #showList>
-                                        <div class="container mt-2">
+                                        <div class="container mt-2" >
                                             <div class="row gx-4">
                                                 <div class="col-6  pt-2 ">
                                                     <button type="button" class="tab-btn" value="null"
