@@ -34,7 +34,7 @@ export class SetFiltersServive {
         localStorage.removeItem('propertyUnitCategoryType');
         localStorage.removeItem('governorate');
         localStorage.removeItem('getStatus');
-        localStorage.removeItem('getStatus');
+        localStorage.removeItem('wilaya');
     }
 
     getListingPurpose(): ListingPurpose[] {
