@@ -64,23 +64,23 @@
                 <div class="col-md-3">
                     <div class="dropdown home custom-form-field">
                         <mat-form-field appearance="outline" (click)="open(content)">
-                            <mat-label class="disabled-color">{{
-                                "Propertycategory" | transloco
-                                }}</mat-label>
+                            <mat-label class="disabled-color">{{ "Propertycategory" | transloco }}</mat-label>
                             <ng-container *ngIf="!mastertypeid; else elseBlock">
-                                <input matInput value="{{ 'All' | transloco }}" readonly />
-                            </ng-container>
-                            <ng-template #elseBlock>
-                                <input matInput value="{{ getpropertyMasterType(mastertypeid) }} - {{
-                    getlang(lang)
-                  }}" readonly *ngIf="!subTypeId; else notdata" />
-                            </ng-template>
-                            <ng-template #notdata>
-                                <input *ngIf="getsubTyp(subTypeId)" matInput value="{{ getpropertyMasterType(mastertypeid) }} - {{
-                    getsubTyp(subTypeId)
-                  }}" readonly />
-                            </ng-template>
+                                <input matInput value="{{ 'All' | transloco }}" readonly>
+                              </ng-container>
+                              <ng-template #elseBlock>
+                                    <input matInput value="{{ getpropertyMasterType(mastertypeid) }} - {{ getlang(lang) }}" readonly *ngIf="!subTypeId; else notdata">
+                              </ng-template> 
+                              <ng-template #notdata>
+                                <input *ngIf="getsubTyp(subTypeId)" matInput
+                                value="{{getpropertyMasterType(mastertypeid)}} - {{getsubTyp(subTypeId)}}"  readonly>
+                              </ng-template>
+                             
+                            <!-- <input matInput *ngIf="!mastertypeid" value="{{'All' | transloco}}"  readonly>
+                            <input matInput *ngIf="!subTypeId" value="{{getpropertyMasterType(mastertypeid)}} - {{getlang(lang)}}"  readonly> -->
+                           
                         </mat-form-field>
+                       
                         <ng-template #content let-modal>
                             <div class="modal-header pe-4 ps-4">
                                 <mat-tab-group [(selectedIndex)]="selectedTab">
