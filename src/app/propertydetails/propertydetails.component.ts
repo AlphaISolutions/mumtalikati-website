@@ -562,8 +562,16 @@ export class PropertydetailsComponent implements OnInit {
     return this.filterservice.getPropertytMasterSubTypeid(subTypeId);
   }
   reset() {
-    this.minValue = null!;
+    this.minValue = null;
     this.maxValue = this.ceilvalue;
+    let data = this.propertyFilterform.value as PropertyFilter;
+    data.maxPrice = this.maxValue;
+    data.minPrice = this.minValue
+    this.queryParams()
+    this.propertyFilter(data)
+    this.postPropertyFilter_Count(data)
+    this.statedatalist()
+    this.modalService.dismissAll();
   }
   resetpropertyCategory() {
     this.mastertypeid = null;

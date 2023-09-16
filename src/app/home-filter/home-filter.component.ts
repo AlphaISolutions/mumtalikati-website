@@ -489,8 +489,9 @@ export class HomeFilterComponent implements OnInit {
     this.unitcategorydesc = getPropertyUnitCategoryEnum(this.unitcategoryid!)
   }
   reset() {
-    this.minValue = null!;
+    this.minValue = null;
     this.maxValue = this.ceilvalue;
+    this.modalService.dismissAll();
   }
   onpopupclose() {
     // let data = this.propertyFilterform.value as PropertyFilter;
