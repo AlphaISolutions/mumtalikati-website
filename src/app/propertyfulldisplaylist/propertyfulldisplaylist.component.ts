@@ -207,7 +207,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   }
   readmore(language: string) {
     var lang = {
-      "en-US": "Read Move",
+      "en-US": "Read More",
       "ar": "اقرأ أكثر",
     }
     return lang[language] || "Unknown";
