@@ -255,11 +255,14 @@
                                     {{ propertyDetail.propertyMasterDescription}}
                                 </p>
                             </div>
-                            <a class="readmore" *ngIf="propertyDetail.propertyMasterDescription.length > 100"
-                                (click)="toggleReadMore(propertyDetail)">
-                                {{ propertyDetail.isExpanded ? readless(ReadLess) : readmore(ReadLess)
-                                }}
-                            </a>
+                            <a class="readmore" *ngIf="propertyDetail.propertyMasterDescription.length > 200">
+                                <span *ngIf="propertyDetail.isExpanded" (click)="toggleReadMore(propertyDetail)">
+                                  Read Less
+                                </span>
+                                <span *ngIf="!propertyDetail.isExpanded" (click)="toggleReadMore(propertyDetail)">
+                                  Read More
+                                </span>
+                              </a>
                         </div>
                         <h5 *ngIf="!propertyFeature.length==0">
                             {{"Features"|transloco}}
