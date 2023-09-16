@@ -57,7 +57,8 @@ export class HomeFilterComponent implements OnInit {
   propertySubTypedesc: any;
   unitcategorydesc: any;
   public areadisable: boolean = true;
-  areaFormControl = new FormControl()
+  areaFormControl = new FormControl();
+  lang: string = localStorage.getItem('locale') ?? 'ar'
   constructor(
     private setservice: SetupService,
     private router: Router,
@@ -153,7 +154,7 @@ export class HomeFilterComponent implements OnInit {
   find() {
     this.router.navigate(['propertydetails'], {
       queryParams: {
-        purpose: listingPurposeTypeEnumid(this.listingPurposeType),
+        purpose: listingPurposeTypeEnumid(this.listid),
         governorate: getGovernorateEnumID(this.governorateid),
         propertyMasterType: this.propertyMasterTypedesc,
         propertyMasterSubType: this.propertySubTypedesc,

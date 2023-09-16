@@ -300,6 +300,7 @@ export class PropertydetailsComponent implements OnInit {
   }
   getpropertyMasterType(masterTypeId: number) {
     return this.filterservice.getPropertytMasterTypeid(masterTypeId)
+
     // return propertyMasterTypeEnum(masterTypeId)
   }
   async onclicks(listingPurposeType: number) {
@@ -585,7 +586,6 @@ export class PropertydetailsComponent implements OnInit {
     this.modalService.dismissAll()
   }
   queryParams() {
-
     this.router.navigate(
       ['propertydetails'],
       {
