@@ -957,7 +957,7 @@ export class PropertydetailsComponent implements OnInit {
             }
             else {
               this.maxValue = this.maxPricedata.maxSellPrice;
-              this.ceilvalue = this.maxPricedata.maxRentPrice
+              this.ceilvalue = this.maxPricedata.maxSellPrice
               let opt = {
                 floor: 0,
                 ceil: this.ceilvalue,
