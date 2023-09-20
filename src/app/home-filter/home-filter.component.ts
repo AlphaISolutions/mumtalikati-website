@@ -307,7 +307,7 @@ export class HomeFilterComponent implements OnInit {
               // this.queryParams();
             }
             else {
-              this.maxValue = this.maxPricedata.maxSellPrice;
+              this.maxValue = this.maxPricedata.maxRentPrice;
               this.ceilvalue = this.maxPricedata.maxRentPrice
               let opt = {
                 floor: 0,
@@ -332,7 +332,8 @@ export class HomeFilterComponent implements OnInit {
               // this.inIt();
               // this.queryParams();
             } else {
-              this.ceilvalue = this.maxPricedata.maxRentPrice
+            
+              this.ceilvalue = this.maxPricedata.maxSellPrice;
               let opt = {
                 floor: 0,
                 ceil: this.ceilvalue,
@@ -427,6 +428,16 @@ export class HomeFilterComponent implements OnInit {
     if (event && this.listid != event.value) {
       this.listid = event.value;
       this.listdesc = listingPurposeTypeEnumid(this.listid)
+      if(this.listid ==1){
+        this.getceil();
+        this.maxValue = this.maxPricedata.maxRentPrice;
+        this.ceilvalue = this.maxPricedata.maxRentPrice;
+      }else{
+        this.getceil();
+        this.maxValue = this.maxPricedata.maxSellPrice;
+        this.ceilvalue = this.maxPricedata.maxSellPrice;
+      }
+     
     }
   }
   onChangeGovernorate(event: any) {
