@@ -428,7 +428,7 @@ export class HomeFilterComponent implements OnInit {
     if (event && this.listid != event.value) {
       this.listid = event.value;
       this.listdesc = listingPurposeTypeEnumid(this.listid)
-      if(this.listid ==1){
+      if(this.listid ===1){
         this.getceil();
         this.maxValue = this.maxPricedata.maxRentPrice;
         this.ceilvalue = this.maxPricedata.maxRentPrice;

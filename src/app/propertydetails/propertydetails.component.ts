@@ -351,8 +351,15 @@ export class PropertydetailsComponent implements OnInit {
       this.listdesc = listingPurposeTypeEnumid(this.listid);
       this.liststring = this.listdesc;
       this.getpurposeMetatag();
-      this.getceil();
-      this.maxValue = this.maxPricedata.maxSellPrice;
+      if (this.listid == 1) {
+        this.maxValue = this.maxPricedata.maxRentPrice;
+        this.ceilvalue = this.maxPricedata.maxRentPrice;
+      } else {
+        this.getceil();
+        this.maxValue = this.maxPricedata.maxSellPrice;
+        this.ceilvalue = this.maxPricedata.maxSellPrice;
+      }
+
       this.queryParams();
       this.propertyFilter(data);
       this.postPropertyFilter_Count(data);
@@ -583,16 +590,16 @@ export class PropertydetailsComponent implements OnInit {
       case 1: {
         if (listid == 1) {
           let data = this.propertysubType.filter(
-            (buttom) =>
-              buttom.propertyMasterTypeID == propertymastertypeid &&
-              (buttom.propertySubTypeID == 1 ||
-                buttom.propertySubTypeID == 2 ||
-                buttom.propertySubTypeID == 3 ||
-                buttom.propertySubTypeID == 4 ||
-                buttom.propertySubTypeID == 5 ||
-                buttom.propertySubTypeID == 6 ||
-                buttom.propertySubTypeID == 7 ||
-                buttom.propertySubTypeID == 8)
+            (button) =>
+              button.propertyMasterTypeID == propertymastertypeid &&
+              (button.propertySubTypeID == 1 ||
+                button.propertySubTypeID == 2 ||
+                button.propertySubTypeID == 3 ||
+                button.propertySubTypeID == 4 ||
+                button.propertySubTypeID == 5 ||
+                button.propertySubTypeID == 6 ||
+                button.propertySubTypeID == 7 ||
+                button.propertySubTypeID == 8)
           );
           return data;
         } else {
@@ -1205,6 +1212,8 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getceil() {
+    this.inIt();
+    this.queryParams();
     this.loading = true;
     this.mumtalikatiservic
       .getMaxUnitPrice()
@@ -1221,8 +1230,8 @@ export class PropertydetailsComponent implements OnInit {
                 noSwitching: true,
               };
               this.options = opt;
-              this.inIt();
-              this.queryParams();
+              // this.inIt();
+              // this.queryParams();
             } else {
               this.maxValue = this.maxPricedata.maxSellPrice;
               this.ceilvalue = this.maxPricedata.maxSellPrice;
@@ -1233,11 +1242,12 @@ export class PropertydetailsComponent implements OnInit {
                 showTicks: true,
               };
               this.options = opt;
-              this.inIt();
-              this.queryParams();
+              // this.inIt();
+              // this.queryParams();
             }
           } else {
             if (this.listid === 1) {
+              this.maxValue = this.maxPricedata.maxRentPrice;
               this.ceilvalue = this.maxPricedata.maxRentPrice;
               let opt = {
                 floor: 0,
@@ -1245,8 +1255,8 @@ export class PropertydetailsComponent implements OnInit {
                 noSwitching: true,
               };
               this.options = opt;
-              this.inIt();
-              this.queryParams();
+              // this.inIt();
+              // this.queryParams();
             } else {
               this.maxValue = this.maxPricedata.maxSellPrice;
               this.ceilvalue = this.maxPricedata.maxSellPrice;
@@ -1256,8 +1266,8 @@ export class PropertydetailsComponent implements OnInit {
                 noSwitching: true,
               };
               this.options = opt;
-              this.inIt();
-              this.queryParams();
+              // this.inIt();
+              // this.queryParams();
             }
           }
         }
