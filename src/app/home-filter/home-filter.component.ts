@@ -21,7 +21,7 @@ import { maxValueModel } from '../models/maxValue.model';
 import { Options } from "@angular-slider/ngx-slider";
 import { FilterService } from '../services/filterserice';
 import { PropertyMasterSubType } from '../models/propertyMasterSubType .model';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-home-filter',
   templateUrl: './home-filter.component.html',
@@ -57,8 +57,11 @@ export class HomeFilterComponent implements OnInit {
   propertySubTypedesc: any;
   unitcategorydesc: any;
   public areadisable: boolean = true;
-  areaFormControl = new FormControl();
+  // areaFormControl = new FormControl('', Validators.required);
+  areaFormControl = new FormControl('', Validators.required);
+  wilayatFormControl = new FormControl('', Validators.required);
   lang: string = localStorage.getItem('locale') ?? 'ar'
+  hovered=true
   constructor(
     private setservice: SetupService,
     private router: Router,
@@ -75,7 +78,13 @@ export class HomeFilterComponent implements OnInit {
     this.getceil();
     this.initiaalizefilters();
   }
- 
+  addHoverClass() {
+    this.hovered = true;
+  }
+
+  removeHoverClass() {
+    this.hovered = false;
+  }
   getgovernorates() {
     this.setservice
       .getGovernorate()

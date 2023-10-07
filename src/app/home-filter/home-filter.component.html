@@ -33,32 +33,33 @@
                 </div>
                 <div class="col-md-3">
                     <div class="dropdown home" *ngIf="wilaya">
-                        <mat-form-field appearance="outline">
-                            <mat-label>{{ "Wilayat" | transloco }}</mat-label>
-                            <mat-select [value]="wilayaid || 0" (selectionChange)="onChangewilaya($event)">
-                                <mat-option [value]="0" (click)="wilayanullid()">
-                                    {{ "All" | transloco }}
-                                </mat-option>
-                                <mat-option *ngFor="let wila of wilaya" [value]="wila.id">
-                                    {{ wila.name }}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+                      <mat-form-field appearance="outline" [ngClass]="{ 'border-red': wilayatInvalid && wilayatHovered }">
+                        <mat-label>{{ "Wilayat" | transloco }}</mat-label>
+                        <mat-select [value]="wilayaid || 0" (selectionChange)="onChangewilaya($event)">
+                          <mat-option [value]="0" (click)="wilayanullid()">
+                            {{ "All" | transloco }}
+                          </mat-option>
+                          <mat-option *ngFor="let wila of wilaya" [value]="wila.id">
+                            {{ wila.name }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
                     </div>
-                </div>
-                <div class="col-md-3">
+                  </div>
+                  <div class="col-md-3">
                     <div class="dropdown home" *ngIf="arealist">
-                        <mat-form-field appearance="outline">
-                            <mat-label>{{ "Area" | transloco }}</mat-label>
-                            <mat-select [value]="areaId" (selectionChange)="onChangeArea($event)"
-                                [formControl]="areaFormControl" [disabled]="areadisable">
-                                <mat-option *ngFor="let area of arealist" [value]="area.id">
-                                    {{ area.name }}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+                      <mat-form-field appearance="outline" (mouseenter)="addHoverClass()" (mouseleave)="removeHoverClass()">
+                        <mat-label>{{ "Area" | transloco }}</mat-label>
+                        <mat-select [value]="areaId" (selectionChange)="onChangeArea($event)" [formControl]="areaFormControl" [disabled]="areadisable">
+                          <mat-option *ngFor="let area of arealist" [value]="area.id">
+                            {{ area.name }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
                     </div>
-                </div>
+                  </div>
+                  
+                  
             </div>
             <div class="gx-2 pe-4 ps-4 row">
                 <div class="col-md-3">
