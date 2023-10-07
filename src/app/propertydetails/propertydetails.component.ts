@@ -101,6 +101,9 @@ export class PropertydetailsComponent implements OnInit {
   options: Options | null = null;
   langCode: string;
   arealist: Area[] = [];
+  selectedArea: string ='';
+  selectwilayat: string = '';
+  selectGovernorate:string='';
   allselection: string = 'All';
   color = { color: 'black!important' };
   coler = { ' background-color': 'red' };
@@ -256,6 +259,9 @@ export class PropertydetailsComponent implements OnInit {
       .then((data) => {
         if (data) {
           this.arealist = data;
+          // this.arealist.forEach(area => {
+           
+          // });
         }
         this.loading = false;
       })
@@ -318,7 +324,9 @@ export class PropertydetailsComponent implements OnInit {
   getsubType(subTypeId: number) {
     return this.filterservice.getPropertytMasterSubTypeid(subTypeId);
   }
-
+  getunitcatid(id: number) {
+    return this.filterservice.getPropertytUnitCategoryid(id)
+  }
   governorateId() {
     this.governorateid = null;
     this.statedatalist();
@@ -374,6 +382,7 @@ export class PropertydetailsComponent implements OnInit {
     }
     if (event && this.governorateid != event.value) {
       this.governorateid = event.value;
+      this.selectGovernorate=event.source.triggerValue;
       let data = this.propertyFilterform.value as PropertyFilter;
       data.gOVERNORATEID = event.value;
       this.governoratname = getGovernorateEnumID(event.value);
@@ -390,6 +399,8 @@ export class PropertydetailsComponent implements OnInit {
     }
     if (event && this.wilayaid != event.value) {
       this.wilayaid = event.value;
+      this.selectwilayat = event.source.triggerValue;
+      console.log(this.selectwilayat)
       let data = this.propertyFilterform.value as PropertyFilter;
       data.wilayatID = event.value;
       // this.governoratname = getGovernorateEnumID(event.value)
@@ -412,6 +423,7 @@ export class PropertydetailsComponent implements OnInit {
       event.value = null;
     }
     if (event && this.areaId != event.value) {
+      this.selectedArea = event.source.triggerValue;
       this.areaId = event.value;
       let data = this.propertyFilterform.value as PropertyFilter;
       data.areaID = event.value;
