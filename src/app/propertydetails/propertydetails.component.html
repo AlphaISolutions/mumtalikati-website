@@ -250,15 +250,9 @@
             {{ "Propertiesfor" | transloco }} {{ getlistpurpose(listid) }}
             {{ "inOman" | transloco }}
         </h4> -->
-        <h4 class="py-2" *ngIf="
-        unitcategoryid &&
-        subTypeId &&
-        selectedArea &&
-        selectwilayat &&
-        selectGovernorate
-      ">
-            {{ getunitcatid(unitcategoryid) }} {{ getsubType(subTypeId) }} Available
-            For {{ getlistpurpose(listid) }} In {{ selectedArea }}
+        <h4 class="py-2" >
+            {{ getunitcatid(unitcategoryid) }} {{getMasterTypeId(mastertypeid)}} Property Available
+            For {{ getlistpurpose(listid) }} <span  *ngIf="subTypeId || selectedArea || selectwilayat || selectGovernorate">In</span>{{ getsubType(subTypeId) }} {{ selectedArea }}
             {{ selectwilayat }} {{ selectGovernorate }}
         </h4>
 
