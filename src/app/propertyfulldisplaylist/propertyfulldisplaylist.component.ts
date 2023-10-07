@@ -33,6 +33,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   defaultperfile = assetUrl('img/landlord-bydefault.png');
   checkedIcon =  assetUrl('icons/Copied.svg');
   googlemarker = assetUrl("icons/googlemarker.png");
+  defaultimage = assetUrl('img/bydefault.png');
   loading: boolean = true
   @Input() unitcatID!: number;
   @Input() statuss!: number;
@@ -55,7 +56,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   closeResult = '';
   private langChangeSubscription: Subscription;
   direction: string = this.service.getActiveLang() === 'ar' ? 'rtl' : 'rtl';
-  constructor(private modalService: NgbModal, private clipboard: Clipboard, private filterService: FilterService, private service: TranslocoService, private cd: ChangeDetectorRef) {
+  constructor(private modalService: NgbModal, private clipboard: Clipboard, private filterService: FilterService, private service: TranslocoService, private cd: ChangeDetectorRef,private filterservice: FilterService) {
     this.langChangeSubscription = this.service.langChanges$.subscribe(() => {
       this.direction = this.service.getActiveLang() === 'ar' ? 'rtl' : 'rtl';
     });
@@ -145,6 +146,9 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   }
   toggleReadMore(property: any) {
     property.isExpanded = !property.isExpanded;
+  }
+  getenum(propertyMasterTypeID: number) {
+    return this.filterservice.getPropertytMasterTypeid(propertyMasterTypeID)
   }
   oncallclick(call: any, phone: number) {
     let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
