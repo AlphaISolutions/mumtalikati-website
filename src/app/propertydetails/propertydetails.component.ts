@@ -320,7 +320,9 @@ export class PropertydetailsComponent implements OnInit {
     data.pageNumber = page;
     await this.propertyFilter(data);
   }
-
+  getMasterTypeId(propertyMasterTypeId: number) {
+    return propertyMasterTypeEnum(propertyMasterTypeId);
+  }
   getsubType(subTypeId: number) {
     return this.filterservice.getPropertytMasterSubTypeid(subTypeId);
   }
