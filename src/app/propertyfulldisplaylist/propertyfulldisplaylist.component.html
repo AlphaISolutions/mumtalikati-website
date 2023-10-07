@@ -2,9 +2,9 @@
     <div class="row pt-4 pb-4 pe-xs-2 ps-xs-2">
         <div class="col-md-4 pb-4 order-md-1 order-2">
             <div>
-                <h2 class="h2color">
-                    {{"For"|transloco}} {{getlist(propertyDetail.listingPurposeID)}}
-                </h2>
+                <h5 class="h2color">
+                    {{getpropertyunitCategoryid(unitcatID)}} {{getenum(propertyDetail.propertyMasterTypeID!)}} Property Available {{"For"|transloco}} {{getlist(propertyDetail.listingPurposeID)}} In {{propertyDetail.buildingName}} {{propertyDetail.propertySubTypeName}} {{propertyDetail.addressStr}}
+                </h5>
             </div>
             <div class="group">
                 <h4>
@@ -183,9 +183,12 @@
 
             </div>
         </div>
-        <div class="col-md-8 order-md-2 order-1" *ngIf="propertyDetail.imageString">
+        <div class="col-md-8 order-md-2 order-1">
+            <div *ngIf="propertyDetail.imageString.length === 0">
+                <img [src]="defaultimage" class="img-fluid images" alt="default image">
+            </div>
             <div class="card border-0 shadow-none">
-                <div id="main-slider" class="splide main-slider">
+                <div id="main-slider" class="splide main-slider"  *ngIf="propertyDetail.imageString">
                     <div class="splide__track">
                         <div class="splide__list" >
                             <div class="splide__slide" *ngFor="let image of propertyDetail.imageString">
@@ -193,6 +196,7 @@
                                     <img class="img-fluid images" [src]="image" alt="image">
                                 </a>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -289,6 +293,7 @@
 
     </div>
 </div>
+
 <ng-template #call>
 
     <div class="modal-header">
