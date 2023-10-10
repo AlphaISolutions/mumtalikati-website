@@ -33,7 +33,7 @@ export class PropertyfulldisplaylistComponent implements OnInit {
   defaultperfile = assetUrl('img/landlord-bydefault.png');
   checkedIcon =  assetUrl('icons/Copied.svg');
   googlemarker = assetUrl("icons/googlemarker.png");
-  defaultimage = assetUrl('img/bydefault.png');
+  defaultimage = "https://dsbebd9knewtq.cloudfront.net/PropertyCategoryImage/99bbc1f4-f8d9-4845-a91f-ac47b174857f116,1.jpg";
   loading: boolean = true
   @Input() unitcatID!: number;
   @Input() statuss!: number;

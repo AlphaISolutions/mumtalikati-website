@@ -1,349 +1,466 @@
 <div *ngIf="propertyDetail">
-    <div class="row pt-4 pb-4 pe-xs-2 ps-xs-2">
-        <div class="col-md-4 pb-4 order-md-1 order-2">
-            <div>
-                <h5 class="h2color">
-                    {{getpropertyunitCategoryid(unitcatID)}} {{getenum(propertyDetail.propertyMasterTypeID!)}} Property Available {{"For"|transloco}} {{getlist(propertyDetail.listingPurposeID)}} In {{propertyDetail.buildingName}} {{propertyDetail.propertySubTypeName}} {{propertyDetail.addressStr}}
-                </h5>
-            </div>
-            <div class="group">
-                <h4>
-                    {{propertyDetail.propertyMasterName}}
-                </h4>
-            </div>
-            <div>
-                <div *ngIf="propertyDetail.propertyMasterSubType === PropertySubTypeEnum.Plot; else wholebuilding ">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <th class="header">{{"Type"|transloco}}</th>
-                                <td class="propertyb">{{propertyDetail.propertySubTypeName}}</td>
-
-                            </tr>
-                            <tr>
-                                <th class="header card-text">{{"PlotNumber"|transloco}}</th>
-                                <td class="propertyb ">{{propertyDetail.plotNumber}}</td>
-
-                            </tr>
-                            <ng-template #noOfFloor *ngIf="propertyDetail.numberofFloors">
-                                <tr>
-                                    <th class="header">{{"NoofFloor"|transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.numberofFloors}}</td>
-                                </tr>
-                            </ng-template>
-                            <tr>
-                                <th class="header">{{"Status"|transloco}}</th>
-                                <td class="propertyb">{{getstatus(propertyDetail.unitStatus)}}</td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <ng-template #wholebuilding>
-                    <div *ngIf="propertyDetail.unitCategoryID ===PropertyUnitCategoryEnum.WholeBuilding; else building">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <th class="header">{{"BuildingType" |transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.propertyUnitDescription}}</td>
-                                </tr>
-                                <tr>
-                                    <th class="header">{{"BuildingID" |transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.buildingNumber}}</td>
-                                </tr>
-                                <tr>
-                                    <th class="header">{{"BuildingName" |transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.buildingName}}</td>
-                                </tr>
-                                <tr>
-                                    <th class="header">{{"PlotNumber"|transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.plotNumber}}</td>
-                                </tr>
-                                <ng-container *ngIf="propertyDetail.residentialUnits  else residential">
-                                    <!-- no show residentialUnits -->
-                                </ng-container>
-                                <ng-template #residential>
-                                    <tr>
-                                        <th class="header">{{"ResidentialUnits"|transloco}}</th>
-                                        <td class="propertyb">{{propertyDetail.residentialUnits}}</td>
-                                    </tr>
-                                </ng-template>
-                                <tr>
-                                    <th class="header">{{"Buildinyear"|transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.builtYear}}</td>
-                                </tr>
-                                <tr>
-                                    <th class="header">{{"NoofFloor"|transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.numberofFloors}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+  <div class="row pt-4 pb-4 pe-xs-2 ps-xs-2">
+    <div class="col-md-4 pb-4 order-md-1 order-2">
+      <div>
+        <h5 class="h2color">
+          {{ getpropertyunitCategoryid(unitcatID) }}
+          {{ getenum(propertyDetail.propertyMasterTypeID!) }}
+          {{ "PropertyAvailable" | transloco }} {{ "For" | transloco }}
+          {{ getlist(propertyDetail.listingPurposeID) }} {{ "In" | transloco }}
+          {{ propertyDetail.buildingName }}
+          {{ propertyDetail.propertySubTypeName }}
+          {{ propertyDetail.addressStr }}
+        </h5>
+      </div>
+      <div class="group">
+        <h4>
+          {{ propertyDetail.propertyMasterName }}
+        </h4>
+      </div>
+      <div>
+        <div
+          *ngIf="
+            propertyDetail.propertyMasterSubType === PropertySubTypeEnum.Plot;
+            else wholebuilding
+          "
+        >
+          <table class="table">
+            <tbody>
+              <tr>
+                <th class="header">{{ "Type" | transloco }}</th>
+                <td class="propertyb">
+                  {{ propertyDetail.propertySubTypeName }}
+                </td>
+              </tr>
+              <tr>
+                <th class="header card-text">{{ "PlotNumber" | transloco }}</th>
+                <td class="propertyb">{{ propertyDetail.plotNumber }}</td>
+              </tr>
+              <ng-template #noOfFloor *ngIf="propertyDetail.numberofFloors">
+                <tr>
+                  <th class="header">{{ "NoofFloor" | transloco }}</th>
+                  <td class="propertyb">{{ propertyDetail.numberofFloors }}</td>
+                </tr>
+              </ng-template>
+              <tr>
+                <th class="header">{{ "Status" | transloco }}</th>
+                <td class="propertyb">
+                  {{ getstatus(propertyDetail.unitStatus) }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ng-template #wholebuilding>
+          <div
+            *ngIf="
+              propertyDetail.unitCategoryID ===
+                PropertyUnitCategoryEnum.WholeBuilding;
+              else building
+            "
+          >
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th class="header">{{ "BuildingType" | transloco }}</th>
+                  <td class="propertyb">
+                    {{ propertyDetail.propertyUnitDescription }}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="header">{{ "BuildingID" | transloco }}</th>
+                  <td class="propertyb">{{ propertyDetail.buildingNumber }}</td>
+                </tr>
+                <tr>
+                  <th class="header">{{ "BuildingName" | transloco }}</th>
+                  <td class="propertyb">{{ propertyDetail.buildingName }}</td>
+                </tr>
+                <tr>
+                  <th class="header">{{ "PlotNumber" | transloco }}</th>
+                  <td class="propertyb">{{ propertyDetail.plotNumber }}</td>
+                </tr>
+                <ng-container
+                  *ngIf="propertyDetail.residentialUnits; else residential"
+                >
+                  <!-- no show residentialUnits -->
+                </ng-container>
+                <ng-template #residential>
+                  <tr>
+                    <th class="header">{{ "ResidentialUnits" | transloco }}</th>
+                    <td class="propertyb">
+                      {{ propertyDetail.residentialUnits }}
+                    </td>
+                  </tr>
                 </ng-template>
-                <ng-template #building>
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <th class="header">{{"Type"|transloco}}</th>
-                                <td class="propertyb">{{propertyDetail.propertySubTypeName}}</td>
+                <tr>
+                  <th class="header">{{ "Buildinyear" | transloco }}</th>
+                  <td class="propertyb">{{ propertyDetail.builtYear }}</td>
+                </tr>
+                <tr>
+                  <th class="header">{{ "NoofFloor" | transloco }}</th>
+                  <td class="propertyb">{{ propertyDetail.numberofFloors }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-template>
+        <ng-template #building>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th class="header">{{ "Type" | transloco }}</th>
+                <td class="propertyb">
+                  {{ propertyDetail.propertySubTypeName }}
+                </td>
+              </tr>
+              <tr>
+                <th class="header">{{ "BuildingID" | transloco }}</th>
+                <td class="propertyb">{{ propertyDetail.buildingNumber }}</td>
+              </tr>
+              <tr>
+                <th class="header">{{ "BuildingName" | transloco }}</th>
+                <td class="propertyb">
+                  {{ propertyDetail.propertyMasterName }}
+                </td>
+              </tr>
+              <tr>
+                <th class="header">{{ "PlotNumber" | transloco }}</th>
+                <td class="propertyb">{{ propertyDetail.plotNumber }}</td>
+              </tr>
+              <tr>
+                <th class="header">{{ "UnitID" | transloco }}</th>
+                <td class="propertyb">{{ propertyDetail.propertyUnitID }}</td>
+              </tr>
+              <ng-container
+                *ngIf="
+                  propertyDetail.caption || propertyDetail.caption == '0';
+                  else showCaption
+                "
+              >
+              </ng-container>
+              <ng-template #showCaption>
+                <tr>
+                  <th class="header">{{ "Caption" | transloco }}</th>
+                  <td class="propertyb">{{ propertyDetail.caption }}</td>
+                </tr>
+              </ng-template>
 
-                            </tr>
-                            <tr>
-                                <th class="header">{{"BuildingID" |transloco}}</th>
-                                <td class="propertyb">{{propertyDetail.buildingNumber}}</td>
-
-                            </tr>
-                            <tr>
-                                <th class="header">{{"BuildingName" |transloco}}</th>
-                                <td class="propertyb">{{propertyDetail.propertyMasterName}}</td>
-
-                            </tr>
-                            <tr>
-                                <th class="header">{{"PlotNumber"|transloco}}</th>
-                                <td class="propertyb">{{propertyDetail.plotNumber}}</td>
-
-                            </tr>
-                            <tr>
-                                <th class="header">{{"UnitID"|transloco}}</th>
-                                <td class="propertyb">{{propertyDetail.propertyUnitID}}</td>
-
-                            </tr>
-                            <ng-container
-                                *ngIf="propertyDetail.caption || propertyDetail.caption=='0'; else showCaption">
-                            </ng-container>
-                            <ng-template #showCaption>
-                                <tr>
-                                    <th class="header">{{"Caption"|transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.caption}}</td>
-                                </tr>
-                            </ng-template>
-
-                            <tr>
-                                <th class="header">{{"Unitcategory"|transloco}}</th>
-                                <td class="propertyb">{{getpropertyunitCategoryid(unitcatID)}}</td>
-
-                            </tr>
-                            <tr>
-                                <th class="header">{{"Builtinyear"|transloco}}</th>
-                                <td class="propertyb">{{propertyDetail.builtYear}}</td>
-
-                            </tr>
-                            <tr *ngIf="propertyDetail.floorNumber==0; else floorno ">
-
-                            </tr>
-                            <!-- <ng-template #floorno>
+              <tr>
+                <th class="header">{{ "Unitcategory" | transloco }}</th>
+                <td class="propertyb">
+                  {{ getpropertyunitCategoryid(unitcatID) }}
+                </td>
+              </tr>
+              <tr>
+                <th class="header">{{ "Builtinyear" | transloco }}</th>
+                <td class="propertyb">{{ propertyDetail.builtYear }}</td>
+              </tr>
+              <tr *ngIf="propertyDetail.floorNumber == 0; else floorno"></tr>
+              <!-- <ng-template #floorno>
                                 <tr *ngIf="propertyDetail.floorNumber==0 ;else notshowfloor">
                             
                                 </tr>
                             </ng-template> -->
-                            <ng-template #floorno>
-                                <tr>
-                                    <th class="header">{{"Floor#"|transloco}}</th>
-                                    <td class="propertyb">{{propertyDetail.floorNumber}}</td>
-                                </tr>
-                            </ng-template>
-                            <tr>
-                                <th class="header">{{"Status"|transloco}}</th>
-                                <td class="propertyb">{{getstatus(propertyDetail.unitStatus)}}</td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </ng-template>
-
-            </div>
-            <div id="main">
-                <p><img class="pe-2 addess h2color" [src]="location">{{propertyDetail.addressStr}}</p>
-
-            </div>
-            <div class=" d-flex gap-3 py-3" aria-current="true">
-                <div *ngIf="imageUser">
-                    <img [src]="imageUser.imageString || defaultperfile" alt="" width="50px" height="50px"
-                        class="rounded-circle">
-
-                </div>
-
-                <div class="d-flex gap-2 w-100 justify-content-between">
-                    <div>
-                        <h6 class="mb-0"><b>{{"Landlord"|transloco}}</b></h6>
-                        <p class="mb-0 opacity-75">{{propertyDetail.name}}</p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="row gx-2 gy-2">
-                <div class="col">
-                    <button mat-stroked-button color="primary" class=" px-5 border-r btn-width "
-                        (click)="oncallclick(call ,propertyDetail.contact)">{{"Call"|transloco}}</button>
-                </div>
-                <div class="col">
-                    <button mat-raised-button color="primary" class="px-5 btn-width"
-                        (click)="redirectToWhatsApp(propertyDetail.contact)">{{"Message"|transloco}}</button>
-                </div>
-
-            </div>
-        </div>
-        <div class="col-md-8 order-md-2 order-1">
-            <div *ngIf="propertyDetail.imageString.length === 0">
-                <img [src]="defaultimage" class="img-fluid images" alt="default image">
-            </div>
-            <div class="card border-0 shadow-none">
-                <div id="main-slider" class="splide main-slider"  *ngIf="propertyDetail.imageString">
-                    <div class="splide__track">
-                        <div class="splide__list" >
-                            <div class="splide__slide" *ngFor="let image of propertyDetail.imageString">
-                                <a href="{{ image }}" class="w-100 h-100" target="_blank">
-                                    <img class="img-fluid images" [src]="image" alt="image">
-                                </a>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div id="thumbnail-slider" class="thumbnail-slider splide w-100" >
-                    <div class="splide__track">
-                        <div class="splide__list" *ngIf="propertyDetail.imageString.length>1">
-                            <div class="splide__slide thumbnail" *ngFor="let image of propertyDetail.imageString" >
-                                <img [src]="image" alt="Thumbnail">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body p-0 pt-2">
-                    <mat-card-content>
-                        <h5 *ngIf="propertyDetail.listingPurposeID ===ListingPurposeTypeEnum.Rent else nolistpurposeid">
-                            {{"OMR"|transloco}} {{propertyDetail.rentPrice}}/{{"Month"|transloco}}
-                        </h5>
-                        <ng-template #nolistpurposeid>
-                            <h5>
-                                {{"OMR"|transloco}} {{propertyDetail.sellPrice}}/{{"Sale Price"|transloco}}
-                            </h5>
-                        </ng-template>
-                        <div *ngIf="propertyDetail.unitCategoryID===PropertyUnitCategoryEnum.WholeBuilding else unitcatid">
-                            <!-- unitCategoryID== 12 show empty data -->
-                        </div>
-                        <ng-template #unitcatid>
-                            <div class="dis-flex" clas="pe-4">
-                                <div
-                                    *ngIf="(propertyMasterSubType ===PropertySubTypeEnum.Plot ) ||( propertyDetail.unitCategoryID===PropertyUnitCategoryEnum.Shop)  else plotsqft">
-                                    <p class="icon pe-2"><img class="pe-2"
-                                            [src]="areaimg">{{propertyDetail.sqft}}{{"SQM"|transloco}}
-                                    </p>
-                                </div>
-                                <ng-template #plotsqft>
-                                    <p class="icon pe-2"><img class="pe-2"
-                                            [src]="areaimg">{{propertyDetail.sqft}}{{"SQM"|transloco}}
-                                    </p>
-                                    <p class="icon pe-2"><img class="pe-2" [src]="bedroomimg">{{propertyDetail.bedRoom}}
-                                        {{"Bedrooms"|transloco}}
-                                    </p>
-                                    <p class="icon pe-2"><img class="pe-2"
-                                            [src]="washroomimg">{{propertyDetail.bathRoom}}
-                                        {{"Bathrooms"|transloco}}
-                                    </p>
-                                    <p class="icon pe-2"><img class="pe-2" [src]="kitchen">{{propertyDetail.kitchen}}
-                                        {{"Kitchen"|transloco}}
-                                    </p>
-                                    <p class="icon pe-2"><img class="pe-2" [src]="hall">{{propertyDetail.hall}}
-                                        {{"Hall"|transloco}}
-                                    </p>
-                                </ng-template>
-
-                            </div>
-                        </ng-template>
-
-                        <h5>{{"PropertyDetails"|transloco}}</h5>
-                        <div *ngIf="propertyDetail">
-                            <div [ngClass]="{'expanded': propertyDetail.isExpanded}">
-                                <p [ngClass]="{'truncate': !propertyDetail.isExpanded}">
-                                    {{ propertyDetail.propertyMasterDescription}}
-                                </p>
-                            </div>
-                            <a class="readmore" *ngIf="propertyDetail.propertyMasterDescription.length > 200">
-                                <span *ngIf="propertyDetail.isExpanded" (click)="toggleReadMore(propertyDetail)">
-                                  Read Less
-                                </span>
-                                <span *ngIf="!propertyDetail.isExpanded" (click)="toggleReadMore(propertyDetail)">
-                                  Read More
-                                </span>
-                              </a>
-                        </div>
-                        <h5 *ngIf="!propertyFeature.length==0">
-                            {{"Features"|transloco}}
-                        </h5>
-                        <div class="pb-2">
-                            <div class="row gx-2  btn-row " *ngIf="propertyFeature">
-                                <div class="col-auto pt-2" *ngFor="let features of propertyFeature">
-                                    <button mat-raised-button class="" [disabled]="true"
-                                        id="view-cmp-btn">{{features.feature.desc}}</button>
-                                </div>
-                            </div>
-                        </div>
-                       <div class="card p-2 border-0" *ngIf="propertyDetail.long && propertyDetail.lat">
-                        <div id="map"></div>
-                       </div>
-                      
-                    </mat-card-content>
-                    
-                </div>
-
-            </div>
-
+              <ng-template #floorno>
+                <tr>
+                  <th class="header">{{ "Floor#" | transloco }}</th>
+                  <td class="propertyb">{{ propertyDetail.floorNumber }}</td>
+                </tr>
+              </ng-template>
+              <tr>
+                <th class="header">{{ "Status" | transloco }}</th>
+                <td class="propertyb">
+                  {{ getstatus(propertyDetail.unitStatus) }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-template>
+      </div>
+      <div id="main">
+        <p>
+          <img class="pe-2 addess h2color" [src]="location" />{{
+            propertyDetail.addressStr
+          }}
+        </p>
+      </div>
+      <div class="d-flex gap-3 py-3" aria-current="true">
+        <div *ngIf="imageUser">
+          <img
+            [src]="imageUser.imageString || defaultperfile"
+            alt=""
+            width="50px"
+            height="50px"
+            class="rounded-circle"
+          />
         </div>
 
+        <div class="d-flex gap-2 w-100 justify-content-between">
+          <div>
+            <h6 class="mb-0">
+              <b>{{ "Landlord" | transloco }}</b>
+            </h6>
+            <p class="mb-0 opacity-75">{{ propertyDetail.name }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row gx-2 gy-2">
+        <div class="col">
+          <button
+            mat-stroked-button
+            color="primary"
+            class="px-5 border-r btn-width"
+            (click)="oncallclick(call, propertyDetail.contact)"
+          >
+            {{ "Call" | transloco }}
+          </button>
+        </div>
+        <div class="col">
+          <button
+            mat-raised-button
+            color="primary"
+            class="px-5 btn-width"
+            (click)="redirectToWhatsApp(propertyDetail.contact)"
+          >
+            {{ "Message" | transloco }}
+          </button>
+        </div>
+      </div>
     </div>
+    <div class="col-md-8 order-md-2 order-1">
+      <div class="card border-0 shadow-none">
+        <div *ngIf="propertyDetail.imageString.length === 0">
+            <img
+              [src]="defaultimage"
+              class="img-fluid" 
+              alt="default image" style="border-radius: 20px !important;"
+            />
+          </div>
+        <div id="main-slider" class="splide main-slider">
+          <div class="splide__track">
+            <div class="splide__list">
+              
+              <div
+                class="splide__slide"
+                *ngFor="let image of propertyDetail.imageString"
+              >
+                <a href="{{ image }}" class="w-100 h-100" target="_blank">
+                  <img class="img-fluid images" [src]="image" alt="image" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="thumbnail-slider" class="thumbnail-slider splide w-100">
+          <div class="splide__track">
+            <div
+              class="splide__list"
+              *ngIf="propertyDetail.imageString.length > 1"
+            >
+              <div
+                class="splide__slide thumbnail"
+                *ngFor="let image of propertyDetail.imageString"
+              >
+                <img [src]="image" alt="Thumbnail" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0 pt-2">
+          <mat-card-content>
+            <h5
+              *ngIf="
+                propertyDetail.listingPurposeID === ListingPurposeTypeEnum.Rent;
+                else nolistpurposeid
+              "
+            >
+              {{ "OMR" | transloco }} {{ propertyDetail.rentPrice }}/{{
+                "Month" | transloco
+              }}
+            </h5>
+            <ng-template #nolistpurposeid>
+              <h5>
+                {{ "OMR" | transloco }} {{ propertyDetail.sellPrice }}/{{
+                  "Sale Price" | transloco
+                }}
+              </h5>
+            </ng-template>
+            <div
+              *ngIf="
+                propertyDetail.unitCategoryID ===
+                  PropertyUnitCategoryEnum.WholeBuilding;
+                else unitcatid
+              "
+            >
+              <!-- unitCategoryID== 12 show empty data -->
+            </div>
+            <ng-template #unitcatid>
+              <div class="dis-flex" clas="pe-4">
+                <div
+                  *ngIf="
+                    propertyMasterSubType === PropertySubTypeEnum.Plot ||
+                      propertyDetail.unitCategoryID ===
+                        PropertyUnitCategoryEnum.Shop;
+                    else plotsqft
+                  "
+                >
+                  <p class="icon pe-2">
+                    <img class="pe-2" [src]="areaimg" />{{ propertyDetail.sqft
+                    }}{{ "SQM" | transloco }}
+                  </p>
+                </div>
+                <ng-template #plotsqft>
+                  <p class="icon pe-2">
+                    <img class="pe-2" [src]="areaimg" />{{ propertyDetail.sqft
+                    }}{{ "SQM" | transloco }}
+                  </p>
+                  <p class="icon pe-2">
+                    <img class="pe-2" [src]="bedroomimg" />{{
+                      propertyDetail.bedRoom
+                    }}
+                    {{ "Bedrooms" | transloco }}
+                  </p>
+                  <p class="icon pe-2">
+                    <img class="pe-2" [src]="washroomimg" />{{
+                      propertyDetail.bathRoom
+                    }}
+                    {{ "Bathrooms" | transloco }}
+                  </p>
+                  <p class="icon pe-2">
+                    <img class="pe-2" [src]="kitchen" />{{
+                      propertyDetail.kitchen
+                    }}
+                    {{ "Kitchen" | transloco }}
+                  </p>
+                  <p class="icon pe-2">
+                    <img class="pe-2" [src]="hall" />{{ propertyDetail.hall }}
+                    {{ "Hall" | transloco }}
+                  </p>
+                </ng-template>
+              </div>
+            </ng-template>
+
+            <h5>{{ "PropertyDetails" | transloco }}</h5>
+            <div *ngIf="propertyDetail">
+              <div [ngClass]="{ expanded: propertyDetail.isExpanded }">
+                <p [ngClass]="{ truncate: !propertyDetail.isExpanded }">
+                  {{ propertyDetail.propertyMasterDescription }}
+                </p>
+              </div>
+              <a
+                class="readmore"
+                *ngIf="propertyDetail.propertyMasterDescription.length > 200"
+              >
+                <span
+                  *ngIf="propertyDetail.isExpanded"
+                  (click)="toggleReadMore(propertyDetail)"
+                >
+                  Read Less
+                </span>
+                <span
+                  *ngIf="!propertyDetail.isExpanded"
+                  (click)="toggleReadMore(propertyDetail)"
+                >
+                  Read More
+                </span>
+              </a>
+            </div>
+            <h5 *ngIf="!propertyFeature.length == 0">
+              {{ "Features" | transloco }}
+            </h5>
+            <div class="pb-2">
+              <div class="row gx-2 btn-row" *ngIf="propertyFeature">
+                <div
+                  class="col-auto pt-2"
+                  *ngFor="let features of propertyFeature"
+                >
+                  <button
+                    mat-raised-button
+                    class=""
+                    [disabled]="true"
+                    id="view-cmp-btn"
+                  >
+                    {{ features.feature.desc }}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="card p-2 border-0"
+              *ngIf="propertyDetail.long && propertyDetail.lat"
+            >
+              <div id="map"></div>
+            </div>
+          </mat-card-content>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <ng-template #call>
-
-    <div class="modal-header">
+  <div class="modal-header"></div>
+  <div class="modal-body">
+    <div>
+      <h6 class="text-cente">
+        {{ "ContactUs" | transloco }}
+      </h6>
     </div>
-    <div class="modal-body">
-        <div>
-            <h6 class="text-cente">
-                {{"ContactUs"|transloco}}
-            </h6>
-
-        </div>
-        <div *ngIf="propertyDetail">
-            <h6 class="text-cente" #elementContentToCopy>
-                <img [src]="phoneicon"> +{{propertyDetail.contact}} <img [src]="copyIcon" class="btn" height="30px"
-                    (click)="copyHeroName(elementContentToCopy)">
-            </h6>
-        </div>
-        <hr>
-        <div *ngIf=" propertyDetail">
-            <h6 class="text-cente pt-2"> {{propertyDetail.name}}</h6>
-        </div>
-        <hr>
-        <div *ngIf="propertyDetail">
-            <p class="align-item pt-3">
-                {{"PleasequoteBuildingID" |transloco}} {{propertyDetail.buildingNumber}}
-                {{"whencallingtolandlord."|transloco}}
-
-            </p>
-        </div>
-        <hr>
-        <div>
-            <p class="align-item pt-4">
-                {{"notifications"|transloco}}
-            </p>
-        </div>
+    <div *ngIf="propertyDetail">
+      <h6 class="text-cente" #elementContentToCopy>
+        <img [src]="phoneicon" /> +{{ propertyDetail.contact }}
+        <img
+          [src]="copyIcon"
+          class="btn"
+          height="30px"
+          (click)="copyHeroName(elementContentToCopy)"
+        />
+      </h6>
     </div>
-    <div class="modal-footer">
-        <div class="row gx-2 gy-2">
-            <div class="col">
-                <button mat-raised-button color="primary" class="w-100"
-                    (click)="closepop()">{{"Iwanttobenotified"|transloco}}
-                </button>
-                <!-- <button mat-raised-button color="primary" class="border-done" (click)="closepop()">I want to be
+    <hr />
+    <div *ngIf="propertyDetail">
+      <h6 class="text-cente pt-2">{{ propertyDetail.name }}</h6>
+    </div>
+    <hr />
+    <div *ngIf="propertyDetail">
+      <p class="align-item pt-3">
+        {{ "PleasequoteBuildingID" | transloco }}
+        {{ propertyDetail.buildingNumber }}
+        {{ "whencallingtolandlord." | transloco }}
+      </p>
+    </div>
+    <hr />
+    <div>
+      <p class="align-item pt-4">
+        {{ "notifications" | transloco }}
+      </p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row gx-2 gy-2">
+      <div class="col">
+        <button
+          mat-raised-button
+          color="primary"
+          class="w-100"
+          (click)="closepop()"
+        >
+          {{ "Iwanttobenotified" | transloco }}
+        </button>
+        <!-- <button mat-raised-button color="primary" class="border-done" (click)="closepop()">I want to be
                     notified</button> -->
-
-            </div>
-            <div class="col">
-                <button type="button" mat-stroked-button color="primary" class=" px-5 border-r btn-width"
-                    (click)="closepop()">{{"MaybeLater"|transloco}}</button>
-            </div>
-        </div>
+      </div>
+      <div class="col">
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          class="px-5 border-r btn-width"
+          (click)="closepop()"
+        >
+          {{ "MaybeLater" | transloco }}
+        </button>
+      </div>
     </div>
+  </div>
 </ng-template>
