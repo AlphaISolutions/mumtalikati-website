@@ -57,6 +57,9 @@ export class HomeFilterComponent implements OnInit {
   propertySubTypedesc: any;
   unitcategorydesc: any;
   public areadisable: boolean = true;
+  selectedArea: string ='';
+  selectwilayat: string = '';
+  selectGovernorate:string='';
   // areaFormControl = new FormControl('', Validators.required);
   areaFormControl = new FormControl('', Validators.required);
   wilayatFormControl = new FormControl('', Validators.required);
@@ -115,7 +118,7 @@ export class HomeFilterComponent implements OnInit {
       .getWilaya()
       .then((data) => {
         if (data) {
-          this.wilaya = data;
+          this.wilaya = data.filter(a => a.governorateID===this.governorateid);
           this.setupFilterServive.setwilaya(data);
         }
       })
@@ -174,7 +177,11 @@ export class HomeFilterComponent implements OnInit {
         maxValue: this.maxValue
       },
       state: {
-        areadisable: this.areadisable
+        areadisable: this.areadisable,
+        selectGovernorate:this.selectGovernorate,
+        selectwilayat:  this.selectwilayat,
+        selectedArea: this.selectedArea
+
       }
     });
   }
@@ -197,7 +204,7 @@ export class HomeFilterComponent implements OnInit {
   initiaalizeWilayat() {
     const wilayat = this.setFilterService.getwilaya();
     if (wilayat) {
-      this.wilaya = wilayat;
+      this.wilaya = wilayat.filter(a => a.governorateID===this.governorateid);
     } else {
       this.getWilayat();
     }
@@ -222,7 +229,7 @@ export class HomeFilterComponent implements OnInit {
   initiaalizefilters() {
     this.initiaalizepurpose();
     this.initiaalizegovernorate();
-    this.initiaalizeWilayat();
+    // this.initiaalizeWilayat();
     this.getArea(this.wilayaid);
     this.initiaalizeUnitProperty();
     this.initiaalizePropertySubType()
@@ -455,7 +462,9 @@ export class HomeFilterComponent implements OnInit {
     }
     if (event && this.governorateid != event.value) {
       this.governorateid = event.value;
+      this.selectGovernorate=event.source.triggerValue;
       this.governoratname = getGovernorateEnumID(event.value)
+      this.initiaalizeWilayat();
     }
   }
   governorateId() {
@@ -467,6 +476,7 @@ export class HomeFilterComponent implements OnInit {
     }
     if (event && this.wilayaid != event.value) {
       this.wilayaid = event.value;
+      this.selectwilayat = event.source.triggerValue;
       // this.governoratname = getGovernorateEnumID(event.value)
       if (this.wilayaid == null) {
         this.areadisable = true;
@@ -490,6 +500,7 @@ export class HomeFilterComponent implements OnInit {
     }
     if (event && this.areaId != event.value) {
       this.areaId = event.value;
+      this.selectedArea = event.source.triggerValue;
       this.getArea(this.wilayaid)
 
     }

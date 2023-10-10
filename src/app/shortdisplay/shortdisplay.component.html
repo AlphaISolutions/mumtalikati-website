@@ -1,5 +1,5 @@
 <div>
-    <div class="card  border-r mb-4 shadow-none border-0" *ngIf="property" onclick="window.scrollTo(0,0)"
+    <div class="card  border-r mb-4 p-2 shadow-none border-0" *ngIf="property" onclick="window.scrollTo(0,0)"
         (click)="onclick( property.unitCategoryID!, property.landLordID!, property.propertyMasterID!,property.propertyMasterSubType!, property.listingPurposeID)">
         <img [src]="property.imageString || defaultimage" class=" imagecss main" alt="Card Image">
         <div class="card-body cd p-0  pt-2">

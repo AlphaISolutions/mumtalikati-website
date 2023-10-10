@@ -101,9 +101,9 @@ export class PropertydetailsComponent implements OnInit {
   options: Options | null = null;
   langCode: string;
   arealist: Area[] = [];
-  selectedArea: string ='';
+  selectedArea: string = '';
   selectwilayat: string = '';
-  selectGovernorate:string='';
+  selectGovernorate: string = '';
   allselection: string = 'All';
   color = { color: 'black!important' };
   coler = { ' background-color': 'red' };
@@ -165,10 +165,11 @@ export class PropertydetailsComponent implements OnInit {
     if (!this.governorate) {
       this.getgovernorates();
     }
-    this.wilaya = await this.setupFilterServive.getwilaya();
-    if (!this.wilaya) {
-      this.getWilayat();
-    }
+    // this.wilaya = await this.setupFilterServive.getwilaya();
+    // this.wilaya=this.wilaya.filter(a=> a.governorateID===this.governorateid)
+    // if (!this.wilaya) {
+    //   this.getWilayat();
+    // }
     this.propertyUnitCategoryType =
       await this.setupFilterServive.getUnitCategory();
     if (!this.propertyUnitCategoryType) {
@@ -260,7 +261,7 @@ export class PropertydetailsComponent implements OnInit {
         if (data) {
           this.arealist = data;
           // this.arealist.forEach(area => {
-           
+
           // });
         }
         this.loading = false;
@@ -304,7 +305,10 @@ export class PropertydetailsComponent implements OnInit {
       .getWilaya()
       .then((data) => {
         if (data) {
-          this.wilaya = data;
+          this.wilaya = data.filter(
+            (a) => a.governorateID === this.governorateid
+          );
+          // console.log(this.wilaya)
           this.setupFilterServive.setwilaya(data);
         }
       })
@@ -321,13 +325,13 @@ export class PropertydetailsComponent implements OnInit {
     await this.propertyFilter(data);
   }
   getMasterTypeId(propertyMasterTypeId: number) {
-    return propertyMasterTypeEnum(propertyMasterTypeId);
+    return this.filterservice.getPropertytMasterTypeid(propertyMasterTypeId);
   }
   getsubType(subTypeId: number) {
     return this.filterservice.getPropertytMasterSubTypeid(subTypeId);
   }
   getunitcatid(id: number) {
-    return this.filterservice.getPropertytUnitCategoryid(id)
+    return this.filterservice.getPropertytUnitCategoryid(id);
   }
   governorateId() {
     this.governorateid = null;
@@ -384,11 +388,13 @@ export class PropertydetailsComponent implements OnInit {
     }
     if (event && this.governorateid != event.value) {
       this.governorateid = event.value;
-      this.selectGovernorate=event.source.triggerValue;
+      this.selectGovernorate = event.source.triggerValue;
       let data = this.propertyFilterform.value as PropertyFilter;
       data.gOVERNORATEID = event.value;
       this.governoratname = getGovernorateEnumID(event.value);
       this.governoratestring = this.governoratname;
+      // this.wilaya=this.wilaya.filter(a=> a.governorateID===this.governorateid)
+      this.getWilayat();
       this.queryParams();
       this.propertyFilter(data);
       this.postPropertyFilter_Count(data);
@@ -402,7 +408,7 @@ export class PropertydetailsComponent implements OnInit {
     if (event && this.wilayaid != event.value) {
       this.wilayaid = event.value;
       this.selectwilayat = event.source.triggerValue;
-      console.log(this.selectwilayat)
+      console.log(this.selectwilayat);
       let data = this.propertyFilterform.value as PropertyFilter;
       data.wilayatID = event.value;
       // this.governoratname = getGovernorateEnumID(event.value)
@@ -744,6 +750,7 @@ export class PropertydetailsComponent implements OnInit {
         area: this.areaId,
         minValue: this.minValue,
         maxValue: this.maxValue,
+       
       },
     });
   }
@@ -766,6 +773,7 @@ export class PropertydetailsComponent implements OnInit {
     this.propertyFilterCountInIt();
     this.initiaalizefilters();
     this.getPropertyUnitCategory(this.mastertypeid, this.listid);
+    this.getWilayat();
     if (this.wilayaid == 0 || this.wilayaid == null) {
     } else {
       this.getArea(this.wilayaid);
@@ -913,6 +921,12 @@ export class PropertydetailsComponent implements OnInit {
         this.router.getCurrentNavigation()?.extras.state!['governorate'];
       this.areadisable =
         this.router.getCurrentNavigation()?.extras.state!['areadisable'];
+      this.selectGovernorate =
+        this.router.getCurrentNavigation()?.extras.state!['selectGovernorate'];
+      this.selectwilayat =
+        this.router.getCurrentNavigation()?.extras.state!['selectwilayat'];
+      this.selectedArea =
+        this.router.getCurrentNavigation()?.extras.state!['selectedArea'];
     } else {
       this.listid = 1;
     }
