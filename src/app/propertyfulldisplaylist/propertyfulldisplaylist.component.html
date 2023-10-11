@@ -4,7 +4,21 @@
       <div>
         <h5 class="h2color">
           {{ getpropertyunitCategoryid(unitcatID) }}
-          {{ getenum(propertyDetail.propertyMasterTypeID!) }}
+           <!-- hardcoded check in seo link only  -->
+          <span
+            *ngIf="
+              unitcatID === 1 ||
+                unitcatID === 2 ||
+                unitcatID === 3 ||
+                unitcatID === 4 ||
+                unitcatID === 5
+              
+            "
+            >{{ "Residential" | transloco }}</span
+          >
+          <span *ngIf="unitcatID !== 1 && unitcatID !== 2 && unitcatID !== 3 && unitcatID !== 4">
+            {{ getenum(propertyDetail.propertyMasterTypeID!) }}
+          </span>
           {{ "PropertyAvailable" | transloco }} {{ "For" | transloco }}
           {{ getlist(propertyDetail.listingPurposeID) }} {{ "In" | transloco }}
           {{ propertyDetail.buildingName }}
@@ -230,16 +244,16 @@
     <div class="col-md-8 order-md-2 order-1">
       <div class="card border-0 shadow-none">
         <div *ngIf="propertyDetail.imageString.length === 0">
-            <img
-              [src]="defaultimage"
-              class="img-fluid" 
-              alt="default image" style="border-radius: 20px !important;"
-            />
-          </div>
+          <img
+            [src]="defaultimage"
+            class="img-fluid"
+            alt="default image"
+            style="border-radius: 20px !important"
+          />
+        </div>
         <div id="main-slider" class="splide main-slider">
           <div class="splide__track">
             <div class="splide__list">
-              
               <div
                 class="splide__slide"
                 *ngFor="let image of propertyDetail.imageString"
