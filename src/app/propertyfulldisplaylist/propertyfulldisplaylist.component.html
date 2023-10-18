@@ -361,10 +361,7 @@
                   {{ propertyDetail.propertyMasterDescription }}
                 </p>
               </div>
-              <a
-                class="readmore"
-                *ngIf="propertyDetail.propertyMasterDescription.length > 200"
-              >
+              <a class="readmore" *ngIf="propertyDetail?.propertyMasterDescription?.length > 200">
                 <span
                   *ngIf="propertyDetail.isExpanded"
                   (click)="toggleReadMore(propertyDetail)"
