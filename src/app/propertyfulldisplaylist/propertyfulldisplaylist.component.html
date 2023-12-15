@@ -50,10 +50,10 @@
                 <th class="header card-text">{{ "PlotNumber" | transloco }}</th>
                 <td class="propertyb">{{ propertyDetail.plotNumber }}</td>
               </tr>
-              <ng-template #noOfFloor *ngIf="propertyDetail.numberofFloors">
+              <ng-template #noOfFloor *ngIf="propertyDetail.numberOfFloors">
                 <tr>
                   <th class="header">{{ "NoofFloor" | transloco }}</th>
-                  <td class="propertyb">{{ propertyDetail.numberofFloors }}</td>
+                  <td class="propertyb">{{ propertyDetail.numberOfFloors }}</td>
                 </tr>
               </ng-template>
               <tr>
@@ -112,7 +112,7 @@
                 </tr>
                 <tr>
                   <th class="header">{{ "NoofFloor" | transloco }}</th>
-                  <td class="propertyb">{{ propertyDetail.numberofFloors }}</td>
+                  <td class="propertyb">{{ propertyDetail.numberOfFloors }}</td>
                 </tr>
               </tbody>
             </table>

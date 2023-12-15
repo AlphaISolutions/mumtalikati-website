@@ -65,7 +65,9 @@ export class PropertydetailsComponent implements OnInit {
   propertyMasterTypeId: number = 1;
   mastertypeid: number | null = null;
   subTypeId: number | null = null;
-  perpagenumber = 8;
+  perpagenumber = 20;
+  pageno = 1;
+  rowno = 8;
   logocolor: boolean = false;
   propertyFilterform!: FormGroup;
   filterCount: any;
@@ -113,6 +115,7 @@ export class PropertydetailsComponent implements OnInit {
   togglericon = { color: '#fffff !important' };
   activeroutes = { color: '#9e2a2b !important', 'font-weight': '500' };
   areaFormControl = new FormControl();
+  isBorderisRed = false;
   constructor(
     private route: ActivatedRoute,
     private rxFormBuilder: RxFormBuilder,
@@ -133,6 +136,9 @@ export class PropertydetailsComponent implements OnInit {
   async ngOnInit() {
     this.getceil();
     this.statedatalist();
+
+    this.inIt();
+    this.queryParams();
     this.configs = {
       backdrop: true,
       ignoreBackdropClick: true,
@@ -146,7 +152,14 @@ export class PropertydetailsComponent implements OnInit {
     this.cd.detectChanges();
     this.langCode = this.languageService.getlang();
   }
-
+  clear() {
+ 
+    if (this.governorateid) {
+      this.isBorderisRed = true;
+    } else {
+      this.isBorderisRed = false;
+    }
+  }
   async initiaalizefilters() {
     this.listingpupose = await this.setupFilterServive.getListingPurpose();
     if (!this.listingpupose) {
@@ -243,6 +256,7 @@ export class PropertydetailsComponent implements OnInit {
   }
   postPropertyFilter_Count(data: PropertyFilter) {
     // this.loading = true;
+
     this.mumtalikatiservic
       .postPropertyFilter_Count(data)
       .then((data) => {
@@ -272,6 +286,7 @@ export class PropertydetailsComponent implements OnInit {
       });
   }
   propertyFilter(data: any) {
+    debugger;
     this.loading = true;
     this.mumtalikatiservic
       .postPropertyFilter(data)
@@ -364,7 +379,7 @@ export class PropertydetailsComponent implements OnInit {
       data.pageNumber = this.page;
       this.listdesc = listingPurposeTypeEnumid(this.listid);
       this.liststring = this.listdesc;
-      this.getpurposeMetatag();
+      this.queryParams();
       if (this.listid == 1) {
         this.maxValue = this.maxPricedata.maxRentPrice;
         this.ceilvalue = this.maxPricedata.maxRentPrice;
@@ -373,12 +388,11 @@ export class PropertydetailsComponent implements OnInit {
         this.maxValue = this.maxPricedata.maxSellPrice;
         this.ceilvalue = this.maxPricedata.maxSellPrice;
       }
-
-      this.queryParams();
       this.propertyFilter(data);
       this.postPropertyFilter_Count(data);
       this.statedatalist();
       this.getmaxPrice();
+      this.getpurposeMetatag();
     }
   }
 
@@ -391,6 +405,10 @@ export class PropertydetailsComponent implements OnInit {
       this.selectGovernorate = event.source.triggerValue;
       let data = this.propertyFilterform.value as PropertyFilter;
       data.gOVERNORATEID = event.value;
+      data.pageNumber = this.pageno;
+      data.rowsNumbers = this.rowno;
+      this.page = data.pageNumber;
+      this.itemsPerPage = data.rowsNumbers;
       this.governoratname = getGovernorateEnumID(event.value);
       this.governoratestring = this.governoratname;
       // this.wilaya=this.wilaya.filter(a=> a.governorateID===this.governorateid)
@@ -411,6 +429,10 @@ export class PropertydetailsComponent implements OnInit {
       console.log(this.selectwilayat);
       let data = this.propertyFilterform.value as PropertyFilter;
       data.wilayatID = event.value;
+      data.pageNumber = this.pageno;
+      data.rowsNumbers = this.rowno;
+      this.page = data.pageNumber;
+      this.itemsPerPage = data.rowsNumbers;
       // this.governoratname = getGovernorateEnumID(event.value)
       this.queryParams();
       this.propertyFilter(data);
@@ -435,7 +457,10 @@ export class PropertydetailsComponent implements OnInit {
       this.areaId = event.value;
       let data = this.propertyFilterform.value as PropertyFilter;
       data.areaID = event.value;
-
+      data.pageNumber = this.pageno;
+      data.rowsNumbers = this.rowno;
+      this.page = data.pageNumber;
+      this.itemsPerPage = data.rowsNumbers;
       this.getArea(this.wilayaid);
       // this.governoratname = getGovernorateEnumID(event.value)
       this.queryParams();
@@ -682,6 +707,10 @@ export class PropertydetailsComponent implements OnInit {
     this.getUnitMT(this.unitcategoryid);
     this.queryParams();
     data.propertyCategory = this.unitcategoryid;
+    data.pageNumber = this.pageno;
+    data.rowsNumbers = this.rowno;
+    this.page = data.pageNumber;
+    this.itemsPerPage = data.rowsNumbers;
     this.propertyFilter(data);
     this.postPropertyFilter_Count(data);
     this.statedatalist();
@@ -691,15 +720,16 @@ export class PropertydetailsComponent implements OnInit {
     if (subTypeid == -1) {
       this.mastertypeid = this.selectedTab + 1;
       this.subTypeId = null;
-      // this.mastertypeid = null
     } else {
       this.mastertypeid = this.selectedTab + 1;
       this.subTypeId = subTypeid;
     }
     let data = this.propertyFilterform.value as PropertyFilter;
     data.listingPurposesID = this.listid;
-    data.rowsNumbers = this.perpagenumber;
-    data.pageNumber = this.page;
+    data.pageNumber = this.pageno;
+    data.rowsNumbers = this.rowno;
+    this.page = data.pageNumber;
+    this.itemsPerPage = data.rowsNumbers;
     data.propertyMasterTypeID = this.mastertypeid;
     data.propertyMasterSubTypeID = this.subTypeId;
     this.propertyMasterTypedesc = propertyMasterTypeEnumid(this.mastertypeid!);
@@ -739,6 +769,7 @@ export class PropertydetailsComponent implements OnInit {
     this.modalService.dismissAll();
   }
   queryParams() {
+    debugger
     this.router.navigate(['propertydetails'], {
       queryParams: {
         purpose: this.liststring,
@@ -750,11 +781,11 @@ export class PropertydetailsComponent implements OnInit {
         area: this.areaId,
         minValue: this.minValue,
         maxValue: this.maxValue,
-       
       },
     });
   }
   inIt() {
+    debugger
     this.route.queryParams.subscribe((params) => {
       this.getPropertyListPurposeId(params);
       this.getGovernorateId(params);
@@ -780,6 +811,7 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getPropertyListPurposeId(params: any) {
+    debugger;
     this.listpurID = listingPurposeTypeEnumSting(params['purpose']);
     if (this.listpurID) {
       this.listid = this.listpurID;
@@ -817,6 +849,7 @@ export class PropertydetailsComponent implements OnInit {
       this.areaId = 0;
     } else {
       this.areaId = +params['area'];
+      this.areadisable=false
     }
   }
   getunitcategoryId(params: any) {
@@ -919,8 +952,8 @@ export class PropertydetailsComponent implements OnInit {
         : (this.listid = 1);
       this.governorateid =
         this.router.getCurrentNavigation()?.extras.state!['governorate'];
-      this.areadisable =
-        this.router.getCurrentNavigation()?.extras.state!['areadisable'];
+      // this.areadisable =
+      //   this.router.getCurrentNavigation()?.extras.state!['areadisable'];
       this.selectGovernorate =
         this.router.getCurrentNavigation()?.extras.state!['selectGovernorate'];
       this.selectwilayat =
@@ -1240,8 +1273,8 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getceil() {
-    this.inIt();
-    this.queryParams();
+    // this.queryParams();
+    // this.inIt();
     this.loading = true;
     this.mumtalikatiservic
       .getMaxUnitPrice()

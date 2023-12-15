@@ -45,6 +45,7 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
     return this.filterservice.getPropertytUnitCategoryid(id)
   }
   backtosearch() {
+    debugger
     if (this.unitcatID == 12 || this.propertyMasterSubType == 15) {
       this.subid = getPropertySubTypeEnumID(this.sharedmodel.propertyMasterSubTypeID!);
       this.router.navigate(['propertydetails'], {
@@ -78,7 +79,7 @@ export class BreadcrumbpropertyfulldisplayComponent implements OnInit {
           'unitCategory': this.sharedmodel.propertyCategory,
           'minValue': this.sharedmodel.minPrice,
           'maxValue': this.sharedmodel.maxPrice,
-         
+          'area':this.sharedmodel.areaId,
         }
       });
     }

@@ -18,10 +18,10 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div class="col-md-2">
-                <mat-form-field appearance="outline">
+            <div class="col-md-2" >
+                <mat-form-field appearance="outline" >
                     <mat-label>{{ "h5" | transloco }}</mat-label>
-                    <mat-select [value]="governorateid || 0" (selectionChange)="onChangeGovernorate($event)">
+                    <mat-select [value]="governorateid || 0" (selectionChange)="onChangeGovernorate($event)" >
                         <mat-option [value]="0" (click)="governorateId()">
                             {{ "All" | transloco }}
                         </mat-option>
@@ -30,11 +30,12 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+               
             </div>
-            <div class="col-md-2">
-                <mat-form-field appearance="outline">
+            <div class="col-md-2" >
+                <mat-form-field appearance="outline" (click)="clear()">
                     <mat-label>{{ "Wilayat" | transloco }}</mat-label>
-                    <mat-select [value]="wilayaid || 0" (selectionChange)="onChangewilaya($event)">
+                    <mat-select [value]="wilayaid || 0" (selectionChange)="onChangewilaya($event)" >
                         <mat-option [value]="0" (click)="wilayanullid()">
                             {{ "All" | transloco }}
                         </mat-option>
@@ -43,6 +44,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+               
             </div>
             <div class="col-md-2" *ngIf="arealist">
                 <mat-form-field appearance="outline">

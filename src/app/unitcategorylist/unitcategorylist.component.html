@@ -1,5 +1,5 @@
 <div class="card  mb-4   b-radius" *ngIf="property" onclick="window.scrollTo(0,0)"
-    (click)="onclick(property.propertyMasterID!,property.propertyUnitID!, property.unitCategoryID!, landLordID ,property.propertySubTypeId!)">
+    (click)="onclick(property.propertyMasterID!,property.propertyUnitId!, property.unitCategoryID!, landLordID ,property.propertySubTypeId!)">
     <div class="row">
         <div class="col-md-5 fill">
             <img class="card-img-top m-2" [src]="property.imageString || bydefault" height="150px" width="150px"
@@ -10,7 +10,7 @@
                 <p class="card-text">{{"Type"|transloco}}: {{getpropertySubType(property.propertySubTypeId)}}
                 </p>
                 <p class="card-text">{{"BuildingID"|transloco}}:{{property.buildingNumber}}</p>
-                <p class="card-text">{{"UnitID"|transloco}}:{{property.propertyUnitID}}</p>
+                <p class="card-text">{{"UnitID"|transloco}}:{{property.propertyUnitId}}</p>
                 <div *ngIf="property.caption == 0 || property.caption == null else showcaption">
                     <!-- not show caption -->
                 </div>

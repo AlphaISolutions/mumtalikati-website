@@ -40,7 +40,7 @@ export class UnitscategoryComponent implements OnInit {
   liststring: string;
   unitcategoryId: any;
   unitcategorystring: string
-  sharedmodel = new State;
+  sharedmodel: State = new State();
   statedata: any;
   areaid:number;
   color = { 'color': 'black!important' };
@@ -118,6 +118,7 @@ export class UnitscategoryComponent implements OnInit {
   }
 
   getState() {
+    debugger
     if (this.router.getCurrentNavigation()?.extras.state != undefined) {
       this.listingPurposeID = this.router.getCurrentNavigation()?.extras.state!["purpose"];
       this.governorateid = this.router.getCurrentNavigation()?.extras.state!["governorate"];
@@ -135,21 +136,23 @@ export class UnitscategoryComponent implements OnInit {
   }
   
   statedatalist() {
-    
+    debugger
     if (this.sharedmodel == undefined) {
+      debugger
       this.sharedmodel = this.localstorage.getsharedmodel()!
     } else {
-      let data = this.sharedmodel
-      data.listingPurposesID = this.listingPurposeID;
-      data.gOVERNORATEID = this.governorateid;
-      data.propertyMasterTypeID = this.propertyMasterTypeID;
-      data.propertyMasterSubTypeID = this.subTypeId;
-      data.propertyCategory = this.unitsid;
-      data.minPrice = this.minValue;
-      data.maxPrice = this.maxValue;
-      data.pageNumber = this.page;
-      data.rowsNumbers = this.perpagenumber;
-      data.areaId=this.areaid;
+      this.sharedmodel.listingPurposesID = this.listingPurposeID;
+      this.sharedmodel.gOVERNORATEID = this.governorateid;
+      this.sharedmodel.propertyMasterTypeID = this.propertyMasterTypeID;
+      this.sharedmodel.propertyMasterSubTypeID = this.subTypeId;
+      this.sharedmodel.propertyCategory = this.unitsid;
+      this.sharedmodel.minPrice = this.minValue;
+      this.sharedmodel.maxPrice = this.maxValue;
+      this.sharedmodel.pageNumber = this.page;
+      this.sharedmodel.rowsNumbers = this.perpagenumber;
+      this.sharedmodel.areaId = this.areaid;
+      this.localstorage.setsharedmodel(this.sharedmodel)
+      // localStorage.setItem('getState', JSON.stringify(this.sharedmodel));
     }
 
   }

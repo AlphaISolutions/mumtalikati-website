@@ -1,14 +1,13 @@
 export class State {
-    propertyMasterSubTypeID!: number | null;
-    listingPurposesID!: number | null;
-    propertyMasterTypeID!: number | null;
-    gOVERNORATEID!:number |  null;
-    minPrice!: number | null;
-    maxPrice!: number | null;
-    propertyCategory!: number | null;
-    pageNumber!: number | null;
-    rowsNumbers!: number | null;
-    wilaya:number|null;
-    areaId:number|null;
-  
-}
+    propertyMasterSubTypeID: number | null = null;
+    listingPurposesID: number | null = null;
+    propertyMasterTypeID: number | null = null;
+    gOVERNORATEID: number | null = null;
+    minPrice: number | null = null;
+    maxPrice: number | null = null;
+    propertyCategory: number | null = null;
+    pageNumber: number | null = null;
+    rowsNumbers: number | null = null;
+    wilaya: number | null = null;
+    areaId: number | null = null;
+  }

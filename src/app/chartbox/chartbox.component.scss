@@ -1,0 +1,286 @@
+// .container {
+//   display: flex;
+//   height: calc(100vh - 70px);
+// }
+// .message {
+//   width: 60%;
+//   margin: 16px;
+//   border-radius: 16px;
+//   padding: 24px;
+//   background-color: rgba(0, 0, 0, 0.05);
+// }
+// .messages-header {
+//   display: flex;
+//   margin-bottom: 8px;
+// }
+// .messages-header > img {
+//   border-radius: 50px;
+//   object-fit: cover;
+//   margin-right: 16px;
+//   height: 35px;
+//   background-color: rgba(0, 0, 0, 0.05);
+// }
+// .messages-header > h2 {
+//   margin: 0;
+// }
+// .chat-area {
+//   height: calc(100vh - 546px);
+//   display: flex;
+//   flex-direction: column;
+//   background-color: white;
+// }
+// .chat-area > :first-child {
+//   margin: auto;
+// }
+// .input-area > mat-form-field {
+//   width: 100%;
+// }
+// .input-area {
+//   padding-top: 16px;
+//   padding-bottom: 8px;
+// }
+// .chat-bubble-container {
+//   display: flex;
+//   width: 100%;
+//   justify-content: flex-start;
+// }
+// .chat-bubble {
+//   background-color: rgba(52, 92, 102, 0.1);
+//   padding-top: 8px;
+//   padding-bottom: 18px;
+//   padding-right: 8px;
+//   padding-right: 100px;
+//   margin-bottom: 16px;
+//   border-top-left-radius: 0px;
+//   border-top-right-radius: 18px;
+//   border-bottom-left-radius: 18px;
+//   border-bottom-right-radius: 18px;
+//   max-width: 70%;
+//   word-wrap: break-word;
+//   color: #555555;
+// }
+
+.user-message {
+  text-align: right;
+  background-color: #5b8995;
+  color: #fff;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 0px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.chatbot-message {
+  text-align: left;
+  background-color: rgba(52, 92, 102, 0.1);
+  color: #555555;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 18px;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+// .g-user {
+//   width: 32px;
+//   height: 32px;
+//   background-color: rgba(52, 92, 102, 0.1);
+//   border-radius: 10px;
+// }
+
+// .loading-indicator {
+//   text-align: center;
+//   padding: 10px;
+//   color: #777;
+// }
+// .g-weight{
+//     font-size: 12px;
+//     line-height: 20px;
+//     font-weight: 500px;
+    
+// }
+// chartbox.component.scss
+
+.chat-box {
+    width: 300px;
+    height: 400px;
+    background-color:#ffff;
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+  
+    header {
+        background-color: #fff;
+      color: #000;
+      display: flex;
+      padding: 0 5px;
+  
+      > * {
+        line-height: 30px;
+      }
+  
+      h1 {
+        margin: 0;
+        font-size: 1.1em;
+      }
+  
+      .close-button {
+        cursor: pointer;
+        user-select: none;
+      }
+    }
+  
+    section {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      height: calc(100% - 40px - 68px);
+      padding: 12px;
+  
+      div {
+        margin: 12px 0;
+      }
+  
+      span {
+        display: inline-block;
+        padding: 6px 8px;
+        margin: 1px 0;
+        max-width: 90%;
+        word-wrap: break-word;
+      }
+  
+      div.me {
+        text-align: left;
+  
+        span {
+          background-color: #68c;
+          border-radius: 4px 16px 16px 4px;
+        }
+  
+        span:first-of-type {
+          border-top-left-radius: 16px;
+        }
+  
+        span:last-of-type {
+          border-bottom-left-radius: 16px;
+        }
+      }
+  
+      div.not-me {
+        text-align: right;
+  
+        span {
+          background-color: #bcf;
+          border-radius: 16px 4px 4px 16px;
+        }
+  
+        span:first-of-type {
+          border-top-right-radius: 16px;
+        }
+  
+        span:last-of-type {
+          border-bottom-right-radius: 16px;
+        }
+      }
+    }
+  
+    footer {
+      input {
+        font-family: "Karla", sans-serif;
+        // outline: 0;
+        padding: 0 12px;
+        height: 40px;
+        width: 100%;
+        font-size: 1em;
+        // border: 2px solid transparent; /* Set a transparent solid border */
+        border: 2px solid linear-gradient(180deg, #3DB2CF 0%, #345C66 100%); /* Apply the gradient as the border image */
+        border-image-slice: 1;
+        border-radius: 20px; 
+        outline: none;
+      }
+    }
+  }
+.input-area > mat-form-field {
+  width: 100%;
+}
+.input-area {
+  padding-top: 16px;
+  padding-bottom: 8px;
+}
+.d-flex {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Add this style to make the button rounded */
+  .rounded-button {
+    border-radius: 50%; /* Use 50% to make it a circle */
+  }
+
+ 
+
+  .containers {
+    --uib-size: 43px;
+    --uib-color: black;
+    --uib-speed: 1.3s;
+    --uib-dot-size: calc(var(--uib-size) * 0.24);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--uib-dot-size);
+    width: var(--uib-size);
+  }
+
+  .dot,
+  .containers::before,
+  .containers::after {
+    content: '';
+    display: block;
+    height: var(--uib-dot-size);
+    width: var(--uib-dot-size);
+    border-radius: 50%;
+    background-color: var(--uib-color);
+    transform: scale(0);
+    transition: background-color 0.3s ease;
+  }
+
+  .containers::before {
+    animation: pulse var(--uib-speed) ease-in-out calc(var(--uib-speed) * -0.375)
+      infinite;
+  }
+
+  .dot {
+    animation: pulse var(--uib-speed) ease-in-out calc(var(--uib-speed) * -0.25)
+      infinite both;
+  }
+
+  .containers::after {
+    animation: pulse var(--uib-speed) ease-in-out calc(var(--uib-speed) * -0.125)
+      infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(0);
+    }
+
+    50% {
+      transform: scale(1);
+    }
+  }
+
+.text-g{
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px;
+background: var(--Linear, linear-gradient(180deg, #3DB2CF 0%, #345C66 100%));
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}

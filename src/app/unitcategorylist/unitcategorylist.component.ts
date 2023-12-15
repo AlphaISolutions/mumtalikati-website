@@ -31,6 +31,7 @@ export class UnitcategorylistComponent implements OnInit {
     let unitCategory = getPropertyUnitCategoryEnum(unitCategoryID)
     let propertySubType = getPropertySubTypeEnumID(propertySubTypeId)
     if (this.sharedmodel == undefined) {
+      debugger
       this.sharedmodel = this.localstorage.getsharedmodel()!
       this.router.navigate(['propertyfulldisplay'],
         {
@@ -42,10 +43,12 @@ export class UnitcategorylistComponent implements OnInit {
             'propertyMasterSubType': this.sharedmodel.propertyMasterSubTypeID,
             'unitCategory': this.sharedmodel.propertyCategory,
             'minValue': this.sharedmodel.minPrice,
-            'maxValue': this.sharedmodel.maxPrice
+            'maxValue': this.sharedmodel.maxPrice,
+            'area':this.sharedmodel.areaId,
           }
         });
     } else {
+      debugger
       this.router.navigate(['propertyfulldisplay'],
         {
           queryParams: { 'unitCategory': unitCategory, 'PropertySubType': propertySubType, 'landlord': landLordID, 'propertyMaster': propertyMasterID, 'propertyUnit': propertyUnitID },
@@ -56,7 +59,8 @@ export class UnitcategorylistComponent implements OnInit {
             'propertyMasterSubType': this.sharedmodel.propertyMasterSubTypeID,
             'unitCategory': this.sharedmodel.propertyCategory,
             'minValue': this.sharedmodel.minPrice,
-            'maxValue': this.sharedmodel.maxPrice
+            'maxValue': this.sharedmodel.maxPrice,
+            'area':this.sharedmodel.areaId,
           }
         });
     }

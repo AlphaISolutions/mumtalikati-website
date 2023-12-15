@@ -21,7 +21,10 @@ export class InterceptorService implements HttpInterceptor {
         else if (requestUrl.indexOf('@assets-url') !== -1) {
             requestUrl = requestUrl.replace('@assets-url', environment.assetsBaseUrl);
         }
-        if (!requestUrl.includes(environment.assetsBaseUrl)) {
+        else if(requestUrl.indexOf('@chatBox-Url') !== -1){
+            requestUrl = requestUrl.replace('@chatBox-Url', environment.chatBoxUrl);
+        }
+        if (!requestUrl.includes(environment.assetsBaseUrl || environment.chatBoxUrl )) {
             let locale = localStorage.getItem('locale') ?? 'ar'
             req = req.clone({
                 headers: req.headers.set('Accept-Language', locale).set('Authorization', `Bearer ${token}`),

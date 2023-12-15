@@ -17,7 +17,7 @@ export class SetFiltersServive {
     constructor(private setupService: SetupService) {
 
     }
-    startSession(purposedata: any, propertymasterdata: any, propertysubTypedata: any, UnitCategorydata: any, governoratedata: any, Statusdata: any,wilayadata) {
+    startSession(purposedata: any, propertymasterdata: any, propertysubTypedata: any, UnitCategorydata: any, governoratedata: any, Statusdata: any,wilayadata,state:any) {
         localStorage.setItem('listingpupose', JSON.stringify(purposedata));
         localStorage.setItem('propertymasterType', JSON.stringify(propertymasterdata));
         localStorage.setItem('propertysubType', JSON.stringify(propertysubTypedata));
@@ -25,6 +25,7 @@ export class SetFiltersServive {
         localStorage.setItem('governorate', JSON.stringify(governoratedata));
         localStorage.setItem('wilaya', JSON.stringify(wilayadata));
         localStorage.setItem('getStatus', JSON.stringify(Statusdata));
+        localStorage.setItem('state', JSON.stringify(state));
 
     }
     stopSession() {
@@ -35,6 +36,7 @@ export class SetFiltersServive {
         localStorage.removeItem('governorate');
         localStorage.removeItem('getStatus');
         localStorage.removeItem('wilaya');
+        localStorage.removeItem('state');
     }
 
     getListingPurpose(): ListingPurpose[] {
@@ -134,12 +136,12 @@ export class SetFiltersServive {
         localStorage.setItem('wilaya', JSON.stringify(data));
     }
     getsharedmodel(): State {
-        let model = JSON.parse(localStorage.getItem('state')!);
-        if (model) {
-            this.setsharedmodel(model)
-            return model;
+        let modelshared = JSON.parse(localStorage.getItem('state')!);
+        if (modelshared) {
+            this.setsharedmodel(modelshared)
+            return modelshared;
         }
-        return model;
+        return modelshared;
     }
     setsharedmodel(data: any) {
         localStorage.setItem('state', JSON.stringify(data));

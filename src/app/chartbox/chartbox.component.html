@@ -1,0 +1,72 @@
+<!-- <div class="containeer">
+    <div class="">
+        <div class="messages-header">
+            <img src={{bot}} alt="bot">
+            <h2>Mumtalikati Live Chat</h2>
+        </div>
+       
+        <div class="chat-area">
+            <div *ngFor="let message of chatmessages" class="chat-bubble-container">
+                <div class="d-flex gap-2">
+                    <span *ngIf="!message.isUser">
+                     <img src="{{ bot }}" alt="bot">
+                      </span>
+                    <div [ngClass]="{'user-message': message.isUser, 'chatbot-message': !message.isUser}">
+                        {{ message.text }}
+                       
+                    </div>
+                    <span *ngIf="message.isUser">
+                        
+                      </span>
+                </div>
+               
+            </div>
+        </div>
+        <div class="input-area">
+            <mat-form-field appearance="outline">
+                <input [formControl]="messageControl" matInput placeholder="Type a message to Mumtalikati Bot..." (keydown.enter)="sendMessage()"/>
+                <button mat-icon-button matSuffix (click)="sendMessage()">
+                    <mat-icon>send</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </div>
+</div> -->
+
+<div class="chat-box">
+    <header>
+        <div class="d-flex gap-2">
+            <img src={{bot}} alt="bot">
+            <h1>Mumtalikati Live Chat</h1>
+        </div>
+      
+      <span style="flex:1"></span>
+      <mat-icon>remove</mat-icon>
+      <mat-icon (click)="toggleChatbox()">clear</mat-icon>
+    </header>
+    <section id="message-list">
+        <div *ngFor="let message of chatmessages" class="chat-bubble-container">
+            <div class="d-flex gap-2">
+                <span *ngIf="!message.isUser">
+                 <img src="{{ bot }}" alt="bot">
+                  </span>
+                <div [ngClass]="{'user-message': message.isUser, 'chatbot-message': !message.isUser, 'an-1': !message.isUser}">
+                    {{ message.text }}
+                </div>
+                <span *ngIf="message.isUser"><div class="text-g"></div></span>
+            </div>
+        </div>
+    </section>
+    <footer class="ps-3 pt-4">
+            <div class="d-flex">
+              <div>
+                <input [formControl]="messageControl"  placeholder="Type a message to Mumtalikati Bot..." (keydown.enter)="sendMessage()" />
+              </div>
+              <div>
+                <button (click)="sendMessage()" class="border-0 bg-white">
+                 <img src={{SendButton}} alt="SendButton">
+                </button>
+              </div>
+            </div>
+    </footer>
+  </div>

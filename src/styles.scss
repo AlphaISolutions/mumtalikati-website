@@ -3,7 +3,6 @@
 @import "variables.scss";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~ngx-toastr/toastr.css';
-
 body {
     height: 100%;
     font-size: 16;
@@ -502,14 +501,17 @@ hr {
 
 .leaflet-pane .leaflet-marker-pane img {
     width: 24px !important;
-    height: 24px !important;
+    // height: 24px !important;
     background: transparent !important
 }
 // .mat-form-field-appearance-outline .mat-form-field-outline{
 //     color: red !important;
 //   }
 
-
+.custom-dialog-container {
+    border-radius: 30px !important;
+    max-width: none;
+  }
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

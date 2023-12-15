@@ -44,61 +44,74 @@ export class ShortdisplayComponent implements OnInit {
   getunitcatid(id: number) {
     return this.filterservice.getPropertytUnitCategoryid(id)
   }
-  onclick(unitCategoryID: number, landLordID: number, propertyMasterID: number, propertyMasterSubType: number, listingPurposeID: number) {
-    this.unitCategoryId = getPropertyUnitCategoryEnum(unitCategoryID)
-    this.liststring = listingPurposeTypeEnumid(listingPurposeID)
-    this.propertyMasterSubTypeid = propertyMasterSubType
-    if (this.sharedmodel && this.sharedmodel.wilaya !== undefined && this.sharedmodel.wilaya !== null) {
-      localStorage.setItem("wilayaid", this.sharedmodel.wilaya.toString());
+  onclick(
+    unitCategoryID: number,
+    landLordID: number,
+    propertyMasterID: number,
+    propertyMasterSubType: number,
+    listingPurposeID: number
+  ) {
+    debugger
+    this.unitCategoryId = getPropertyUnitCategoryEnum(unitCategoryID);
+    this.liststring = listingPurposeTypeEnumid(listingPurposeID);
+    this.propertyMasterSubTypeid = propertyMasterSubType;
+  
+    const wilayaid = this.sharedmodel?.wilaya || 0;
+    localStorage.setItem('wilayaid', wilayaid.toString());
+  
+    if (propertyMasterSubType == 15 || unitCategoryID == 12) {
+      this.navigatefulldisplay(landLordID, propertyMasterID, propertyMasterSubType);
+    } else if (listingPurposeID == 1) {
+      this.navigateunitscategory(propertyMasterID);
     } else {
-      localStorage.setItem("wilayaid", "0");
-    }
-    if (propertyMasterSubType == 15) {
-      this.navigatefulldisplay(landLordID, propertyMasterID, propertyMasterSubType)
-    }
-    else if (unitCategoryID == 12) {
-      this.navigatefulldisplay(landLordID, propertyMasterID, propertyMasterSubType)
-    }
-    else if (listingPurposeID == 1) {
-      this.navigateunitscategory(propertyMasterID)
-    }
-    else {
-      this.navigateunitscategory(propertyMasterID)
+      this.navigateunitscategory(propertyMasterID);
     }
   }
+  
   navigateunitscategory(propertyMasterID: number) {
     this.router.navigate(
       ['Unitscategory'],
       {
-        queryParams: { 'purpose': this.liststring, 'unitCategory': this.unitCategoryId, 'propertyMasterID': propertyMasterID },
+        queryParams: {
+          purpose: this.liststring,
+          unitCategory: this.unitCategoryId,
+          propertyMasterID: propertyMasterID,
+        },
         state: {
-          'purpose': this.sharedmodel.listingPurposesID,
-          'governorate': this.sharedmodel.gOVERNORATEID,
-          'propertyMasterType': this.sharedmodel.propertyMasterTypeID,
-          'propertyMasterSubType': this.sharedmodel.propertyMasterSubTypeID,
-          'unitCategory': this.sharedmodel.propertyCategory,
-          'minValue': this.sharedmodel.minPrice,
-          'maxValue': this.sharedmodel.maxPrice,
-          'area':this.sharedmodel.areaId
-        }
-      });
+          purpose: this.sharedmodel?.listingPurposesID,
+          governorate: this.sharedmodel?.gOVERNORATEID,
+          propertyMasterType: this.sharedmodel?.propertyMasterTypeID,
+          propertyMasterSubType: this.sharedmodel?.propertyMasterSubTypeID,
+          unitCategory: this.sharedmodel?.propertyCategory,
+          minValue: this.sharedmodel?.minPrice,
+          maxValue: this.sharedmodel?.maxPrice,
+          area: this.sharedmodel?.areaId,
+        },
+      }
+    );
   }
+  
   navigatefulldisplay(landLordID: number, propertyMasterID: number, propertyMasterSubType: number) {
-
     this.router.navigate(['propertyfulldisplay'],
       {
-        queryParams: { 'unitCategory': this.unitCategoryId, 'landlord': landLordID, 'propertyMaster': propertyMasterID, 'propertyUnit': 0 },
+        queryParams: {
+          unitCategory: this.unitCategoryId,
+          landlord: landLordID,
+          propertyMaster: propertyMasterID,
+          propertyUnit: 0,
+        },
         state: {
-          'purpose': this.sharedmodel.listingPurposesID,
-          'governorate': this.sharedmodel.gOVERNORATEID,
-          'propertyMasterType': this.sharedmodel.propertyMasterTypeID,
-          'propertyMasterSubType': this.sharedmodel.propertyMasterSubTypeID,
-          'unitCategory': this.sharedmodel.propertyCategory,
-          'minValue': this.sharedmodel.minPrice,
-          'maxValue': this.sharedmodel.maxPrice,
-          'propertyMasterSubtype': propertyMasterSubType,
-          'area':this.sharedmodel.areaId
-        }
+          purpose: this.sharedmodel?.listingPurposesID,
+          governorate: this.sharedmodel?.gOVERNORATEID,
+          propertyMasterType: this.sharedmodel?.propertyMasterTypeID,
+          propertyMasterSubType: this.sharedmodel?.propertyMasterSubTypeID,
+          unitCategory: this.sharedmodel?.propertyCategory,
+          minValue: this.sharedmodel?.minPrice,
+          maxValue: this.sharedmodel?.maxPrice,
+          propertyMasterSubtype: propertyMasterSubType,
+          area: this.sharedmodel?.areaId,
+        },
       });
   }
+  
 }
