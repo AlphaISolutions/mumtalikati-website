@@ -48,7 +48,7 @@ export class MumtalikatiService {
     queryParams = queryParams.append("RowsNumbers", rowsNumbers);
     return await firstValueFrom(this.http
       .get<OwnerPropertyMasterIndiviualUnits[]>(
-        `@mumtalikati-api/OwnerPropertyDetail/GetPropertyMasterIndiviualsUnit`, { params: queryParams }
+        `@mumtalikati-api/OwnerPropertyDetail/PropertyCategoryIndiviualUnits`, { params: queryParams }
       )).then(res => res as OwnerPropertyMasterIndiviualUnits[]).catch(err => { return Promise.reject(err) });
   }
   async getPropertyMasterIndiviualsUnitTotalCount(PropertyMasterID: number, listingpurposeID: number, UnitCategoryID: number, status: number): Promise<Number> {
@@ -59,7 +59,7 @@ export class MumtalikatiService {
     queryParams = queryParams.append("status", status);
     return await firstValueFrom(this.http
       .get<Number>(
-        `@mumtalikati-api/OwnerPropertyDetail/GetPropertyMasterIndiviualsUnitTotalCount`, { params: queryParams }
+        `@mumtalikati-api/OwnerPropertyDetail/PropertyCategoryIndiviualUnitsTotalCount`, { params: queryParams }
       )).then(res => res as Number).catch(err => { return Promise.reject(err) });
   }
   async getPropertyUnitDetails(landLordID: number, UnitCategoryID: number, PropertyMasterID: number, propertyUnitid: number): Promise<OwnerRentDetail> {

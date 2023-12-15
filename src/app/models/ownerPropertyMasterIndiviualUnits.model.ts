@@ -17,7 +17,7 @@ export class OwnerPropertyMasterIndiviualUnits {
     sellPrice!: number | null;
     unitCategoryID!: number | null;
     listingPurposeID!: number | null;
-    propertyUnitID!: number | null;
+    propertyUnitId!: number | null;
     caption!: string;
     totalCount!: number | null;
     imageString!: string;

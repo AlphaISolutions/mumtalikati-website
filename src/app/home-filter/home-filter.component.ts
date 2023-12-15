@@ -60,7 +60,6 @@ export class HomeFilterComponent implements OnInit {
   selectedArea: string ='';
   selectwilayat: string = '';
   selectGovernorate:string='';
-  // areaFormControl = new FormControl('', Validators.required);
   areaFormControl = new FormControl('', Validators.required);
   wilayatFormControl = new FormControl('', Validators.required);
   lang: string = localStorage.getItem('locale') ?? 'ar'
@@ -181,7 +180,6 @@ export class HomeFilterComponent implements OnInit {
         selectGovernorate:this.selectGovernorate,
         selectwilayat:  this.selectwilayat,
         selectedArea: this.selectedArea
-
       }
     });
   }

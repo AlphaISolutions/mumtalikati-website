@@ -35,6 +35,7 @@
     border-bottom-left-radius: 16px !important;
     border-bottom-right-radius: 16px !important;
 }
+
 .card-body {
     flex: 11 auto;
     padding: var(none) var(--bs-card-spacer-x); 
@@ -57,4 +58,9 @@
  
 .font-price{
     font-size: 20px;
+}
+.card-text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

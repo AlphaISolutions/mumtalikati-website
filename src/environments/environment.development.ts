@@ -3,6 +3,7 @@ export const environment = {
     production: false,
     userBaseUrl:"https://dev-api.mumtalikati.com/api",
     assetsBaseUrl : "https://d2og5lryw1ajtt.cloudfront.net",
+    chatBoxUrl:"https://chat.mumtalikati.com",
     firebase: {
         apiKey: 'AIzaSyArxo-zvISSixq163xy3qWobyOzfWqmcuc',
         authDomain: 'mumtalikati-e8dbd.firebaseapp.com',

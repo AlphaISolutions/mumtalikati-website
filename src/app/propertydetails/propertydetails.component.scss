@@ -82,7 +82,12 @@
     color: #9e2a2b;
 
 }
-
+.clname {
+    border-color: #9e2a2b !important; /* Corrected property name */
+  }
+  .custom-border-color {
+    border-color: blue !important; /* Add !important to ensure it takes precedence */
+  }
 .pricecenter {
     display: flex;
     justify-content: center !important;

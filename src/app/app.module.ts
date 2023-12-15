@@ -78,7 +78,8 @@ import {
 } from '@angular/fire/remote-config';
 registerLocaleData(localeEl);
 // import {  ReCaptchaV3Provider } from '@firebase/app-check';
-import {HomeFilterComponent} from '../app/home-filter/home-filter.component'
+import {HomeFilterComponent} from '../app/home-filter/home-filter.component';
+import { ChartboxComponent } from './chartbox/chartbox.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,6 +108,7 @@ import {HomeFilterComponent} from '../app/home-filter/home-filter.component'
     OtpVerificationComponent,
     SetyouPasswordComponent,
     HomeFilterComponent,
+    ChartboxComponent,
   ],
   imports: [
     ToastrModule.forRoot({

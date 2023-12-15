@@ -67,6 +67,7 @@ export class PropertyfulldisplayComponent implements OnInit {
   }
 
   inIt() {
+    debugger
     this.route.queryParams.subscribe(params => {
       this.pmid = +params['propertyMaster'];
       this.propertyUnitid = +params['propertyUnit'];

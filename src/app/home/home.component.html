@@ -1,53 +1,152 @@
 <div class="loading" *ngIf="loading; else showList">
-    <mat-spinner [diameter]="50"></mat-spinner>
+  <mat-spinner [diameter]="50"></mat-spinner>
 </div>
 <ng-template #showList>
-    <div id="image" class="container-fluid">
-        <div class="container">
-            <app-top-bar></app-top-bar>
-            <div class="centered-element text-center py-5" style="margin-top: 80px">
-                <h2 class="h1-color">{{ "h1" | transloco }}</h2>
-                <app-home-filter></app-home-filter>
-            </div>
-        </div>
-    </div>
-    <div class="container section">
-        <div id="homesection">
-            <div class="pt-5 ps-4 pe-4">
-                <h5 class="text-color">{{ "hs1" | transloco }}</h5>
-                <p class="pt-2 text-color">{{ "hsp" | transloco }}</p>
-            </div>
-            <div class="pt-2 ps-4 pb-5 pe-4">
-                <button mat-stroked-button color="accent" class="mat-border" onclick="window.scrollTo(0,0)"
-                    [routerLink]="'propertydetails'">
-                    <mat-icon *ngIf="rightrow">keyboard_arrow_right</mat-icon>{{ "Viewnow" | transloco }}
-                    <mat-icon *ngIf="leftrow">keyboard_arrow_right</mat-icon>
-                </button>
-            </div>
-        </div>
-        <div class="pt-5" [dir]="direction">
-            <h1 class="inline">{{ "hsOur" | transloco }}</h1>
-            <p class="inline explore float-end">
-                <a [routerLink]="'propertydetails'" onclick="window.scrollTo(0,0)" class="under"><b>{{ "ExploreAll" |
-                        transloco }}</b></a>
-            </p>
-        </div>
-
-    </div>
+  <div id="image" class="container-fluid">
     <div class="container">
-        <div class="row" *ngIf="ownerPropertyFilter">
-            <div class="col-md-6 col-lg-4 col-xl-4 col-xxl-3" *ngFor="let property of ownerPropertyFilter">
-                <app-shortdisplay [property]="property"></app-shortdisplay>
-            </div>
-            
-            <!-- <div class=" d-flex align-items-center justify-content-center" style="height: 350px;"
+      <app-top-bar></app-top-bar>
+      <div class="centered-element text-center py-5" style="margin-top: 80px">
+        <h2 class="h1-color">{{ "h1" | transloco }}</h2>
+        <div
+          class="position-relative"
+          *ngIf="showChatbox"
+          class="chatbotdiv p-2"
+        >
+          <div class="chat-box">
+            <header>
+              <div class="d-flex gap-2">
+                <img src="{{ bot }}" alt="bot" />
+                <h1>Mumtalikati Live Chat</h1>
+              </div>
+
+              <span style="flex: 1"></span>
+              <mat-icon (click)="toggleChatbox()">remove</mat-icon>
+              <mat-icon (click)="clearChat()">clear</mat-icon>
+            </header>
+            <section id="message-list">
+              <div
+                *ngFor="let message of chatmessages; let i = index"
+                class="chat-bubble-container"
+              >
+                <div class="d-flex gap-2">
+                  <span *ngIf="!message.isUser">
+                    <img src="{{ bot }}" alt="bot" />
+                  </span>
+
+                  <div
+                    [ngClass]="{
+                      'user-message': message.isUser,
+                      'chatbot-message': !message.isUser,
+                      'an-1': !message.isUser
+                    }"
+                  >
+                    {{ message.text }}
+                  </div>
+
+                  
+                  <span *ngIf="message.isUser"><div class="text-g">G</div></span>
+                </div>
+                <div *ngIf="chatloading">
+                    <div *ngIf="i === chatmessages.length - 1" class="d-flex gap-2">
+                        <img src="{{ bot }}" alt="bot" />
+                      <div [ngClass]="{ 'chatbot-message': message.isUser }">
+                        <div class="containers">
+                          <div class="dot"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+            </section>
+            <footer class="ps-3 pt-4">
+              <div class="d-flex">
+                <div>
+                  <input
+                    [formControl]="messageControl"
+                    placeholder="Type a message to Mumtalikati Bot..."
+                    (keydown.enter)="sendMessage()"
+                  />
+                </div>
+                <div>
+                  <button (click)="sendMessage()" class="border-0 bg-white">
+                    <img src="{{ SendButton }}" alt="SendButton" />
+                  </button>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </div>
+        <app-home-filter></app-home-filter>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="position-relative pt-5">
+    <div class="position-absolute bot">
+      <img
+        src="{{ boticon }}"
+        alt=""
+        class="btn border-0"
+        (click)="toggleChatbox()"
+      />
+    </div>
+  </div> -->
+
+  <div class="container section">
+    <div id="homesection">
+      <div class="pt-5 ps-4 pe-4">
+        <h5 class="text-color ">{{ "hs1" | transloco }}</h5>
+        <p class="pt-2 text-color">{{ "hsp" | transloco }}</p>
+        <!-- <p class="an-1">jskdfhkjshfkjshf dbskjfhkjuhsdf hbsdjkhfcjhsdf hkjdhf hdsjkhfjkds</p> -->
+      </div>
+      <div class="pt-2 ps-4 pb-5 pe-4">
+        <button
+          mat-stroked-button
+          color="accent"
+          class="mat-border"
+          onclick="window.scrollTo(0,0)"
+          [routerLink]="'propertydetails'"
+        >
+          <mat-icon *ngIf="rightrow">keyboard_arrow_right</mat-icon
+          >{{ "Viewnow" | transloco }}
+          <mat-icon *ngIf="leftrow">keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="pt-5 d-flex justify-content-between gap-5">
+      <h1 class="inline">{{ "hsOur" | transloco }}</h1>
+      <p class="inline explore">
+        <a
+          [routerLink]="'propertydetails'"
+          onclick="window.scrollTo(0,0)"
+          class="under"
+          ><b>{{ "ExploreAll" | transloco }}</b></a
+        >
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row" *ngIf="ownerPropertyFilter">
+      <div
+        class="col-md-6 col-lg-4 col-xl-4 col-xxl-3"
+        *ngFor="let property of ownerPropertyFilter"
+      >
+        <app-shortdisplay [property]="property"></app-shortdisplay>
+      </div>
+
+      <!-- <div class=" d-flex align-items-center justify-content-center" style="height: 350px;"
                 *ngIf="ownerPropertyFilter.length == 0">
                 <p class="">No Property Listed</p>
             </div> -->
-            <div class="d-flex align-items-center justify-content-center" style="height: 350px;" *ngIf="isLoading">
-                <div class="loading-spinners"></div>
-              </div>
-        </div>
+      <div
+        class="d-flex align-items-center justify-content-center"
+        style="height: 350px"
+        *ngIf="isLoading"
+      >
+        <div class="loading-spinners"></div>
+      </div>
     </div>
-
+  </div>
 </ng-template>
