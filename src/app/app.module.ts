@@ -10,10 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShortdisplayComponent } from './shortdisplay/shortdisplay.component';
-import {
-  HttpClientModule,
-  HTTP_INTERCEPTORS,
-} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './services/interceptor.service';
 import { PropertydetailsComponent } from './propertydetails/propertydetails.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -43,7 +40,7 @@ import { BreadcrumbpropertyfulldisplayComponent } from './breadcrumbpropertyfull
 import { PropertyfulldisplaylistComponent } from './propertyfulldisplaylist/propertyfulldisplaylist.component';
 import { FaqComponent } from './faq/faq.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
-import { LoginComponent } from './sign-up/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { SigninComponent } from './sign-up/signin/signin.component';
 import { SignupComponent } from './sign-up/signup/signup.component';
@@ -78,8 +75,8 @@ import {
 } from '@angular/fire/remote-config';
 registerLocaleData(localeEl);
 // import {  ReCaptchaV3Provider } from '@firebase/app-check';
-import {HomeFilterComponent} from '../app/home-filter/home-filter.component';
-import { ChartboxComponent } from './chartbox/chartbox.component'
+import { HomeFilterComponent } from '../app/home-filter/home-filter.component';
+import { ChartboxComponent } from './chartbox/chartbox.component';
 @NgModule({
   declarations: [
     AppComponent,

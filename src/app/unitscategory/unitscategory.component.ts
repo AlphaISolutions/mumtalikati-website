@@ -118,7 +118,7 @@ export class UnitscategoryComponent implements OnInit {
   }
 
   getState() {
-    debugger
+    
     if (this.router.getCurrentNavigation()?.extras.state != undefined) {
       this.listingPurposeID = this.router.getCurrentNavigation()?.extras.state!["purpose"];
       this.governorateid = this.router.getCurrentNavigation()?.extras.state!["governorate"];
@@ -136,9 +136,9 @@ export class UnitscategoryComponent implements OnInit {
   }
   
   statedatalist() {
-    debugger
+    
     if (this.sharedmodel == undefined) {
-      debugger
+      
       this.sharedmodel = this.localstorage.getsharedmodel()!
     } else {
       this.sharedmodel.listingPurposesID = this.listingPurposeID;

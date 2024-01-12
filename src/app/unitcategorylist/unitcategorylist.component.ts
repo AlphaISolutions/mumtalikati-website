@@ -31,7 +31,7 @@ export class UnitcategorylistComponent implements OnInit {
     let unitCategory = getPropertyUnitCategoryEnum(unitCategoryID)
     let propertySubType = getPropertySubTypeEnumID(propertySubTypeId)
     if (this.sharedmodel == undefined) {
-      debugger
+      
       this.sharedmodel = this.localstorage.getsharedmodel()!
       this.router.navigate(['propertyfulldisplay'],
         {
@@ -48,7 +48,7 @@ export class UnitcategorylistComponent implements OnInit {
           }
         });
     } else {
-      debugger
+      
       this.router.navigate(['propertyfulldisplay'],
         {
           queryParams: { 'unitCategory': unitCategory, 'PropertySubType': propertySubType, 'landlord': landLordID, 'propertyMaster': propertyMasterID, 'propertyUnit': propertyUnitID },

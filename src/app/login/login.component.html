@@ -1,0 +1,84 @@
+
+<div  id="bg-image">
+    <div class="center">
+        <div class="login-container">
+
+            <div class="login-header">
+              <div>Sign In</div>
+              <p class="fs-6">Let’s build something great</p>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+              <div class="form-group">
+                <div class="input-container">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput 
+                        formControlName="userName" required>
+                        <mat-error>
+                          Username <strong>required</strong>
+                      </mat-error>
+                      </mat-form-field>
+                    <!-- <mat-form-field appearance="outline">
+                        <ngx-mat-intl-tel-input placeholder="Phone number" formControlName="userName"
+                            [enablePlaceholder]="true" [enableSearch]="true" [preferredCountries]="['om']"
+                            name="phone" [ngClass]="{'is-invalid': submitted && fval['userName'].errors }" required>
+                        </ngx-mat-intl-tel-input>
+                        <mat-error>
+                            Phone number <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field> -->
+
+                </div>
+                <div *ngIf="submitted && fval['userName'].errors" class="invalid-feedback">
+                    <div *ngIf="fval.userName.errors.required">Please provide email or username
+                    </div>
+                </div>
+              </div>
+                <div class="form-group">
+                  <div class="input-container pt-1">
+                      <!-- <mat-form-field appearance="outline">
+                          <mat-label>Password</mat-label>
+                          <input matInput [type]="hide ? 'password' : 'text'"
+                              formControlName="password" required>
+                              <span matSuffix (click)="hide = !hide"> <i *ngIf="!hide"
+                                  class=" fas fa-eye "></i>
+                              <i *ngIf="hide" class="fas fa-eye-slash"></i>
+                          </span>
+                          <mat-error>
+                              Password <strong>required</strong>
+                          </mat-error>
+                      </mat-form-field> -->
+                      <mat-form-field appearance="outline">
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error>
+                          Password <strong>required</strong>
+                      </mat-error>
+                      </mat-form-field>
+                  </div>
+
+                  <div *ngIf="submitted && loginForm.get('password')?.valid" class="invalid-feedback">
+                      <div >Password is required</div>
+                  </div>
+                  
+                 
+              </div>
+            <button class="login-button" id="login-button" [disabled]="loading" [disabled]="isFormInValid">
+              <span *ngIf="loading"  class="spinner-border spinner-border-sm mr-1"></span>
+              {{ "Login " | titlecase }}
+            </button>
+                <!-- <button mat-raised-button color="primary" [disabled]="loading" class="btn-login block" [disabled]="isFormInValid">
+                            <span *ngIf="loading"  class="spinner-border spinner-border-sm mr-1"></span>
+                            {{ "Login " | titlecase }}
+                        </button> -->
+            </form>
+              
+           
+          </div>
+    </div>
+  
+</div>
+

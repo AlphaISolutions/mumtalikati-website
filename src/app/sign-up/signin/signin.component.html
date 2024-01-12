@@ -64,10 +64,11 @@
                           <div class="error-small" *ngIf="loginForm.errors && loginForm.errors['error']">
                             Requested resource could not be found on this account
                           </div>
-                        <button mat-raised-button color="primary" [disabled]="loading" class="btn-login block" [disabled]="isFormInValid">
+                        <!-- <button mat-raised-button color="primary" [disabled]="loading" class="btn-login block" [disabled]="isFormInValid">
                             <span *ngIf="loading"  class="spinner-border spinner-border-sm mr-1"></span>
                             {{ "Login " | titlecase }}
-                        </button>
+                        </button> -->
+                        <button (click)="onFormSubmit()" >login</button>
 
                     </div>
                     <div class="go-to-signin secondary-font center-align pt-4">

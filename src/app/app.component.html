@@ -1,120 +1,122 @@
 <!-- <app-top-bar></app-top-bar> -->
-
-<div class="loading" *ngIf="loading; else showList">
-  <mat-spinner [diameter]="50"></mat-spinner>
-</div>
-<ng-template #showList>
-  <div [dir]="direction">
-    
-    <div class="router">
+<div id="page-container">
+  <div class="loading" *ngIf="loading; else showList">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+  <ng-template #showList>
+    <div [dir]="direction">
       
-      <!-- <div
-      class="position-relative"
-      *ngIf="showChatbox"
-      class="chatbotdiv p-2"
-    >
-      <div class="chat-box p-2">
-        <header>
-          <div class="d-flex gap-2">
-            <img src="{{ bot }}" alt="bot" />
-            <h1 class="">Mumtalikati Live Chat</h1>
-          </div>
-
-          <span style="flex: 1"></span>
-          <mat-icon (click)="toggleChatbox()">remove</mat-icon>
-          <mat-icon (click)="clearChat()">clear</mat-icon>
-        </header>
-        <section id="message-list">
-          <div *ngIf="chatmessages.length === 0" class="chat-bubble-container">
-            <div class="deauft-message" >
-              <div class="d-flex">
-                <span>
+      <div class="router" id="content-wrap">
+        
+        <!-- <div
+        class="position-relative"
+        *ngIf="showChatbox"
+        class="chatbotdiv p-2"
+      >
+        <div class="chat-box p-2">
+          <header>
+            <div class="d-flex gap-2">
+              <img src="{{ bot }}" alt="bot" />
+              <h1 class="">Mumtalikati Live Chat</h1>
+            </div>
+  
+            <span style="flex: 1"></span>
+            <mat-icon (click)="toggleChatbox()">remove</mat-icon>
+            <mat-icon (click)="clearChat()">clear</mat-icon>
+          </header>
+          <section id="message-list">
+            <div *ngIf="chatmessages.length === 0" class="chat-bubble-container">
+              <div class="deauft-message" >
+                <div class="d-flex">
+                  <span>
+                    <img src="{{ bot }}" alt="bot" />
+                  </span>
+                  <div class="chatbot-message font-wight" >
+                    Hello Guest, I’m Mumtalikati Bot! 👋 I’m your personal Personal assistant. How can I help you?
+                  </div>
+                </div>
+                <div class="row gx-0">
+                  <div class="col-md-6" (click)="sendMessageqery('How can I login to my account?')" style="cursor: pointer;">
+                    <span class="chat-text">How can I login to my account?</span>
+                  </div>
+                  <div class="col-md-6" (click)="sendMessageqery('What\'s the status of lead?')" style="cursor: pointer;">
+                    <span class="chat-text">What's the status of lead?</span>
+                  </div>
+                </div>
+                <div>
+                  <span class="chat-text" (click)="sendMessageqery('What is Expense Management?')" style="cursor: pointer;">What is Expense Management?</span>
+                </div>
+              </div>
+            </div>
+            <div
+              *ngFor="let message of chatmessages; let i = index"
+              class="chat-bubble-container"
+            >
+            
+              <div class="d-flex gap-2" style="justify-content: right;">
+                <span *ngIf="!message.isUser">
                   <img src="{{ bot }}" alt="bot" />
                 </span>
-                <div class="chatbot-message font-wight" >
-                  Hello Guest, I’m Mumtalikati Bot! 👋 I’m your personal Personal assistant. How can I help you?
+  
+                <div 
+                  [ngClass]="{
+                    'user-message': message.isUser,
+                    'chatbot-message': !message.isUser,
+                    '': !message.isUser
+                  }"
+                >
+                  {{ message.text }}
                 </div>
+  
+                
+                <span *ngIf="message.isUser"><div class="text-g"></div></span>
               </div>
-              <div class="row gx-0">
-                <div class="col-md-6" (click)="sendMessageqery('How can I login to my account?')" style="cursor: pointer;">
-                  <span class="chat-text">How can I login to my account?</span>
-                </div>
-                <div class="col-md-6" (click)="sendMessageqery('What\'s the status of lead?')" style="cursor: pointer;">
-                  <span class="chat-text">What's the status of lead?</span>
-                </div>
-              </div>
-              <div>
-                <span class="chat-text" (click)="sendMessageqery('What is Expense Management?')" style="cursor: pointer;">What is Expense Management?</span>
-              </div>
-            </div>
-          </div>
-          <div
-            *ngFor="let message of chatmessages; let i = index"
-            class="chat-bubble-container"
-          >
-          
-            <div class="d-flex gap-2" style="justify-content: right;">
-              <span *ngIf="!message.isUser">
-                <img src="{{ bot }}" alt="bot" />
-              </span>
-
-              <div 
-                [ngClass]="{
-                  'user-message': message.isUser,
-                  'chatbot-message': !message.isUser,
-                  '': !message.isUser
-                }"
-              >
-                {{ message.text }}
-              </div>
-
-              
-              <span *ngIf="message.isUser"><div class="text-g"></div></span>
-            </div>
-            <div *ngIf="chatloading">
-                <div *ngIf="i === chatmessages.length - 1" class="d-flex gap-2">
-                    <img src="{{ bot }}" alt="bot" />
-                  <div [ngClass]="{ 'chatbot-message': message.isUser }">
-                    <div class="containers">
-                      <div class="dot"></div>
+              <div *ngIf="chatloading">
+                  <div *ngIf="i === chatmessages.length - 1" class="d-flex gap-2">
+                      <img src="{{ bot }}" alt="bot" />
+                    <div [ngClass]="{ 'chatbot-message': message.isUser }">
+                      <div class="containers">
+                        <div class="dot"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
+  
+            </div>
+          </section>
+          <footer class=" pt-sm-4">
+            <div class="row gx-0 px-sm-2 ">
+              <div class="col-sm-10 row-input">
+                <input class="inputfield"
+                  [formControl]="messageControl" [attr.disabled]="chatloading ? true : null"
+                  placeholder="Type a message to Mumtalikati Bot..."
+                  (keydown.enter)="sendMessage()"
+                />
               </div>
-
-          </div>
-        </section>
-        <footer class=" pt-sm-4">
-          <div class="row gx-0 px-sm-2 ">
-            <div class="col-sm-10 row-input">
-              <input class="inputfield"
-                [formControl]="messageControl" [attr.disabled]="chatloading ? true : null"
-                placeholder="Type a message to Mumtalikati Bot..."
-                (keydown.enter)="sendMessage()"
-              />
+              <div class="col-sm-2 row-button">
+                <button  class="border-0 bg-white " [attr.disabled]="chatloading ? true : null">
+                  <img src="{{ SendButton }}" alt="SendButton" (click)="sendMessage()"/>
+                </button>
+              </div>
             </div>
-            <div class="col-sm-2 row-button">
-              <button  class="border-0 bg-white " [attr.disabled]="chatloading ? true : null">
-                <img src="{{ SendButton }}" alt="SendButton" (click)="sendMessage()"/>
-              </button>
-            </div>
-          </div>
-        </footer>
+          </footer>
+        </div>
+      </div> -->
+        <!-- <div class="position-relative" >
+          <div class="bot">
+            <img
+            src="{{ boticon }}"
+            alt=""
+            class="btn border-0"
+            (click)="toggleChatbox()"
+          />
+          </div> -->
+        <router-outlet></router-outlet>
+      <!-- </div> -->
       </div>
-    </div> -->
-      <!-- <div class="position-relative" >
-        <div class="bot">
-          <img
-          src="{{ boticon }}"
-          alt=""
-          class="btn border-0"
-          (click)="toggleChatbox()"
-        />
-        </div> -->
-      <router-outlet></router-outlet>
-    <!-- </div> -->
+  
+      <app-footer *ngIf="!router.url.includes('login')"></app-footer>
     </div>
+  </ng-template>
+</div>
 
-    <app-footer></app-footer>
-  </div>
-</ng-template>

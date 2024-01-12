@@ -286,7 +286,7 @@ export class PropertydetailsComponent implements OnInit {
       });
   }
   propertyFilter(data: any) {
-    debugger;
+    ;
     this.loading = true;
     this.mumtalikatiservic
       .postPropertyFilter(data)
@@ -426,7 +426,7 @@ export class PropertydetailsComponent implements OnInit {
     if (event && this.wilayaid != event.value) {
       this.wilayaid = event.value;
       this.selectwilayat = event.source.triggerValue;
-      console.log(this.selectwilayat);
+      // console.log(this.selectwilayat);
       let data = this.propertyFilterform.value as PropertyFilter;
       data.wilayatID = event.value;
       data.pageNumber = this.pageno;
@@ -769,7 +769,7 @@ export class PropertydetailsComponent implements OnInit {
     this.modalService.dismissAll();
   }
   queryParams() {
-    debugger
+    
     this.router.navigate(['propertydetails'], {
       queryParams: {
         purpose: this.liststring,
@@ -785,7 +785,7 @@ export class PropertydetailsComponent implements OnInit {
     });
   }
   inIt() {
-    debugger
+    
     this.route.queryParams.subscribe((params) => {
       this.getPropertyListPurposeId(params);
       this.getGovernorateId(params);
@@ -811,7 +811,7 @@ export class PropertydetailsComponent implements OnInit {
     }
   }
   getPropertyListPurposeId(params: any) {
-    debugger;
+    ;
     this.listpurID = listingPurposeTypeEnumSting(params['purpose']);
     if (this.listpurID) {
       this.listid = this.listpurID;

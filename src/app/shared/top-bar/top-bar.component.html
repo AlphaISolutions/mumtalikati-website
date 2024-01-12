@@ -37,11 +37,7 @@
                                 (click)="collapsed = !collapsed" >{{"Contact-Us"|transloco}}</a>
                         </li>
     
-                        <li class="nav-item nav-right " *ngIf="addPropperty">
-                            <button class="nav-link nav-btn-link mx-3 my-1 px-2" mat-raised-button color="primary"
-                                (click)="openDialog()">{{"Login"|transloco}}</button>
-    
-                        </li>
+                      
                         <li class="nav-item nav-right ps-4 lag">
                             <mat-form-field appearance="outline" class="lang no-label">
                                 <mat-select [value]="language" (selectionChange)="changeLanguage($event)">
@@ -49,6 +45,10 @@
                                 </mat-select>
                             </mat-form-field>
                         </li>
+                        <!-- <li class="">
+                            <button class=" nav-btn-link mx-3 my-1 px-2" mat-raised-button color="primary"
+                            [routerLink]="'../login'" >{{"Login"|transloco}}</button>
+                        </li> -->
                     </ul>
                 </div>
     

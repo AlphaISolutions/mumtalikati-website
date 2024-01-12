@@ -8,6 +8,7 @@ import { UnitscategoryComponent } from './unitscategory/unitscategory.component'
 import { ContactusComponent } from './contactus/contactus.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { FaqComponent } from './faq/faq.component';
+import {  LoginComponent } from './login/login.component';
 const routes: Routes = [
   {
     path: 'faq',
@@ -17,6 +18,11 @@ const routes: Routes = [
       descrption:
         ' Explore our FAQ section to uncover comprehensive property queries & solutions in Oman to effortlessly rent, buy, or sell properties with Mumtalikati.',
     },
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  
   },
   {
     path: 'aboutus',

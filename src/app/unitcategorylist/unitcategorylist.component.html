@@ -18,7 +18,10 @@
                     <p class="card-text">{{"Caption"|transloco}}: {{property.caption}}</p>
                 </ng-template>
                 <p class="card-text pe-1"><img class="pe-2 imgcolor" [src]=" location">{{property.addressStr}}</p>
-                <p class="card-text">{{"Status"|transloco}}: {{getstutus(property.statuss!)}}</p>
+                <p class="card-text"*ngIf="property.statuss===1 || property.statuss===5||property.statuss===7 else notactive " >{{"Status"|transloco}}: {{getstutus(1)}}</p>
+                <ng-template #notactive>
+                    <p class="card-text" >{{"Status"|transloco}}: {{getstutus(property.statuss!)}}</p>
+                    </ng-template>
             </div>
         </div>
     </div>

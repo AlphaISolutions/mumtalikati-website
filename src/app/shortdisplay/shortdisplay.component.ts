@@ -51,7 +51,7 @@ export class ShortdisplayComponent implements OnInit {
     propertyMasterSubType: number,
     listingPurposeID: number
   ) {
-    debugger
+    
     this.unitCategoryId = getPropertyUnitCategoryEnum(unitCategoryID);
     this.liststring = listingPurposeTypeEnumid(listingPurposeID);
     this.propertyMasterSubTypeid = propertyMasterSubType;

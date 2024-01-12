@@ -183,8 +183,13 @@
               </ng-template>
               <tr>
                 <th class="header">{{ "Status" | transloco }}</th>
-                <td class="propertyb">
+                <td class="propertyb" *ngIf="propertyDetail.unitStatus===1 || propertyDetail.unitStatus===5||propertyDetail.unitStatus===7 else notactive ">
+                  
+                  <!-- Active -->
+                  {{ getstatus(1) }}
+                  <ng-template #notactive>
                   {{ getstatus(propertyDetail.unitStatus) }}
+                  </ng-template>
                 </td>
               </tr>
             </tbody>
