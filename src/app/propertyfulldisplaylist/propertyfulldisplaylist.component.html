@@ -20,9 +20,10 @@
             {{ getenum(propertyDetail.propertyMasterTypeID!) }}
           </span>
           {{ "PropertyAvailable" | transloco }} {{ "For" | transloco }}
-          {{ getlist(propertyDetail.listingPurposeID) }} {{ "In" | transloco }}
-          {{ propertyDetail.buildingName }}
-          {{ propertyDetail.propertySubTypeName }}
+          {{ getlist(propertyDetail.listingPurposeID) }}
+           {{ "In" | transloco }}
+          <!-- {{ propertyDetail.buildingName }}
+          {{ propertyDetail.propertySubTypeName }} -->
           {{ propertyDetail.addressStr }}
         </h5>
       </div>
